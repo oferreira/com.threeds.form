@@ -1,0 +1,2871 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "properties": {
+      "title": "This is the page title",
+      "language": "fr",
+      "submitLabel": "Télécharger"
+    },
+    "config": [
+      {
+        "name": "salutation",
+        "type": "picklist",
+        "label": "Salutation",
+        "required": false,
+        "options": [
+          {
+            "label": "Dr.",
+            "value": "Dr.",
+            "parentValue": ""
+          },
+          {
+            "label": "M.",
+            "value": "Mr.",
+            "parentValue": ""
+          },
+          {
+            "label": "Mme.",
+            "value": "Ms.",
+            "parentValue": ""
+          },
+          {
+            "label": "Sr.",
+            "value": "Sr.",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "firstName",
+        "type": "text",
+        "label": "Prénom",
+        "required": true
+      },
+      {
+        "name": "lastName",
+        "type": "text",
+        "label": "Nom",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "hidden"
+      },
+      {
+        "name": "workPhone",
+        "type": "text",
+        "label": "Téléphone",
+        "required": false
+      },
+      {
+        "name": "cellPhone",
+        "type": "text",
+        "label": "Téléphone mobile",
+        "required": false
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Société",
+        "required": true
+      },
+      {
+        "name": "branch",
+        "type": "text",
+        "label": "Branche",
+        "required": false
+      },
+      {
+        "name": "country",
+        "type": "picklist",
+        "label": "Pays",
+        "required": true,
+        "options": [
+          {
+            "label": "Afghanistan",
+            "value": "AF",
+            "parentValue": ""
+          },
+          {
+            "label": "Aland Islands",
+            "value": "AX",
+            "parentValue": ""
+          },
+          {
+            "label": "Albania",
+            "value": "AL",
+            "parentValue": ""
+          },
+          {
+            "label": "Algeria",
+            "value": "DZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Andorra",
+            "value": "AD",
+            "parentValue": ""
+          },
+          {
+            "label": "Angola",
+            "value": "AO",
+            "parentValue": ""
+          },
+          {
+            "label": "Anguilla",
+            "value": "AI",
+            "parentValue": ""
+          },
+          {
+            "label": "Antartica",
+            "value": "AQ",
+            "parentValue": ""
+          },
+          {
+            "label": "Antigua and Barbuda",
+            "value": "AG",
+            "parentValue": ""
+          },
+          {
+            "label": "Argentina",
+            "value": "AR",
+            "parentValue": ""
+          },
+          {
+            "label": "Armenia",
+            "value": "AM",
+            "parentValue": ""
+          },
+          {
+            "label": "Aruba",
+            "value": "AW",
+            "parentValue": ""
+          },
+          {
+            "label": "Australia",
+            "value": "AU",
+            "parentValue": ""
+          },
+          {
+            "label": "Austria",
+            "value": "AT",
+            "parentValue": ""
+          },
+          {
+            "label": "Azerbaijan",
+            "value": "AZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Bahamas",
+            "value": "BS",
+            "parentValue": ""
+          },
+          {
+            "label": "Bahrain",
+            "value": "BH",
+            "parentValue": ""
+          },
+          {
+            "label": "Bangladesh",
+            "value": "BD",
+            "parentValue": ""
+          },
+          {
+            "label": "Barbados",
+            "value": "BB",
+            "parentValue": ""
+          },
+          {
+            "label": "Belarus",
+            "value": "BY",
+            "parentValue": ""
+          },
+          {
+            "label": "Belgium",
+            "value": "BE",
+            "parentValue": ""
+          },
+          {
+            "label": "Belize",
+            "value": "BZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Benin",
+            "value": "BJ",
+            "parentValue": ""
+          },
+          {
+            "label": "Bermuda",
+            "value": "BM",
+            "parentValue": ""
+          },
+          {
+            "label": "Bhutan",
+            "value": "BT",
+            "parentValue": ""
+          },
+          {
+            "label": "Bolivia",
+            "value": "BO",
+            "parentValue": ""
+          },
+          {
+            "label": "Bosnia and Herzegovina",
+            "value": "BA",
+            "parentValue": ""
+          },
+          {
+            "label": "Botswana",
+            "value": "BW",
+            "parentValue": ""
+          },
+          {
+            "label": "Bouvet Island",
+            "value": "BV",
+            "parentValue": ""
+          },
+          {
+            "label": "Brazil",
+            "value": "BR",
+            "parentValue": ""
+          },
+          {
+            "label": "British Indian Ocean Territory",
+            "value": "IO",
+            "parentValue": ""
+          },
+          {
+            "label": "Brunei Darussalam",
+            "value": "BN",
+            "parentValue": ""
+          },
+          {
+            "label": "Bulgaria",
+            "value": "BG",
+            "parentValue": ""
+          },
+          {
+            "label": "Burkina Faso",
+            "value": "BF",
+            "parentValue": ""
+          },
+          {
+            "label": "Burundi",
+            "value": "BI",
+            "parentValue": ""
+          },
+          {
+            "label": "Cambodia",
+            "value": "KH",
+            "parentValue": ""
+          },
+          {
+            "label": "Cameroon",
+            "value": "CM",
+            "parentValue": ""
+          },
+          {
+            "label": "Canada",
+            "value": "CA",
+            "parentValue": ""
+          },
+          {
+            "label": "Cape Verde",
+            "value": "CV",
+            "parentValue": ""
+          },
+          {
+            "label": "Cayman Islands",
+            "value": "KY",
+            "parentValue": ""
+          },
+          {
+            "label": "Central African Republic",
+            "value": "CF",
+            "parentValue": ""
+          },
+          {
+            "label": "Chad",
+            "value": "TD",
+            "parentValue": ""
+          },
+          {
+            "label": "Chile",
+            "value": "CL",
+            "parentValue": ""
+          },
+          {
+            "label": "China",
+            "value": "CN",
+            "parentValue": ""
+          },
+          {
+            "label": "Christmas Island",
+            "value": "CX",
+            "parentValue": ""
+          },
+          {
+            "label": "Cocos (Keeling) Islands",
+            "value": "CC",
+            "parentValue": ""
+          },
+          {
+            "label": "Colombia",
+            "value": "CO",
+            "parentValue": ""
+          },
+          {
+            "label": "Comoros",
+            "value": "KM",
+            "parentValue": ""
+          },
+          {
+            "label": "Congo",
+            "value": "CG",
+            "parentValue": ""
+          },
+          {
+            "label": "Congo, Democratic Republic of",
+            "value": "CD",
+            "parentValue": ""
+          },
+          {
+            "label": "Cook Islands",
+            "value": "CK",
+            "parentValue": ""
+          },
+          {
+            "label": "Costa Rica",
+            "value": "CR",
+            "parentValue": ""
+          },
+          {
+            "label": "Croatia",
+            "value": "HR",
+            "parentValue": ""
+          },
+          {
+            "label": "Cuba",
+            "value": "CU",
+            "parentValue": ""
+          },
+          {
+            "label": "Cyprus",
+            "value": "CY",
+            "parentValue": ""
+          },
+          {
+            "label": "Czech Republic",
+            "value": "CZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Denmark",
+            "value": "DK",
+            "parentValue": ""
+          },
+          {
+            "label": "Djibouti",
+            "value": "DJ",
+            "parentValue": ""
+          },
+          {
+            "label": "Dominica",
+            "value": "DM",
+            "parentValue": ""
+          },
+          {
+            "label": "Dominican Republic",
+            "value": "DO",
+            "parentValue": ""
+          },
+          {
+            "label": "East Timor",
+            "value": "TL",
+            "parentValue": ""
+          },
+          {
+            "label": "Ecuador",
+            "value": "EC",
+            "parentValue": ""
+          },
+          {
+            "label": "Egypt",
+            "value": "EG",
+            "parentValue": ""
+          },
+          {
+            "label": "El Salvador",
+            "value": "SV",
+            "parentValue": ""
+          },
+          {
+            "label": "Equatorial Guinea",
+            "value": "GQ",
+            "parentValue": ""
+          },
+          {
+            "label": "Eritrea",
+            "value": "ER",
+            "parentValue": ""
+          },
+          {
+            "label": "Estonia",
+            "value": "EE",
+            "parentValue": ""
+          },
+          {
+            "label": "Ethiopia",
+            "value": "ET",
+            "parentValue": ""
+          },
+          {
+            "label": "Faeroe Islands",
+            "value": "FO",
+            "parentValue": ""
+          },
+          {
+            "label": "Falkland Islands (Malvinas)",
+            "value": "FK",
+            "parentValue": ""
+          },
+          {
+            "label": "Fiji",
+            "value": "FJ",
+            "parentValue": ""
+          },
+          {
+            "label": "Finland",
+            "value": "FI",
+            "parentValue": ""
+          },
+          {
+            "label": "France",
+            "value": "FR",
+            "parentValue": ""
+          },
+          {
+            "label": "French Guiana",
+            "value": "GF",
+            "parentValue": ""
+          },
+          {
+            "label": "French Polynesia",
+            "value": "PF",
+            "parentValue": ""
+          },
+          {
+            "label": "French Southern Territories",
+            "value": "TF",
+            "parentValue": ""
+          },
+          {
+            "label": "Gabon",
+            "value": "GA",
+            "parentValue": ""
+          },
+          {
+            "label": "Gambia",
+            "value": "GM",
+            "parentValue": ""
+          },
+          {
+            "label": "Georgia",
+            "value": "GE",
+            "parentValue": ""
+          },
+          {
+            "label": "Germany",
+            "value": "DE",
+            "parentValue": ""
+          },
+          {
+            "label": "Ghana",
+            "value": "GH",
+            "parentValue": ""
+          },
+          {
+            "label": "Gibraltar",
+            "value": "GI",
+            "parentValue": ""
+          },
+          {
+            "label": "Greece",
+            "value": "GR",
+            "parentValue": ""
+          },
+          {
+            "label": "Greenland",
+            "value": "GL",
+            "parentValue": ""
+          },
+          {
+            "label": "Grenada",
+            "value": "GD",
+            "parentValue": ""
+          },
+          {
+            "label": "Guadeloupe",
+            "value": "GP",
+            "parentValue": ""
+          },
+          {
+            "label": "Guam",
+            "value": "GU",
+            "parentValue": ""
+          },
+          {
+            "label": "Guatemala",
+            "value": "GT",
+            "parentValue": ""
+          },
+          {
+            "label": "Guernsey",
+            "value": "GG",
+            "parentValue": ""
+          },
+          {
+            "label": "Guinea",
+            "value": "GN",
+            "parentValue": ""
+          },
+          {
+            "label": "Guinea-Bissau",
+            "value": "GW",
+            "parentValue": ""
+          },
+          {
+            "label": "Guyana",
+            "value": "GY",
+            "parentValue": ""
+          },
+          {
+            "label": "Haiti",
+            "value": "HT",
+            "parentValue": ""
+          },
+          {
+            "label": "Heard and McDonald Islands",
+            "value": "HM",
+            "parentValue": ""
+          },
+          {
+            "label": "Holy See / Vatican City",
+            "value": "VA",
+            "parentValue": ""
+          },
+          {
+            "label": "Honduras",
+            "value": "HN",
+            "parentValue": ""
+          },
+          {
+            "label": "Hong Kong",
+            "value": "HK",
+            "parentValue": ""
+          },
+          {
+            "label": "Hungary",
+            "value": "HU",
+            "parentValue": ""
+          },
+          {
+            "label": "Iceland",
+            "value": "IS",
+            "parentValue": ""
+          },
+          {
+            "label": "India",
+            "value": "IN",
+            "parentValue": ""
+          },
+          {
+            "label": "Indonesia",
+            "value": "ID",
+            "parentValue": ""
+          },
+          {
+            "label": "Iran",
+            "value": "IR",
+            "parentValue": ""
+          },
+          {
+            "label": "Iraq",
+            "value": "IQ",
+            "parentValue": ""
+          },
+          {
+            "label": "Ireland",
+            "value": "IE",
+            "parentValue": ""
+          },
+          {
+            "label": "Israel",
+            "value": "IL",
+            "parentValue": ""
+          },
+          {
+            "label": "Italy",
+            "value": "IT",
+            "parentValue": ""
+          },
+          {
+            "label": "Ivory Coast",
+            "value": "CI",
+            "parentValue": ""
+          },
+          {
+            "label": "Jamaica",
+            "value": "JM",
+            "parentValue": ""
+          },
+          {
+            "label": "Japan",
+            "value": "JP",
+            "parentValue": ""
+          },
+          {
+            "label": "Jersey",
+            "value": "JE",
+            "parentValue": ""
+          },
+          {
+            "label": "Jordan",
+            "value": "JO",
+            "parentValue": ""
+          },
+          {
+            "label": "Kazakhstan",
+            "value": "KZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Kenya",
+            "value": "KE",
+            "parentValue": ""
+          },
+          {
+            "label": "Kiribati",
+            "value": "KI",
+            "parentValue": ""
+          },
+          {
+            "label": "Korea",
+            "value": "KR",
+            "parentValue": ""
+          },
+          {
+            "label": "Korea, Democratic People's Rep",
+            "value": "KP",
+            "parentValue": ""
+          },
+          {
+            "label": "Kosovo",
+            "value": "KS",
+            "parentValue": ""
+          },
+          {
+            "label": "Kuwait",
+            "value": "KW",
+            "parentValue": ""
+          },
+          {
+            "label": "Kyrgyzstan",
+            "value": "KG",
+            "parentValue": ""
+          },
+          {
+            "label": "Laos",
+            "value": "LA",
+            "parentValue": ""
+          },
+          {
+            "label": "Latvia",
+            "value": "LV",
+            "parentValue": ""
+          },
+          {
+            "label": "Lebanon",
+            "value": "LB",
+            "parentValue": ""
+          },
+          {
+            "label": "Lesotho",
+            "value": "LS",
+            "parentValue": ""
+          },
+          {
+            "label": "Liberia",
+            "value": "LR",
+            "parentValue": ""
+          },
+          {
+            "label": "Libyan Arab Jamahiriya",
+            "value": "LY",
+            "parentValue": ""
+          },
+          {
+            "label": "Liechtenstein",
+            "value": "LI",
+            "parentValue": ""
+          },
+          {
+            "label": "Lithuania",
+            "value": "LT",
+            "parentValue": ""
+          },
+          {
+            "label": "Luxembourg",
+            "value": "LU",
+            "parentValue": ""
+          },
+          {
+            "label": "Macau",
+            "value": "MO",
+            "parentValue": ""
+          },
+          {
+            "label": "Macedonia",
+            "value": "MK",
+            "parentValue": ""
+          },
+          {
+            "label": "Madagascar",
+            "value": "MG",
+            "parentValue": ""
+          },
+          {
+            "label": "Malawi",
+            "value": "MW",
+            "parentValue": ""
+          },
+          {
+            "label": "Malaysia",
+            "value": "MY",
+            "parentValue": ""
+          },
+          {
+            "label": "Maldives",
+            "value": "MV",
+            "parentValue": ""
+          },
+          {
+            "label": "Mali",
+            "value": "ML",
+            "parentValue": ""
+          },
+          {
+            "label": "Malta",
+            "value": "MT",
+            "parentValue": ""
+          },
+          {
+            "label": "Marshall Islands",
+            "value": "MH",
+            "parentValue": ""
+          },
+          {
+            "label": "Martinique",
+            "value": "MQ",
+            "parentValue": ""
+          },
+          {
+            "label": "Mauritania",
+            "value": "MR",
+            "parentValue": ""
+          },
+          {
+            "label": "Mauritius",
+            "value": "MU",
+            "parentValue": ""
+          },
+          {
+            "label": "Mayotte",
+            "value": "YT",
+            "parentValue": ""
+          },
+          {
+            "label": "Mexico",
+            "value": "MX",
+            "parentValue": ""
+          },
+          {
+            "label": "Micronesia",
+            "value": "FM",
+            "parentValue": ""
+          },
+          {
+            "label": "Moldova, Republic of",
+            "value": "MD",
+            "parentValue": ""
+          },
+          {
+            "label": "Monaco",
+            "value": "MC",
+            "parentValue": ""
+          },
+          {
+            "label": "Mongolia",
+            "value": "MN",
+            "parentValue": ""
+          },
+          {
+            "label": "Montenegro",
+            "value": "ME",
+            "parentValue": ""
+          },
+          {
+            "label": "Montserrat",
+            "value": "MS",
+            "parentValue": ""
+          },
+          {
+            "label": "Morocco",
+            "value": "MA",
+            "parentValue": ""
+          },
+          {
+            "label": "Mozambique",
+            "value": "MZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Myanmar",
+            "value": "MM",
+            "parentValue": ""
+          },
+          {
+            "label": "Namibia",
+            "value": "NA",
+            "parentValue": ""
+          },
+          {
+            "label": "Nauru",
+            "value": "NR",
+            "parentValue": ""
+          },
+          {
+            "label": "Nepal",
+            "value": "NP",
+            "parentValue": ""
+          },
+          {
+            "label": "Netherlands",
+            "value": "NL",
+            "parentValue": ""
+          },
+          {
+            "label": "Netherlands Antilles",
+            "value": "AN",
+            "parentValue": ""
+          },
+          {
+            "label": "New Caledonia",
+            "value": "NC",
+            "parentValue": ""
+          },
+          {
+            "label": "New Zealand",
+            "value": "NZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Nicaragua",
+            "value": "NI",
+            "parentValue": ""
+          },
+          {
+            "label": "Niger",
+            "value": "NE",
+            "parentValue": ""
+          },
+          {
+            "label": "Nigeria",
+            "value": "NG",
+            "parentValue": ""
+          },
+          {
+            "label": "Niue",
+            "value": "NU",
+            "parentValue": ""
+          },
+          {
+            "label": "Norfolk Island",
+            "value": "NF",
+            "parentValue": ""
+          },
+          {
+            "label": "Northern Mariana Islands",
+            "value": "MP",
+            "parentValue": ""
+          },
+          {
+            "label": "Norway",
+            "value": "NO",
+            "parentValue": ""
+          },
+          {
+            "label": "Oman",
+            "value": "OM",
+            "parentValue": ""
+          },
+          {
+            "label": "Pakistan",
+            "value": "PK",
+            "parentValue": ""
+          },
+          {
+            "label": "Palau",
+            "value": "PW",
+            "parentValue": ""
+          },
+          {
+            "label": "Palestinian Authority",
+            "value": "PS",
+            "parentValue": ""
+          },
+          {
+            "label": "Panama",
+            "value": "PA",
+            "parentValue": ""
+          },
+          {
+            "label": "Papua New Guinea",
+            "value": "PG",
+            "parentValue": ""
+          },
+          {
+            "label": "Paraguay",
+            "value": "PY",
+            "parentValue": ""
+          },
+          {
+            "label": "Peru",
+            "value": "PE",
+            "parentValue": ""
+          },
+          {
+            "label": "Philippines",
+            "value": "PH",
+            "parentValue": ""
+          },
+          {
+            "label": "Pitcairn Islands",
+            "value": "PN",
+            "parentValue": ""
+          },
+          {
+            "label": "Poland",
+            "value": "PL",
+            "parentValue": ""
+          },
+          {
+            "label": "Portugal",
+            "value": "PT",
+            "parentValue": ""
+          },
+          {
+            "label": "Puerto Rico",
+            "value": "PR",
+            "parentValue": ""
+          },
+          {
+            "label": "Qatar",
+            "value": "QA",
+            "parentValue": ""
+          },
+          {
+            "label": "Reunion",
+            "value": "RE",
+            "parentValue": ""
+          },
+          {
+            "label": "Romania",
+            "value": "RO",
+            "parentValue": ""
+          },
+          {
+            "label": "Russian Federation",
+            "value": "RU",
+            "parentValue": ""
+          },
+          {
+            "label": "Rwanda",
+            "value": "RW",
+            "parentValue": ""
+          },
+          {
+            "label": "Samoa",
+            "value": "WS",
+            "parentValue": ""
+          },
+          {
+            "label": "San Marino",
+            "value": "SM",
+            "parentValue": ""
+          },
+          {
+            "label": "Sao Tome and Principe",
+            "value": "ST",
+            "parentValue": ""
+          },
+          {
+            "label": "Saudi Arabia",
+            "value": "SA",
+            "parentValue": ""
+          },
+          {
+            "label": "Senegal",
+            "value": "SN",
+            "parentValue": ""
+          },
+          {
+            "label": "Serbia",
+            "value": "RS",
+            "parentValue": ""
+          },
+          {
+            "label": "Seychelles",
+            "value": "SC",
+            "parentValue": ""
+          },
+          {
+            "label": "Sierra Leone",
+            "value": "SL",
+            "parentValue": ""
+          },
+          {
+            "label": "Singapore",
+            "value": "SG",
+            "parentValue": ""
+          },
+          {
+            "label": "Slovakia",
+            "value": "SK",
+            "parentValue": ""
+          },
+          {
+            "label": "Slovenia",
+            "value": "SI",
+            "parentValue": ""
+          },
+          {
+            "label": "Solomon Islands",
+            "value": "SB",
+            "parentValue": ""
+          },
+          {
+            "label": "Somalia",
+            "value": "SO",
+            "parentValue": ""
+          },
+          {
+            "label": "South Africa",
+            "value": "ZA",
+            "parentValue": ""
+          },
+          {
+            "label": "South Georgia/South Sandwich",
+            "value": "GS",
+            "parentValue": ""
+          },
+          {
+            "label": "Spain",
+            "value": "ES",
+            "parentValue": ""
+          },
+          {
+            "label": "Sri Lanka",
+            "value": "LK",
+            "parentValue": ""
+          },
+          {
+            "label": "St. Helena",
+            "value": "SH",
+            "parentValue": ""
+          },
+          {
+            "label": "St. Kitts and Nevis",
+            "value": "KN",
+            "parentValue": ""
+          },
+          {
+            "label": "St. Lucia",
+            "value": "LC",
+            "parentValue": ""
+          },
+          {
+            "label": "St. Pierre and Miquelon",
+            "value": "PM",
+            "parentValue": ""
+          },
+          {
+            "label": "St. Vincent and Grenadines",
+            "value": "VC",
+            "parentValue": ""
+          },
+          {
+            "label": "Sudan",
+            "value": "SD",
+            "parentValue": ""
+          },
+          {
+            "label": "Suriname",
+            "value": "SR",
+            "parentValue": ""
+          },
+          {
+            "label": "Svalbard and Jan Mayen Islands",
+            "value": "SJ",
+            "parentValue": ""
+          },
+          {
+            "label": "Swaziland",
+            "value": "SZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Sweden",
+            "value": "SE",
+            "parentValue": ""
+          },
+          {
+            "label": "Switzerland",
+            "value": "CH",
+            "parentValue": ""
+          },
+          {
+            "label": "Syrian Arab Republic",
+            "value": "SY",
+            "parentValue": ""
+          },
+          {
+            "label": "Taiwan",
+            "value": "TW",
+            "parentValue": ""
+          },
+          {
+            "label": "Tajikistan",
+            "value": "TJ",
+            "parentValue": ""
+          },
+          {
+            "label": "Tanzania, United Republic of",
+            "value": "TZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Thailand",
+            "value": "TH",
+            "parentValue": ""
+          },
+          {
+            "label": "Togo",
+            "value": "TG",
+            "parentValue": ""
+          },
+          {
+            "label": "Tokelau",
+            "value": "TK",
+            "parentValue": ""
+          },
+          {
+            "label": "Tonga",
+            "value": "TO",
+            "parentValue": ""
+          },
+          {
+            "label": "Trinidad and Tobago",
+            "value": "TT",
+            "parentValue": ""
+          },
+          {
+            "label": "Tunisia",
+            "value": "TN",
+            "parentValue": ""
+          },
+          {
+            "label": "Turkey",
+            "value": "TR",
+            "parentValue": ""
+          },
+          {
+            "label": "Turkmenistan",
+            "value": "TM",
+            "parentValue": ""
+          },
+          {
+            "label": "Turks and Caicos Islands",
+            "value": "TC",
+            "parentValue": ""
+          },
+          {
+            "label": "Tuvalu",
+            "value": "TV",
+            "parentValue": ""
+          },
+          {
+            "label": "Uganda",
+            "value": "UG",
+            "parentValue": ""
+          },
+          {
+            "label": "Ukraine",
+            "value": "UA",
+            "parentValue": ""
+          },
+          {
+            "label": "United Arab Emirates",
+            "value": "AE",
+            "parentValue": ""
+          },
+          {
+            "label": "United Kingdom",
+            "value": "GB",
+            "parentValue": ""
+          },
+          {
+            "label": "Uruguay",
+            "value": "UY",
+            "parentValue": ""
+          },
+          {
+            "label": "USA",
+            "value": "US",
+            "parentValue": ""
+          },
+          {
+            "label": "US Minor Outlying Islands",
+            "value": "UM",
+            "parentValue": ""
+          },
+          {
+            "label": "Uzbekistan",
+            "value": "UZ",
+            "parentValue": ""
+          },
+          {
+            "label": "Vanuatu",
+            "value": "VU",
+            "parentValue": ""
+          },
+          {
+            "label": "Venezuela",
+            "value": "VE",
+            "parentValue": ""
+          },
+          {
+            "label": "Vietnam",
+            "value": "VN",
+            "parentValue": ""
+          },
+          {
+            "label": "Virgin Islands (British)",
+            "value": "VG",
+            "parentValue": ""
+          },
+          {
+            "label": "Virgin Islands (U.S.)",
+            "value": "VI",
+            "parentValue": ""
+          },
+          {
+            "label": "Wallis and Futuna Islands",
+            "value": "WF",
+            "parentValue": ""
+          },
+          {
+            "label": "Western Sahara",
+            "value": "EH",
+            "parentValue": ""
+          },
+          {
+            "label": "XX",
+            "value": "XX",
+            "parentValue": ""
+          },
+          {
+            "label": "Yemen",
+            "value": "YE",
+            "parentValue": ""
+          },
+          {
+            "label": "Zambia",
+            "value": "ZM",
+            "parentValue": ""
+          },
+          {
+            "label": "Zimbabwe",
+            "value": "ZW",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "state",
+        "parentField": "country",
+        "type": "picklist",
+        "label": "Etat",
+        "required": true,
+        "options": [
+          {
+            "label": "Aichi-Ken",
+            "value": "23",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Akita-Ken",
+            "value": "05",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Alabama",
+            "value": "AL",
+            "parentValue": "US"
+          },
+          {
+            "label": "Alaska",
+            "value": "AK",
+            "parentValue": "US"
+          },
+          {
+            "label": "Alberta",
+            "value": "AB",
+            "parentValue": "CA"
+          },
+          {
+            "label": "American Samoa",
+            "value": "AS",
+            "parentValue": "US"
+          },
+          {
+            "label": "Aomori-Ken",
+            "value": "02",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Arizona",
+            "value": "AZ",
+            "parentValue": "US"
+          },
+          {
+            "label": "Arkansas",
+            "value": "AR",
+            "parentValue": "US"
+          },
+          {
+            "label": "British Columbia",
+            "value": "BC",
+            "parentValue": "CA"
+          },
+          {
+            "label": "California",
+            "value": "CA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Chiba-Ken",
+            "value": "12",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Colorado",
+            "value": "CO",
+            "parentValue": "US"
+          },
+          {
+            "label": "Connecticut",
+            "value": "CT",
+            "parentValue": "US"
+          },
+          {
+            "label": "Delaware",
+            "value": "DE",
+            "parentValue": "US"
+          },
+          {
+            "label": "District of Columbia",
+            "value": "DC",
+            "parentValue": "US"
+          },
+          {
+            "label": "Ehime-Ken",
+            "value": "38",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Florida",
+            "value": "FL",
+            "parentValue": "US"
+          },
+          {
+            "label": "Fukui-Ken",
+            "value": "18",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Fukuoka-Ken",
+            "value": "40",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Fukushima-Ken",
+            "value": "07",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Georgia",
+            "value": "GA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Gifu-Ken",
+            "value": "21",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Guam",
+            "value": "GU",
+            "parentValue": "US"
+          },
+          {
+            "label": "Gunma-Ken",
+            "value": "10",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Hawaii",
+            "value": "HI",
+            "parentValue": "US"
+          },
+          {
+            "label": "Hiroshima-Ken",
+            "value": "34",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Hokkaido",
+            "value": "01",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Hyogo-Ken",
+            "value": "28",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Ibaraki-Ken",
+            "value": "08",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Idaho",
+            "value": "ID",
+            "parentValue": "US"
+          },
+          {
+            "label": "Illinois",
+            "value": "IL",
+            "parentValue": "US"
+          },
+          {
+            "label": "Indiana",
+            "value": "IN",
+            "parentValue": "US"
+          },
+          {
+            "label": "Iowa",
+            "value": "IA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Ishikawa-Ken",
+            "value": "17",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Iwate-Ken",
+            "value": "03",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kagawa-Ken",
+            "value": "37",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kagoshima-Ken",
+            "value": "46",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kanagawa-Ken",
+            "value": "14",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kansas",
+            "value": "KS",
+            "parentValue": "US"
+          },
+          {
+            "label": "Kentucky",
+            "value": "KY",
+            "parentValue": "US"
+          },
+          {
+            "label": "Kochi-Ken",
+            "value": "39",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kumamoto-Ken",
+            "value": "43",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Kyoto-Fu",
+            "value": "26",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Louisiana",
+            "value": "LA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Maine",
+            "value": "ME",
+            "parentValue": "US"
+          },
+          {
+            "label": "Manitoba",
+            "value": "MB",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Maryland",
+            "value": "MD",
+            "parentValue": "US"
+          },
+          {
+            "label": "Massachusetts",
+            "value": "MA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Michigan",
+            "value": "MI",
+            "parentValue": "US"
+          },
+          {
+            "label": "Mie-Ken",
+            "value": "24",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Minnesota",
+            "value": "MN",
+            "parentValue": "US"
+          },
+          {
+            "label": "Mississippi",
+            "value": "MS",
+            "parentValue": "US"
+          },
+          {
+            "label": "Missouri",
+            "value": "MO",
+            "parentValue": "US"
+          },
+          {
+            "label": "Miyagi-Ken",
+            "value": "04",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Miyazaki-Ken",
+            "value": "45",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Montana",
+            "value": "MT",
+            "parentValue": "US"
+          },
+          {
+            "label": "Nagano-Ken",
+            "value": "20",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Nagasaki-Ken",
+            "value": "42",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Nara-Ken",
+            "value": "29",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Nebraska",
+            "value": "NE",
+            "parentValue": "US"
+          },
+          {
+            "label": "Nevada",
+            "value": "NV",
+            "parentValue": "US"
+          },
+          {
+            "label": "New Brunswick",
+            "value": "NB",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Newfoundland and Labrador",
+            "value": "NL",
+            "parentValue": "CA"
+          },
+          {
+            "label": "New Hampshire",
+            "value": "NH",
+            "parentValue": "US"
+          },
+          {
+            "label": "New Jersey",
+            "value": "NJ",
+            "parentValue": "US"
+          },
+          {
+            "label": "New Mexico",
+            "value": "NM",
+            "parentValue": "US"
+          },
+          {
+            "label": "New York",
+            "value": "NY",
+            "parentValue": "US"
+          },
+          {
+            "label": "Niigata-Ken",
+            "value": "15",
+            "parentValue": "JP"
+          },
+          {
+            "label": "North Carolina",
+            "value": "NC",
+            "parentValue": "US"
+          },
+          {
+            "label": "North Dakota",
+            "value": "ND",
+            "parentValue": "US"
+          },
+          {
+            "label": "Northwest Territories",
+            "value": "NT",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Nova Scotia",
+            "value": "NS",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Nunavut",
+            "value": "NU",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Ohio",
+            "value": "OH",
+            "parentValue": "US"
+          },
+          {
+            "label": "Oita-Ken",
+            "value": "44",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Okayama-Ken",
+            "value": "33",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Okinawa-Ken",
+            "value": "47",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Oklahoma",
+            "value": "OK",
+            "parentValue": "US"
+          },
+          {
+            "label": "Ontario",
+            "value": "ON",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Oregon",
+            "value": "OR",
+            "parentValue": "US"
+          },
+          {
+            "label": "Osaka-Fu",
+            "value": "27",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Pennsylvania",
+            "value": "PA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Prince Edward Island",
+            "value": "PE",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Puerto Rico",
+            "value": "PR",
+            "parentValue": "US"
+          },
+          {
+            "label": "Quebec",
+            "value": "QC",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Rhode Island",
+            "value": "RI",
+            "parentValue": "US"
+          },
+          {
+            "label": "Saga-Ken",
+            "value": "41",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Saitama-Ken",
+            "value": "11",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Saskatchewan",
+            "value": "SK",
+            "parentValue": "CA"
+          },
+          {
+            "label": "Shiga-Ken",
+            "value": "25",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Shimane-Ken",
+            "value": "32",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Shizuoka-Ken",
+            "value": "22",
+            "parentValue": "JP"
+          },
+          {
+            "label": "South Carolina",
+            "value": "SC",
+            "parentValue": "US"
+          },
+          {
+            "label": "South Dakota",
+            "value": "SD",
+            "parentValue": "US"
+          },
+          {
+            "label": "Tennessee",
+            "value": "TN",
+            "parentValue": "US"
+          },
+          {
+            "label": "Texas",
+            "value": "TX",
+            "parentValue": "US"
+          },
+          {
+            "label": "Tochigi-Ken",
+            "value": "09",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Tokushima-Ken",
+            "value": "36",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Tokyo-To",
+            "value": "13",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Tottori-Ken",
+            "value": "31",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Toyama-Ken",
+            "value": "16",
+            "parentValue": "JP"
+          },
+          {
+            "label": "US Armed Forces Americas",
+            "value": "AA",
+            "parentValue": "US"
+          },
+          {
+            "label": "US Armed Forces Europe / Canada / Middle East / Africa",
+            "value": "AE",
+            "parentValue": "US"
+          },
+          {
+            "label": "US Armed Forces Pacific",
+            "value": "AP",
+            "parentValue": "US"
+          },
+          {
+            "label": "Utah",
+            "value": "UT",
+            "parentValue": "US"
+          },
+          {
+            "label": "Vermont",
+            "value": "VT",
+            "parentValue": "US"
+          },
+          {
+            "label": "Virginia",
+            "value": "VA",
+            "parentValue": "US"
+          },
+          {
+            "label": "Virgin Islands, U.S.",
+            "value": "VI",
+            "parentValue": "US"
+          },
+          {
+            "label": "Wakayama-Ken",
+            "value": "30",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Washington",
+            "value": "WA",
+            "parentValue": "US"
+          },
+          {
+            "label": "West Virginia",
+            "value": "WV",
+            "parentValue": "US"
+          },
+          {
+            "label": "Wisconsin",
+            "value": "WI",
+            "parentValue": "US"
+          },
+          {
+            "label": "Wyoming",
+            "value": "WY",
+            "parentValue": "US"
+          },
+          {
+            "label": "Yamagata-Ken",
+            "value": "06",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Yamaguchi-Ken",
+            "value": "35",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Yamanashi-Ken",
+            "value": "19",
+            "parentValue": "JP"
+          },
+          {
+            "label": "Yukon",
+            "value": "YT",
+            "parentValue": "CA"
+          }
+        ]
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Adresse 1",
+        "required": true
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Adresse 2",
+        "required": false
+      },
+      {
+        "name": "address3",
+        "type": "text",
+        "label": "Adresse 3",
+        "required": false
+      },
+      {
+        "name": "zipCode",
+        "type": "text",
+        "label": "Code postal",
+        "required": true
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "Ville",
+        "required": true
+      },
+      {
+        "name": "industry",
+        "type": "picklist",
+        "label": "Industrie",
+        "required": true,
+        "options": [
+          {
+            "label": "Transport et Mobilité",
+            "value": "01",
+            "parentValue": ""
+          },
+          {
+            "label": "Aéronautique et Défense",
+            "value": "02",
+            "parentValue": ""
+          },
+          {
+            "label": "Marine et Offshore",
+            "value": "03",
+            "parentValue": ""
+          },
+          {
+            "label": "Equipements industriels",
+            "value": "04",
+            "parentValue": ""
+          },
+          {
+            "label": "Hautes technologies",
+            "value": "05",
+            "parentValue": ""
+          },
+          {
+            "label": "Biens de consommation - Distribution",
+            "value": "06",
+            "parentValue": ""
+          },
+          {
+            "label": "Produits de grande consommation - Distribution",
+            "value": "07",
+            "parentValue": ""
+          },
+          {
+            "label": "Sciences de la vie",
+            "value": "08",
+            "parentValue": ""
+          },
+          {
+            "label": "Energie et Procédés",
+            "value": "09",
+            "parentValue": ""
+          },
+          {
+            "label": "Architecture,  Ingénierie et Construction",
+            "value": "10",
+            "parentValue": ""
+          },
+          {
+            "label": "Finance et Services",
+            "value": "11",
+            "parentValue": ""
+          },
+          {
+            "label": "Ressources naturelles",
+            "value": "12",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "subIndustry",
+        "parentField": "industry",
+        "type": "picklist",
+        "label": "Sous-industrie",
+        "required": false,
+        "options": [
+          {
+            "label": "Constructeurs de voitures et camions légers",
+            "value": "01.1",
+            "parentValue": "01"
+          },
+          {
+            "label": "Voitures de course",
+            "value": "01.2",
+            "parentValue": "01"
+          },
+          {
+            "label": "Motos",
+            "value": "01.3",
+            "parentValue": "01"
+          },
+          {
+            "label": "Fournisseurs  automobile et transport",
+            "value": "01.4",
+            "parentValue": "01"
+          },
+          {
+            "label": "Camions et Bus",
+            "value": "01.5",
+            "parentValue": "01"
+          },
+          {
+            "label": "Trains",
+            "value": "01.6",
+            "parentValue": "01"
+          },
+          {
+            "label": "Fabricants de cellules",
+            "value": "02.1",
+            "parentValue": "02"
+          },
+          {
+            "label": "Fournisseurs de l'industrie aéronautique",
+            "value": "02.2",
+            "parentValue": "02"
+          },
+          {
+            "label": "Propulsion",
+            "value": "02.3",
+            "parentValue": "02"
+          },
+          {
+            "label": "Défense",
+            "value": "02.4",
+            "parentValue": "02"
+          },
+          {
+            "label": "Compagnies aériennes",
+            "value": "02.5",
+            "parentValue": "02"
+          },
+          {
+            "label": "Spatial",
+            "value": "02.6",
+            "parentValue": "02"
+          },
+          {
+            "label": "Marine militaire",
+            "value": "03.1",
+            "parentValue": "03"
+          },
+          {
+            "label": "Navires commerciaux",
+            "value": "03.2",
+            "parentValue": "03"
+          },
+          {
+            "label": "Offshore",
+            "value": "03.3",
+            "parentValue": "03"
+          },
+          {
+            "label": "Plaisance et Bateaux de travail",
+            "value": "03.4",
+            "parentValue": "03"
+          },
+          {
+            "label": "Fournisseurs maritime",
+            "value": "03.5",
+            "parentValue": "03"
+          },
+          {
+            "label": "Spécialistes Marine & Offshore",
+            "value": "03.6",
+            "parentValue": "03"
+          },
+          {
+            "label": "Machines-outils",
+            "value": "04.1",
+            "parentValue": "04"
+          },
+          {
+            "label": "Machines mobiles lourdes et Equipements",
+            "value": "04.2",
+            "parentValue": "04"
+          },
+          {
+            "label": "Equipements installés",
+            "value": "04.3",
+            "parentValue": "04"
+          },
+          {
+            "label": "Produits d'équipement industriel",
+            "value": "04.4",
+            "parentValue": "04"
+          },
+          {
+            "label": "Ouvrages en métaux",
+            "value": "04.5",
+            "parentValue": "04"
+          },
+          {
+            "label": "Fabricants de pneus",
+            "value": "04.6",
+            "parentValue": "04"
+          },
+          {
+            "label": "Electronique grand public",
+            "value": "05.1",
+            "parentValue": "05"
+          },
+          {
+            "label": "Sécurité et contrôle-commande",
+            "value": "05.2",
+            "parentValue": "05"
+          },
+          {
+            "label": "Matériel informatique et de communication",
+            "value": "05.3",
+            "parentValue": "05"
+          },
+          {
+            "label": "Services de fabrication à la commande",
+            "value": "05.4",
+            "parentValue": "05"
+          },
+          {
+            "label": "Fournisseurs de technologies",
+            "value": "05.5",
+            "parentValue": "05"
+          },
+          {
+            "label": "Semi-conducteurs",
+            "value": "05.6",
+            "parentValue": "05"
+          },
+          {
+            "label": "Mobilier",
+            "value": "06.1",
+            "parentValue": "06"
+          },
+          {
+            "label": "Maison et jardin",
+            "value": "06.2",
+            "parentValue": "06"
+          },
+          {
+            "label": "Articles de loisirs",
+            "value": "06.3",
+            "parentValue": "06"
+          },
+          {
+            "label": "Mode",
+            "value": "06.4",
+            "parentValue": "06"
+          },
+          {
+            "label": "Distributeurs de biens durables",
+            "value": "06.5",
+            "parentValue": "06"
+          },
+          {
+            "label": "Distributeurs de biens semi-durables",
+            "value": "06.6",
+            "parentValue": "06"
+          },
+          {
+            "label": "Alimentation,  boissons et tabac",
+            "value": "07.1",
+            "parentValue": "07"
+          },
+          {
+            "label": "Produits de beauté et de soins",
+            "value": "07.2",
+            "parentValue": "07"
+          },
+          {
+            "label": "Produits ménagers",
+            "value": "07.3",
+            "parentValue": "07"
+          },
+          {
+            "label": "Emballages",
+            "value": "07.4",
+            "parentValue": "07"
+          },
+          {
+            "label": "Distributeurs généralistes",
+            "value": "07.5",
+            "parentValue": "07"
+          },
+          {
+            "label": "Distributeurs spécialisés",
+            "value": "07.6",
+            "parentValue": "07"
+          },
+          {
+            "label": "Pharmacie et Biotechnologies",
+            "value": "08.1",
+            "parentValue": "08"
+          },
+          {
+            "label": "Dispositifs et matériel médicaux",
+            "value": "08.2",
+            "parentValue": "08"
+          },
+          {
+            "label": "Soins médicaux",
+            "value": "08.3",
+            "parentValue": "08"
+          },
+          {
+            "label": "Energie",
+            "value": "09.1",
+            "parentValue": "09"
+          },
+          {
+            "label": "Transformation",
+            "value": "09.2",
+            "parentValue": "09"
+          },
+          {
+            "label": "Chimie",
+            "value": "09.3",
+            "parentValue": "09"
+          },
+          {
+            "label": "Services à la collectivité",
+            "value": "09.4",
+            "parentValue": "09"
+          },
+          {
+            "label": "Propriétaires,  exploitants et planificateurs",
+            "value": "10.1",
+            "parentValue": "10"
+          },
+          {
+            "label": "Architecture",
+            "value": "10.2",
+            "parentValue": "10"
+          },
+          {
+            "label": "Ingénierie",
+            "value": "10.3",
+            "parentValue": "10"
+          },
+          {
+            "label": "Fabricants de produits de construction",
+            "value": "10.4",
+            "parentValue": "10"
+          },
+          {
+            "label": "Maîtres d'œuvre",
+            "value": "10.5",
+            "parentValue": "10"
+          },
+          {
+            "label": "Sous-traitants",
+            "value": "10.6",
+            "parentValue": "10"
+          },
+          {
+            "label": "Conformité réglementaire",
+            "value": "10.7",
+            "parentValue": "10"
+          },
+          {
+            "label": "Banque et Marchés financiers",
+            "value": "11.1",
+            "parentValue": "11"
+          },
+          {
+            "label": "Assurance",
+            "value": "11.2",
+            "parentValue": "11"
+          },
+          {
+            "label": "Télécommunications",
+            "value": "11.3",
+            "parentValue": "11"
+          },
+          {
+            "label": "Gestion des systèmes de transport",
+            "value": "11.4",
+            "parentValue": "11"
+          },
+          {
+            "label": "Médias et Divertissement",
+            "value": "11.5",
+            "parentValue": "11"
+          },
+          {
+            "label": "Education",
+            "value": "11.6",
+            "parentValue": "11"
+          },
+          {
+            "label": "Administration publique",
+            "value": "11.7",
+            "parentValue": "11"
+          },
+          {
+            "label": "Services aux professionnels",
+            "value": "11.8",
+            "parentValue": "11"
+          },
+          {
+            "label": "Industrie minière",
+            "value": "12.1",
+            "parentValue": "12"
+          },
+          {
+            "label": "Gaz et pétrole",
+            "value": "12.2",
+            "parentValue": "12"
+          },
+          {
+            "label": "Eau",
+            "value": "12.3",
+            "parentValue": "12"
+          },
+          {
+            "label": "Agriculture et forêt",
+            "value": "12.4",
+            "parentValue": "12"
+          }
+        ]
+      },
+      {
+        "name": "jobFunction",
+        "type": "text",
+        "label": "Profession",
+        "required": false
+      },
+      {
+        "name": "jobTitle",
+        "type": "picklist",
+        "label": "Responsabilité",
+        "required": true,
+        "options": [
+          {
+            "label": "PDG / Président",
+            "value": "1. CEO / Chairman",
+            "parentValue": ""
+          },
+          {
+            "label": "Responsable de Département",
+            "value": "2. Department Manager",
+            "parentValue": ""
+          },
+          {
+            "label": "Directeur Executif",
+            "value": "1. Executive Director",
+            "parentValue": ""
+          },
+          {
+            "label": "Directeur / Manager",
+            "value": "2. Manager / Director",
+            "parentValue": ""
+          },
+          {
+            "label": "Spécialiste / Expert",
+            "value": "3. Specialist / Individual Contributor",
+            "parentValue": ""
+          },
+          {
+            "label": "Responsable de Projet / d'Equipe",
+            "value": "3. Team / Project Leader",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "department",
+        "type": "picklist",
+        "label": "Département",
+        "required": true,
+        "options": [
+          {
+            "label": "Formation / Enseignement",
+            "value": "ACA Academic",
+            "parentValue": ""
+          },
+          {
+            "label": "Administration",
+            "value": "ADM Administration",
+            "parentValue": ""
+          },
+          {
+            "label": "Bureau d'étude / Ingénierie",
+            "value": "ENG Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Service Informatique",
+            "value": "IT Information Systems",
+            "parentValue": ""
+          },
+          {
+            "label": "Production",
+            "value": "ENG Manufacturing",
+            "parentValue": ""
+          },
+          {
+            "label": "Vente et Marketing",
+            "value": "MKGSAL Marketing Sales",
+            "parentValue": ""
+          },
+          {
+            "label": "Leader d'opinion",
+            "value": "OL Opinion leader",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "subDepartment",
+        "parentField": "department",
+        "type": "picklist",
+        "label": "Sous-département",
+        "required": false,
+        "options": [
+          {
+            "label": "Publicité et Communication",
+            "value": "MKGSAL Marketing Sales - Advertising / Communication",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Analyste",
+            "value": "ENG Engineering - Analysis",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Analyste",
+            "value": "OL Opinion leader - Analyst",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Prod - Automatisme et contrôle",
+            "value": "ENG Manufacturing - Automation/Controls Engineering",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "BE - Documentation",
+            "value": "ENG Engineering - Documentation",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prod - Documentation / Maintenance",
+            "value": "ENG Manufacturing - Documentation/Maintenance",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "BE - Electronique",
+            "value": "ENG Engineering - Electronics",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "BE - Ingénierie",
+            "value": "ENG Engineering - Engineering design",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prod - Ergonomie",
+            "value": "ENG Manufacturing - Ergonomics",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "BE - Ergonomie",
+            "value": "ENG Engineering - Ergonomics",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Services Génereaux ",
+            "value": "ADM Administration - Factory Management",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Finance - Contrôle de Gestion",
+            "value": "ADM Administration - Finance / accounting",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Prod - Fabrication",
+            "value": "ENG Manufacturing - Forming and Fabrication",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Geology",
+            "value": "ENG Engineering - Geology",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Ressources humaines",
+            "value": "ADM Administration - Human resources",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "BE - Design et Style",
+            "value": "ENG Engineering - Industrial Design / Style",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prescripteur",
+            "value": "OL Opinion leader - Influencer",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "IT - Système d'Information",
+            "value": "IT Information Systems - Information System",
+            "parentValue": "IT Information Systems"
+          },
+          {
+            "label": "Journaliste",
+            "value": "OL Opinion leader - Journalist",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Logistique",
+            "value": "ADM Administration - Logistics",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "BE - Maintenance",
+            "value": "ENG Engineering - Maintenance",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prod - Usinage",
+            "value": "ENG Manufacturing - Manufacturing Engineering",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Prod - Mécanique",
+            "value": "ENG Manufacturing - Mechanical Engineering",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Merchandising / Distribution",
+            "value": "MKGSAL Marketing Sales - Merchandising  / Retail",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Mining",
+            "value": "ENG Engineering - Mining",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Emballage",
+            "value": "MKGSAL Marketing Sales - Packaging",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Prod - Planification ",
+            "value": "ENG Manufacturing - Planning",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Après vente / support",
+            "value": "MKGSAL Marketing Sales - Post Sales / support",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Avant Vente",
+            "value": "MKGSAL Marketing Sales - Pre Sales",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "BE - Process",
+            "value": "ENG Engineering - Process",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prod - Production",
+            "value": "ENG Manufacturing - Production",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Marketing produit",
+            "value": "MKGSAL Marketing Sales - Product Marketing",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Organisme Public",
+            "value": "OL Opinion leader - Public organization",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Relations publiques",
+            "value": "MKGSAL Marketing Sales - Public relations",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Achats - Fournisseurs",
+            "value": "ADM Administration - Purchasing / procurement",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "BE - Qualité",
+            "value": "ENG Engineering - Quality",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Prod - Contrôle Qualité et Inspection",
+            "value": "ENG Manufacturing - Quality Control / Inspection",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "BE - Recherche et Dévelopement",
+            "value": "ENG Engineering - R&D",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Chercheur",
+            "value": "ACA Academic - Research",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "Prod - Robotique",
+            "value": "ENG Manufacturing - Robotics",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Vente",
+            "value": "MKGSAL Marketing Sales - Sales",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "IT - Stratégie",
+            "value": "IT Information Systems - Strategy",
+            "parentValue": "IT Information Systems"
+          },
+          {
+            "label": "Elève - Etudiant",
+            "value": "ACA Academic - Student",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "Survey",
+            "value": "ENG Engineering - Survey",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "BE - Ingénierie Systèmes",
+            "value": "ENG Engineering - Systems engineering",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Professeur",
+            "value": "ACA Academic - Teacher / faculty",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "IT - Technique",
+            "value": "IT Information Systems - Technical",
+            "parentValue": "IT Information Systems"
+          }
+        ]
+      },
+      {
+        "type": "fieldGroup",
+        "label": "Je souhaiterais",
+        "required": true,
+        "items": [
+          {
+            "name": "datasheet",
+            "type": "checkbox",
+            "label": "Un document produit",
+            "value": "1"
+          },
+          {
+            "name": "demo",
+            "type": "checkbox",
+            "label": "Une démonstration en live",
+            "value": "1"
+          },
+          {
+            "name": "quote",
+            "type": "checkbox",
+            "label": "Une proposition commerciale",
+            "value": "1"
+          },
+          {
+            "name": "salesRepVisit",
+            "type": "checkbox",
+            "label": "La visite d'un ingénieur commercial",
+            "value": "1"
+          },
+          {
+            "name": "call",
+            "type": "checkbox",
+            "label": "Un appel téléphonique",
+            "value": "1"
+          },
+          {
+            "name": "training",
+            "type": "checkbox",
+            "label": "Une formation",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "name": "levelOfInterest",
+        "type": "picklist",
+        "label": "Quel est votre niveau d’intérêt ?",
+        "required": true,
+        "options": [
+          {
+            "label": "Curiosité/Intérêt général",
+            "value": "1",
+            "parentValue": ""
+          },
+          {
+            "label": "Je commence ma recherche",
+            "value": "2",
+            "parentValue": ""
+          },
+          {
+            "label": "Je compare les solutions",
+            "value": "3",
+            "parentValue": ""
+          },
+          {
+            "label": "Je suis prêt à acheter",
+            "value": "4",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "type": "fieldGroup",
+        "label": "Quels sont les produits qui vous intéressent ? (3 maximum)",
+        "required": true,
+        "items": [
+          {
+            "name": "product1",
+            "type": "checkbox",
+            "label": "CAO 3D SOLIDWORKS",
+            "value": "SOLIDWORKS - 3D CAD"
+          },
+          {
+            "name": "product2",
+            "type": "checkbox",
+            "label": "SOLIDWORKS - Electrical",
+            "value": "SOLIDWORKS - Electrical"
+          },
+          {
+            "name": "product3",
+            "type": "checkbox",
+            "label": "SOLIDWORKS - Industrial Designer",
+            "value": "SOLIDWORKS - Industrial Designer"
+          },
+          {
+            "name": "product4",
+            "type": "checkbox",
+            "label": "SOLIDWORKS - Plastics",
+            "value": "SOLIDWORKS - Plastics"
+          },
+          {
+            "name": "product5",
+            "type": "checkbox",
+            "label": "SOLIDWORKS - Simulation",
+            "value": "SOLIDWORKS - Simulation"
+          }
+        ]
+      },
+      {
+        "name": "custom1",
+        "type": "text",
+        "label": "My Custom Field 1",
+        "required": true
+      },
+      {
+        "name": "custom2",
+        "type": "checkbox",
+        "label": "My Custom Field 2",
+        "value": "1",
+        "required": true
+      },
+      {
+        "name": "custom3",
+        "type": "radio",
+        "label": "My Custom Field 3",
+        "required": true,
+        "options": [
+          {
+            "label": "Value 1",
+            "value": "Val1",
+            "parentValue": ""
+          },
+          {
+            "label": "Value 2",
+            "value": "Val2",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "custom4",
+        "type": "picklist",
+        "label": "My Custom Field 4",
+        "required": false,
+        "options": [
+          {
+            "label": "Value 1 again",
+            "value": "val11",
+            "parentValue": ""
+          },
+          {
+            "label": "Value 2 again",
+            "value": "val12",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "custom5",
+        "type": "text",
+        "label": "My Custom Field",
+        "required": false
+      },
+      {
+        "name": "custom6",
+        "type": "text",
+        "label": "My Custom Field",
+        "required": true
+      },
+      {
+        "name": "comments",
+        "type": "textarea",
+        "label": "custom label for comment",
+        "required": false
+      },
+      {
+        "name": "optin",
+        "type": "checkbox",
+        "label": "J'accepte de recevoir des e-mails de Dassault Systèmes. Conformément à l'article 34 de la loi Informatique et Libertés, vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent. Pour l'exercer, adressez-vous à 3DS.PrivacyPolicy(at)3ds.com",
+        "value": "1",
+        "required": false
+      }
+    ],
+    "data": {
+      "email": "john.doe@company.com"
+    }
+  }
+}

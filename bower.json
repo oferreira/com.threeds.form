@@ -1,0 +1,31 @@
+{
+  "name": "card-3ds",
+  "authors": [
+    "olivier <olivier@mediainvest.io>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "uikit-3ds": "https://github.com/oferreira/uikit-3ds.git#~0.0.1-card-alpha",
+    "pure": "^0.6.0",
+    "masonry": "~4.0.0",
+    "imagesloaded": "~4.1.0",
+    "polymer-ts": "~0.1.23",
+    "polymer": "Polymer/polymer#~1.4.0"
+  },
+  "devDependencies": {
+    "chosen": "~1.5.1"
+  }
+}
