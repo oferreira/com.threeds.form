@@ -1,61 +1,62 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../../Object.ts" />
+
 namespace Com.Theeds.Component.Form.Element {
 
 
     export class NeolaneFromBehavior extends polymer.Base {
-        private _errors:string[] = [];
 
-        public action(context:any, data:any):any {
-            console.log(data);
-          // console.log( Object.prototype.isDefined(data, 'data.result.properties.redirect'));
-            if (data.success !== undefined && data.success && data.result !== undefined && data.result.config !== undefined) {
-                // update form
-                context.removeAllStep();
-                context.appendStep(data);
-            } else if (data.success !== undefined && !data.success && data.errors !== undefined && data.errors[0] !== undefined) {
-                // display success
+        public action(form:any, data:any):any {
 
+            if (Object.isDefined(data, 'result.config')) {
+                form.update(data);
+            } else if (Object.isDefined(data, 'result.properties.content')) {
+                console.log(data);
 
-            } else if (data.success !== undefined && !data.success && data.errors !== undefined && data.errors[0] !== undefined) {
-                // display error
-                context.removeAllStep();
-                context.innerHTML = `<div class="alert alert-danger" role="alert">${data.errors[0].error.message}</div>`;
-            } else if (data.success !== undefined && !data.success && data.errors !== undefined) {
-                // display error
-                context.displayErrors(data.errors);
-            }
-        }
+            } else if (Object.isDefined(data, 'errors.0.error.message')) {
+                form.clean();
+                form.innerHTML = `<div class="alert alert-danger" role="alert">${data.errors[0].error.message}</div>`;
+            } else if (Object.isDefined(data, 'errors')) {
+               form.errors = data.errors;
+                console.log(form.errors);
 
 
-
-        public get errors():string[] {
-            this._errors = [];
-            let dom:any = Polymer.dom(this);
-
-            for (let i = 0; i < (dom['node'].length); i++) {
-                if (typeof  dom['node'][i].isValid === 'function') {
-                    if (dom['node'][i].isValid() == true) this._errors[dom['node'][i].name] = dom['node'][i].errorMessage;
-                }
             }
 
-            return this._errors;
         }
 
         @listen('submit')
         _onSubmit(e:Event) {
-            this.submit();
             if (e) e.preventDefault();
+            this.submit();
             return false;
         }
 
         submit():void {
-            if (Object.getOwnPropertyNames(this.errors).length <= 1) this.context.service('form').post(this, this.serialize());
+            this.valid();
+            if (this.errors.length <= 1) this.context.service('form').post(this, $(this).serialize());
         }
+
 
         render(type:string, data:any):void {
             if (type == 'form') this.dispatch(data);
         }
     }
+}
+
+interface Object {
+    isDefined(): boolean;
+}
+
+Object.isDefined = function (obj, prop):boolean {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+    return true;
 }

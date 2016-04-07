@@ -2865,7 +2865,8 @@
       }
     ],
     "data": {
-      "email": "john.doe@company.com"
+      "email": "john.doe@company.com",
+      "custom2": true
     }
   }
 }

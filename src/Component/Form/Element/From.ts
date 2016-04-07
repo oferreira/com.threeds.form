@@ -26,10 +26,40 @@ namespace Com.Theeds.Component.Form.Element {
         @property({type: String, reflectToAttribute: true})
             action:string;
 
+        public _errors:any = [];
+
         constructor(context:any, data:any) {
             super(data);
             this.context = context;
             this.dispatch(data);
+        }
+
+        public get errors():any {
+            return this._errors;
+        }
+
+        public set errors(value:any) {
+            this._errors = value;
+
+            for (let i = 0; i < (Polymer.dom(this)['node'].length); i++) {
+                if (typeof  Polymer.dom(this)['node'][i].displayError === 'function') {
+                    for (var k in this._errors) {
+                        if (Polymer.dom(this)['node'][i].name == k) {
+                            Polymer.dom(this)['node'][i].displayError(this._errors[k]);
+                        }
+                    }
+                }
+            }
+        }
+
+        public valid() {
+            this._errors = [];
+
+            for (let i = 0; i < (Polymer.dom(this)['node'].length); i++) {
+                if (typeof  Polymer.dom(this)['node'][i].isValid === 'function') {
+                    if (Polymer.dom(this)['node'][i].isValid() == true) this._errors[Polymer.dom(this)['node'][i].name] = Polymer.dom(this)['node'][i].errorMessage;
+                }
+            }
         }
 
         dispatch(data:any) {
@@ -40,28 +70,13 @@ namespace Com.Theeds.Component.Form.Element {
             }
         }
 
-        serialize():string {
-            return $(this).serialize();
-        }
-
-        removeAllStep() {
+        clear() {
             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
         }
 
-        appendStep(data:any) {
+        update(data:any) {
+            this.clear();
             this.appendChild(StepElement.create(this.context, data));
-        }
-
-        displayErrors(errors:any) {
-            for (let i = 0; i < (Polymer.dom(this)['node'].length); i++) {
-                if (typeof  Polymer.dom(this)['node'][i].displayError === 'function') {
-                    for (let k = 0; k < errors.length; k++) {
-                        if (Polymer.dom(this)['node'][i].name == errors[k].field) {
-                            Polymer.dom(this)['node'][i].displayError(errors[k].error);
-                        }
-                    }
-                }
-            }
         }
     }
 }
