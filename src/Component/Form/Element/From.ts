@@ -94,8 +94,8 @@ namespace Com.Theeds.Component.Form.Element {
             this.innerHTML = message;
         }
 
-        redirect(url:any) {
-            window.location = url;
+        redirect(url:string) {
+            window.location = <any>url;
         }
     }
 }

@@ -1,27 +1,3 @@
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Plugin;
-        (function (Plugin) {
-            var AbstractPlugin = function () {
-                function AbstractPlugin(elem, options) {
-                    this.settings = {};
-                    this.elem = elem;
-                    this.settings = $.extend({}, this.settings, options);
-                }
-                AbstractPlugin.prototype.render = function (type, data) {
-                    return eval("new " + this.settings.render.adapter + "()")[type](this, data);
-                };
-                AbstractPlugin.prototype.service = function (name) {
-                    return eval('new ' + this.settings[name].adapter);
-                };
-                return AbstractPlugin;
-            }();
-            Plugin.AbstractPlugin = AbstractPlugin;
-        })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -44,6 +20,52 @@ var Com;
             }(polymer.Base);
             Element.AbstractPolymerElement = AbstractPolymerElement;
         })(Element = Theeds.Element || (Theeds.Element = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Theeds.Service || (Theeds.Service = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Plugin;
+        (function (Plugin) {
+            var AbstractPlugin = function () {
+                function AbstractPlugin(elem, options) {
+                    this.settings = {};
+                    this.elem = elem;
+                    this.settings = $.extend({}, this.settings, options);
+                }
+                AbstractPlugin.prototype.render = function (type, data) {
+                    return eval("new " + this.settings.render.adapter + "()")[type](this, data);
+                };
+                AbstractPlugin.prototype.service = function (name) {
+                    return eval('new ' + this.settings[name].adapter);
+                };
+                return AbstractPlugin;
+            }();
+            Plugin.AbstractPlugin = AbstractPlugin;
+        })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -87,28 +109,6 @@ var Com;
             }(AbstractValidator);
             Validator.Email = Email;
         })(Validator = Theeds.Validator || (Theeds.Validator = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
