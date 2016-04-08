@@ -43,7 +43,7 @@ namespace Com.Theeds.Component.Form.Element {
         @listen('change')
         _onChange(e:Event):void {
             if (this.checked) {
-                this.setAttribute("checked", this.checked);
+                this.setAttribute("checked", this.checked.toString());
             } else {
                 this.removeAttribute("checked");
             }

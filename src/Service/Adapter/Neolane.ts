@@ -20,10 +20,10 @@ namespace Com.Theeds.Service.Adapter {
                 //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
-                dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
+                //dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
                     context.render('form', self.data(response));
                 },
@@ -62,7 +62,7 @@ namespace Com.Theeds.Service.Adapter {
             return reponse;
         }
 
-        public clean(data:Object):any {
+        public clean(data:any):any {
             for (let i = 0; i < data.length; i++) {
                 if (typeof data[i].type != 'undefined' && data[i].type == 'picklist') {
                     data[i].type = 'select';
@@ -74,12 +74,12 @@ namespace Com.Theeds.Service.Adapter {
             }
         }
 
-        public hydrate(data:Object, values:Object):any {
+        public hydrate(data:any, values:any):any {
             for (let i = 0; i < data.length; i++) {
                 if (typeof data[i].name != 'undefined' && values[data[i].name] != 'undefined') {
                     data[i].value = values[data[i].name];
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {
-                    this.hydrate(data[i].items);
+                    this.hydrate(data[i].items, values);
                 }
             }
         }

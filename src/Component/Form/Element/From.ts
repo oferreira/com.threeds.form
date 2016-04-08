@@ -8,6 +8,10 @@ namespace Com.Theeds.Component.Form.Element {
     import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
     import StepElement = Com.Theeds.Component.Form.Element.Step;
 
+    export interface From {
+        behaviors: any;
+    }
+
     @component('form-element')
     @extend("form")
     @behavior(Com.Theeds.Component.Form.Element.NeolaneFromBehavior)
@@ -41,11 +45,11 @@ namespace Com.Theeds.Component.Form.Element {
         public set errors(value:any) {
             this._errors = value;
 
-            for (let i = 0; i < (Polymer.dom(this)['node'].length); i++) {
-                if (typeof  Polymer.dom(this)['node'][i].displayError === 'function') {
+            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
+                if (typeof  (<any>Polymer.dom(this)).node[i].displayError === 'function') {
                     for (var k in this._errors) {
-                        if (Polymer.dom(this)['node'][i].name == k) {
-                            Polymer.dom(this)['node'][i].displayError(this._errors[k]);
+                        if ((<any>Polymer.dom(this)).node[i].name == k) {
+                            (<any>Polymer.dom(this)).node[i].displayError(this._errors[k]);
                         }
                     }
                 }
@@ -55,9 +59,9 @@ namespace Com.Theeds.Component.Form.Element {
         public valid() {
             this._errors = [];
 
-            for (let i = 0; i < (Polymer.dom(this)['node'].length); i++) {
-                if (typeof  Polymer.dom(this)['node'][i].isValid === 'function') {
-                    if (Polymer.dom(this)['node'][i].isValid() == true) this._errors[Polymer.dom(this)['node'][i].name] = Polymer.dom(this)['node'][i].errorMessage;
+            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
+                if (typeof  (<any>Polymer.dom(this)).node[i].isValid === 'function') {
+                    if ((<any>Polymer.dom(this)).node[i].isValid() == true) this._errors[(<any>Polymer.dom(this)).node[i].name] = (<any>Polymer.dom(this)).node[i].errorMessage;
                 }
             }
         }
@@ -80,7 +84,7 @@ namespace Com.Theeds.Component.Form.Element {
             this.appendChild(StepElement.create(this.context, data));
         }
 
-        success(data:Object) {
+        success(data:any) {
             this.clear();
             this.innerHTML = `<h1>${data.title}</h1>${data.content}`;
         }
@@ -90,7 +94,7 @@ namespace Com.Theeds.Component.Form.Element {
             this.innerHTML = message;
         }
 
-        redirect(url:string) {
+        redirect(url:any) {
             window.location = url;
         }
     }

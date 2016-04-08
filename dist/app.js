@@ -1,27 +1,3 @@
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this, data);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Theeds.Element || (Theeds.Element = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Theeds;
@@ -46,26 +22,28 @@ var Com;
         })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Com;
 (function (Com) {
     var Theeds;
     (function (Theeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
                 }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Theeds.Service || (Theeds.Service = {}));
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Theeds.Element || (Theeds.Element = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -109,6 +87,28 @@ var Com;
             }(AbstractValidator);
             Validator.Email = Email;
         })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -802,7 +802,7 @@ var Com;
                         });
                         Checkbox.prototype._onChange = function (e) {
                             if (this.checked) {
-                                this.setAttribute("checked", this.checked);
+                                this.setAttribute("checked", this.checked.toString());
                             } else {
                                 this.removeAttribute("checked");
                             }
@@ -874,7 +874,7 @@ var Com;
                             if (data.name != undefined) this.id = data.name, this.name = data.name;
                             for (var k in data.options) {
                                 if (data.value != undefined && data.options[k].value == data.value) data.options[k].selected = true;
-                                this.add(Element.Option.create(data.options[k]));
+                                this.appendChild(Element.Option.create(data.options[k]));
                             }
                         }
                         Object.defineProperty(Select.prototype, "errorMessage", {
@@ -891,7 +891,6 @@ var Com;
                             this.selectOption(this.value);
                         };
                         Select.prototype.selectOption = function (value) {
-                            var nodes = Polymer.dom(this).node;
                             for (var i = 0; i < Polymer.dom(this).node.length; i++) {
                                 Polymer.dom(this).node[i].selected = Polymer.dom(this).node[i].value === value ? true : false;
                             }
@@ -1267,11 +1266,11 @@ var Com;
                             },
                             set: function (value) {
                                 this._errors = value;
-                                for (var i = 0; i < Polymer.dom(this)['node'].length; i++) {
-                                    if (typeof Polymer.dom(this)['node'][i].displayError === 'function') {
+                                for (var i = 0; i < Polymer.dom(this).node.length; i++) {
+                                    if (typeof Polymer.dom(this).node[i].displayError === 'function') {
                                         for (var k in this._errors) {
-                                            if (Polymer.dom(this)['node'][i].name == k) {
-                                                Polymer.dom(this)['node'][i].displayError(this._errors[k]);
+                                            if (Polymer.dom(this).node[i].name == k) {
+                                                Polymer.dom(this).node[i].displayError(this._errors[k]);
                                             }
                                         }
                                     }
@@ -1282,9 +1281,9 @@ var Com;
                         });
                         From.prototype.valid = function () {
                             this._errors = [];
-                            for (var i = 0; i < Polymer.dom(this)['node'].length; i++) {
-                                if (typeof Polymer.dom(this)['node'][i].isValid === 'function') {
-                                    if (Polymer.dom(this)['node'][i].isValid() == true) this._errors[Polymer.dom(this)['node'][i].name] = Polymer.dom(this)['node'][i].errorMessage;
+                            for (var i = 0; i < Polymer.dom(this).node.length; i++) {
+                                if (typeof Polymer.dom(this).node[i].isValid === 'function') {
+                                    if (Polymer.dom(this).node[i].isValid() == true) this._errors[Polymer.dom(this).node[i].name] = Polymer.dom(this).node[i].errorMessage;
                                 }
                             }
                         };
@@ -1405,7 +1404,7 @@ var Com;
                         var self = this;
                         $.ajax({
                             type: "GET",
-                            dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
+                            dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
                             success: function (response) {
                                 context.render('form', self.data(response));
                             },
@@ -1453,7 +1452,7 @@ var Com;
                             if (typeof data[i].name != 'undefined' && values[data[i].name] != 'undefined') {
                                 data[i].value = values[data[i].name];
                             } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {
-                                this.hydrate(data[i].items);
+                                this.hydrate(data[i].items, values);
                             }
                         }
                     };

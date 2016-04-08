@@ -4,9 +4,17 @@
 namespace Com.Theeds.Component.Form.Element {
 
 
+    export interface NeolaneFromBehavior {
+        valid(): void;
+        errors: any;
+        context: any;
+        dispatch: any;
+    }
+
     export class NeolaneFromBehavior extends polymer.Base {
 
-        public action(form:any, data:any):any {
+        public action(form:any, data:any):void {
+
             if (Object.isDefined(data, 'result.config')) {
                 form.update(data);
             } else if (Object.isDefined(data, 'result.thankYouPage')) {
@@ -53,11 +61,11 @@ namespace Com.Theeds.Component.Form.Element {
 }
 
 interface Object {
-    isDefined(): boolean;
-    isEmpty(): boolean;
+    isDefined(obj:any, prop:string): boolean;
+    isEmpty(obj:any, prop:string): boolean;
 }
 
-Object.isDefined = function (obj, prop):boolean {
+Object.isDefined = function (obj:any, prop:string) {
     var parts = prop.split('.');
     for (var i = 0, l = parts.length; i < l; i++) {
         var part = parts[i];
@@ -70,7 +78,7 @@ Object.isDefined = function (obj, prop):boolean {
     return true;
 }
 
-Object.isEmpty = function (obj, prop):boolean {
+Object.isEmpty = function (obj:any, prop:string):boolean {
     var parts = prop.split('.');
     for (var i = 0, l = parts.length; i < l; i++) {
         var part = parts[i];

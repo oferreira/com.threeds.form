@@ -7,7 +7,7 @@ namespace Com.Theeds.Element {
         data:any;
 
         constructor(data:any) {
-            super(data);
+            super();
         }
 
 

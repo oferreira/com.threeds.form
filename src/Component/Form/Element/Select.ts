@@ -16,6 +16,8 @@ namespace Com.Theeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             required:boolean = false;
 
+        value:string;
+
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
@@ -25,7 +27,7 @@ namespace Com.Theeds.Component.Form.Element {
 
             for (let k in data.options) {
                 if (data.value != undefined && data.options[k].value == data.value) data.options[k].selected = true;
-                this.add(Option.create(data.options[k]));
+                this.appendChild(Option.create(data.options[k]));
             }
         }
 
@@ -44,9 +46,8 @@ namespace Com.Theeds.Component.Form.Element {
         }
 
         selectOption(value:string):void {
-            let nodes:any = Polymer.dom(this).node;
-            for (let i = 0; i < Polymer.dom(this).node.length; i++) {
-                Polymer.dom(this).node[i].selected = (Polymer.dom(this).node[i].value === value ? true : false);
+            for (let i = 0; i < (<any>Polymer.dom(this)).node.length; i++) {
+                (<any>Polymer.dom(this)).node[i].selected = ((<any>Polymer.dom(this)).node[i].value === value ? true : false);
             }
         }
 
