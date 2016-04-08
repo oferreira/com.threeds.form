@@ -7,22 +7,30 @@ namespace Com.Theeds.Component.Form.Element {
     export class NeolaneFromBehavior extends polymer.Base {
 
         public action(form:any, data:any):any {
-
             if (Object.isDefined(data, 'result.config')) {
                 form.update(data);
-            } else if (Object.isDefined(data, 'result.properties.content')) {
-                console.log(data);
+            } else if (Object.isDefined(data, 'result.thankYouPage')) {
 
+                if (data.result.properties.displayThankYou) {
+                    form.success(data.result.thankYouPage);
+
+                    if (data.result.properties.openUrl) {
+                        var w = window.open(data.result.asset.url, '_blank');
+                        w.focus();
+                    }
+                } else if (data.result.properties.openUrl) {
+                    form.redirect(data.result.asset.url);
+                }
+
+            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
+                form.redirect(data.result.properties.content);
+            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
+                form.warning(data.result.properties.content);
             } else if (Object.isDefined(data, 'errors.0.error.message')) {
-                form.clean();
-                form.innerHTML = `<div class="alert alert-danger" role="alert">${data.errors[0].error.message}</div>`;
+                form.warning(data.errors[0].error.message);
             } else if (Object.isDefined(data, 'errors')) {
-               form.errors = data.errors;
-                console.log(form.errors);
-
-
+                form.errors = data.errors;
             }
-
         }
 
         @listen('submit')
@@ -46,6 +54,7 @@ namespace Com.Theeds.Component.Form.Element {
 
 interface Object {
     isDefined(): boolean;
+    isEmpty(): boolean;
 }
 
 Object.isDefined = function (obj, prop):boolean {
@@ -59,4 +68,19 @@ Object.isDefined = function (obj, prop):boolean {
         }
     }
     return true;
+}
+
+Object.isEmpty = function (obj, prop):boolean {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+
+
+    return (obj == '' ? true : false);
 }

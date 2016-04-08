@@ -72,11 +72,26 @@ namespace Com.Theeds.Component.Form.Element {
 
         clear() {
             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+            this.innerHTML = '';
         }
 
         update(data:any) {
             this.clear();
             this.appendChild(StepElement.create(this.context, data));
+        }
+
+        success(data:Object) {
+            this.clear();
+            this.innerHTML = `<h1>${data.title}</h1>${data.content}`;
+        }
+
+        warning(message:string) {
+            this.clear();
+            this.innerHTML = message;
+        }
+
+        redirect(url:string) {
+            window.location = url;
         }
     }
 }

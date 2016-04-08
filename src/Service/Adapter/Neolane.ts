@@ -20,8 +20,10 @@ namespace Com.Theeds.Service.Adapter {
                 //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
-                dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-               //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
+                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
+                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
+                dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
                     context.render('form', self.data(response));
                 },

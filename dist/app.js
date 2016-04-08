@@ -50,6 +50,28 @@ var Com;
 (function (Com) {
     var Theeds;
     (function (Theeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Theeds.Service || (Theeds.Service = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
         var Validator;
         (function (Validator) {
             var AbstractValidator = function () {
@@ -87,28 +109,6 @@ var Com;
             }(AbstractValidator);
             Validator.Email = Email;
         })(Validator = Theeds.Validator || (Theeds.Validator = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -1108,14 +1108,24 @@ var Com;
                         NeolaneFromBehavior.prototype.action = function (form, data) {
                             if (Object.isDefined(data, 'result.config')) {
                                 form.update(data);
-                            } else if (Object.isDefined(data, 'result.properties.content')) {
-                                console.log(data);
+                            } else if (Object.isDefined(data, 'result.thankYouPage')) {
+                                if (data.result.properties.displayThankYou) {
+                                    form.success(data.result.thankYouPage);
+                                    if (data.result.properties.openUrl) {
+                                        var w = window.open(data.result.asset.url, '_blank');
+                                        w.focus();
+                                    }
+                                } else if (data.result.properties.openUrl) {
+                                    form.redirect(data.result.asset.url);
+                                }
+                            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
+                                form.redirect(data.result.properties.content);
+                            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
+                                form.warning(data.result.properties.content);
                             } else if (Object.isDefined(data, 'errors.0.error.message')) {
-                                form.clean();
-                                form.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">" + data.errors[0].error.message + "</div>";
+                                form.warning(data.errors[0].error.message);
                             } else if (Object.isDefined(data, 'errors')) {
                                 form.errors = data.errors;
-                                console.log(form.errors);
                             }
                         };
                         NeolaneFromBehavior.prototype._onSubmit = function (e) {
@@ -1150,6 +1160,18 @@ Object.isDefined = function (obj, prop) {
         }
     }
     return true;
+};
+Object.isEmpty = function (obj, prop) {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+    return obj == '' ? true : false;
 };
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1275,10 +1297,22 @@ var Com;
                         };
                         From.prototype.clear = function () {
                             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+                            this.innerHTML = '';
                         };
                         From.prototype.update = function (data) {
                             this.clear();
                             this.appendChild(StepElement.create(this.context, data));
+                        };
+                        From.prototype.success = function (data) {
+                            this.clear();
+                            this.innerHTML = "<h1>" + data.title + "</h1>" + data.content;
+                        };
+                        From.prototype.warning = function (message) {
+                            this.clear();
+                            this.innerHTML = message;
+                        };
+                        From.prototype.redirect = function (url) {
+                            window.location = url;
                         };
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "id", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "name", void 0);
@@ -1371,7 +1405,7 @@ var Com;
                         var self = this;
                         $.ajax({
                             type: "GET",
-                            dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                            dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                             success: function (response) {
                                 context.render('form', self.data(response));
                             },

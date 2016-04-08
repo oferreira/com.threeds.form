@@ -2,8 +2,8 @@
   "success": true,
   "result": {
     "properties": {
-      "openUrl": true,
-      "displayThankYou": false
+      "openUrl": false,
+      "displayThankYou": true
     },
     "asset": {
       "type": "WhitePaper",
