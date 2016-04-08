@@ -1,18 +1,17 @@
 
-Welcome to project Cads !
+Welcome to project com.threeds.form !
 ===================
-
 
 Get started
 -------------
 
 You need to install  on your local machine :
 
- 1. nodejs :  https://nodejs.org/en/download/
- 2. gulp : https://www.npmjs.com/package/gulp
- 3. typescript : http://www.typescriptlang.org/
- 4. ruby : http://rubyinstaller.org/
- 5. jekyllrb : https://jekyllrb.com/
+ 1. List item
+ 2. nodejs :  https://nodejs.org/en/download/
+ 3. gulp : https://www.npmjs.com/package/gulp
+ 4. typescript : http://www.typescriptlang.org/
+ 5. ruby : http://rubyinstaller.org/
  6. bower : http://bower.io/
 
 Guide of installation
@@ -43,12 +42,6 @@ Install Ruby got to http://rubyinstaller.org/ and download ruby installer
 
 ----------
 
-Install jekyllrb open a terminal and execute
-
-    gem install jekyll
-
-----------
-
 Install Bower open a terminal and execute
 
     sudo npm install -g bower
@@ -63,32 +56,12 @@ Install all packages open a terminal and execute
 
 ----------
 
-Create symbolic link  open a terminal and execute
-
-    ln -s /Users/olivier/3ds/card-3ds/dist /Users/olivier/3ds/card-3ds/docs/dist
-    ln -s /Users/olivier/3ds/card-3ds/bower_components /Users/olivier/3ds/card-3ds/docs/bower_components
-    ln -s /Users/olivier/3ds/card-3ds/data /Users/olivier/3ds/card-3ds/docs/data
-
-----------
 
 Build
 -------------------
 
-Open a terminal and execute
-
-    clear & gul watch
-
-Open a terminal and execute
-
-    cd docs/ & jekyll serve
-
-![run](https://github.com/oferreira/card-3ds/blob/master/docs/assets/images/readme/run.jpg)
-
-
-For mac os juste to execute
-
-    bash run.sh
+ Open a terminal and execute
+ 
+    clear & gul watch --release
 
 ----------
-
-https://github.com/bsorrentino/generator-polymerts
