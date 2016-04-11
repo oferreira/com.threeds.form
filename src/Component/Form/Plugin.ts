@@ -3,6 +3,8 @@
 /// <reference path="../../Service/ServiceManager.ts" />
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../Component/Form/Element/From.ts" />
+/// <reference path="../../I18n/Translator.ts" />
+
 
 
 interface Document {
@@ -46,8 +48,13 @@ namespace Com.Theeds.Component.Form {
 
         constructor(elem:any, options:Object) {
             super(elem, options);
+
+            $.i18n().t('title')
+
             this.service('form').form(this, {});
         }
+
+
 
         render(type:string, data:any):void {
             document.body.appendChild(FromElement.create(this, data));
