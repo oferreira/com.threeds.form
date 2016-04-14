@@ -5,11 +5,11 @@ namespace Com.Theeds.Validator {
 
     import AbstractValidator = Com.Theeds.Validator.AbstractValidator;
 
-    export class Email extends AbstractValidator {
+    export class Require extends AbstractValidator {
 
         static isValid(value:string):boolean|string {
-            if (!/^.+@.+$/.test(value)) {
-                return $.i18n().t('error.email_invalid');
+            if (value == '' || value == undefined) {
+                return $.i18n().t('error.field_require');
             }
 
             return true;

@@ -1,3 +1,91 @@
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        Theeds._config = {
+            form: {
+                id: '32f91ef071fe9e8974f3e6468c36312d',
+                adapter: 'Com.Theeds.Service.Adapter.Neolane',
+                url: 'http://dassault-dev.neolane.net/dsx/lp_api.jssp'
+            }
+        };
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        Theeds._locale = {
+            'en': {
+                'error': {
+                    'field_require': 'This field is required',
+                    'email_invalid': 'A valid email address is required',
+                    'checkbox_require': 'Please select the check box'
+                }
+            },
+            'fr': {}
+        };
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        Theeds._parameters = {
+            'translator': {
+                'lang': 'en',
+                'adapter': 'Com.Theeds._locale'
+            }
+        };
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var I18n;
+        (function (I18n) {
+            var Translator = function () {
+                function Translator(options) {
+                    this.lang = options.lang;
+                    this.adapter = options.adapter;
+                }
+                Object.defineProperty(Translator, "instance", {
+                    get: function () {
+                        if (Translator._instance == undefined) {
+                            Translator._instance = new Com.Theeds.I18n.Translator(Object.find(Com.Theeds._parameters, 'translator'));
+                        }
+                        return Translator._instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Translator.prototype.t = function (key) {
+                    return Object.find(eval(this.adapter), this.lang + "." + key);
+                };
+                return Translator;
+            }();
+            I18n.Translator = Translator;
+            $.i18n = function () {
+                return Com.Theeds.I18n.Translator.instance;
+            };
+        })(I18n = Theeds.I18n || (Theeds.I18n = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+Object.find = function (o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1');
+    s = s.replace(/^\./, '');
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -26,28 +114,6 @@ var Com;
 (function (Com) {
     var Theeds;
     (function (Theeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
         var Plugin;
         (function (Plugin) {
             var AbstractPlugin = function () {
@@ -66,6 +132,28 @@ var Com;
             }();
             Plugin.AbstractPlugin = AbstractPlugin;
         })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -100,14 +188,47 @@ var Com;
                 __extends(Email, _super);
                 function Email() {
                     _super.apply(this, arguments);
-                    this._message = {
-                        'invalid': 'This e-mail address is not valid !'
-                    };
                 }
-                Email.prototype.isValid = function (value) {};
+                Email.isValid = function (value) {
+                    if (!/^.+@.+$/.test(value)) {
+                        return $.i18n().t('error.email_invalid');
+                    }
+                    return true;
+                };
                 return Email;
             }(AbstractValidator);
             Validator.Email = Email;
+        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Validator;
+        (function (Validator) {
+            var AbstractValidator = Com.Theeds.Validator.AbstractValidator;
+            var Require = function (_super) {
+                __extends(Require, _super);
+                function Require() {
+                    _super.apply(this, arguments);
+                }
+                Require.isValid = function (value) {
+                    if (value == '' || value == undefined) {
+                        return $.i18n().t('error.field_require');
+                    }
+                    return true;
+                };
+                return Require;
+            }(AbstractValidator);
+            Validator.Require = Require;
         })(Validator = Theeds.Validator || (Theeds.Validator = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
@@ -673,6 +794,43 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Component;
+        (function (Component) {
+            var Form;
+            (function (Form) {
+                var Element;
+                (function (Element) {
+                    var Behavior;
+                    (function (Behavior) {
+                        var Neolane;
+                        (function (Neolane) {
+                            var CountryBehavior = function (_super) {
+                                __extends(CountryBehavior, _super);
+                                function CountryBehavior() {
+                                    _super.apply(this, arguments);
+                                }
+                                CountryBehavior.prototype.attached = function () {};
+                                return CountryBehavior;
+                            }(polymer.Base);
+                            Neolane.CountryBehavior = CountryBehavior;
+                        })(Neolane = Behavior.Neolane || (Behavior.Neolane = {}));
+                    })(Behavior = Element.Behavior || (Element.Behavior = {}));
+                })(Element = Form.Element || (Form.Element = {}));
+            })(Form = Component.Form || (Component.Form = {}));
+        })(Component = Theeds.Component || (Theeds.Component = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -698,12 +856,14 @@ var Com;
                             this.type = 'text';
                             this.value = 'lorem';
                             this.required = false;
+                            this._validators = [];
                             this._errorMessage = '';
                             this.classList.add('form-control');
                             if (context.settings.display.placeholder) this.placeholder = data.label;
                             if (data.name != undefined) this.id = data.name, this.name = data.name;
                             if (data.required != undefined) this.required = data.required;
                             if (data.value != undefined) this.value = data.value;
+                            if (data.validators != undefined) this._validators = data.validators;
                         }
                         Object.defineProperty(Input.prototype, "errorMessage", {
                             get: function () {
@@ -720,10 +880,11 @@ var Com;
                             this.isValid();
                         };
                         Input.prototype.isValid = function () {
-                            if (!this.required) return this.displayError();
-                            var detail;
-                            if (this.value == '' || this.value == undefined) detail = 'This field is required !';
-                            return this.displayError(detail);
+                            var message;
+                            for (var i = 0; i < this._validators.length; i++) {
+                                message = eval(this._validators[i] + ".isValid").apply(this.value);
+                                if (message != undefined) return this.displayError(message);
+                            }
                         };
                         Input.prototype.displayError = function (detail) {
                             this.errorMessage = detail;
@@ -952,8 +1113,9 @@ var Com;
                     var Field = function (_super) {
                         __extends(Field, _super);
                         function Field(context, data) {
-                            _super.call(this, data);
                             this.showLabel = true;
+                            this.hydrateValidators(data);
+                            _super.call(this, data);
                             this.data = data, this.showLabel = context.settings.display.label;
                             this.classList.add('form-group');
                             if (data.type == 'select') this.appendChild(Element.Select.create(context, data));
@@ -961,6 +1123,12 @@ var Com;
                             if (data.type == 'text') this.appendChild(Element.Input.create(context, data));
                             if (data.type == 'hidden') this.classList.add('hide'), this.appendChild(Element.Input.create(context, data));
                         }
+                        Field.prototype.hydrateValidators = function (data) {
+                            var validators = data.validators == undefined ? [] : data.validators;
+                            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Theeds.Validator.Email');
+                            if (data.required) validators.push('Com.Theeds.Validator.Require');
+                            if (validators.length) data.validators = validators;
+                        };
                         Field.prototype.handleError = function (e, detail) {
                             this.displayError(detail);
                         };
@@ -1099,103 +1267,6 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var NeolaneFromBehavior = function (_super) {
-                        __extends(NeolaneFromBehavior, _super);
-                        function NeolaneFromBehavior() {
-                            _super.apply(this, arguments);
-                        }
-                        NeolaneFromBehavior.prototype.action = function (form, data) {
-                            if (Object.isDefined(data, 'result.config')) {
-                                form.update(data);
-                            } else if (Object.isDefined(data, 'result.thankYouPage')) {
-                                if (data.result.properties.displayThankYou) {
-                                    form.success(data.result.thankYouPage);
-                                    if (data.result.properties.openUrl) {
-                                        var w = window.open(data.result.asset.url, '_blank');
-                                        w.focus();
-                                    }
-                                } else if (data.result.properties.openUrl) {
-                                    form.redirect(data.result.asset.url);
-                                }
-                            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
-                                form.redirect(data.result.properties.content);
-                            } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
-                                form.warning(data.result.properties.content);
-                            } else if (Object.isDefined(data, 'errors.0.error.message')) {
-                                form.warning(data.errors[0].error.message);
-                            } else if (Object.isDefined(data, 'errors')) {
-                                form.errors = data.errors;
-                            }
-                        };
-                        NeolaneFromBehavior.prototype._onSubmit = function (e) {
-                            if (e) e.preventDefault();
-                            this.submit();
-                            return false;
-                        };
-                        NeolaneFromBehavior.prototype.submit = function () {
-                            this.valid();
-                            if (this.errors.length <= 1) this.context.service('form').post(this, $(this).serialize());
-                        };
-                        NeolaneFromBehavior.prototype.render = function (type, data) {
-                            if (type == 'form') this.dispatch(data);
-                        };
-                        __decorate([listen('submit')], NeolaneFromBehavior.prototype, "_onSubmit", null);
-                        return NeolaneFromBehavior;
-                    }(polymer.Base);
-                    Element.NeolaneFromBehavior = NeolaneFromBehavior;
-                })(Element = Form.Element || (Form.Element = {}));
-            })(Form = Component.Form || (Component.Form = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-Object.isDefined = function (obj, prop) {
-    var parts = prop.split('.');
-    for (var i = 0, l = parts.length; i < l; i++) {
-        var part = parts[i];
-        if (obj !== null && typeof obj === "object" && part in obj) {
-            obj = obj[part];
-        } else {
-            return false;
-        }
-    }
-    return true;
-};
-Object.isEmpty = function (obj, prop) {
-    var parts = prop.split('.');
-    for (var i = 0, l = parts.length; i < l; i++) {
-        var part = parts[i];
-        if (obj !== null && typeof obj === "object" && part in obj) {
-            obj = obj[part];
-        } else {
-            return false;
-        }
-    }
-    return obj == '' ? true : false;
-};
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Form;
-            (function (Form) {
-                var Element;
-                (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var FieldElement = Com.Theeds.Component.Form.Element.Field;
                     var FieldGroupElement = Com.Theeds.Component.Form.Element.FieldGroup;
@@ -1250,6 +1321,113 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
+                    var Behavior;
+                    (function (Behavior) {
+                        var Neolane;
+                        (function (Neolane) {
+                            var FromBehavior = function (_super) {
+                                __extends(FromBehavior, _super);
+                                function FromBehavior() {
+                                    _super.apply(this, arguments);
+                                }
+                                FromBehavior.prototype.action = function (form, data) {
+                                    if (Object.isDefined(data, 'result.config')) {
+                                        form.update(data);
+                                    } else if (Object.isDefined(data, 'result.thankYouPage')) {
+                                        if (data.result.properties.displayThankYou) {
+                                            form.success(data.result.thankYouPage);
+                                            if (data.result.properties.openUrl) {
+                                                var w = window.open(data.result.asset.url, '_blank');
+                                                w.focus();
+                                            }
+                                        } else if (data.result.properties.openUrl) {
+                                            form.redirect(data.result.asset.url);
+                                        }
+                                    } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
+                                        form.redirect(data.result.properties.content);
+                                    } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
+                                        form.warning(data.result.properties.content);
+                                    } else if (Object.isDefined(data, 'errors.0.error.message')) {
+                                        form.warning(data.errors[0].error.message);
+                                    } else if (Object.isDefined(data, 'errors')) {
+                                        form.errors = data.errors;
+                                    }
+                                };
+                                FromBehavior.prototype._onSubmit = function (e) {
+                                    if (e) e.preventDefault();
+                                    this.submit();
+                                    return false;
+                                };
+                                FromBehavior.prototype.submit = function () {
+                                    this.valid();
+                                    if (this.errors.length <= 1) this.post();
+                                };
+                                FromBehavior.prototype.post = function () {
+                                    var data = Com.Theeds.Component.Form.Element.From.serialize(this);
+                                    this.context.service('form').post(this, data);
+                                };
+                                FromBehavior.prototype.render = function (type, data) {
+                                    if (type == 'form') this.dispatch(data);
+                                };
+                                __decorate([listen('submit')], FromBehavior.prototype, "_onSubmit", null);
+                                return FromBehavior;
+                            }(polymer.Base);
+                            Neolane.FromBehavior = FromBehavior;
+                        })(Neolane = Behavior.Neolane || (Behavior.Neolane = {}));
+                    })(Behavior = Element.Behavior || (Element.Behavior = {}));
+                })(Element = Form.Element || (Form.Element = {}));
+            })(Form = Component.Form || (Component.Form = {}));
+        })(Component = Theeds.Component || (Theeds.Component = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+Object.isDefined = function (obj, prop) {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+    return true;
+};
+Object.isEmpty = function (obj, prop) {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+    return obj == '' ? true : false;
+};
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Component;
+        (function (Component) {
+            var Form;
+            (function (Form) {
+                var Element;
+                (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var StepElement = Com.Theeds.Component.Form.Element.Step;
                     var From = function (_super) {
@@ -1259,7 +1437,34 @@ var Com;
                             this._errors = [];
                             this.context = context;
                             this.dispatch(data);
+                            $('#company').autocomplete({
+                                source: function (requete, reponse) {
+                                    $.ajax({
+                                        url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                                        dataType: 'jsonp',
+                                        data: {
+                                            query: $('#company').val(),
+                                            iso: $('#country').val()
+                                        },
+                                        success: function (data) {
+                                            reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                                return {
+                                                    label: objet.companyName,
+                                                    value: objet.companyName
+                                                };
+                                            }));
+                                        }
+                                    });
+                                }
+                            });
                         }
+                        Object.defineProperty(From.prototype, "settings", {
+                            get: function () {
+                                return this.context.settings;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
                         Object.defineProperty(From.prototype, "errors", {
                             get: function () {
                                 return this._errors;
@@ -1313,11 +1518,73 @@ var Com;
                         From.prototype.redirect = function (url) {
                             window.location = url;
                         };
+                        From.serialize = function (form) {
+                            if (!form || form.nodeName !== "FORM") {
+                                return;
+                            }
+                            var i,
+                                j,
+                                q = [];
+                            for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+                                if (form.elements[i].name === "" || typeof form.elements[i].name == 'undefined') {
+                                    continue;
+                                }
+                                switch (form.elements[i].nodeName) {
+                                    case 'INPUT':
+                                        switch (form.elements[i].type) {
+                                            case 'text':
+                                            case 'hidden':
+                                            case 'password':
+                                            case 'button':
+                                            case 'reset':
+                                            case 'submit':
+                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                break;
+                                            case 'checkbox':
+                                            case 'radio':
+                                                if (form.elements[i].checked) {
+                                                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                }
+                                                break;
+                                            case 'file':
+                                                break;
+                                        }
+                                        break;
+                                    case 'TEXTAREA':
+                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                        break;
+                                    case 'SELECT':
+                                        switch (form.elements[i].type) {
+                                            case 'select-one':
+                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                break;
+                                            case 'select-multiple':
+                                                for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
+                                                    if (form.elements[i].options[j].selected) {
+                                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value));
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                        break;
+                                    case 'BUTTON':
+                                        switch (form.elements[i].type) {
+                                            case 'reset':
+                                            case 'submit':
+                                            case 'button':
+                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                break;
+                                        }
+                                        break;
+                                }
+                            }
+                            return q.join("&");
+                        };
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "id", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "name", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "method", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "action", void 0);
-                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Theeds.Component.Form.Element.NeolaneFromBehavior)], From);
+                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.CountryBehavior), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)], From);
                         return From;
                     }(AbstractPolymerElement);
                     Element.From = From;
@@ -1355,15 +1622,16 @@ var Com;
                             },
                             styling: {},
                             form: {
-                                id: '32f91ef071fe9e8974f3e6468c36312d',
+                                id: 'LDP6312',
                                 adapter: 'Com.Theeds.Service.Adapter.Neolane',
-                                url: 'http://dassault-dev.neolane.net/dsx/lp_api.jssp'
+                                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
                             },
                             hook: {
                                 search: undefined,
                                 render: undefined
                             }
                         };
+                        $.i18n().t('title');
                         this.service('form').form(this, {});
                     }
                     Plugin.prototype.render = function (type, data) {
@@ -1415,6 +1683,22 @@ var Com;
                     };
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
+                        if (typeof data == 'string') {
+                            data = "op=SubmitForm&lpid=" + context.settings.form.id + (data == 'undefined' || data == '' ? '' : '&' + data);
+                        } else if (typeof data == 'object') {}
+                        $.ajax({
+                            type: "GET",
+                            dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
+                            success: function (response) {
+                                context.render('form', self.data(response));
+                            },
+                            error: function (resultat, statut, erreur) {
+                                context.render('form', false);
+                            }
+                        });
+                    };
+                    Neolane.prototype.customerAutocomplete = function (context, data) {
+                        var self = this;
                         $.ajax({
                             type: "GET",
                             data: data,
@@ -1428,6 +1712,7 @@ var Com;
                         });
                     };
                     Neolane.prototype.data = function (reponse) {
+                        console.log(reponse);
                         if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
                             this.clean(reponse.result.config);
                         }

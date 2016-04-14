@@ -1,5 +1,6 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../Component/Form/Element/Behavior/Neolane/CountryBehavior.ts" />
 
 namespace Com.Theeds.Component.Form.Element {
 
@@ -26,16 +27,19 @@ namespace Com.Theeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             required:boolean = false;
 
+        private _validators:string[] = [];
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
             super(data);
+
             this.classList.add('form-control');
 
             if (context.settings.display.placeholder) this.placeholder = data.label
             if (data.name != undefined) this.id = data.name, this.name = data.name;
             if (data.required != undefined) this.required = data.required;
             if (data.value != undefined) this.value = data.value;
+            if (data.validators != undefined) this._validators = data.validators
         }
 
         public get errorMessage():string {
@@ -53,12 +57,11 @@ namespace Com.Theeds.Component.Form.Element {
         }
 
         isValid() {
-            if (!this.required) return this.displayError();
-
-            let detail:string;
-            if (this.value == '' || this.value == undefined) detail = 'This field is required !';
-
-            return this.displayError(detail);
+            let message:boolean|string;
+            for (let i = 0; i < this._validators.length; i++) {
+                message = eval(`${this._validators[i]}.isValid`).apply(this.value);
+                if (message != undefined) return this.displayError(message)
+            }
         }
 
         displayError(detail?:string):boolean {

@@ -9,7 +9,7 @@ module.exports = {
                 base: 'src',
                 src: [
                     'src/*.ts',
-                    'src/**/*.ts'
+                    'src/**/*.ts',
                 ],
                 dist: 'dist'
             },

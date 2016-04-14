@@ -1,17 +1,17 @@
-/// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
-/// <reference path="../../../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
+/// <reference path="../../../../../../typings/jquery/jquery.d.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
 
 
-    export interface NeolaneFromBehavior {
+    export interface FromBehavior {
         valid(): void;
         errors: any;
         context: any;
         dispatch: any;
     }
 
-    export class NeolaneFromBehavior extends polymer.Base {
+    export class FromBehavior extends polymer.Base {
 
         public action(form:any, data:any):void {
 
@@ -50,7 +50,12 @@ namespace Com.Theeds.Component.Form.Element {
 
         submit():void {
             this.valid();
-            if (this.errors.length <= 1) this.context.service('form').post(this, $(this).serialize());
+            if (this.errors.length <= 1) this.post();
+        }
+
+        post():void {
+            let data:string = Com.Theeds.Component.Form.Element.From.serialize(this);
+            this.context.service('form').post(this, data);
         }
 
 

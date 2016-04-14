@@ -7,12 +7,11 @@ Get started
 
 You need to install  on your local machine :
 
- 1. List item
- 2. nodejs :  https://nodejs.org/en/download/
- 3. gulp : https://www.npmjs.com/package/gulp
- 4. typescript : http://www.typescriptlang.org/
- 5. ruby : http://rubyinstaller.org/
- 6. bower : http://bower.io/
+ 1. nodejs :  https://nodejs.org/en/download/
+ 2. gulp : https://www.npmjs.com/package/gulp
+ 3. typescript : http://www.typescriptlang.org/
+ 4. ruby : http://rubyinstaller.org/
+ 5. bower : http://bower.io/
 
 Guide of installation
 -------------

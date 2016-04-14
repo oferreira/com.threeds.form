@@ -12,12 +12,22 @@ namespace Com.Theeds.Service.Adapter {
 
     export class Neolane extends AbstractAdapter {
 
+/*
+
+ type: "POST",
+ dataType: "jsonp",
+ url: context.settings.form.url,
+ data: {
+ op: 'GetFormJson',
+ lpid: context.settings.form.id
+ },
+* */
 
         public form(context:any, options:any):void {
             let self:any = this;
             $.ajax({
+
                 type: "GET",
-                //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
@@ -35,6 +45,41 @@ namespace Com.Theeds.Service.Adapter {
 
         public post(context:any, data:any):void {
             let self:any = this;
+
+            if (typeof data == 'string') {
+                data = `op=SubmitForm&lpid=${context.settings.form.id}` + (data == 'undefined' || data == '' ? '' : '&' + data);
+            } else if (typeof data == 'object'){
+                //... @todo implement
+            }
+/*
+ type: "POST",
+ dataType: "jsonp",
+ url: context.settings.form.url,
+ //data: data,
+ data:{
+ lpid: 'LDP6312',
+ op: 'GetFormJson',
+ lpid: '',
+ lpid: '',
+ lpid: '',
+ }
+ */
+            $.ajax({
+                type: "GET",
+
+                //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
+                dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
+                success: function (response:any) {
+                    context.render('form', self.data(response));
+                },
+                error: function (resultat:any, statut:any, erreur:any) {
+                    context.render('form', false);
+                }
+            });
+        }
+
+        public customerAutocomplete(context:any, data:any):void {
+            let self:any = this;
             $.ajax({
                 type: "GET",
                 //type: "POST",
@@ -51,6 +96,8 @@ namespace Com.Theeds.Service.Adapter {
         }
 
         public data(reponse:any):any {
+
+            console.log(reponse);
             if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
                 this.clean(reponse.result.config);
             }

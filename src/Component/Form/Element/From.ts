@@ -1,7 +1,7 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Component/Form/Element/Step.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../Component/Form/Element/Behavior/NeolaneFromBehavior.ts" />
+/// <reference path="../../../Component/Form/Element/Behavior/Neolane/FromBehavior.ts" />
 
 namespace Com.Theeds.Component.Form.Element {
 
@@ -14,7 +14,8 @@ namespace Com.Theeds.Component.Form.Element {
 
     @component('form-element')
     @extend("form")
-    @behavior(Com.Theeds.Component.Form.Element.NeolaneFromBehavior)
+    @behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.CountryBehavior)
+    @behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)
     export class From extends AbstractPolymerElement {
         context:any;
 
@@ -36,6 +37,32 @@ namespace Com.Theeds.Component.Form.Element {
             super(data);
             this.context = context;
             this.dispatch(data);
+
+            $('#company').autocomplete({
+                source: function (requete, reponse) {
+                    $.ajax({
+                        url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                        dataType: 'jsonp',
+                        data: {
+                            query: $('#company').val(),
+                            iso: $('#country').val()
+                        },
+                        success: function (data) {
+                            reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                return {
+                                    label: objet.companyName,
+                                    value: objet.companyName
+                                };
+                            }));
+                        },
+
+                    });
+                }
+            });
+        }
+
+        public get settings():any {
+            return this.context.settings;
         }
 
         public get errors():any {
@@ -96,6 +123,69 @@ namespace Com.Theeds.Component.Form.Element {
 
         redirect(url:string) {
             window.location = <any>url;
+        }
+
+        static serialize(form:any):string {
+            if (!form || form.nodeName !== "FORM") {
+                return;
+            }
+            var i, j, q = [];
+            for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+                if (form.elements[i].name === "" || typeof form.elements[i].name == 'undefined') {
+                    continue;
+                }
+
+                switch (form.elements[i].nodeName) {
+                    case 'INPUT':
+                        switch (form.elements[i].type) {
+                            case 'text':
+                            case 'hidden':
+                            case 'password':
+                            case 'button':
+                            case 'reset':
+                            case 'submit':
+                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break;
+                            case 'checkbox':
+                            case 'radio':
+                                if (form.elements[i].checked) {
+                                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                }
+                                break;
+                            case 'file':
+                                break;
+                        }
+                        break;
+                    case 'TEXTAREA':
+                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                        break;
+                    case 'SELECT':
+                        switch (form.elements[i].type) {
+                            case 'select-one':
+                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break;
+                            case 'select-multiple':
+                                for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
+                                    if (form.elements[i].options[j].selected) {
+                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value));
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                    case 'BUTTON':
+                        switch (form.elements[i].type) {
+                            case 'reset':
+                            case 'submit':
+                            case 'button':
+                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break;
+                        }
+                        break;
+                }
+            }
+
+            return q.join("&");
         }
     }
 }

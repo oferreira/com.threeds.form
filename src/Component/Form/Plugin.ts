@@ -35,9 +35,9 @@ namespace Com.Theeds.Component.Form {
             },
             styling: {},
             form: {
-                id: '32f91ef071fe9e8974f3e6468c36312d',
+                id: 'LDP6312',
                 adapter: 'Com.Theeds.Service.Adapter.Neolane',
-                url: 'http://dassault-dev.neolane.net/dsx/lp_api.jssp',
+                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
             hook: {
                 search: undefined,
