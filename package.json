@@ -30,6 +30,7 @@
     "gulp-sequence": "^0.4.5",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.11.0",
+    "gulp-wrapper": "^1.0.0",
     "node-notifier": "^4.5.0",
     "requirejs": "^2.1.22",
     "run-sequence": "^1.1.5",

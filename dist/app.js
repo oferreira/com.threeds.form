@@ -1,3 +1,4 @@
+$(function () {addEventListener('WebComponentsReady', function () {
 var Com;
 (function (Com) {
     var Theeds;
@@ -37,6 +38,30 @@ var Com;
                 'adapter': 'Com.Theeds._locale'
             }
         };
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
+                }
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Theeds.Element || (Theeds.Element = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -86,30 +111,6 @@ Object.find = function (o, s) {
     }
     return o;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Theeds.Element || (Theeds.Element = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Theeds;
@@ -1524,7 +1525,7 @@ var Com;
                             }
                             var i,
                                 j,
-                                q = [];
+                                dict = {};
                             for (i = form.elements.length - 1; i >= 0; i = i - 1) {
                                 if (form.elements[i].name === "" || typeof form.elements[i].name == 'undefined') {
                                     continue;
@@ -1538,12 +1539,12 @@ var Com;
                                             case 'button':
                                             case 'reset':
                                             case 'submit':
-                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                dict[form.elements[i].name] = form.elements[i].value;
                                                 break;
                                             case 'checkbox':
                                             case 'radio':
                                                 if (form.elements[i].checked) {
-                                                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                    dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                                 }
                                                 break;
                                             case 'file':
@@ -1551,17 +1552,17 @@ var Com;
                                         }
                                         break;
                                     case 'TEXTAREA':
-                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                         break;
                                     case 'SELECT':
                                         switch (form.elements[i].type) {
                                             case 'select-one':
-                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                                 break;
                                             case 'select-multiple':
                                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                                     if (form.elements[i].options[j].selected) {
-                                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value));
+                                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
                                                     }
                                                 }
                                                 break;
@@ -1572,13 +1573,13 @@ var Com;
                                             case 'reset':
                                             case 'submit':
                                             case 'button':
-                                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                                 break;
                                         }
                                         break;
                                 }
                             }
-                            return q.join("&");
+                            return dict;
                         };
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "id", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "name", void 0);
@@ -1671,9 +1672,15 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "GET",
-                            dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                            type: "POST",
+                            dataType: "jsonp",
+                            url: context.settings.form.url,
+                            data: {
+                                op: 'GetFormJson',
+                                lpid: context.settings.form.id
+                            },
                             success: function (response) {
+                                console.log(response);
                                 context.render('form', self.data(response));
                             },
                             error: function (resultat, statut, erreur) {
@@ -1683,13 +1690,15 @@ var Com;
                     };
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
-                        if (typeof data == 'string') {
-                            data = "op=SubmitForm&lpid=" + context.settings.form.id + (data == 'undefined' || data == '' ? '' : '&' + data);
-                        } else if (typeof data == 'object') {}
+                        data['lpid'] = context.settings.form.id;
+                        data['op'] = 'SubmitForm';
                         $.ajax({
-                            type: "GET",
-                            dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
+                            type: "POST",
+                            dataType: "jsonp",
+                            url: context.settings.form.url,
+                            data: data,
                             success: function (response) {
+                                console.log(response);
                                 context.render('form', self.data(response));
                             },
                             error: function (resultat, statut, erreur) {
@@ -1712,7 +1721,6 @@ var Com;
                         });
                     };
                     Neolane.prototype.data = function (reponse) {
-                        console.log(reponse);
                         if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
                             this.clean(reponse.result.config);
                         }
@@ -1794,5 +1802,5 @@ var Com;
         })(Component = Theeds.Component || (Theeds.Component = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Theeds.Component.Form.Element.Option.register();
+Com.Theeds.Component.Form.Element.Option.register();});});
 //# sourceMappingURL=app.js.map

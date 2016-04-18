@@ -8,6 +8,10 @@ namespace Com.Theeds.Component.Form.Element {
     import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
     import StepElement = Com.Theeds.Component.Form.Element.Step;
 
+    export interface Map<T> {
+        [K: string]: T;
+    }
+
     export interface From {
         behaviors: any;
     }
@@ -129,7 +133,8 @@ namespace Com.Theeds.Component.Form.Element {
             if (!form || form.nodeName !== "FORM") {
                 return;
             }
-            var i, j, q = [];
+
+            var i:number, j:number, dict:Map<string> = {};
             for (i = form.elements.length - 1; i >= 0; i = i - 1) {
                 if (form.elements[i].name === "" || typeof form.elements[i].name == 'undefined') {
                     continue;
@@ -144,12 +149,12 @@ namespace Com.Theeds.Component.Form.Element {
                             case 'button':
                             case 'reset':
                             case 'submit':
-                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                dict[form.elements[i].name] = form.elements[i].value;
                                 break;
                             case 'checkbox':
                             case 'radio':
                                 if (form.elements[i].checked) {
-                                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                    dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                 }
                                 break;
                             case 'file':
@@ -157,17 +162,17 @@ namespace Com.Theeds.Component.Form.Element {
                         }
                         break;
                     case 'TEXTAREA':
-                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                         break;
                     case 'SELECT':
                         switch (form.elements[i].type) {
                             case 'select-one':
-                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                 break;
                             case 'select-multiple':
                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                     if (form.elements[i].options[j].selected) {
-                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value));
+                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
                                     }
                                 }
                                 break;
@@ -178,14 +183,14 @@ namespace Com.Theeds.Component.Form.Element {
                             case 'reset':
                             case 'submit':
                             case 'button':
-                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                 break;
                         }
                         break;
                 }
             }
 
-            return q.join("&");
+            return dict;
         }
     }
 }

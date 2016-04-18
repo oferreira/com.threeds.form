@@ -1,4 +1,5 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    wrapper = require('gulp-wrapper');
 var config = require('../config');
 var handleErrors = require('../utils/handle-error');
 var $ = require('gulp-load-plugins')({
@@ -19,6 +20,10 @@ gulp.task('app-js', function() {
         .pipe(ts(tsProject))
         .pipe(babel())
         .pipe($.concat('app.js'))
+        .pipe(wrapper({
+            header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});});'
+        }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 
