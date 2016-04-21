@@ -16,20 +16,14 @@ namespace Com.Theeds.Service.Adapter {
         public form(context:any, options:any):void {
             let self:any = this;
             $.ajax({
-                type: "POST",
-                dataType: "jsonp",
-                url: context.settings.form.url,
-                data: {
-                    op: 'GetFormJson',
-                    lpid: context.settings.form.id
-                },
-                //type: "GET",
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
-                //dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
+                //type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.form.id},
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
                     console.log(response);
 
@@ -45,7 +39,6 @@ namespace Com.Theeds.Service.Adapter {
             let self:any = this;
 
             data['lpid'] = context.settings.form.id;
-            data['op'] = 'SubmitForm';
 
             $.ajax({
                 type: "POST",
@@ -115,6 +108,7 @@ namespace Com.Theeds.Service.Adapter {
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {
                     this.hydrate(data[i].items, values);
                 }
+
             }
         }
 

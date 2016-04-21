@@ -16,21 +16,49 @@ namespace Com.Theeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             required:boolean = false;
 
+        parentField:string;
         value:string;
+
+        data:any = [];
 
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
+            this.data = data;
             super(data);
             this.classList.add('form-control');
-            if (data.name != undefined) this.id = data.name, this.name = data.name;
+            if (this.data.name != undefined) this.id = this.data.name, this.name = this.data.name;
+            if (this.data.parentField != undefined) this.parentField = this.data.parentField;
 
-            for (let k in data.options) {
-                if (data.value != undefined && data.options[k].value == data.value) data.options[k].selected = true;
-                this.appendChild(Option.create(data.options[k]));
-            }
+            this.update();
         }
 
+        clear():void {
+            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+            this.innerHTML = '';
+        }
+
+        update():void {
+            this.clear();
+
+            let parentField:any;
+            if (typeof  this.data.parentField != 'undefined') {
+                parentField = document.querySelector(`#${this.data.parentField}`);
+            }
+
+            for (let k in this.data.options) {
+                if (this.data.value != undefined && this.data.options[k].value == this.data.value)  this.data.options[k].selected = true;
+                if (typeof this.data.parentField != 'undefined') {
+                    if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value)
+                        this.appendChild(Option.create(this.data.options[k]));
+                } else {
+                    this.appendChild(Option.create(this.data.options[k]));
+                }
+
+            }
+
+            this.fire('field-hide', (!this.options.length ? false:true))
+        }
 
         public get errorMessage():string {
             return (this._errorMessage == undefined ? '' : this._errorMessage);
@@ -42,6 +70,7 @@ namespace Com.Theeds.Component.Form.Element {
 
         @listen('input')
         _onChange(e:Event):void {
+            this.fire('field-value-changed', this);
             this.selectOption(this.value);
         }
 

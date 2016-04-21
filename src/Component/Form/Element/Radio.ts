@@ -5,18 +5,15 @@ namespace Com.Theeds.Component.Form.Element {
 
     import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
 
-    @component('checkbox-element')
+    @component('radio-element')
     @extend("input")
-    export class Checkbox extends AbstractPolymerElement {
+    export class Radio extends AbstractPolymerElement {
 
         @property({type: Boolean, reflectToAttribute: true})
-            type:string = 'checkbox';
+            type:string = 'radio';
 
         @property({type: Boolean})
             checked:boolean = false;
-
-        @property({type: String, reflectToAttribute: true})
-            id:string;
 
         @property({type: String, reflectToAttribute: true})
             name:string;
@@ -28,6 +25,7 @@ namespace Com.Theeds.Component.Form.Element {
 
         constructor(context:any, data:any) {
             super(data);
+
             if (data.name != undefined) this.id = data.name;
             if (data.name != undefined) this.name = data.name;
             if (data.required != undefined) this.required = data.required;
@@ -59,7 +57,7 @@ namespace Com.Theeds.Component.Form.Element {
             }
 
             return this.displayError();
-        }
+        }s
 
         displayError(detail?:string):boolean {
             this.errorMessage = detail;
@@ -77,5 +75,5 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.Checkbox.register();
+Com.Theeds.Component.Form.Element.Radio.register();
 

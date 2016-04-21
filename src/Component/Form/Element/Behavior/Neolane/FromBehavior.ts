@@ -37,7 +37,88 @@ namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
             } else if (Object.isDefined(data, 'errors.0.error.message')) {
                 form.warning(data.errors[0].error.message);
             } else if (Object.isDefined(data, 'errors')) {
-                form.errors = data.errors;
+                form.errors = data.errors.fields;
+            }
+        }
+
+        @listen('field-create')
+        _onCreate(e:Event, elem:any) {
+            let context = this;
+
+            if(elem.data.name == 'company'){
+                $('#company').autocomplete({
+                    source: function (requete, reponse) {
+                        $.ajax({
+                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                            dataType: 'jsonp',
+                            data: {
+                                query: $('#company').val(),
+                                iso: $('#country').val()
+                            },
+                            success: function (data) {
+                                reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                    return {
+                                        label: objet.companyName,
+                                        value: objet.companyName,
+                                        duns: objet.duns,
+                                        postalCode: objet.postalCode,
+                                        city: objet.city,
+                                        address1: objet.address1,
+                                        address2: objet.address2,
+                                        stateCode: objet.stateCode,
+                                    };
+                                }));
+                            },
+
+                        });
+                    },
+                    select: function(event, ui) {
+                        $(this).val(ui.item.value);
+
+                        context.append({
+                            name: "duns",
+                            type: "hidden",
+                            value: ui.item.duns
+                        }).append({
+                            name: "zipCode",
+                            type: "hidden",
+                            value: ui.item.postalCode
+                        }).append({
+                            name: "cityInput",
+                            type: "hidden",
+                            value: ui.item.city
+                        }).append({
+                            name: "address1",
+                            type: "hidden",
+                            value: ui.item.address1
+                        }).append({
+                            name: "address2",
+                            type: "hidden",
+                            value: ui.item.address2
+                        }).append({
+                            name: "country",
+                            type: "hidden",
+                            value: ui.item.stateCode
+                        });
+
+                        return false;
+                    }
+                });
+            }
+
+
+        }
+
+        @listen('field-value-changed')
+        _onChange(e:Event, elem:any) {
+            for (let n = 0; n < ((<any>Polymer.dom(this)).node.length); n++) {
+                if (typeof  (<any>Polymer.dom(this)).node[n].parentField != 'undefined' && elem.name == Polymer.dom(this).node[n].parentField) {
+                    for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
+                        if (typeof  (<any>Polymer.dom(this)).node[i].name != 'undefined' && Polymer.dom(this).node[i].name.toLowerCase() == Polymer.dom(this).node[n].name.toLowerCase()) {
+                            Polymer.dom(this).node[i].update();
+                        }
+                    }
+                }
             }
         }
 
@@ -50,7 +131,7 @@ namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
 
         submit():void {
             this.valid();
-            if (this.errors.length <= 1) this.post();
+            if (!Object.keys(this.errors).length) this.post();
         }
 
         post():void {

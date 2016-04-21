@@ -9,19 +9,27 @@ namespace Com.Theeds.Component.Form.Element {
     import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
 
     @component('field-group-element')
-    @extend("fieldset")
-    @template('<template is="dom-if" if="{{label}}"><legend>{{label}}</legend></template>')
+    @extend("div")
     export class FieldGroup extends AbstractPolymerElement {
-
-        label:string;
 
         constructor(context:any, data:any) {
             super(data);
             this.classList.add('form-group');
-            if (data.label != 'undefined') this.label = data.label;
+            this.classList.add('row');
+
+            let label:HTMLLabelElement = document.createElement('label');
+            label.className = 'col-sm-2 form-control-label';
+            label.innerText = data.label;
+            this.appendChild(label);
+
+            let container:HTMLDivElement = document.createElement('div');
+            container.classList.add('col-sm-10');
+
             for (let i in data.items) {
-                this.appendChild(Field.create(context, data.items[i]));
+                container.appendChild(Field.create(context, data.items[i]));
             }
+
+            this.appendChild(container);
         }
     }
 

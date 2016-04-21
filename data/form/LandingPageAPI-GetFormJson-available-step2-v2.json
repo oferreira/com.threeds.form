@@ -8,6 +8,426 @@
       "submitLabel": "Télécharger"
     },
     "config": [
+
+      {
+        "name": "industry",
+        "type": "picklist",
+        "label": "Industrie",
+        "required": true,
+        "options": [
+          {
+            "label": "Transport et Mobilité",
+            "value": "01",
+            "parentValue": ""
+          },
+          {
+            "label": "Aéronautique et Défense",
+            "value": "02",
+            "parentValue": "",
+            "selected": true
+          },
+          {
+            "label": "Marine et Offshore",
+            "value": "03",
+            "parentValue": ""
+          },
+          {
+            "label": "Equipements industriels",
+            "value": "04",
+            "parentValue": ""
+          },
+          {
+            "label": "Hautes technologies",
+            "value": "05",
+            "parentValue": ""
+          },
+          {
+            "label": "Biens de consommation - Distribution",
+            "value": "06",
+            "parentValue": ""
+          },
+          {
+            "label": "Produits de grande consommation - Distribution",
+            "value": "07",
+            "parentValue": ""
+          },
+          {
+            "label": "Sciences de la vie",
+            "value": "08",
+            "parentValue": ""
+          },
+          {
+            "label": "Energie et Procédés",
+            "value": "09",
+            "parentValue": ""
+          },
+          {
+            "label": "Architecture,  Ingénierie et Construction",
+            "value": "10",
+            "parentValue": ""
+          },
+          {
+            "label": "Finance et Services",
+            "value": "11",
+            "parentValue": ""
+          },
+          {
+            "label": "Ressources naturelles",
+            "value": "12",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "name": "subIndustry",
+        "parentField": "industry",
+        "type": "picklist",
+        "label": "Sous-industrie",
+        "required": false,
+        "options": [
+          {
+            "label": "Constructeurs de voitures et camions légers",
+            "value": "01.1",
+            "parentValue": "01"
+          },
+          {
+            "label": "Voitures de course",
+            "value": "01.2",
+            "parentValue": "01",
+            "selected": true
+          },
+          {
+            "label": "Motos",
+            "value": "01.3",
+            "parentValue": "01"
+          },
+          {
+            "label": "Fournisseurs  automobile et transport",
+            "value": "01.4",
+            "parentValue": "01"
+          },
+          {
+            "label": "Camions et Bus",
+            "value": "01.5",
+            "parentValue": "01"
+          },
+          {
+            "label": "Trains",
+            "value": "01.6",
+            "parentValue": "01"
+          },
+          {
+            "label": "Fabricants de cellules",
+            "value": "02.1",
+            "parentValue": "02"
+          },
+          {
+            "label": "Fournisseurs de l'industrie aéronautique",
+            "value": "02.2",
+            "parentValue": "02"
+          },
+          {
+            "label": "Propulsion",
+            "value": "02.3",
+            "parentValue": "02"
+          },
+          {
+            "label": "Défense",
+            "value": "02.4",
+            "parentValue": "02"
+          },
+          {
+            "label": "Compagnies aériennes",
+            "value": "02.5",
+            "parentValue": "02"
+          },
+          {
+            "label": "Spatial",
+            "value": "02.6",
+            "parentValue": "02"
+          },
+          {
+            "label": "Marine militaire",
+            "value": "03.1",
+            "parentValue": "03"
+          },
+          {
+            "label": "Navires commerciaux",
+            "value": "03.2",
+            "parentValue": "03"
+          },
+          {
+            "label": "Offshore",
+            "value": "03.3",
+            "parentValue": "03"
+          },
+          {
+            "label": "Plaisance et Bateaux de travail",
+            "value": "03.4",
+            "parentValue": "03"
+          },
+          {
+            "label": "Fournisseurs maritime",
+            "value": "03.5",
+            "parentValue": "03"
+          },
+          {
+            "label": "Spécialistes Marine & Offshore",
+            "value": "03.6",
+            "parentValue": "03"
+          },
+          {
+            "label": "Machines-outils",
+            "value": "04.1",
+            "parentValue": "04"
+          },
+          {
+            "label": "Machines mobiles lourdes et Equipements",
+            "value": "04.2",
+            "parentValue": "04"
+          },
+          {
+            "label": "Equipements installés",
+            "value": "04.3",
+            "parentValue": "04"
+          },
+          {
+            "label": "Produits d'équipement industriel",
+            "value": "04.4",
+            "parentValue": "04"
+          },
+          {
+            "label": "Ouvrages en métaux",
+            "value": "04.5",
+            "parentValue": "04"
+          },
+          {
+            "label": "Fabricants de pneus",
+            "value": "04.6",
+            "parentValue": "04"
+          },
+          {
+            "label": "Electronique grand public",
+            "value": "05.1",
+            "parentValue": "05"
+          },
+          {
+            "label": "Sécurité et contrôle-commande",
+            "value": "05.2",
+            "parentValue": "05"
+          },
+          {
+            "label": "Matériel informatique et de communication",
+            "value": "05.3",
+            "parentValue": "05"
+          },
+          {
+            "label": "Services de fabrication à la commande",
+            "value": "05.4",
+            "parentValue": "05"
+          },
+          {
+            "label": "Fournisseurs de technologies",
+            "value": "05.5",
+            "parentValue": "05"
+          },
+          {
+            "label": "Semi-conducteurs",
+            "value": "05.6",
+            "parentValue": "05"
+          },
+          {
+            "label": "Mobilier",
+            "value": "06.1",
+            "parentValue": "06"
+          },
+          {
+            "label": "Maison et jardin",
+            "value": "06.2",
+            "parentValue": "06"
+          },
+          {
+            "label": "Articles de loisirs",
+            "value": "06.3",
+            "parentValue": "06"
+          },
+          {
+            "label": "Mode",
+            "value": "06.4",
+            "parentValue": "06"
+          },
+          {
+            "label": "Distributeurs de biens durables",
+            "value": "06.5",
+            "parentValue": "06"
+          },
+          {
+            "label": "Distributeurs de biens semi-durables",
+            "value": "06.6",
+            "parentValue": "06"
+          },
+          {
+            "label": "Alimentation,  boissons et tabac",
+            "value": "07.1",
+            "parentValue": "07"
+          },
+          {
+            "label": "Produits de beauté et de soins",
+            "value": "07.2",
+            "parentValue": "07"
+          },
+          {
+            "label": "Produits ménagers",
+            "value": "07.3",
+            "parentValue": "07"
+          },
+          {
+            "label": "Emballages",
+            "value": "07.4",
+            "parentValue": "07"
+          },
+          {
+            "label": "Distributeurs généralistes",
+            "value": "07.5",
+            "parentValue": "07"
+          },
+          {
+            "label": "Distributeurs spécialisés",
+            "value": "07.6",
+            "parentValue": "07"
+          },
+          {
+            "label": "Pharmacie et Biotechnologies",
+            "value": "08.1",
+            "parentValue": "08"
+          },
+          {
+            "label": "Dispositifs et matériel médicaux",
+            "value": "08.2",
+            "parentValue": "08"
+          },
+          {
+            "label": "Soins médicaux",
+            "value": "08.3",
+            "parentValue": "08"
+          },
+          {
+            "label": "Energie",
+            "value": "09.1",
+            "parentValue": "09"
+          },
+          {
+            "label": "Transformation",
+            "value": "09.2",
+            "parentValue": "09"
+          },
+          {
+            "label": "Chimie",
+            "value": "09.3",
+            "parentValue": "09"
+          },
+          {
+            "label": "Services à la collectivité",
+            "value": "09.4",
+            "parentValue": "09"
+          },
+          {
+            "label": "Propriétaires,  exploitants et planificateurs",
+            "value": "10.1",
+            "parentValue": "10"
+          },
+          {
+            "label": "Architecture",
+            "value": "10.2",
+            "parentValue": "10"
+          },
+          {
+            "label": "Ingénierie",
+            "value": "10.3",
+            "parentValue": "10"
+          },
+          {
+            "label": "Fabricants de produits de construction",
+            "value": "10.4",
+            "parentValue": "10"
+          },
+          {
+            "label": "Maîtres d'œuvre",
+            "value": "10.5",
+            "parentValue": "10"
+          },
+          {
+            "label": "Sous-traitants",
+            "value": "10.6",
+            "parentValue": "10"
+          },
+          {
+            "label": "Conformité réglementaire",
+            "value": "10.7",
+            "parentValue": "10"
+          },
+          {
+            "label": "Banque et Marchés financiers",
+            "value": "11.1",
+            "parentValue": "11"
+          },
+          {
+            "label": "Assurance",
+            "value": "11.2",
+            "parentValue": "11"
+          },
+          {
+            "label": "Télécommunications",
+            "value": "11.3",
+            "parentValue": "11"
+          },
+          {
+            "label": "Gestion des systèmes de transport",
+            "value": "11.4",
+            "parentValue": "11"
+          },
+          {
+            "label": "Médias et Divertissement",
+            "value": "11.5",
+            "parentValue": "11"
+          },
+          {
+            "label": "Education",
+            "value": "11.6",
+            "parentValue": "11"
+          },
+          {
+            "label": "Administration publique",
+            "value": "11.7",
+            "parentValue": "11"
+          },
+          {
+            "label": "Services aux professionnels",
+            "value": "11.8",
+            "parentValue": "11"
+          },
+          {
+            "label": "Industrie minière",
+            "value": "12.1",
+            "parentValue": "12"
+          },
+          {
+            "label": "Gaz et pétrole",
+            "value": "12.2",
+            "parentValue": "12"
+          },
+          {
+            "label": "Eau",
+            "value": "12.3",
+            "parentValue": "12"
+          },
+          {
+            "label": "Agriculture et forêt",
+            "value": "12.4",
+            "parentValue": "12"
+          }
+        ]
+      },
       {
         "name": "salutation",
         "type": "picklist",
@@ -1939,423 +2359,6 @@
         "required": true
       },
       {
-        "name": "industry",
-        "type": "picklist",
-        "label": "Industrie",
-        "required": true,
-        "options": [
-          {
-            "label": "Transport et Mobilité",
-            "value": "01",
-            "parentValue": ""
-          },
-          {
-            "label": "Aéronautique et Défense",
-            "value": "02",
-            "parentValue": ""
-          },
-          {
-            "label": "Marine et Offshore",
-            "value": "03",
-            "parentValue": ""
-          },
-          {
-            "label": "Equipements industriels",
-            "value": "04",
-            "parentValue": ""
-          },
-          {
-            "label": "Hautes technologies",
-            "value": "05",
-            "parentValue": ""
-          },
-          {
-            "label": "Biens de consommation - Distribution",
-            "value": "06",
-            "parentValue": ""
-          },
-          {
-            "label": "Produits de grande consommation - Distribution",
-            "value": "07",
-            "parentValue": ""
-          },
-          {
-            "label": "Sciences de la vie",
-            "value": "08",
-            "parentValue": ""
-          },
-          {
-            "label": "Energie et Procédés",
-            "value": "09",
-            "parentValue": ""
-          },
-          {
-            "label": "Architecture,  Ingénierie et Construction",
-            "value": "10",
-            "parentValue": ""
-          },
-          {
-            "label": "Finance et Services",
-            "value": "11",
-            "parentValue": ""
-          },
-          {
-            "label": "Ressources naturelles",
-            "value": "12",
-            "parentValue": ""
-          }
-        ]
-      },
-      {
-        "name": "subIndustry",
-        "parentField": "industry",
-        "type": "picklist",
-        "label": "Sous-industrie",
-        "required": false,
-        "options": [
-          {
-            "label": "Constructeurs de voitures et camions légers",
-            "value": "01.1",
-            "parentValue": "01"
-          },
-          {
-            "label": "Voitures de course",
-            "value": "01.2",
-            "parentValue": "01"
-          },
-          {
-            "label": "Motos",
-            "value": "01.3",
-            "parentValue": "01"
-          },
-          {
-            "label": "Fournisseurs  automobile et transport",
-            "value": "01.4",
-            "parentValue": "01"
-          },
-          {
-            "label": "Camions et Bus",
-            "value": "01.5",
-            "parentValue": "01"
-          },
-          {
-            "label": "Trains",
-            "value": "01.6",
-            "parentValue": "01"
-          },
-          {
-            "label": "Fabricants de cellules",
-            "value": "02.1",
-            "parentValue": "02"
-          },
-          {
-            "label": "Fournisseurs de l'industrie aéronautique",
-            "value": "02.2",
-            "parentValue": "02"
-          },
-          {
-            "label": "Propulsion",
-            "value": "02.3",
-            "parentValue": "02"
-          },
-          {
-            "label": "Défense",
-            "value": "02.4",
-            "parentValue": "02"
-          },
-          {
-            "label": "Compagnies aériennes",
-            "value": "02.5",
-            "parentValue": "02"
-          },
-          {
-            "label": "Spatial",
-            "value": "02.6",
-            "parentValue": "02"
-          },
-          {
-            "label": "Marine militaire",
-            "value": "03.1",
-            "parentValue": "03"
-          },
-          {
-            "label": "Navires commerciaux",
-            "value": "03.2",
-            "parentValue": "03"
-          },
-          {
-            "label": "Offshore",
-            "value": "03.3",
-            "parentValue": "03"
-          },
-          {
-            "label": "Plaisance et Bateaux de travail",
-            "value": "03.4",
-            "parentValue": "03"
-          },
-          {
-            "label": "Fournisseurs maritime",
-            "value": "03.5",
-            "parentValue": "03"
-          },
-          {
-            "label": "Spécialistes Marine & Offshore",
-            "value": "03.6",
-            "parentValue": "03"
-          },
-          {
-            "label": "Machines-outils",
-            "value": "04.1",
-            "parentValue": "04"
-          },
-          {
-            "label": "Machines mobiles lourdes et Equipements",
-            "value": "04.2",
-            "parentValue": "04"
-          },
-          {
-            "label": "Equipements installés",
-            "value": "04.3",
-            "parentValue": "04"
-          },
-          {
-            "label": "Produits d'équipement industriel",
-            "value": "04.4",
-            "parentValue": "04"
-          },
-          {
-            "label": "Ouvrages en métaux",
-            "value": "04.5",
-            "parentValue": "04"
-          },
-          {
-            "label": "Fabricants de pneus",
-            "value": "04.6",
-            "parentValue": "04"
-          },
-          {
-            "label": "Electronique grand public",
-            "value": "05.1",
-            "parentValue": "05"
-          },
-          {
-            "label": "Sécurité et contrôle-commande",
-            "value": "05.2",
-            "parentValue": "05"
-          },
-          {
-            "label": "Matériel informatique et de communication",
-            "value": "05.3",
-            "parentValue": "05"
-          },
-          {
-            "label": "Services de fabrication à la commande",
-            "value": "05.4",
-            "parentValue": "05"
-          },
-          {
-            "label": "Fournisseurs de technologies",
-            "value": "05.5",
-            "parentValue": "05"
-          },
-          {
-            "label": "Semi-conducteurs",
-            "value": "05.6",
-            "parentValue": "05"
-          },
-          {
-            "label": "Mobilier",
-            "value": "06.1",
-            "parentValue": "06"
-          },
-          {
-            "label": "Maison et jardin",
-            "value": "06.2",
-            "parentValue": "06"
-          },
-          {
-            "label": "Articles de loisirs",
-            "value": "06.3",
-            "parentValue": "06"
-          },
-          {
-            "label": "Mode",
-            "value": "06.4",
-            "parentValue": "06"
-          },
-          {
-            "label": "Distributeurs de biens durables",
-            "value": "06.5",
-            "parentValue": "06"
-          },
-          {
-            "label": "Distributeurs de biens semi-durables",
-            "value": "06.6",
-            "parentValue": "06"
-          },
-          {
-            "label": "Alimentation,  boissons et tabac",
-            "value": "07.1",
-            "parentValue": "07"
-          },
-          {
-            "label": "Produits de beauté et de soins",
-            "value": "07.2",
-            "parentValue": "07"
-          },
-          {
-            "label": "Produits ménagers",
-            "value": "07.3",
-            "parentValue": "07"
-          },
-          {
-            "label": "Emballages",
-            "value": "07.4",
-            "parentValue": "07"
-          },
-          {
-            "label": "Distributeurs généralistes",
-            "value": "07.5",
-            "parentValue": "07"
-          },
-          {
-            "label": "Distributeurs spécialisés",
-            "value": "07.6",
-            "parentValue": "07"
-          },
-          {
-            "label": "Pharmacie et Biotechnologies",
-            "value": "08.1",
-            "parentValue": "08"
-          },
-          {
-            "label": "Dispositifs et matériel médicaux",
-            "value": "08.2",
-            "parentValue": "08"
-          },
-          {
-            "label": "Soins médicaux",
-            "value": "08.3",
-            "parentValue": "08"
-          },
-          {
-            "label": "Energie",
-            "value": "09.1",
-            "parentValue": "09"
-          },
-          {
-            "label": "Transformation",
-            "value": "09.2",
-            "parentValue": "09"
-          },
-          {
-            "label": "Chimie",
-            "value": "09.3",
-            "parentValue": "09"
-          },
-          {
-            "label": "Services à la collectivité",
-            "value": "09.4",
-            "parentValue": "09"
-          },
-          {
-            "label": "Propriétaires,  exploitants et planificateurs",
-            "value": "10.1",
-            "parentValue": "10"
-          },
-          {
-            "label": "Architecture",
-            "value": "10.2",
-            "parentValue": "10"
-          },
-          {
-            "label": "Ingénierie",
-            "value": "10.3",
-            "parentValue": "10"
-          },
-          {
-            "label": "Fabricants de produits de construction",
-            "value": "10.4",
-            "parentValue": "10"
-          },
-          {
-            "label": "Maîtres d'œuvre",
-            "value": "10.5",
-            "parentValue": "10"
-          },
-          {
-            "label": "Sous-traitants",
-            "value": "10.6",
-            "parentValue": "10"
-          },
-          {
-            "label": "Conformité réglementaire",
-            "value": "10.7",
-            "parentValue": "10"
-          },
-          {
-            "label": "Banque et Marchés financiers",
-            "value": "11.1",
-            "parentValue": "11"
-          },
-          {
-            "label": "Assurance",
-            "value": "11.2",
-            "parentValue": "11"
-          },
-          {
-            "label": "Télécommunications",
-            "value": "11.3",
-            "parentValue": "11"
-          },
-          {
-            "label": "Gestion des systèmes de transport",
-            "value": "11.4",
-            "parentValue": "11"
-          },
-          {
-            "label": "Médias et Divertissement",
-            "value": "11.5",
-            "parentValue": "11"
-          },
-          {
-            "label": "Education",
-            "value": "11.6",
-            "parentValue": "11"
-          },
-          {
-            "label": "Administration publique",
-            "value": "11.7",
-            "parentValue": "11"
-          },
-          {
-            "label": "Services aux professionnels",
-            "value": "11.8",
-            "parentValue": "11"
-          },
-          {
-            "label": "Industrie minière",
-            "value": "12.1",
-            "parentValue": "12"
-          },
-          {
-            "label": "Gaz et pétrole",
-            "value": "12.2",
-            "parentValue": "12"
-          },
-          {
-            "label": "Eau",
-            "value": "12.3",
-            "parentValue": "12"
-          },
-          {
-            "label": "Agriculture et forêt",
-            "value": "12.4",
-            "parentValue": "12"
-          }
-        ]
-      },
-      {
         "name": "jobFunction",
         "type": "text",
         "label": "Profession",
@@ -2694,8 +2697,7 @@
           {
             "name": "datasheet",
             "type": "checkbox",
-            "label": "Un document produit",
-            "value": "1"
+            "label": "Un document produit"
           },
           {
             "name": "demo",

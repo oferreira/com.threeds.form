@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "nextAction": "GetFormJson",
+    "properties": {
+      "title": "",
+      "language": "en"
+    },
+    "config": [
+      {
+        "name": "enabledFields",
+        "type": "hidden"
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "label": "E-mail",
+        "required": true
+      }
+    ],
+    "data": {
+      "enabledFields": "fieldEmail,fieldFirstName,fieldCompany,fieldCountry,fieldLevelOfInterest,fieldWorkPhone,fieldSolutionInterest,fieldJobLevel,fieldJobDepartment,fieldJobDepartment,fieldJobSubDepartment,fieldIndustry,fieldIndustry,fieldSubIndustry,fieldAddress,fieldAddress1,fieldAddressZipCode,fieldAddressCity,fieldIWouldLike,addCustomFields,custom1,custom2,custom3,custom4,fieldComment,fieldOptin"
+    }
+  }
+}

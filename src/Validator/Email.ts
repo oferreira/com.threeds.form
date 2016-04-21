@@ -8,7 +8,7 @@ namespace Com.Theeds.Validator {
     export class Email extends AbstractValidator {
 
         static isValid(value:string):boolean|string {
-            if (!/^.+@.+$/.test(value)) {
+            if (!/^(.+@.+\..{2,4})$/.test(value)) {
                 return $.i18n().t('error.email_invalid');
             }
 

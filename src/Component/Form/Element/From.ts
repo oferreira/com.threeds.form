@@ -18,7 +18,6 @@ namespace Com.Theeds.Component.Form.Element {
 
     @component('form-element')
     @extend("form")
-    @behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.CountryBehavior)
     @behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)
     export class From extends AbstractPolymerElement {
         context:any;
@@ -35,45 +34,24 @@ namespace Com.Theeds.Component.Form.Element {
         @property({type: String, reflectToAttribute: true})
             action:string;
 
-        public _errors:any = [];
+        public _errors:Object[] = [{workPhone: "invalid"}, {custom2: "missing"}, {custom4: "missing"}];
 
         constructor(context:any, data:any) {
             super(data);
             this.context = context;
             this.dispatch(data);
-
-            $('#company').autocomplete({
-                source: function (requete, reponse) {
-                    $.ajax({
-                        url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                        dataType: 'jsonp',
-                        data: {
-                            query: $('#company').val(),
-                            iso: $('#country').val()
-                        },
-                        success: function (data) {
-                            reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
-                                return {
-                                    label: objet.companyName,
-                                    value: objet.companyName
-                                };
-                            }));
-                        },
-
-                    });
-                }
-            });
         }
 
         public get settings():any {
             return this.context.settings;
         }
 
-        public get errors():any {
-            return this._errors;
+        public get errors():Object[] {
+
+            return <Array> this._errors;
         }
 
-        public set errors(value:any) {
+        public set errors(value:Object[]) {
             this._errors = value;
 
             for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
@@ -85,6 +63,8 @@ namespace Com.Theeds.Component.Form.Element {
                     }
                 }
             }
+
+            console.log(this._errors);
         }
 
         public valid() {
@@ -113,6 +93,20 @@ namespace Com.Theeds.Component.Form.Element {
         update(data:any) {
             this.clear();
             this.appendChild(StepElement.create(this.context, data));
+        }
+
+        append(data:any):From {
+
+            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
+                if (typeof  (<any>Polymer.dom(this)).node[i].name != 'undefined' && Polymer.dom(this).node[i].name == data.name) {
+                    Polymer.dom(this).node[i].value = data.value;
+                    return this;
+                }
+            }
+
+            this.insertBefore(Input.create(this, data), this.firstChild);
+
+            return this;
         }
 
         success(data:any) {

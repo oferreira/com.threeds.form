@@ -19,6 +19,7 @@ var Com;
         Theeds._locale = {
             'en': {
                 'error': {
+                    'field_invalid': "The field \"{0}\" is invalid",
                     'field_require': 'This field is required',
                     'email_invalid': 'A valid email address is required',
                     'checkbox_require': 'Please select the check box'
@@ -40,6 +41,14 @@ var Com;
         };
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
+String.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -191,7 +200,7 @@ var Com;
                     _super.apply(this, arguments);
                 }
                 Email.isValid = function (value) {
-                    if (!/^.+@.+$/.test(value)) {
+                    if (!/^(.+@.+\..{2,4})$/.test(value)) {
                         return $.i18n().t('error.email_invalid');
                     }
                     return true;
@@ -795,43 +804,6 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Form;
-            (function (Form) {
-                var Element;
-                (function (Element) {
-                    var Behavior;
-                    (function (Behavior) {
-                        var Neolane;
-                        (function (Neolane) {
-                            var CountryBehavior = function (_super) {
-                                __extends(CountryBehavior, _super);
-                                function CountryBehavior() {
-                                    _super.apply(this, arguments);
-                                }
-                                CountryBehavior.prototype.attached = function () {};
-                                return CountryBehavior;
-                            }(polymer.Base);
-                            Neolane.CountryBehavior = CountryBehavior;
-                        })(Neolane = Behavior.Neolane || (Behavior.Neolane = {}));
-                    })(Behavior = Element.Behavior || (Element.Behavior = {}));
-                })(Element = Form.Element || (Form.Element = {}));
-            })(Form = Component.Form || (Component.Form = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -855,14 +827,15 @@ var Com;
                         function Input(context, data) {
                             _super.call(this, data);
                             this.type = 'text';
-                            this.value = 'lorem';
+                            this.value = 'lorem@lorem.fr';
                             this.required = false;
                             this._validators = [];
                             this._errorMessage = '';
-                            this.classList.add('form-control');
+                            if (data.type != undefined && data.type != 'hidden') this.classList.add('form-control');
                             if (context.settings.display.placeholder) this.placeholder = data.label;
                             if (data.name != undefined) this.id = data.name, this.name = data.name;
                             if (data.required != undefined) this.required = data.required;
+                            if (data.type != undefined) this.type = data.type;
                             if (data.value != undefined) this.value = data.value;
                             if (data.validators != undefined) this._validators = data.validators;
                         }
@@ -877,15 +850,19 @@ var Com;
                             configurable: true
                         });
                         Input.prototype._onChange = function (e) {
+                            this.fire('field-value-changed', this);
                             this.setAttribute('value', this.value);
                             this.isValid();
                         };
                         Input.prototype.isValid = function () {
                             var message;
                             for (var i = 0; i < this._validators.length; i++) {
-                                message = eval(this._validators[i] + ".isValid").apply(this.value);
-                                if (message != undefined) return this.displayError(message);
+                                message = eval(this._validators[i] + ".isValid(this.value)");
+                                if (typeof message == 'string') {
+                                    return this.displayError(message);
+                                }
                             }
+                            return this.displayError();
                         };
                         Input.prototype.displayError = function (detail) {
                             this.errorMessage = detail;
@@ -914,6 +891,97 @@ var Com;
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 Com.Theeds.Component.Form.Element.Input.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Component;
+        (function (Component) {
+            var Form;
+            (function (Form) {
+                var Element;
+                (function (Element) {
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+                    var Textarea = function (_super) {
+                        __extends(Textarea, _super);
+                        function Textarea(context, data) {
+                            _super.call(this, data);
+                            this.value = 'lorem';
+                            this.required = false;
+                            this._validators = [];
+                            this._errorMessage = '';
+                            this.classList.add('form-control');
+                            if (context.settings.display.placeholder) this.placeholder = data.label;
+                            if (data.name != undefined) this.id = data.name, this.name = data.name;
+                            if (data.required != undefined) this.required = data.required;
+                            if (data.value != undefined) this.value = data.value;
+                            if (data.validators != undefined) this._validators = data.validators;
+                        }
+                        Object.defineProperty(Textarea.prototype, "errorMessage", {
+                            get: function () {
+                                return this._errorMessage == undefined ? '' : this._errorMessage;
+                            },
+                            set: function (value) {
+                                this._errorMessage = value == undefined ? '' : value;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
+                        Textarea.prototype._onChange = function (e) {
+                            this.fire('field-value-changed', this);
+                            this.setAttribute('value', this.value);
+                            this.isValid();
+                        };
+                        Textarea.prototype.isValid = function () {
+                            var message;
+                            for (var i = 0; i < this._validators.length; i++) {
+                                message = eval(this._validators[i] + ".isValid(this.value)");
+                                if (typeof message == 'string') {
+                                    return this.displayError(message);
+                                }
+                            }
+                            return this.displayError();
+                        };
+                        Textarea.prototype.displayError = function (detail) {
+                            this.errorMessage = detail;
+                            this.fire('error', this.errorMessage);
+                            if (!this.errorMessage) {
+                                this.classList.remove('_error');
+                                return false;
+                            }
+                            this.classList.add('_error');
+                            return true;
+                        };
+                        __decorate([property({ type: String, reflectToAttribute: true })], Textarea.prototype, "id", void 0);
+                        __decorate([property({ type: String, reflectToAttribute: true })], Textarea.prototype, "name", void 0);
+                        __decorate([property({ type: String })], Textarea.prototype, "value", void 0);
+                        __decorate([property({ type: String, reflectToAttribute: true })], Textarea.prototype, "placeholder", void 0);
+                        __decorate([property({ type: Boolean, reflectToAttribute: true })], Textarea.prototype, "required", void 0);
+                        __decorate([listen('input')], Textarea.prototype, "_onChange", null);
+                        Textarea = __decorate([component('textarea-element'), extend("textarea")], Textarea);
+                        return Textarea;
+                    }(AbstractPolymerElement);
+                    Element.Textarea = Textarea;
+                })(Element = Form.Element || (Form.Element = {}));
+            })(Form = Component.Form || (Component.Form = {}));
+        })(Component = Theeds.Component || (Theeds.Component = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+Com.Theeds.Component.Form.Element.Textarea.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -988,6 +1056,7 @@ var Com;
                         };
                         __decorate([property({ type: Boolean, reflectToAttribute: true })], Checkbox.prototype, "type", void 0);
                         __decorate([property({ type: Boolean })], Checkbox.prototype, "checked", void 0);
+                        __decorate([property({ type: String, reflectToAttribute: true })], Checkbox.prototype, "id", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], Checkbox.prototype, "name", void 0);
                         __decorate([property({ type: Boolean, reflectToAttribute: true })], Checkbox.prototype, "required", void 0);
                         __decorate([listen('change')], Checkbox.prototype, "_onChange", null);
@@ -1026,19 +1095,126 @@ var Com;
                 var Element;
                 (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+                    var Radio = function (_super) {
+                        __extends(Radio, _super);
+                        function Radio(context, data) {
+                            _super.call(this, data);
+                            this.type = 'radio';
+                            this.checked = false;
+                            this.required = false;
+                            this._errorMessage = '';
+                            if (data.name != undefined) this.id = data.name;
+                            if (data.name != undefined) this.name = data.name;
+                            if (data.required != undefined) this.required = data.required;
+                            if (data.value != undefined) this.checked = data.value;
+                        }
+                        Object.defineProperty(Radio.prototype, "errorMessage", {
+                            get: function () {
+                                return this._errorMessage == undefined ? '' : this._errorMessage;
+                            },
+                            set: function (value) {
+                                this._errorMessage = value == undefined ? '' : value;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
+                        Radio.prototype._onChange = function (e) {
+                            if (this.checked) {
+                                this.setAttribute("checked", this.checked.toString());
+                            } else {
+                                this.removeAttribute("checked");
+                            }
+                            this.isValid();
+                        };
+                        Radio.prototype.isValid = function () {
+                            if (this.required && this.checked == false) {
+                                return this.displayError('This field is required !');
+                            }
+                            return this.displayError();
+                        };
+                        Radio.prototype.displayError = function (detail) {
+                            this.errorMessage = detail;
+                            this.fire('error', this.errorMessage);
+                            if (!this.errorMessage) {
+                                this.classList.remove('_error');
+                                return false;
+                            }
+                            this.classList.add('_error');
+                            return true;
+                        };
+                        __decorate([property({ type: Boolean, reflectToAttribute: true })], Radio.prototype, "type", void 0);
+                        __decorate([property({ type: Boolean })], Radio.prototype, "checked", void 0);
+                        __decorate([property({ type: String, reflectToAttribute: true })], Radio.prototype, "name", void 0);
+                        __decorate([property({ type: Boolean, reflectToAttribute: true })], Radio.prototype, "required", void 0);
+                        __decorate([listen('change')], Radio.prototype, "_onChange", null);
+                        Radio = __decorate([component('radio-element'), extend("input")], Radio);
+                        return Radio;
+                    }(AbstractPolymerElement);
+                    Element.Radio = Radio;
+                })(Element = Form.Element || (Form.Element = {}));
+            })(Form = Component.Form || (Component.Form = {}));
+        })(Component = Theeds.Component || (Theeds.Component = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+Com.Theeds.Component.Form.Element.Radio.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Component;
+        (function (Component) {
+            var Form;
+            (function (Form) {
+                var Element;
+                (function (Element) {
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Select = function (_super) {
                         __extends(Select, _super);
                         function Select(context, data) {
-                            _super.call(this, data);
                             this.required = false;
+                            this.data = [];
                             this._errorMessage = '';
+                            this.data = data;
+                            _super.call(this, data);
                             this.classList.add('form-control');
-                            if (data.name != undefined) this.id = data.name, this.name = data.name;
-                            for (var k in data.options) {
-                                if (data.value != undefined && data.options[k].value == data.value) data.options[k].selected = true;
-                                this.appendChild(Element.Option.create(data.options[k]));
-                            }
+                            if (this.data.name != undefined) this.id = this.data.name, this.name = this.data.name;
+                            if (this.data.parentField != undefined) this.parentField = this.data.parentField;
+                            this.update();
                         }
+                        Select.prototype.clear = function () {
+                            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+                            this.innerHTML = '';
+                        };
+                        Select.prototype.update = function () {
+                            this.clear();
+                            var parentField;
+                            if (typeof this.data.parentField != 'undefined') {
+                                parentField = document.querySelector("#" + this.data.parentField);
+                            }
+                            for (var k in this.data.options) {
+                                if (this.data.value != undefined && this.data.options[k].value == this.data.value) this.data.options[k].selected = true;
+                                if (typeof this.data.parentField != 'undefined') {
+                                    if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value) this.appendChild(Element.Option.create(this.data.options[k]));
+                                } else {
+                                    this.appendChild(Element.Option.create(this.data.options[k]));
+                                }
+                            }
+                            this.fire('field-hide', !this.options.length ? false : true);
+                        };
                         Object.defineProperty(Select.prototype, "errorMessage", {
                             get: function () {
                                 return this._errorMessage == undefined ? '' : this._errorMessage;
@@ -1050,6 +1226,7 @@ var Com;
                             configurable: true
                         });
                         Select.prototype._onChange = function (e) {
+                            this.fire('field-value-changed', this);
                             this.selectOption(this.value);
                         };
                         Select.prototype.selectOption = function (value) {
@@ -1111,48 +1288,33 @@ var Com;
                 var Element;
                 (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
-                    var Field = function (_super) {
-                        __extends(Field, _super);
-                        function Field(context, data) {
-                            this.showLabel = true;
-                            this.hydrateValidators(data);
+                    var FieldGroup = function (_super) {
+                        __extends(FieldGroup, _super);
+                        function FieldGroup(context, data) {
                             _super.call(this, data);
-                            this.data = data, this.showLabel = context.settings.display.label;
                             this.classList.add('form-group');
-                            if (data.type == 'select') this.appendChild(Element.Select.create(context, data));
-                            if (data.type == 'checkbox') this.appendChild(Element.Checkbox.create(context, data));
-                            if (data.type == 'text') this.appendChild(Element.Input.create(context, data));
-                            if (data.type == 'hidden') this.classList.add('hide'), this.appendChild(Element.Input.create(context, data));
-                        }
-                        Field.prototype.hydrateValidators = function (data) {
-                            var validators = data.validators == undefined ? [] : data.validators;
-                            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Theeds.Validator.Email');
-                            if (data.required) validators.push('Com.Theeds.Validator.Require');
-                            if (validators.length) data.validators = validators;
-                        };
-                        Field.prototype.handleError = function (e, detail) {
-                            this.displayError(detail);
-                        };
-                        Field.prototype.displayError = function (detail) {
-                            this.error = detail;
-                            if (this.error == undefined || this.error == '') {
-                                this.classList.remove('has-error');
-                            } else {
-                                this.classList.add('has-error');
+                            this.classList.add('row');
+                            var label = document.createElement('label');
+                            label.className = 'col-sm-2 form-control-label';
+                            label.innerText = data.label;
+                            this.appendChild(label);
+                            var container = document.createElement('div');
+                            container.classList.add('col-sm-10');
+                            for (var i in data.items) {
+                                container.appendChild(Element.Field.create(context, data.items[i]));
                             }
-                        };
-                        __decorate([property({ type: String })], Field.prototype, "error", void 0);
-                        __decorate([listen("error")], Field.prototype, "handleError", null);
-                        Field = __decorate([component('field-element'), extend("fieldset"), template("<template is=\"dom-if\" if=\"{{error}}\"><div class=\"alert alert-danger\">{{error}}</div></template><template is=\"dom-if\" if=\"{{showLabel}}\"><label  for=\"{{data.name}}\">{{data.label}}</label></template>")], Field);
-                        return Field;
+                            this.appendChild(container);
+                        }
+                        FieldGroup = __decorate([component('field-group-element'), extend("div")], FieldGroup);
+                        return FieldGroup;
                     }(AbstractPolymerElement);
-                    Element.Field = Field;
+                    Element.FieldGroup = FieldGroup;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Theeds.Component.Form.Element.Field.register();
+Com.Theeds.Component.Form.Element.FieldGroup.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1178,26 +1340,124 @@ var Com;
                 var Element;
                 (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
-                    var FieldGroup = function (_super) {
-                        __extends(FieldGroup, _super);
-                        function FieldGroup(context, data) {
+                    var Field = function (_super) {
+                        __extends(Field, _super);
+                        function Field(context, data) {
+                            this.hydrateValidators(data);
                             _super.call(this, data);
+                            this.data = data;
                             this.classList.add('form-group');
-                            if (data.label != 'undefined') this.label = data.label;
-                            for (var i in data.items) {
-                                this.appendChild(Element.Field.create(context, data.items[i]));
+                            this.classList.add('row');
+                            if (typeof data.required != 'undefined' && typeof data.required) {
+                                this.classList.add('field-required');
                             }
+                            this.classList.add("field-" + data.name);
+                            this.append(context, data);
                         }
-                        FieldGroup = __decorate([component('field-group-element'), extend("fieldset"), template('<template is="dom-if" if="{{label}}"><legend>{{label}}</legend></template>')], FieldGroup);
-                        return FieldGroup;
+                        Field.prototype.label = function (context, data) {
+                            if (!context.settings.display.label) return;
+                            var label = document.createElement('label');
+                            label.htmlFor = data.name;
+                            if (data.type != 'checkbox' && data.type != 'radio') {
+                                label.className = 'col-sm-2 form-control-label';
+                            } else {
+                                label.className = 'form-control-label';
+                            }
+                            label.appendChild(document.createTextNode(this.data.label));
+                            label.appendChild(document.createTextNode(context.settings.styling.label.suffixe));
+                            if (typeof data.required != 'undefined' && data.required && context.settings.styling.label.mandatory != '') {
+                                var mandatory = document.createElement('span');
+                                mandatory.setAttribute('class', 'mandatory');
+                                mandatory.innerText = context.settings.styling.label.mandatory;
+                                label.appendChild(mandatory);
+                            }
+                            return label;
+                        };
+                        Field.prototype.container = function (context, data) {
+                            var type = data.type.toLowerCase();
+                            var container = document.createElement('div');
+                            container.classList.add(context.settings.display.label ? 'col-sm-10' : 'col-sm-12');
+                            return container;
+                        };
+                        Field.prototype.append = function (context, data) {
+                            var type = data.type.toLowerCase();
+                            var container = this.container(context, data);
+                            var label = this.label(context, data);
+                            if (type != 'checkbox' && type != 'radio' && context.settings.display.label) {
+                                this.appendChild(label);
+                            }
+                            switch (type) {
+                                case 'fieldgroup':
+                                    this.appendChild(FieldGroupElement.create(context, data));
+                                    break;
+                                case 'select':
+                                    container.appendChild(Element.Select.create(context, data));
+                                    this.appendChild(container);
+                                    break;
+                                case 'checkbox':
+                                    label.insertBefore(Element.Checkbox.create(context, data), label.firstChild);
+                                    container.appendChild(label);
+                                    container.classList.add('checkbox');
+                                    this.appendChild(container);
+                                    break;
+                                case 'radio':
+                                    label.insertBefore(Element.Radio.create(context, data), label.firstChild);
+                                    container.appendChild(label);
+                                    container.classList.add('radio');
+                                    this.appendChild(container);
+                                    break;
+                                case 'text':
+                                    container.appendChild(Element.Input.create(context, data));
+                                    this.appendChild(container);
+                                    break;
+                                case 'textarea':
+                                    container.appendChild(Element.Textarea.create(context, data));
+                                    this.appendChild(container);
+                                    break;
+                                default:
+                                    console.log('<!> field no defined');
+                                    console.log(data);
+                                    break;
+                            }
+                            this.fire('field-create', this);
+                        };
+                        Field.prototype.hydrateValidators = function (data) {
+                            var validators = data.validators == undefined ? [] : data.validators;
+                            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Theeds.Validator.Email');
+                            if (data.required) validators.push('Com.Theeds.Validator.Require');
+                            if (validators.length) data.validators = validators;
+                        };
+                        Field.prototype.handleError = function (e, detail) {
+                            this.displayError(detail);
+                        };
+                        Field.prototype.displayError = function (detail) {
+                            this.error = detail;
+                            if (this.error == undefined || this.error == '') {
+                                this.classList.remove('has-error');
+                            } else {
+                                this.classList.add('has-error');
+                            }
+                        };
+                        Field.prototype.handleHide = function (e, status) {
+                            if (status) {
+                                this.classList.remove('hide');
+                            } else {
+                                this.classList.add('hide');
+                            }
+                        };
+                        __decorate([property({ type: String })], Field.prototype, "error", void 0);
+                        __decorate([listen("error")], Field.prototype, "handleError", null);
+                        __decorate([listen('field-hide')], Field.prototype, "handleHide", null);
+                        Field = __decorate([component('field-element'), extend("div"), template("<template is=\"dom-if\" if=\"{{error}}\"><div class=\"alert alert-danger\">{{error}}</div></template>")], Field);
+                        return Field;
                     }(AbstractPolymerElement);
-                    Element.FieldGroup = FieldGroup;
+                    Element.Field = Field;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Theeds.Component.Form.Element.FieldGroup.register();
+Com.Theeds.Component.Form.Element.Field.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1269,25 +1529,28 @@ var Com;
                 var Element;
                 (function (Element) {
                     var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
-                    var FieldElement = Com.Theeds.Component.Form.Element.Field;
-                    var FieldGroupElement = Com.Theeds.Component.Form.Element.FieldGroup;
                     var SubmitElement = Com.Theeds.Component.Form.Element.Submit;
                     var Step = function (_super) {
                         __extends(Step, _super);
                         function Step(context, data) {
                             if (data.success == undefined && !data.success && data.result.config !== undefined) return;
                             _super.call(this, data);
-                            this.id = data.result.properties.id;
+                            this.appendChild(Element.Input.create(context, {
+                                name: "op",
+                                type: "hidden",
+                                value: data.result.nextAction
+                            }));
                             for (var k in data.result.config) {
-                                if (data.result.config[k].type == 'fieldgroup') {
-                                    this.appendChild(FieldGroupElement.create(context, data.result.config[k]));
+                                if (data.result.config[k].type.toLowerCase() == 'hidden') {
+                                    this.appendChild(Element.Input.create(context, data.result.config[k]));
+                                } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
+                                    this.appendChild(Element.FieldGroup.create(context, data.result.config[k]));
                                 } else {
-                                    this.appendChild(FieldElement.create(context, data.result.config[k]));
+                                    this.appendChild(Element.Field.create(context, data.result.config[k]));
                                 }
                             }
                             this.appendChild(SubmitElement.create({}));
                         }
-                        __decorate([property({ type: String, reflectToAttribute: true })], Step.prototype, "id", void 0);
                         Step = __decorate([component('step-element'), extend("div")], Step);
                         return Step;
                     }(AbstractPolymerElement);
@@ -1351,7 +1614,78 @@ var Com;
                                     } else if (Object.isDefined(data, 'errors.0.error.message')) {
                                         form.warning(data.errors[0].error.message);
                                     } else if (Object.isDefined(data, 'errors')) {
-                                        form.errors = data.errors;
+                                        form.errors = data.errors.fields;
+                                    }
+                                };
+                                FromBehavior.prototype._onCreate = function (e, elem) {
+                                    var context = this;
+                                    if (elem.data.name == 'company') {
+                                        $('#company').autocomplete({
+                                            source: function (requete, reponse) {
+                                                $.ajax({
+                                                    url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                                                    dataType: 'jsonp',
+                                                    data: {
+                                                        query: $('#company').val(),
+                                                        iso: $('#country').val()
+                                                    },
+                                                    success: function (data) {
+                                                        reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                                            return {
+                                                                label: objet.companyName,
+                                                                value: objet.companyName,
+                                                                duns: objet.duns,
+                                                                postalCode: objet.postalCode,
+                                                                city: objet.city,
+                                                                address1: objet.address1,
+                                                                address2: objet.address2,
+                                                                stateCode: objet.stateCode
+                                                            };
+                                                        }));
+                                                    }
+                                                });
+                                            },
+                                            select: function (event, ui) {
+                                                $(this).val(ui.item.value);
+                                                context.append({
+                                                    name: "duns",
+                                                    type: "hidden",
+                                                    value: ui.item.duns
+                                                }).append({
+                                                    name: "zipCode",
+                                                    type: "hidden",
+                                                    value: ui.item.postalCode
+                                                }).append({
+                                                    name: "cityInput",
+                                                    type: "hidden",
+                                                    value: ui.item.city
+                                                }).append({
+                                                    name: "address1",
+                                                    type: "hidden",
+                                                    value: ui.item.address1
+                                                }).append({
+                                                    name: "address2",
+                                                    type: "hidden",
+                                                    value: ui.item.address2
+                                                }).append({
+                                                    name: "country",
+                                                    type: "hidden",
+                                                    value: ui.item.stateCode
+                                                });
+                                                return false;
+                                            }
+                                        });
+                                    }
+                                };
+                                FromBehavior.prototype._onChange = function (e, elem) {
+                                    for (var n = 0; n < Polymer.dom(this).node.length; n++) {
+                                        if (typeof Polymer.dom(this).node[n].parentField != 'undefined' && elem.name == Polymer.dom(this).node[n].parentField) {
+                                            for (var i = 0; i < Polymer.dom(this).node.length; i++) {
+                                                if (typeof Polymer.dom(this).node[i].name != 'undefined' && Polymer.dom(this).node[i].name.toLowerCase() == Polymer.dom(this).node[n].name.toLowerCase()) {
+                                                    Polymer.dom(this).node[i].update();
+                                                }
+                                            }
+                                        }
                                     }
                                 };
                                 FromBehavior.prototype._onSubmit = function (e) {
@@ -1361,7 +1695,7 @@ var Com;
                                 };
                                 FromBehavior.prototype.submit = function () {
                                     this.valid();
-                                    if (this.errors.length <= 1) this.post();
+                                    if (!Object.keys(this.errors).length) this.post();
                                 };
                                 FromBehavior.prototype.post = function () {
                                     var data = Com.Theeds.Component.Form.Element.From.serialize(this);
@@ -1370,6 +1704,8 @@ var Com;
                                 FromBehavior.prototype.render = function (type, data) {
                                     if (type == 'form') this.dispatch(data);
                                 };
+                                __decorate([listen('field-create')], FromBehavior.prototype, "_onCreate", null);
+                                __decorate([listen('field-value-changed')], FromBehavior.prototype, "_onChange", null);
                                 __decorate([listen('submit')], FromBehavior.prototype, "_onSubmit", null);
                                 return FromBehavior;
                             }(polymer.Base);
@@ -1435,29 +1771,9 @@ var Com;
                         __extends(From, _super);
                         function From(context, data) {
                             _super.call(this, data);
-                            this._errors = [];
+                            this._errors = [{ workPhone: "invalid" }, { custom2: "missing" }, { custom4: "missing" }];
                             this.context = context;
                             this.dispatch(data);
-                            $('#company').autocomplete({
-                                source: function (requete, reponse) {
-                                    $.ajax({
-                                        url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                                        dataType: 'jsonp',
-                                        data: {
-                                            query: $('#company').val(),
-                                            iso: $('#country').val()
-                                        },
-                                        success: function (data) {
-                                            reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
-                                                return {
-                                                    label: objet.companyName,
-                                                    value: objet.companyName
-                                                };
-                                            }));
-                                        }
-                                    });
-                                }
-                            });
                         }
                         Object.defineProperty(From.prototype, "settings", {
                             get: function () {
@@ -1481,6 +1797,7 @@ var Com;
                                         }
                                     }
                                 }
+                                console.log(this._errors);
                             },
                             enumerable: true,
                             configurable: true
@@ -1507,6 +1824,16 @@ var Com;
                         From.prototype.update = function (data) {
                             this.clear();
                             this.appendChild(StepElement.create(this.context, data));
+                        };
+                        From.prototype.append = function (data) {
+                            for (var i = 0; i < Polymer.dom(this).node.length; i++) {
+                                if (typeof Polymer.dom(this).node[i].name != 'undefined' && Polymer.dom(this).node[i].name == data.name) {
+                                    Polymer.dom(this).node[i].value = data.value;
+                                    return this;
+                                }
+                            }
+                            this.insertBefore(Element.Input.create(this, data), this.firstChild);
+                            return this;
                         };
                         From.prototype.success = function (data) {
                             this.clear();
@@ -1585,7 +1912,7 @@ var Com;
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "name", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "method", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "action", void 0);
-                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.CountryBehavior), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)], From);
+                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)], From);
                         return From;
                     }(AbstractPolymerElement);
                     Element.From = From;
@@ -1611,7 +1938,7 @@ var Com;
             var Form;
             (function (Form) {
                 var AbstractPlugin = Com.Theeds.Plugin.AbstractPlugin;
-                var FromElement = Com.Theeds.Component.Form.Element.From;
+                var From = Com.Theeds.Component.Form.Element.From;
                 var Plugin = function (_super) {
                     __extends(Plugin, _super);
                     function Plugin(elem, options) {
@@ -1621,7 +1948,12 @@ var Com;
                                 label: true,
                                 placeholder: true
                             },
-                            styling: {},
+                            styling: {
+                                label: {
+                                    suffixe: ' : ',
+                                    mandatory: ' * '
+                                }
+                            },
                             form: {
                                 id: 'LDP6312',
                                 adapter: 'Com.Theeds.Service.Adapter.Neolane',
@@ -1632,16 +1964,15 @@ var Com;
                                 render: undefined
                             }
                         };
-                        $.i18n().t('title');
                         this.service('form').form(this, {});
                     }
                     Plugin.prototype.render = function (type, data) {
-                        document.body.appendChild(FromElement.create(this, data));
+                        this.elem.append(From.create(this, data));
                     };
                     return Plugin;
                 }(AbstractPlugin);
                 Form.Plugin = Plugin;
-                $.fn.forms = function (options) {
+                $.fn.form = function (options) {
                     return new Plugin(this, options);
                 };
             })(Form = Component.Form || (Component.Form = {}));
@@ -1672,13 +2003,7 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "POST",
-                            dataType: "jsonp",
-                            url: context.settings.form.url,
-                            data: {
-                                op: 'GetFormJson',
-                                lpid: context.settings.form.id
-                            },
+                            type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                             success: function (response) {
                                 console.log(response);
                                 context.render('form', self.data(response));
@@ -1691,7 +2016,6 @@ var Com;
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
                         data['lpid'] = context.settings.form.id;
-                        data['op'] = 'SubmitForm';
                         $.ajax({
                             type: "POST",
                             dataType: "jsonp",

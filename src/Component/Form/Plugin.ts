@@ -24,7 +24,7 @@ interface JQuery {
 namespace Com.Theeds.Component.Form {
 
     import AbstractPlugin = Com.Theeds.Plugin.AbstractPlugin;
-    import FromElement = Com.Theeds.Component.Form.Element.From;
+    import From = Com.Theeds.Component.Form.Element.From;
 
     export class Plugin extends AbstractPlugin {
 
@@ -33,7 +33,12 @@ namespace Com.Theeds.Component.Form {
                 label: true,
                 placeholder: true,
             },
-            styling: {},
+            styling: {
+                label:{
+                    suffixe:' : ',
+                    mandatory:' * '
+                }
+            },
             form: {
                 id: 'LDP6312',
                 adapter: 'Com.Theeds.Service.Adapter.Neolane',
@@ -48,20 +53,15 @@ namespace Com.Theeds.Component.Form {
 
         constructor(elem:any, options:Object) {
             super(elem, options);
-
-            $.i18n().t('title')
-
             this.service('form').form(this, {});
         }
 
-
-
         render(type:string, data:any):void {
-            document.body.appendChild(FromElement.create(this, data));
+            this.elem.append(From.create(this, data));
         }
     }
 
-    $.fn.forms = function (options:Object) {
+    $.fn.form = function (options:Object) {
         return new Plugin(this, options);
     };
 }
