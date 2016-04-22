@@ -1,0 +1,281 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3DS Digital Style Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="../threeds/css/threeds.css" media="all">
+    <link rel="stylesheet" href="css/save/styles.css" media="all">
+
+    <style>
+
+        .field-3ds input[type="checkbox"] + label:after {
+            content: "✔";
+        }
+
+        .field-3ds input[type="radio"] + label:after {
+            content: "•";
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="pure-g"><!-- .pure-g -->
+
+
+    <section class="content pure-u-1 pure-u-md-1-2"><!-- .pure-u-1 pure-u-md-3-4 -->
+
+
+        <form class="form-3ds">
+
+
+            <fieldset>
+                <legend>Others</legend>
+
+                <div class="field-3ds">
+                    <label for="uid-file">file</label>
+                    <input id="uid-file" type="file" placeholder="file">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-email">email</label>
+                    <input id="uid-email" type="email" placeholder="email">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-url">url</label>
+                    <input id="uid-url" type="url" placeholder="url">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-tel">tel</label>
+                    <input id="uid-tel" type="tel" placeholder="tel"
+                           pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-number">number</label>
+                    <input id="uid-number" type="number" placeholder="number">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-range">range</label>
+                    <input id="uid-range" type="range" placeholder="range">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-color">color</label>
+                    <input id="uid-color" type="color" placeholder="color">
+                </div>
+
+                <div class="field-3ds">
+                    <label>date</label>
+                    <input type="date" placeholder="">
+                    <input type="time" placeholder="">
+                    <input type="week" placeholder="">
+                    <input type="month" placeholder="">
+                    <input type="datetime" placeholder="">
+                    <input type="datetime-local" placeholder="">
+                </div>
+
+                <div class="field-3ds">
+                    <label for="uid-search">search</label>
+                    <input id="uid-search" type="search" placeholder="search">
+                </div>
+
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Select</legend>
+                <div class="field-3ds">
+                    <label for="uid-select1">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <select id="uid-select1" name="" placeholder="Lorem ipsum dolor sit amet">
+                        <option value="1">Value 1</option>
+                        <option value="2" selected="selected">Value 2 selected</option>
+                        <option value="3">Value 3</option>
+                        <option value="4" disabled="disabled">Value 4 disabled</option>
+                        <option value="5">Value 5</option>
+                    </select>
+                </div>
+                <div class="field-3ds">
+                    <label for="uid-select2">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <select id="uid-select2" name="" placeholder="Lorem ipsum dolor sit amet">
+                        <optgroup label="group 1">
+                            <option value="1">Value 1</option>
+                            <option value="2">Value 2</option>
+                            <option value="3">Value 3</option>
+                        </optgroup>
+                        <optgroup label="group 2">
+                            <option value="4">Value 4</option>
+                            <option value="5">Value 5</option>
+                        </optgroup>
+                        <optgroup label="group 3" disabled="disabled">
+                            <option value="4">Value 6</option>
+                            <option value="5">Value 7</option>
+                            <option value="5">Value 8</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!--
+                <div class="field-3ds">
+                    <label for="uid-select1">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <div class="select-3ds">
+                        <select id="uid-select1" name="" placeholder="Lorem ipsum dolor sit amet">
+                            <option value="1">Value 1</option>
+                            <option value="2" selected="selected">Value 2 selected</option>
+                            <option value="3">Value 3</option>
+                            <option value="4" disabled="disabled">Value 4 disabled</option>
+                            <option value="5">Value 5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field-3ds">
+                    <label for="uid-select2">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <div class="select-3ds">
+                        <select id="uid-select2" name="" placeholder="Lorem ipsum dolor sit amet">
+                            <optgroup label="group 1">
+                                <option value="1">Value 1</option>
+                                <option value="2">Value 2</option>
+                                <option value="3">Value 3</option>
+                            </optgroup>
+                            <optgroup label="group 2">
+                                <option value="4">Value 4</option>
+                                <option value="5">Value 5</option>
+                            </optgroup>
+                            <optgroup label="group 3" disabled="disabled">
+                                <option value="4">Value 6</option>
+                                <option value="5">Value 7</option>
+                                <option value="5">Value 8</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                 -->
+
+
+            </fieldset>
+
+        </form>
+
+    </section>
+
+
+    <section class="content pure-u-1 pure-u-md-1-2"><!-- .pure-u-1 pure-u-md-3-4 -->
+
+
+        <form class="form-3ds">
+
+            <fieldset>
+                <legend>Inputs and textareas</legend>
+                <div class="field-3ds">
+                    <label for="uid-input1">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <input id="uid-input1" type="text" placeholder="Lorem ipsum dolor sit amet">
+                </div>
+                <div class="field-3ds">
+                    <label for="uid-input2">Label name</label>
+                    <span class="help-block">Optional</span>
+                    <input id="uid-input2" type="text" placeholder="Lorem ipsum dolor sit amet">
+                </div>
+                <div class="field-3ds">
+                    <label for="uid-input3">Label name</label>
+                    <input id="uid-input3" type="text" placeholder="Lorem ipsum dolor sit amet">
+                </div>
+                <div class="field-3ds error">
+                    <label for="uid-input4">Label name</label>
+                    <span class="help-inline">Optional</span>
+                    <input id="uid-input4" type="text" placeholder="Has error">
+                </div>
+                <div class="field-3ds error">
+                    <label for="uid-input5">Label name</label>
+                    <span class="help-block">Optional</span>
+                    <input id="uid-input5" type="text" placeholder="Has error">
+                </div>
+                <div class="field-3ds error">
+                    <label for="uid-input6">Label name</label>
+                    <input id="uid-input6" type="text" placeholder="Has error">
+                </div>
+                <div class="field-3ds">
+                    <label for="uid-textarea">Label name</label>
+                    <span class="help-block">Optional.</span>
+                    <textarea id="uid-textarea" placeholder="Lorem ipsum dolor sit amet"></textarea>
+                </div>
+            </fieldset>
+
+        </form>
+
+    </section>
+
+    <section class="content pure-u-1 pure-u-md-1-2"><!-- .pure-u-1 pure-u-md-3-4 -->
+
+
+        <fieldset>
+            <legend>Radio & Checkbox</legend>
+
+            <div class="field-3ds error">
+                <input type="radio" id="uid-radio1" name="radio" label="Red"/>
+                <label for="uid-radio1">Red</label>
+                <input type="radio" id="uid-radio2" name="radio" label="Green"/>
+                <label for="uid-radio2">Green</label>
+                <input type="radio" id="uid-radio3" name="radio" label="Blue"/>
+                <label for="uid-radio3">Blue</label>
+            </div>
+
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox1" label="Red"/>
+                <label for="uid-checkbox1">Red</label>
+            </div>
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox2" label="Green"/>
+                <label for="uid-checkbox2">Green</label>
+            </div>
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox3" label="Blue"/>
+                <label for="uid-checkbox3">Blue</label>
+            </div>
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox4" label="Yellow" checked="checked"/>
+                <label for="uid-checkbox4">Yellow</label>
+            </div>
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox5" label="Pink" disabled="disabled"/>
+                <label for="uid-checkbox5">Pink</label>
+            </div>
+            <div class="field-3ds">
+                <input type="checkbox" id="uid-checkbox6" label="Black" checked="checked" disabled="disabled"/>
+                <label for="uid-checkbox6">Black</label>
+            </div>
+
+        </fieldset>
+        </form>
+
+
+    </section>
+</div>
+<!-- .pure-g -->
+
+
+<script type="text/javascript" src="libs/jquery/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+</html>

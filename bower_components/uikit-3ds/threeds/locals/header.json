@@ -1,0 +1,39 @@
+{
+  "en": {
+    "header": {
+      "user-menu-items": {
+        "account": {
+          "ico": "account",
+          "url": "http://www.google.fr",
+          "txt": "My account"
+        },
+        "demo": {
+          "ico": "demo",
+          "url": "http://www.google.fr",
+          "txt": "My account"
+        }
+      }
+    }
+  },
+  "fr": {
+    "header": {
+      "user-menu-items": {
+        "account": {
+          "ico": "accountAA",
+          "url": "http://www.google.fr",
+          "txt": "Mon compte"
+        },
+        "demo": {
+          "ico": "demo",
+          "url": "http://www.google.fr",
+          "txt": "demo"
+        },
+        "demo3": {
+          "ico": "demo",
+          "url": "http://www.google.fr",
+          "txt": "demo"
+        }
+      }
+    }
+  }
+}

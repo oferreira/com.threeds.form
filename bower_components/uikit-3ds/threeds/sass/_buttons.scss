@@ -1,0 +1,147 @@
+//
+// Buttons
+// --------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+.btn {
+	display: inline-block;
+	margin-bottom: 0; // For input.btn
+	font-weight: $btn-font-weight;
+	text-align: center;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	border: 1px solid transparent;
+	font-family: $ff3DS;
+	white-space: nowrap;
+	text-decoration: none;
+	@include button-size($padding-btn-vertical, $padding-btn-horizontal, $font-size-base, $line_height, $btn-border-radius-base);
+
+	&,
+	&:active,
+	&.active {
+		&:focus,
+		&.focus {
+			@include tab-focus;
+		}
+	}
+
+	&:hover,
+	&:focus,
+	&.focus {
+		color: darken($blueAction, 15%);
+		//color: $btn-default-color;
+		text-decoration: none;
+	}
+
+	&:active,
+	&.active {
+		outline: 0;
+		background-image: none;
+		@include box-shadow(inset 0 3px 5px rgba(0, 0, 0, .125));
+	}
+
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		cursor: $cursor-disabled;
+		@include opacity(.65);
+		@include box-shadow(none);
+	}
+
+}
+
+.btn-old {
+	@include button-size($padding-btn-old-vertical, $padding-btn-old-horizontal, $font-size-base, $line_height, $btn-old-border-radius-base);
+	text-decoration: none !important;
+}
+
+.btn-scream {
+	@include button-variant($white, $blueAction, 0, none, transparent);
+	&:focus,
+	&.focus {
+		background-color: darken($blueAction, 15%);
+	}
+	&:hover {
+		background-color: darken($blueAction, 15%);
+	}
+	&:active,
+	&.active {
+		background-color: darken($blueAction, 15%);
+		&:hover,
+		&:focus,
+		&.focus {
+			background-color: darken($blueAction, 15%);
+		}
+	}
+}
+
+.btn-shout {
+	@include button-variant($blueAction, $white, $btn-border-width, $btn-border-style, $blueAction);
+	&.btn-old {
+		@include button-variant($blueAction, $white, $btn-old-border-width, $btn-border-style, $blueAction);
+	}
+
+	&:focus,
+	&.focus {
+		color: darken($blueAction, 15%);
+		border-color: darken($blueAction, 15%);
+	}
+	&:hover {
+		color: darken($blueAction, 15%);
+		border-color: darken($blueAction, 15%);
+	}
+	&:active,
+	&.active {
+		color: darken($blueAction, 15%);
+		border-color: darken($blueAction, 15);
+
+		&:hover,
+		&:focus,
+		&.focus {
+			color: darken($blueAction, 15%);
+			border-color: darken($blueAction, 15%);
+		}
+	}
+}
+
+/*
+.link-3ds {
+
+	.typo( {@extend .font3DS}, 1rem, 1rem);
+	text-decoration: none;
+	color: $actionColor1;
+
+	&:hover {
+		color: $actionColor2;
+	}
+
+	.link-with-icon {
+		&:before {
+			@extend .font3DSIcon;
+			margin-right: 0.3em;
+		}
+	}
+
+	&.link-primary {
+		@include link-with-icon;
+		&:before {
+			position: relative;
+			top: 0.22em;
+			font-size: 1.625em;
+			content: "\e616";
+		}
+	}
+
+	&.link-secondary {
+		@include link-with-icon;
+		&:before {
+			content: "\e617";
+			font-size: 0.7em;
+		}
+	}
+}
+
+*/

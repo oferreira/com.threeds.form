@@ -1,0 +1,62 @@
+/********************************************************************
+    Typo
+********************************************************************/
+
+.font3DSIcon {
+	font-family: '3ds-icons';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fontArial 		{font-family:  $ffArial;}
+.font3DS 		{font-family:  $ff3DS;}
+.font3DSsemi 	{font-family:  $ff3DSsemi;}
+.font3DSlight 	{font-family:  $ff3DSlight;}
+
+
+@mixin typo( $font:$ff3DS, $fs: 0.875rem, $lh: 1em ) {
+	font-family: $font;
+	font-size: $fs;
+	line-height: $lh;
+	letter-spacing: initial;
+}
+
+@mixin display1 { @include typo( $ff3DS, 2.5rem, 0.8em); }
+.display1{@include display1;}
+
+@mixin headline1 { @include typo( $ff3DSlight, 1.5rem, 1.1em); }
+.headline1{ @include headline1; }
+
+@mixin title1 { @include typo( $ff3DS, 1.875rem, 1.2em); }
+.title1{ @include title1; }
+
+@mixin title2 { @include typo( $ff3DSlight, 1.875rem, 1.2em); }
+.title2{ @include title2; }
+
+@mixin title3 { @include typo( $ff3DS, 1.5rem, 1.2em); }
+.title3{ @include title3; }
+
+@mixin title3-light {
+	@include typo($ff3DSlight, 1.5rem, 1.2em);
+}
+
+.title3-light {
+	@include title3-light;
+}
+
+@mixin title4 { @include typo( $ff3DSsemi, 1.0625rem, 1.2em); }
+.title4{ @include title4; }
+
+@mixin title4-light {
+	@include typo($ff3DSlight, 1.0625rem, 1.2em);
+}
+
+.title4-light {
+	@include title4-light;
+}
+
+@mixin body1 { @include typo( $ffArial, 0.875rem, 1.6em); }
+.body1{ @include body1; }
+
+@mixin body2 { @include typo( $ffArial, 0.75rem, 1.6em); }
+.body2{ @include body2; }

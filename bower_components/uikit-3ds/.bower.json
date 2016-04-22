@@ -1,0 +1,38 @@
+{
+  "name": "uikit-3ds",
+  "description": "",
+  "main": "",
+  "authors": [
+    "olivier <olivier@mediainvest.io>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/oferreira/uikit-3ds",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "masonry": "^4.0.0"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "js-cookie": "~2.0.4",
+    "Watch.JS": "watch#*",
+    "codemirror": "CodeMirror#~5.9.0",
+    "pure": "^0.6.0"
+  },
+  "version": "0.0.1-card-alpha",
+  "_release": "0.0.1-card-alpha",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1-card-alpha",
+    "commit": "9707e62ad3b1d18996407dcc31f724df38df365e"
+  },
+  "_source": "https://github.com/oferreira/uikit-3ds.git",
+  "_target": "~0.0.1-card-alpha",
+  "_originalSource": "https://github.com/oferreira/uikit-3ds.git"
+}

@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <title>Test Header</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../../libs/jquery/jquery-1.11.3.min.js"></script>
+
+    <link rel="stylesheet" href="../../dist/css/threeds-header.css"/>
+    <script src="../../dist/js/header.js"></script>
+    <script>
+        // CONFIGURATION HERE:
+        $(function () {
+            $('body').header3ds({
+                "bgcolor": "white",
+                "secure": true,
+                "hasfooter": true,
+                "hascompass": true,
+                "haslogin": true,
+                "hasborder": false,
+                "language": "en",
+                "margin": "35",
+                "width": "100%"
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 50px;
+            background-color: #E6F1FD;
+            color: #1B2429;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 16px;
+            border-bottom: 1px solid #1B2429;
+            margin-top: 3em;
+        }
+
+        h3 {
+            font-size: 12px;
+        }
+
+        .option h3 {
+            text-transform: uppercase;
+        }
+
+        p, li {
+            font-size: 12px;
+        }
+
+        h3 + p {
+            font-weight: bold;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: square;
+            list-style-position: inside;
+            margin-bottom: 10px;
+        }
+
+        ul ul {
+            padding-left: 20px;
+        }
+
+        li li {
+            list-style-type: disc;
+            margin-bottom: 0;
+        }
+
+        pre {
+            margin: 0 30px 20px;
+            background: #FFF;
+            box-shadow: 1px 5px 5px 0px #cfcfcf;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .option-blocks {
+            display: table;
+        }
+
+        .option {
+            float: left;
+            padding: 0 0 0 20px;
+            width: 300px;
+            margin: 0 20px 30px 0;
+            display: table-cell;
+            border-left: 1px solid #ccc;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+</script>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Trigger Modal in iFrame</button>
+
+<h1>Header/Footer Dassault Systèmes for websites ecosystem</h1>
+
+<p>
+    <a href="#install">Installation</a> |
+    <a href="#setup">Setup</a> |
+    <a href="#custo">customization</a>
+</p>
+
+
+<!-- <h2>Test</h2>
+<p>If you want try : let's modify lines #10->25, on this file!</p>
+
+<ul>
+<li><a target="_blank" href="tests/archivideo.html">Archivideo</a></li>
+<li><a target="_blank" href="tests/geovia.html">Geovia</a></li>
+<li><a target="_blank" href="tests/plmmp.html">PLM Market Place</a></li>
+<li><a target="_blank" href="tests/fashionlab.html">Fashionlab</a></li>
+</ul> -->
+
+
+<h2 id="install">Installation</h2>
+
+<p>Include required files : Call jquery and header3ds plugin (js and css): </p>
+
+<p>If you already use jQuery, you can use your version </p>
+
+<pre>
+&lt;script src="http://www.3ds.com/header3ds/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://www.3ds.com/header3ds/jquery.header3ds.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="www.3ds.com/header3ds/jquery.header3ds.css" /&gt;
+</pre>
+
+<p>or minified versions - <b>recommanded</b>! </p>
+<pre>
+&lt;script src="http://www.3ds.com/header3ds/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://www.3ds.com/header3ds/jquery.header3ds.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="http://www.3ds.com/header3ds/jquery.header3ds.min.css" /&gt;
+</pre>
+
+<h2 id="setup">Setup</h2>
+
+<p>You can call header without option (defaults values)</p>
+<pre>
+$('body').header3ds();
+</pre>
+
+
+<h2 id="custo">customization</h2>
+
+<p>You can also customize layout :</p>
+
+<div>
+<pre>
+$('body').header3ds({
+	"bgcolor" 		: "light",
+	"website"		: "g",
+	"hasfooter"		: true,
+	"hasborder"		: true,
+	"hascompass"		: true,
+	"language"		: "fr",
+	"secure"		: true,
+	"width"			: "100%",
+	"margin"		: "35"
+});
+</pre>
+</div>
+
+
+<h2 id="postmessage">Modal:Close</h2>
+<p>You can close the modal with postMessage :</p>
+<div>
+<pre>
+    window.postMessage('CloseModal','*');
+</pre>
+</div>
+<p>If you are on iframe please use parent selector :</p>
+
+<div>
+<pre>
+    parent.postMessage('CloseModal','*');
+</pre>
+</div>
+
+
+<h2 id="postmessage">Modal:Resize</h2>
+<p>You can have possibilty to resize the modal with postMessage  :</p>
+<div>
+<pre>
+    function ResizeModal(){
+        window.postMessage(['ResizeModal', document.body.offsetHeight], '*');
+    }
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'load' : 'onload', ResizeModal);
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'load' : 'DOMContentLoaded', ResizeModal);
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'click' : 'onclick', ResizeModal);
+</pre>
+</div>
+<p>If you are on iframe please use parent selector :</p>
+<div>
+<pre>
+    function ResizeModal(){
+        parent.postMessage(['ResizeModal', document.body.offsetHeight], '*');
+    }
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'load' : 'onload', ResizeModal);
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'load' : 'DOMContentLoaded', ResizeModal);
+    window[ addEventListener ? 'addEventListener' : 'attachEvent' ]( addEventListener ? 'click' : 'onclick', ResizeModal);
+</pre>
+</div>
+
+<div class="option-blocks">
+
+    <div class="option">
+        <h3>bgcolor : </h3>
+
+        <p>Define the background dominant color</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b>black</b> : #000000</li>
+                    <li><b>dark </b> : #33424b</li>
+                    <li><b>blue </b> : #305164</li>
+                    <li><b>grey </b> : #d1cfcf</li>
+                    <li><b>light</b> : #eaeaea</li>
+                    <li><b>white</b> : #FFFFFF</li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>blue</b></li>
+        </ul>
+    </div>
+
+
+    <div class="option">
+        <h3>hasborder : </h3>
+
+        <p>Add / Remove the border</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b>true</b></li>
+                    <li><b>false </b></li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>true</b></li>
+        </ul>
+    </div>
+
+    <div class="option">
+        <h3>hascompass : </h3>
+
+        <p>Add / Remove the Compass</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b>true</b></li>
+                    <li><b>false </b></li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>true</b></li>
+        </ul>
+    </div>
+
+
+    <div class="option">
+        <h3>website</h3>
+
+        <p>Display the quick access according to your website</p>
+        <ul>
+            <li><u>possible values</u> (<i>this value will be provided by the webteam</i>):
+                <ul>
+                    <li><b>a</b> : for website with no quick access</li>
+                    <li><b>b</b> : for website about industries</li>
+                    <li><b>c</b> : for website about industries and products</li>
+                    <li><b>d</b> : for website "passion for innovation"</li>
+                    <li><b>e</b> : for website about partners</li>
+                    <li><b>f</b> : for website about CGR</li>
+                    <li><b>g</b> : for website about Events</li>
+                    <li>... : TBD</li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>a</b></li>
+        </ul>
+    </div>
+
+    <div class="option">
+        <h3>secure</h3>
+
+        <p>You can choose to use secure http (https) or not, for all links !</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b>true</b></li>
+                    <li><b>false</b></li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>false</b></li>
+        </ul>
+    </div>
+
+    <div class="option">
+        <h3>hasfooter</h3>
+
+        <p>Define if you want add the 3DS footer or not !</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b>true</b></li>
+                    <li><b>false</b></li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>false</b></li>
+        </ul>
+    </div>
+
+    <div class="option">
+        <h3>language</h3>
+
+        <p>Define language to use</p>
+        <ul>
+            <li><u>possible values</u> (use ISO 639-1):
+                <ul>
+                    <li><b>en</b> : english</li>
+                    <li><b>fr</b> : french</li>
+                </ul>
+            </li>
+            <li><u>next possible values</u> :
+                <ul>
+                    <li>all others 3DS.com languages</li>
+                </ul>
+            </li>
+            <li><u>default value</u> : <b>en</b></li>
+        </ul>
+    </div>
+
+
+    <div class="option">
+        <h3>width</h3>
+
+        <p>Define width (from logo to right icons)</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b><em>XXX</em>px</b> : for XXX pixels width
+                        <ul>
+                            <li>Caution : not responsivness with "px" values</li>
+                        </ul>
+                    </li>
+            </li>
+            <li><b><em>XX</em>%</b> : for XX percent width
+                <ul>
+                    <li>max width is 100% (a bigger value will be ignored)</li>
+                </ul>
+            </li>
+            </li>
+        </ul>
+        </li>
+        <li><u>default value</u> : <b>100%</b></li>
+        </ul>
+    </div>
+
+
+    <div class="option">
+        <h3>margin</h3>
+
+        <p>If you choose a percent (%) width, you can force the horizontal margin (at left of logo and right of
+            icons/compass)</p>
+        <ul>
+            <li><u>possible values</u> :
+                <ul>
+                    <li><b><em>XXX</em></b> : for XXX pixels margin</li>
+            </li>
+
+        </ul>
+        </li>
+        <li><u>default value</u> : <b>0</b></li>
+        </ul>
+    </div>
+
+
+    <div class="option">
+        <h3>callback</h3>
+
+        <p>To call a "callback function" after than header/footer was added in the DOM </p>
+
+    </div>
+
+</div>
+<div class="clear"></div>
+
+</body>
+</html>

@@ -1,0 +1,544 @@
+//sprite
+$gridW: 44px;
+$gridH: 44px;
+
+$height: 55px;
+$heightBorder: 56px;
+
+$heightFoot: 60px;
+
+$compW: 42px;
+$compH: 55px;
+$compL: -530px;
+$compTbluetxt: -55px;
+$compTwhitetxt: 0px;
+
+//btn connect
+$ds-btn-color: #03A9F4;
+
+//Trigram
+$TriHeight: 32px;
+$TriWidth: 32px;
+
+//border color separation
+$border-color: #D9E3EA;
+
+$logoW: $gridW*3;
+$logoH: $gridH;
+$logoTblack: 0;
+$logoTwhite: -2*$gridH;
+$logoTblue: -4*$gridH;
+
+$hover: $gridH; // decalage hover Vertical
+$icon_black: -$gridH;
+$icon_white: -3*$gridH;
+$icon_blue: -5*$gridH;
+
+$color_black: #000;
+$color_dark: #33424b;
+$color_grey: #d1cfcf;
+$color_light: #e6ebee;
+$color_white: #fff;
+$color_blue: #305164;
+
+$border_bg_black: #c2c2c2;
+$border_bg_dark: #c2c2c2;
+$border_bg_grey: #bebebe;
+$border_bg_light: #cdcdcd;
+$border_bg_white: #ebebeb;
+$border_bg_blue: #8096a3; // #e6ebee
+
+$bg_white_alpha: 10%;
+$bg_black_alpha: 10%;
+
+$txt_dark: #000;
+$txt_blue: #305164;
+$txt_light: #fff;
+
+$txt_dark_hover: #42B4D5;
+$txt_blue_hover: #42B4D5;
+$txt_light_hover: #42B4D5;
+
+$btn1: -$gridW*3;
+$btn2: -$gridW*4;
+$icon1: -$gridW*5; //FB
+$icon2: -$gridW*6; //LinkedIn
+$icon3: -$gridW*7; //RSS
+$icon4: -$gridW*8; //Swym
+$icon5: -$gridW*9; //Twitter
+$icon6: -$gridW*10; //Youtube
+
+$sliderW: $gridW*6; // 6 icones
+
+$sprite: "../img/header3ds.png";
+$modal-close:"../img/close.svg";
+$modal-close-width-height:45px;
+
+$x-small-width: 639px;
+
+.modal-body {
+	padding: 0 !important;
+	.close {
+		position: absolute;
+		right: 5px;
+		top:5px;
+		background: url($modal-close) center center no-repeat;
+		width:$modal-close-width-height;
+		height:$modal-close-width-height;
+		border:0;
+		text-indent: -5000px;
+		z-index: 100;
+		cursor: pointer;
+	}
+}
+
+.ds {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: $height;
+	left: 0;
+	top: 0;
+	border-bottom: 1px solid $border_bg_dark;
+	color: $txt_light;
+	font-family: Arial;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	&.ds_noborder {
+		border-bottom: 0 none transparent;
+		height: $heightBorder;
+	}
+	& * {
+		margin: 0;
+		padding: 0;
+	}
+	a {
+		text-decoration: none;
+	}
+	.ds_center {
+		margin: 0 auto;
+		height: $height;
+		max-width: 100%;
+	}
+	.ds_inner {
+		padding: 0 15px;
+		height: $height;
+	}
+
+	.ds_hide {
+		position: absolute;
+		clip: rect(1px 1px 1px 1px);
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+	.ds_logo {
+		float: left;
+		padding: 6px 0;
+		a {
+			margin: 0;
+			background: url($sprite) 0 $logoTwhite transparent no-repeat;
+			width: $logoW;
+			height: $logoH;
+			float: left;
+		}
+	}
+	.ds_compass {
+		float: right;
+		width: $compW;
+		height: $compH;
+		padding: 0;
+		margin-left: 7px;
+		a {
+			margin: 0;
+			background: url($sprite) $compL $compTwhitetxt transparent no-repeat;
+			width: $compW;
+			height: $compH;
+			display: block;
+		}
+	}
+
+	.ds_connect {
+		float: right;
+		&::before {
+			float: right;
+			content: ' ';
+			border-right: 1px solid $border-color;
+			padding-right: 30px;
+			margin-right: 27px;
+			margin-top: 16px;
+			height: 21px;
+		}
+	}
+	.ds_banner-btn {
+		margin-top: 11px;
+		float: left;
+		background-color: $ds-btn-color;
+		color: #FFF !important;
+		padding: 0 14px;
+		text-transform: uppercase;
+		height: 34px;
+		line-height: 35px;
+		font-size: 12px;
+		margin: 10px 10px 0 10px;
+	}
+	.ds_trigram {
+		float: right;
+		&::before {
+			float: right;
+			content: ' ';
+			border-right: 1px solid $border-color;
+			padding-right: 30px;
+			margin-right: 27px;
+			margin-top: 16px;
+			height: 21px;
+		}
+	}
+
+	.ds_trigram_content {
+		float: right;
+		width: $TriWidth;
+		height: $TriHeight;
+		padding: 0;
+		margin: 10px 10px;
+		border-radius: 1rem;
+		background: $greyScale5;
+		font-size: 0.75rem;
+		text-align: center;
+		line-height: $TriHeight;
+		.ds_txt {
+			color: $grayTxt1;
+			text-align: center;
+			line-height: $TriHeight;
+		}
+	}
+
+	.ds_id {
+		float: right;
+		width: 200px;
+		height: $height;
+		padding: 6px 0;
+		background-color: $txt_blue;
+		img {
+			vertical-align: middle;
+			width: $gridW;
+			height: $gridH;
+		}
+	}
+
+	.ds_right, .ds_social, .ds_links, .ds_links p, .ds_links p > span {
+		float: right;
+		height: $compH;
+		line-height: $gridH;
+	}
+	.ds_right, .ds_social {
+		float: right;
+	}
+	.ds_links, .ds_social {
+		display: inline-block;
+	}
+	.ds_links {
+		float: right;
+		text-align: right;
+		padding: 6px 0;
+		a {
+			display: table-cell;
+			//padding-right:20px;
+			color: $txt_light;
+			font-weight: bold;
+			&:hover {
+				color: $txt_light_hover;
+			}
+			& span {
+				padding-right: 20px;
+				height: $gridH;
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		@media (max-width: $x-small-width) {
+			display: none;
+		}
+	}
+	.ds_btn {
+		background: url($sprite) $btn1 $icon_white transparent no-repeat;
+		width: $gridW;
+		height: $gridH;
+		margin: 6px 0;
+		display: block;
+		cursor: pointer;
+		float: right;
+		&:hover {
+			background-position: $btn1 $icon_white+$hover;
+		}
+		@media (max-width: $x-small-width) {
+			display: none;
+		}
+	}
+	&.ds_footer {
+		top: auto;
+		bottom: auto;
+		height: $heightFoot;
+	}
+	.ds_slider {
+		float: right;
+		display: none;
+		width: $sliderW;
+		height: $height;
+		padding: 6px 0;
+		position: relative;
+		top: -6px;
+		right: 40px;
+		a {
+			width: 44px;
+			height: 44px;
+			display: block;
+			float: left;
+			background: url($sprite) $icon1 $icon_white transparent no-repeat;
+			&:hover {
+				background-position: $icon1 $icon_white+$hover;
+			}
+		}
+		.linkedin a {
+			background-position: $icon2 $icon_white;
+			&:hover {
+				background-position: $icon2 $icon_white+$hover;
+			}
+		}
+		.rss a {
+			background-position: $icon3 $icon_white;
+			&:hover {
+				background-position: $icon3 $icon_white+$hover;
+			}
+		}
+		.swym a {
+			background-position: $icon4 $icon_white;
+			&:hover {
+				background-position: $icon4 $icon_white+$hover;
+			}
+		}
+		.twitter a {
+			background-position: $icon5 $icon_white;
+			&:hover {
+				background-position: $icon5 $icon_white+$hover;
+			}
+		}
+		.youtube a {
+			background-position: $icon6 $icon_white;
+			&:hover {
+				background-position: $icon6 $icon_white+$hover;
+			}
+		}
+	}
+	.ds_flinks {
+		display: table;
+		width: 100%;
+		height: $heightFoot;
+		p {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 15px;
+		}
+		a {
+			color: #949393;
+			margin-left: 5px;
+			text-decoration: none;
+			&:hover {
+				color: white;
+			}
+		}
+		.ds_copy {
+			display: block;
+		}
+		.ds_pipe {
+			color: #949393;
+			margin-left: 3px;
+			&:before {
+				content: "|";
+			}
+		}
+		span {
+			font-size: 10px;
+			text-transform: uppercase;
+			// height:$heightFoot;
+			// display: table-cell;
+			// vertical-align: middle;
+		}
+	}
+
+	&.ds_black {
+		background-color: $color_black;
+		border-bottom-color: $border_bg_black;
+		.ds_slider {
+			background-color: lighten($color_black, $bg_white_alpha);
+		}
+	}
+	&.ds_grey {
+		background-color: $color_grey;
+		border-bottom-color: $border_bg_grey;
+		.ds_slider {
+			background-color: lighten($color_grey, $bg_white_alpha);
+		}
+	}
+	&.ds_dark {
+		background-color: $color_dark;
+		border-bottom-color: $border_bg_dark;
+		.ds_slider {
+			background-color: lighten($color_dark, $bg_white_alpha);
+		}
+	}
+	&.ds_white {
+		background-color: $color_white;
+		border-bottom-color: $border_bg_white;
+		.ds_slider {
+			background-color: darken($color_white, $bg_black_alpha);
+		}
+	}
+	&.ds_light {
+		background-color: $color_light;
+		border-bottom-color: $border_bg_light;
+		.ds_slider {
+			background-color: darken($color_light, $bg_black_alpha);
+		}
+	}
+	&.ds_blue {
+		background-color: $color_blue;
+		border-bottom-color: $border_bg_blue;
+		.ds_slider {
+			background-color: lighten($color_blue, $bg_white_alpha);
+		}
+	}
+
+	&.ds_txtdark {
+		color: $txt_dark;
+		h3 a {
+			background-position: 0 $logoTblack;
+		}
+		.ds_compass a {
+			background-position: $compL $compTbluetxt;
+		}
+		.ds_flinks a {
+			color: $txt_dark;
+			&:hover {
+				color: $txt_dark_hover;
+			}
+		}
+		a {
+			color: $txt_dark;
+			&:hover {
+				color: $txt_dark_hover;
+			}
+		}
+		.ds_btn {
+			background-position: $btn1 $icon_black;
+			&:hover {
+				background-position: $btn1 $icon_black+$hover;
+			}
+		}
+		.ds_slider {
+			a {
+				background-position: $icon1 $icon_black;
+				&:hover {
+					background-position: $icon1 $icon_black+$hover;
+				}
+			}
+			.linkedin a {
+				background-position: $icon2 $icon_black;
+				&:hover {
+					background-position: $icon2 $icon_black+$hover;
+				}
+			}
+			.rss a {
+				background-position: $icon3 $icon_black;
+				&:hover {
+					background-position: $icon3 $icon_black+$hover;
+				}
+			}
+			.swym a {
+				background-position: $icon4 $icon_black;
+				&:hover {
+					background-position: $icon4 $icon_black+$hover;
+				}
+			}
+			.twitter a {
+				background-position: $icon5 $icon_black;
+				&:hover {
+					background-position: $icon5 $icon_black+$hover;
+				}
+			}
+			.youtube a {
+				background-position: $icon6 $icon_black;
+				&:hover {
+					background-position: $icon6 $icon_black+$hover;
+				}
+			}
+		}
+	}
+
+	&.ds_txtblue {
+		color: $txt_blue;
+		h3 a {
+			background-position: 0 $logoTblue;
+		}
+		.ds_compass a {
+			background-position: $compL $compTbluetxt;
+		}
+		.ds_flinks a {
+			color: $txt_blue;
+			&:hover {
+				color: $txt_blue_hover;
+			}
+		}
+		a {
+			color: $txt_blue;
+			&:hover {
+				color: $txt_blue_hover;
+			}
+		}
+		.ds_btn {
+			background-position: $btn1 $icon_blue;
+			&:hover {
+				background-position: $btn1 $icon_blue+$hover;
+			}
+		}
+		.ds_slider {
+			a {
+				background-position: $icon1 $icon_blue;
+				&:hover {
+					background-position: $icon1 $icon_blue+$hover;
+				}
+			}
+			.linkedin a {
+				background-position: $icon2 $icon_blue;
+				&:hover {
+					background-position: $icon2 $icon_blue+$hover;
+				}
+			}
+			.rss a {
+				background-position: $icon3 $icon_blue;
+				&:hover {
+					background-position: $icon3 $icon_blue+$hover;
+				}
+			}
+			.swym a {
+				background-position: $icon4 $icon_blue;
+				&:hover {
+					background-position: $icon4 $icon_blue+$hover;
+				}
+			}
+			.twitter a {
+				background-position: $icon5 $icon_blue;
+				&:hover {
+					background-position: $icon5 $icon_blue+$hover;
+				}
+			}
+			.youtube a {
+				background-position: $icon6 $icon_blue;
+				&:hover {
+					background-position: $icon6 $icon_blue+$hover;
+				}
+			}
+		}
+	}
+
+}

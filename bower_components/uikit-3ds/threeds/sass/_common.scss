@@ -1,0 +1,39 @@
+/********************************************************************
+    Common
+********************************************************************/
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+//* Default styles */
+body{
+	@include body1;
+}
+p, ul, li {
+	@include body1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@extend .font3DS;
+}
+
+h1,h2,h3,h4,h5,h6,p,li {
+	margin: 1rem 0 0;
+	padding: 0;
+}
+
+ul {
+	padding-left: 2*$gutter;
+
+	ul>li {
+		margin-top: 0.3rem;
+	}
+}
+
+//typo
+.display1 + .headline1 {
+	margin-top: 0;
+}

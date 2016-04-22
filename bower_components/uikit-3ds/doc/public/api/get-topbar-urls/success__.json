@@ -1,0 +1,5 @@
+{
+  "signInURL": "http://localhost:3000/api/modal/index.html",
+  "signOutURL": "http://localhost:3000/api/modal/index.html",
+  "myAccountURL": "http://academy-int2.extranet.3ds.com:80/myaccount/jsp/myAccount/myProfile.jsp"
+}

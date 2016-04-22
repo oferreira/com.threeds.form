@@ -1,0 +1,93 @@
+<div class="ds-dialog ds-dialog-login">
+    <div class="ds-dialog-header">
+        <div class="ds-logo-wrapper">
+            <div class="ds-avatar">
+                <img src="public/ds-profile-placeholder.jpg" alt="">
+            </div>
+            <div class="ds-login-logo"></div>
+        </div>
+        <div class="ds-login-tabs">
+            <div class="ds-login-tab-switcher"><a href="#login">Login</a></div>
+            <div class="ds-login-tab-switcher"><a href="#sign_up">Sign up</a></div>
+        </div>
+    </div>
+    <div class="ds-dialog-content">
+        <div id="login" class="ds-login-tab">
+            <form action="#" class="ds-login-tab-content">
+                <a href="#" class="ds-btn ds-btn-facebook">Login with Facebook</a>
+                <div class="ds-login-divider"><span>or</span></div>
+                <input type="email" name="email" class="ds-input" placeholder="Login with your email" />
+                <input type="password" name="password" class="ds-input" placeholder="***********" />
+                <a href="#lost_password" class="ds-lost-password ds-login-tab-link">Lost password?</a>
+                <input class="ds-checkbox" name="remember_me" type="checkbox" value="1">
+                <label class="ds-label" for="remember_me">Stay connected</label>
+                <button type="submit" class="ds-btn ds-submit">Login</button>
+            </form>
+        </div>
+        <div id="sign_up" class="ds-login-tab">
+            <form action="#" class="ds-login-tab-content">
+                <a href="#" class="ds-btn ds-btn-facebook">Sign up with Facebook</a>
+                <div class="ds-login-divider"><span>or</span></div>
+                <input type="email" name="email" class="ds-input" placeholder="Sign up with your email" />
+                <input type="text" name="first_name" class="ds-input" placeholder="First name" />
+                <input type="text" name="last_name" class="ds-input" placeholder="Last name" />
+                <input type="password" name="password" class="ds-input" placeholder="***********" />
+                <div class="ds-password-conditions">
+                    <div class="ds-password-condition" data-condition="length" data-regex="\d|\w" data-length="8">Must be at least 8 characters long</div>
+                    <div class="ds-password-condition" data-condition="lowercase" data-regex="[a-z]" data-length="1">Must contain a lowercase letter</div>
+                    <div class="ds-password-condition" data-condition="uppercase" data-regex="[A-Z]" data-length="1">Must contain an uppercase letter</div>
+                    <div class="ds-password-condition" data-condition="numeric" data-regex="[0-9]" data-length="1">Must contain a numeric character</div>
+                    <div class="ds-password-condition" data-condition="special" data-regex=".*[~!@#$%^&*()]" data-length="0">Must not contain a special character</div>
+                </div>
+                <input type="text" name="country" class="ds-input" placeholder="Country" />
+                <select name="position" class="ds-select">
+                    <option value="student">I'm a student</option>
+                    <option value="teacher">I'm a teacher</option>
+                </select>
+                <input class="ds-checkbox" name="stay_informed" type="checkbox" value="1">
+                <label class="ds-label" for="stay_informed">Stay informed about our <a href="#">weekly newsletter</a></label>
+                <p class="ds-dialog-info">By clicking on "Sign up", I agree with Dassault Syst&egrave;mes <a href="#">terms of services</a> and <a href="#">private policy</a>.</p>
+                <button type="submit" class="ds-btn ds-submit">Sign up</button>
+            </form>
+        </div>
+        <div id="lost_password" class="ds-login-tab">
+            <form action="#" class="ds-login-tab-content">
+                <div class="ds-dialog-title">Forgot password?</div>
+                <p class="ds-dialog-info ds-dialog-info-large">Enter the email address you used for your Dassault Syt&egrave;mes account and we will send you instructions.</p>
+                <input type="email" name="email" class="ds-input" placeholder="Email" />
+                <button type="submit" class="ds-btn ds-submit" data-target-id="#lost_password_confirmed">Confirm</button>
+            </form>
+        </div>
+        <div id="lost_password_confirmed" class="ds-login-tab">
+            <div class="ds-login-tab-content">
+                <div class="ds-dialog-title">We have sent the email to</div>
+                <div class="ds-login-email">olivier.druais@3ds.com</div>
+                <p class="ds-dialog-info ds-dialog-info-large">To create a new password, just click the link in the email we sent you - easy ! Didn't receive it? Check your junk mail.</p>
+                <p class="align-center">
+                    <a href="#" class="ds-resend-email" target="_blank">Send again</a>
+                </p>
+            </div>
+        </div>
+        <div id="reset_password" class="ds-login-tab">
+            <form action="#" class="ds-login-tab-content">
+                <div class="ds-dialog-title">Reset your password</div>
+                <input type="password" name="password" class="ds-input" placeholder="Password" />
+                <div class="ds-password-conditions">
+                    <div class="ds-password-condition" data-condition="length" data-regex="\d|\w" data-length="8">Must be at least 8 characters long</div>
+                    <div class="ds-password-condition" data-condition="lowercase" data-regex="[a-z]" data-length="1">Must contain a lowercase letter</div>
+                    <div class="ds-password-condition" data-condition="uppercase" data-regex="[A-Z]" data-length="1">Must contain an uppercase letter</div>
+                    <div class="ds-password-condition" data-condition="numeric" data-regex="[0-9]" data-length="1">Must contain a numeric character</div>
+                    <div class="ds-password-condition" data-condition="special" data-regex=".*[~!@#$%^&*()]" data-length="0">Must not contain a special character</div>
+                </div>
+                <input type="password" name="password_confirmation" class="ds-input" placeholder="Retype password" />
+                <button type="submit" class="ds-btn ds-submit" data-target-id="#reset_password_confirmed">Reset my password</button>
+            </form>
+        </div>
+        <div id="reset_password_confirmed" class="ds-login-tab">
+            <div class="ds-login-tab-content">
+                <div class="ds-dialog-title">Your password has&nbsp;been&nbsp;reset</div>
+                <p class="ds-dialog-info ds-dialog-info-large">For security purposes, we've sent an email to your account confirming this change.</p>
+            </div>
+        </div>
+    </div>
+</div>

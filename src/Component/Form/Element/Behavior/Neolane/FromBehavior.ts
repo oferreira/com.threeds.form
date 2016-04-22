@@ -84,7 +84,7 @@ namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
                             type: "hidden",
                             value: ui.item.postalCode
                         }).append({
-                            name: "cityInput",
+                            name: "city",
                             type: "hidden",
                             value: ui.item.city
                         }).append({
@@ -96,10 +96,12 @@ namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
                             type: "hidden",
                             value: ui.item.address2
                         }).append({
-                            name: "country",
+                            name: "state",
                             type: "hidden",
                             value: ui.item.stateCode
                         });
+
+
 
                         return false;
                     }

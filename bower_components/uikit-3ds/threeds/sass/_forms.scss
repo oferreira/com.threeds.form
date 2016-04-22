@@ -1,0 +1,281 @@
+// Form
+
+
+
+
+@mixin custoInputSize($display:block, $width:100%, $margin-left:0) {
+	select,
+	textarea,
+	input[type="text"],
+	input[type="password"],
+	input[type="file"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="date"],
+	input[type="month"],
+	input[type="time"],
+	input[type="week"],
+	input[type="number"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="color"]{
+		display:$display;
+		width: $width;
+		margin-left: $margin-left;
+	}
+}
+
+
+@mixin layoutInput() {
+	display: block;
+	background-color: $white;
+	background-image: none;
+	border: 1px solid $borderInput;
+	border-radius: 0;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	&:focus{
+		border-color: $actionColor2;
+	}
+}
+
+//* Default inputs */
+:not(.select-3ds) select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.select-3ds{
+	@include layoutInput;
+
+	width:100%;
+	height: $field_height;
+	padding: $field_padding;
+
+	color: $bodyText1;
+	font-size: $font_size;
+	line-height: $line_height;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+input[type="file"]{
+	padding:0;
+}
+
+textarea{
+	height: 3*$field_height;
+	resize: vertical;
+}
+
+.field-3ds{
+	+ .field-3ds{
+		margin-top : 1em;
+	}
+	label, legend{
+		@include body1;
+		display: inline-block;
+		// font-weight: bold;
+	}
+	.help-inline, .help-block{
+		@include body2;
+		font-weight: normal;
+	}
+	label + .help-block {
+		margin: -0.5em 0 0.1em;
+	}
+	.help-inline{
+		display: inline-block;
+	}
+	.help-block{
+		display: block;
+	}
+	&.error{
+		label::before{
+			content: "*";
+			font-size: 1.2em;
+		}
+		label::before, .help-inline, .help-block{
+			color: $error;
+		}
+		input, textarea{
+			border-color: $error;
+		}
+		// input:not([type="checkbox"]),
+		// input:not([type="radio"]){
+		// 	content:"";
+		// }
+	}
+
+	.checkbox-type-1,
+	input[type="radio"] {
+		position: absolute;
+		left: -9999px;
+	}
+
+	.checkbox-type-1,
+	input[type="radio"]{
+		+ label {
+			position: relative;
+			padding-left: 1.2rem;
+			cursor: pointer;
+			margin-right: 1rem;
+			&:before{
+				content: '';
+				position: absolute;
+				left:0;
+				top: 0.15rem;
+				width: 1rem;
+				height: 1rem;
+				@include layoutInput;
+			}
+			&:after {
+				position: absolute;
+				left:0.15rem;
+				top: 0;
+				font-size: 1rem;
+				color: $actionColor2;
+				transition: all .2s;
+			}
+		}
+		&:disabled + label {
+			opacity:0.5;
+		}
+		&:not(:checked) + label:after {
+			opacity: 0;
+			transform: scale(0);
+		}
+		&:checked + label:after {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		.checkbox-type-1 + label{
+			&:after {
+				content: "✔"; //*Bug compilation sass*/
+			}
+		}
+	}
+
+	input[type="radio"] + label{
+		&:before{
+			border-radius:0.5rem;
+		}
+		&:after {
+			content: "•"; //*Bug compilation sass*/
+			font-size: 2.5rem;
+			left: 0.1rem;
+			top: 0rem;
+
+		}
+	}
+
+
+	.checkbox-type-1:not(:checked) + label:after {
+		opacity: 0;
+		transform: scale(0);
+	}
+	.checkbox-type-1:checked + label:after {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+	select{
+
+	}
+	option, optgroup{
+		padding: 0 0.2rem;
+	}
+	option{
+		margin: 0 0.2rem;
+	}
+	optgroup{
+		option{
+			margin:0;
+			padding-left:1.5rem;
+		}
+	}
+	.select-3ds{
+		overflow-x:hidden;
+		cursor:pointer;
+		padding:0 0.5em;
+
+		&:after {
+			content:"\25BC";
+			display:block;
+			position:relative;
+			float:right;
+			text-align:center;
+			top:0;
+			right:0;
+			width:$field_height;
+			margin-bottom:-25px;
+			color:black;
+		}
+		select{
+			border:0;
+			box-shadow:none;
+			background: none;
+			margin:0;
+			padding:0;
+			min-width:130%;
+			overflow-x: hidden;
+			cursor:pointer;
+		}
+	}
+
+}
+
+
+.onoffswitch {
+	position: relative;
+	width: 68px;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select: none;
+}
+.onoffswitch-checkbox {
+	display: none;
+}
+.onoffswitch-label {
+	display: block; overflow: hidden; cursor: pointer;
+	height: 30px; padding: 0; line-height: 30px;
+	border: 2px solid #999999; border-radius: 30px;
+	background-color: #34A7C1;
+	transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+	content: "";
+	display: block; width: 30px; margin: 0px;
+	background: #FFFFFF;
+	position: absolute; top: 0; bottom: 0;
+	right: 36px;
+	border: 2px solid #999999; border-radius: 30px;
+	transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+	background-color: #34A7C1;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+	border-color: #34A7C1;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+	right: 0px;
+}

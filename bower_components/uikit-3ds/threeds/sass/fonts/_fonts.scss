@@ -1,0 +1,32 @@
+// FONTS
+
+// 3ds Web light
+@font-face {
+	font-family: '3dsweblight';
+	src: url('../../fonts/3ds_light-webfont.eot');
+	src: url('../../fonts/3ds_light-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/3ds_light-webfont.woff2') format('woff2'), url('../../fonts/3ds_light-webfont.woff') format('woff'), url('../../fonts/3ds_light-webfont.ttf') format('truetype'), url('../../fonts/3ds_light-webfont.svg#3dslight') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+// 3ds Web
+@font-face {
+	font-family: '3dsweb';
+	src: url('../../fonts/3ds_regular-webfont.eot');
+	src: url('../../fonts/3ds_regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/3ds_regular-webfont.woff2') format('woff2'), url('../../fonts/3ds_regular-webfont.woff') format('woff'), url('../../fonts/3ds_regular-webfont.ttf') format('truetype'), url('../../fonts/3ds_regular-webfont.svg#3dsregular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+// 3ds Web semi
+@font-face {
+	font-family: '3dssemi';
+	src: url('../../fonts/3ds_semibold-webfont.eot');
+	src: url('../../fonts/3ds_semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/3ds_semibold-webfont.woff2') format('woff2'), url('../../fonts/3ds_semibold-webfont.woff') format('woff'), url('../../fonts/3ds_semibold-webfont.ttf') format('truetype'), url('../../fonts/3ds_semibold-webfont.svg#3dssemibold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+// 3ds Icons
+@import "3ds_icons/_font.scss";
+

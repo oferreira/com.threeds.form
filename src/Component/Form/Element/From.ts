@@ -54,6 +54,8 @@ namespace Com.Theeds.Component.Form.Element {
         public set errors(value:Object[]) {
             this._errors = value;
 
+            console.log(value);
+
             for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
                 if (typeof  (<any>Polymer.dom(this)).node[i].displayError === 'function') {
                     for (var k in this._errors) {

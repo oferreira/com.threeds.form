@@ -38,11 +38,37 @@
 
 </head>
 <body>
-<div id="lpform" class="col-md-12"></div>
+<div class="col-md-12">
+    <div class="col-md-6">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-tabs-step" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">...</div>
+            <div role="tabpanel" class="tab-pane" id="profile">...</div>
+            <div role="tabpanel" class="tab-pane" id="messages">...</div>
+            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+        </div>
+
+    </div>
+
+    <div id="form" class="col-md-6"></div>
+</div>
+
 <script type="text/javascript">
     $(function () {
         addEventListener('WebComponentsReady', function () {
-            $("#lpform").form({});
+            $("#form").form({
+                form: {
+                    id: 'LDP6312',
+                    adapter: 'Com.Theeds.Service.Adapter.Neolane',
+                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                }
+            });
         });
     });
 </script>

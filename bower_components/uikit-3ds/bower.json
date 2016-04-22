@@ -1,0 +1,28 @@
+{
+  "name": "uikit-3ds",
+  "description": "",
+  "main": "",
+  "authors": [
+    "olivier <olivier@mediainvest.io>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/oferreira/uikit-3ds",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "masonry": "^4.0.0"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "js-cookie": "~2.0.4",
+    "Watch.JS": "watch#*",
+    "codemirror": "CodeMirror#~5.9.0",
+    "pure": "^0.6.0"
+  }
+}

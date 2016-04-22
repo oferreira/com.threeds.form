@@ -1,0 +1,96 @@
+// Doc Style CSS v1.0
+
+// Import Three 3DS Framwork
+@import "../../threeds/sass/threeds";
+@import "common";
+@import "normalize";
+@import "table";
+@import "list-type";
+
+
+// Body
+body,
+.page-wrap{
+	background-color: #F5F5F5;
+}
+
+
+// Sidebar
+.aside{
+
+}
+
+.sidebar{
+	position: fixed;
+	background: white;
+	top:55px;
+	bottom:0;
+	left:0;
+	padding:0 40px;
+	li{
+		margin-top: .3rem;
+		line-height: 1em;
+		&.body2{
+			margin-left: .8rem;
+		}
+	}
+	overflow-y:auto;
+}
+
+// Content
+.content{
+
+}
+
+body hr {
+	display: block;
+	clear: both;
+	margin: 5rem 15% 3rem;
+	padding: 0;
+	line-height: 1;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+
+
+
+
+#summary-area{
+	a, li{
+		color:$actionColor1;
+		text-decoration: none;
+	}
+	a:hover{
+		color:$actionColor2;
+	}
+	.headline{}
+}
+
+
+h1 span{display:block;}
+
+
+
+.xrayhtml.codeonly{padding: 0;}
+
+.xrayhtml{
+	&.dark-bg, &.medium-bg {
+		.snippet{
+			background-color:#333;
+			border-radius: 0.3em 0.3em 0 0;
+			margin: -2em -1em;
+			padding: 2em 1em;
+		}
+	}
+
+	&.medium-bg {
+		.snippet{
+			background-color:#ccc;
+		}
+	}
+
+}
+
+

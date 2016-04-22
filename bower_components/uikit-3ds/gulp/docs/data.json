@@ -1,0 +1,262 @@
+{
+    "project": {
+        "name": "D Foo API",
+        "description": "The Foo API: a library for doing X, Y, and Z",
+        "version": "1.2.1",
+        "url": "http://www.3ds.com",
+        "logo": "http://www.3ds.com/fileadmin/templates/images/_logo/logo_3DS_dassault.png"
+    },
+    "files": {
+        "class/font-svg.js": {
+            "name": "class/font-svg.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "class/font.js": {
+            "name": "class/font.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "class/script.js": {
+            "name": "class/script.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "class/style.js": {
+            "name": "class/style.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {},
+    "elements": {},
+    "classitems": [
+        {
+            "file": "class/font-svg.js",
+            "line": 25,
+            "description": "FontSvg",
+            "params": [
+                {
+                    "name": "context",
+                    "description": ""
+                }
+            ],
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "class/font-svg.js",
+            "line": 31,
+            "description": "context",
+            "type": "{Element}",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/font-svg.js",
+            "line": 40,
+            "description": "constructor",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/font-svg.js",
+            "line": 48,
+            "description": "Create font width SVG",
+            "access": "public",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/font.js",
+            "line": 16,
+            "description": "Font",
+            "params": [
+                {
+                    "name": "context",
+                    "description": ""
+                }
+            ],
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "class/font.js",
+            "line": 22,
+            "description": "context",
+            "type": "{Element}",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/font.js",
+            "line": 31,
+            "description": "constructor",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/font.js",
+            "line": 39,
+            "description": "process file css",
+            "access": "public",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/script.js",
+            "line": 20,
+            "description": "Script",
+            "params": [
+                {
+                    "name": "context",
+                    "description": ""
+                }
+            ],
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "class/script.js",
+            "line": 26,
+            "description": "context",
+            "type": "{Element}",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/script.js",
+            "line": 35,
+            "description": "constructor",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/script.js",
+            "line": 43,
+            "description": "process js file",
+            "access": "public",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/style.js",
+            "line": 17,
+            "description": "Style",
+            "params": [
+                {
+                    "name": "context",
+                    "description": ""
+                }
+            ],
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "class/style.js",
+            "line": 23,
+            "description": "context",
+            "type": "{Element}",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/style.js",
+            "line": 32,
+            "description": "constructor",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "class/style.js",
+            "line": 40,
+            "description": "process file css",
+            "access": "public",
+            "tagname": "",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nFontSvg",
+            "line": " class/font-svg.js:25"
+        },
+        {
+            "message": "Missing item type\ncontext",
+            "line": " class/font-svg.js:31"
+        },
+        {
+            "message": "Missing item type\nconstructor",
+            "line": " class/font-svg.js:40"
+        },
+        {
+            "message": "Missing item type\nCreate font width SVG",
+            "line": " class/font-svg.js:48"
+        },
+        {
+            "message": "Missing item type\nFont",
+            "line": " class/font.js:16"
+        },
+        {
+            "message": "Missing item type\ncontext",
+            "line": " class/font.js:22"
+        },
+        {
+            "message": "Missing item type\nconstructor",
+            "line": " class/font.js:31"
+        },
+        {
+            "message": "Missing item type\nprocess file css",
+            "line": " class/font.js:39"
+        },
+        {
+            "message": "Missing item type\nScript",
+            "line": " class/script.js:20"
+        },
+        {
+            "message": "Missing item type\ncontext",
+            "line": " class/script.js:26"
+        },
+        {
+            "message": "Missing item type\nconstructor",
+            "line": " class/script.js:35"
+        },
+        {
+            "message": "Missing item type\nprocess js file",
+            "line": " class/script.js:43"
+        },
+        {
+            "message": "Missing item type\nStyle",
+            "line": " class/style.js:17"
+        },
+        {
+            "message": "Missing item type\ncontext",
+            "line": " class/style.js:23"
+        },
+        {
+            "message": "Missing item type\nconstructor",
+            "line": " class/style.js:32"
+        },
+        {
+            "message": "Missing item type\nprocess file css",
+            "line": " class/style.js:40"
+        }
+    ]
+}

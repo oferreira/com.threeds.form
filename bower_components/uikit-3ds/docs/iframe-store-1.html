@@ -1,0 +1,372 @@
+	<!-- HF pour la R2015x car la 3DExp ne donne que le code pays et pas le code ISO  -->
+	
+	<!-- /HF -->
+	
+	
+	
+
+	<!DOCTYPE html>
+	<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap -->
+<link rel="stylesheet"
+	href="/static/plugin/FlexSlider/flexslider.css" type="text/css">
+<link rel="stylesheet" href="/static/css/selfExp/selfExpProduct.css"
+	type="text/css">
+	<link href="/static/css/selfExp/bootstrap.min.css" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="/static/js/ltie9/html5shiv.min.js"></script>
+      <script src="/static/js/ltie9/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if gte IE 9]>
+     <link href="/static/css/ie/ie9.css" rel="stylesheet" type="text/css" />
+     <![endif]-->
+
+
+
+<style>
+
+/* Add "Play Icon" on thumbnail for video*/
+.isVideo{
+	position: relative; 
+}
+.isVideo span.playIcon{
+	display: block;
+	position: absolute; 
+	left: 0;
+	top: 0;
+	height: 52px;
+    width: 93px;
+    background: url('/static/img/1417639067_play-circle-outline-32.png') no-repeat center center;  
+    cursor:pointer;  
+}
+
+</style>
+
+</head>
+<body>
+
+	<div class="iframe" style="">
+	
+		
+		
+
+			<div class="container-fluid">
+				<div class="row">
+					
+						<div class="col-sm-6">
+							<!-- slider -->
+							<div id="global-slider">
+								<div id="carousel" class="flexslider">
+									<ul class="slides">
+											<li class="isVideo"><div>
+													<img src="/static/media/products/CDD_08_R417/firstImage.png" />
+												</div></li>
+											<li><div>
+													<img src="/static/media/products/CDD_08_R417/secondImage.png" />
+												</div></li>
+											<li><div>
+													<img src="/static/media/products/CDD_08_R417/thirdImage.png" />
+												</div></li>
+											<li><div>
+													<img src="/static/media/products/CDD_08_R417/fourthImage.png" />
+												</div></li>
+										
+									</ul>
+								</div>
+								<div id="slider" class="flexslider" style="">
+									<ul class="slides">			
+											<li><div id="displayedVideo1" class="hasVideo" data-video="/static/media/products/CDD_08_R417/video.mp4" data-image="/static/media/products/CDD_08_R417/firstImage.png"><img src="/static/media/products/CDD_08_R417/firstImage.png" /></div></li>
+											<li><img src="/static/media/products/CDD_08_R417/secondImage.png" /></li>
+											<li><img src="/static/media/products/CDD_08_R417/thirdImage.png" /></li>
+											<li><img src="/static/media/products/CDD_08_R417/fourthImage.png" /></li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+					
+					<div class="col-sm-6">
+						<!-- Text -->
+						<div class="benef">
+							
+							
+								<h3>
+									benefits
+								</h3>
+								<div class="tagline"><p class="bodytext">Complete and unified industrial design solution to boost creativity, design quality and reduce time to market</p></div>
+								<br>
+								
+								<ul>
+										
+											<li>Boost Creativity in 3D</li>
+										
+											<li>Quickly bring 2D ideas into a 3D Reality</li>
+										
+											<li>Technical surface Modeling</li>
+										
+											<li>High End Visualization to improve design decisions</li>
+																				
+											<li>Streamline Design &amp; Engineering collaboration</li>
+										
+											<li>Stay connected to your social network</li>
+								
+								</ul>
+							
+							<!--  -->
+							<!-- 
+								<a href="/dsstore/jsp/discovery/product.jsp?productId=CDD_08_R417" target="_blank">More Info</a>
+							 -->
+							
+							<!-- IF THE PRODUCT IS NOT TRIABLE, DISPLAY WHY -->
+							
+								
+								
+								
+								
+								
+								
+							
+								
+								
+								
+								
+									<br><br>
+									You cannot try this role for the following reasons : 
+									<ul>
+								
+								
+								
+							
+								
+								
+								
+								
+								
+									<li><b>DSQAL135</b> : You need CNV try this role.</li>
+								
+								
+							
+								
+								
+								
+								
+								
+								
+									</ul>
+								
+							
+						</div>						
+					</div>
+					
+				</div>
+			</div>
+		
+		
+		
+	</div>
+<!-- /iframe -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/plugin/FlexSlider/jquery.flexslider-min.js"></script>
+<!-- jw player -->
+<script type="text/javascript" src="/static/plugin/jwplayer/jwplayer.js"></script>
+<script type="text/javascript">
+	jwplayer.key = "gGxbOltvQLNXC/wQl2V2vAa9I4tbozLxfI+eqw==";
+</script>
+<script type="text/javascript" src="/static/js/selfExpProduct.js"></script>
+<script>
+var app = {
+	init: function(){
+		
+		function getUrlVars(){// Get querystring from url
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for(var i = 0; i < hashes.length; i++){
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+		qs = getUrlVars();
+		if(qs['json']){
+			jsonFile = qs['json'];
+		}else{
+			jsonFile = "http://localhost/static/media/products/CDD_08_R417/json.json";
+		}
+		$.ajax({
+			type: "get",
+			url: jsonFile,
+			async: false,
+			jsonpCallback: 'jsonCallback',
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(obj) {
+				app.ajaxComplete(obj);
+			},
+			error: function(e) {
+				app.ajaxError(obj);
+			}
+
+		});
+	},
+	ready: function(){
+		app.addSlider();
+		app.addPlayer();	
+		app.addPlayIcon();	
+	},
+	ajaxError: function(obj){
+		console.debug('An error has occurred');
+		console.debug(obj);
+	},
+	ajaxComplete: function(obj){
+		$carousel = $("#carousel ul.slides").empty();
+		$slider = $("#slider ul.slides").empty();
+		for(var i in obj['medias']){
+			medium =  obj['medias'][i];
+			if(medium["type"] == "mp4"){
+
+				// <li class="isVideo"><div><img src="/static/media/products/CDD_08_R417/firstImage.png" /></div></li>
+				$carousel.append(
+					$("<li>").addClass('isVideo').append(
+						$("<div>").append(
+							$("<img>").attr("src",medium["url"])
+						)
+					)
+				);
+				// (videoFile != "") ? medium["video"] : "" ;
+				// (videoImg != "") ? medium["url"] : "";
+				// <li><div id="displayedVideo1" class="hasVideo" data-video="/static/media/products/CDD_08_R417/video.mp4" data-image="/static/media/products/CDD_08_R417/firstImage.png"><img src="/static/media/products/CDD_08_R417/firstImage.png" /></div></li>
+				$slider.append(
+					$("<li>").append(
+						$("<div>")
+						.attr("id","displayedVideo_"+i)
+						.addClass("hasVideo")
+						.data("video",medium["video"])
+						.data("image",medium["url"])
+						.append(
+							$("<img>").attr("src",medium["url"])
+						)
+					)
+				);
+
+			}else{
+				// <li><div><img src="/static/media/products/CDD_08_R417/secondImage.png" /></div></li>
+				$carousel.append(
+					$("<li>").append(
+						$("<div>").append(
+							$("<img>").attr("src",medium["url"])
+						)
+					)
+				);
+				// <li><img src="/static/media/products/CDD_08_R417/secondImage.png" /></li>
+				$slider.append(
+					$("<li>").append(
+						$("<img>").attr("src",medium["url"])
+					)
+				);
+			}
+
+		}
+		$(".benef").empty().html(obj['benefits']);
+		app.ready();
+	},
+	addSlider: function(){
+		$('#slider').flexslider({
+			controlNav : false,
+			animationLoop : false,
+			slideshow : false,
+			useCSS : false,
+			video : true,
+			directionNav : true,
+			sync : "#carousel",
+			smoothHeight: true,
+			
+			before : function(slider) {
+				jwplayer().stop();
+			}	
+		});
+		$(window).load(function() {
+			$('#carousel').flexslider({
+				animation : "slide",
+				controlNav : false,
+				animationLoop : true,
+				slideshow : false,
+				useCSS : false,
+				itemWidth : 100,
+				itemMargin : 5,
+				smoothHeight : false,
+				asNavFor : '#slider',
+				
+				before : function(slider) {
+					jwplayer().stop();
+				}		
+			});
+		});
+	},
+	addPlayer: function(){			
+		// Get video and poster sources for JW player
+		$(".hasVideo").each(function( index ) {
+
+			videoFile = $(this).data("video");
+			videoImg = $(this).data("image");
+			videoID = $(this).attr("id");
+				
+			function oldMsIeVersion() {
+				var myNav = navigator.userAgent.toLowerCase();
+				return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) <= 10 : false;
+				// If an old Internet Explorer, return true
+			}
+			if (oldMsIeVersion()) {
+				jwplayer(videoID).setup({
+					file : videoFile,
+					image : videoImg,
+					primary : "flash",
+					width : "100%",
+					aspectratio : "16:9",
+					analytics: {
+						cookies: false,
+						enabled: false
+					}
+				});
+			} else {
+				jwplayer(videoID).setup({
+					file : videoFile,
+					image : videoImg,
+					width : "100%",
+					aspectratio : "16:9",
+					skin: "/static/plugin/jwplayer/3DSSkin.xml",
+					analytics: {
+						cookies: false,
+						enabled: false
+					}
+				});
+			}
+			jwplayer(videoID).onReady(function(){
+				$("#slider").css("height", "100%");
+			});
+		});
+	},
+	addPlayIcon: function(){
+		$(".isVideo div").append($("<span>").addClass('playIcon'));
+	}	
+}
+
+
+$(document).ready(function() {
+	app.init();
+});
+
+</script>
+
+
+
+</body>
+
+

@@ -49,30 +49,6 @@ String.format = function () {
     }
     return formatted;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Theeds.Element || (Theeds.Element = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Theeds;
@@ -120,6 +96,30 @@ Object.find = function (o, s) {
     }
     return o;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
+                }
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Theeds.Element || (Theeds.Element = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Theeds;
@@ -142,28 +142,6 @@ var Com;
             }();
             Plugin.AbstractPlugin = AbstractPlugin;
         })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -240,6 +218,28 @@ var Com;
             }(AbstractValidator);
             Validator.Require = Require;
         })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Theeds.Service || (Theeds.Service = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -1656,7 +1656,7 @@ var Com;
                                                     type: "hidden",
                                                     value: ui.item.postalCode
                                                 }).append({
-                                                    name: "cityInput",
+                                                    name: "city",
                                                     type: "hidden",
                                                     value: ui.item.city
                                                 }).append({
@@ -1668,7 +1668,7 @@ var Com;
                                                     type: "hidden",
                                                     value: ui.item.address2
                                                 }).append({
-                                                    name: "country",
+                                                    name: "state",
                                                     type: "hidden",
                                                     value: ui.item.stateCode
                                                 });
@@ -1788,6 +1788,7 @@ var Com;
                             },
                             set: function (value) {
                                 this._errors = value;
+                                console.log(value);
                                 for (var i = 0; i < Polymer.dom(this).node.length; i++) {
                                     if (typeof Polymer.dom(this).node[i].displayError === 'function') {
                                         for (var k in this._errors) {
