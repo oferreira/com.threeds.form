@@ -64,3 +64,8 @@ Build
     clear & gul watch --release
 
 ----------
+
+
+bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'
+
+docker-machine start default

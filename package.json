@@ -1,6 +1,6 @@
 {
   "name": "card-3ds",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "gulpfile.js",
   "directories": {
     "doc": "docs"
@@ -9,8 +9,9 @@
     "type": "git",
     "url": "https://github.com/oferreira/card-3ds.git"
   },
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": " gulp watch"
   },
   "author": "",
   "license": "ISC",

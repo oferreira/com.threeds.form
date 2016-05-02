@@ -24,15 +24,14 @@
   "typescript": {
     "definition": "polymer-ts.d.ts"
   },
-  "version": "0.1.23",
-  "_release": "0.1.23",
+  "version": "0.1.26",
+  "_release": "0.1.26",
   "_resolution": {
     "type": "version",
-    "tag": "0.1.23",
-    "commit": "7f7305f538b0ffaf1ad9ea7c3aaceaa0bbdf5cca"
+    "tag": "0.1.26",
+    "commit": "c4b53436f5fd962c1d8dc1db43cec118fa9aa14d"
   },
-  "_source": "git://github.com/nippur72/PolymerTS.git",
+  "_source": "https://github.com/nippur72/PolymerTS.git",
   "_target": "~0.1.23",
-  "_originalSource": "polymer-ts",
-  "_direct": true
+  "_originalSource": "polymer-ts"
 }

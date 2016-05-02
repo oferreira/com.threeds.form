@@ -1,0 +1,7 @@
+.ida
+.git
+.gitignore
+README.md
+docker-compose.yml
+node_modules
+bower_components

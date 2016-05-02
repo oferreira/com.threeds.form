@@ -54,8 +54,7 @@
     "tag": "v1.5.1",
     "commit": "737ac310c62cc8aa72888f170894054ab7692f05"
   },
-  "_source": "git://github.com/harvesthq/bower-chosen.git",
+  "_source": "https://github.com/harvesthq/bower-chosen.git",
   "_target": "~1.5.1",
-  "_originalSource": "chosen",
-  "_direct": true
+  "_originalSource": "chosen"
 }
