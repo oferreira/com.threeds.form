@@ -42,8 +42,10 @@
     <div class="col-md-6">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-tabs-step" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+            </li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+            </li>
         </ul>
 
         <!-- Tab panes -->
@@ -67,6 +69,24 @@
                     id: 'LDP6312',
                     adapter: 'Com.Theeds.Service.Adapter.Neolane',
                     url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                },
+                hook: {
+                    success: function (context, data) {
+                        // {title: "Thank You", content: "<p>Thank you for your interest in Dassault Système…ossible.</p><p>Regards,<br/>Dassault Systèmes</p>"}
+                        console.log(data);
+                    },
+                    warning: function (context, message) {
+                        // This landing page does not exists
+                        console.log(message);
+                    },
+                    redirect: function (context, url) {
+                        // http://www.3ds.com
+                        console.log(url);
+                    },
+                    setCurrentPosition: function (context, index) {
+                        // 0, 1, 2, ...
+                        console.log(index);
+                    },
                 }
             });
         });

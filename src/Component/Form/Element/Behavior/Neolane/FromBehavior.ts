@@ -23,13 +23,12 @@ namespace Com.Theeds.Component.Form.Element.Behavior.Neolane {
                     form.success(data.result.thankYouPage);
 
                     if (data.result.properties.openUrl) {
-                        var w = window.open(data.result.asset.url, '_blank');
-                        w.focus();
+                        //var w = window.open(data.result.asset.url, '_blank');
+                        //w.focus();
                     }
                 } else if (data.result.properties.openUrl) {
                     form.redirect(data.result.asset.url);
                 }
-
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
                 form.redirect(data.result.properties.content);
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {

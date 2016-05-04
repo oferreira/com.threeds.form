@@ -69,3 +69,10 @@ Build
 bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'
 
 docker-machine start default
+
+
+
+--------- error
+
+$ docker-machine restart default      # Restart the environment
+$ eval $(docker-machine env default)  # Refresh your environment settings

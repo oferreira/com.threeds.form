@@ -246,276 +246,6 @@ var Com;
 (function (Com) {
     var Theeds;
     (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card_1) {
-                var Card = function () {
-                    function Card(data) {
-                        this.categorys = [];
-                        this._displayFormat = 'portrait';
-                        for (var k in data.metas) {
-                            if (data.metas[k].name == "title") this.title = data.metas[k].value;
-                            if (data.metas[k].name == "summary") this.summary = data.metas[k].value;
-                            if (data.metas[k].name == "link") this.link = data.metas[k].value;
-                            if (data.metas[k].name == "image") this.image = data.metas[k].value;
-                            if (data.metas[k].name == "category_type") this.categorys.push(data.metas[k].value);
-                            if (data.metas[k].name == "brand") this.brand = data.metas[k].value;
-                            if (data.metas[k].name == "subtitle") this.subTitle = data.metas[k].value;
-                            if (data.metas[k].name == "format_source") this.formatSource = data.metas[k].value;
-                            if (data.metas[k].name == "format_content") this.formatContent = data.metas[k].value;
-                            if (data.metas[k].name == "start_date") this.startDate = new Date(data.metas[k].value * 1000);
-                        }
-                    }
-                    Object.defineProperty(Card.prototype, "displayFormat", {
-                        get: function () {
-                            return this._displayFormat;
-                        },
-                        set: function (value) {
-                            this._displayFormat = value;
-                        },
-                        enumerable: true,
-                        configurable: true
-                    });
-                    Card.prototype.appendTitleRender = function (elem) {
-                        if (this.title !== undefined) {
-                            elem.append("<h5 class=\"card-title\">" + this.title + "</h5>");
-                        }
-                    };
-                    Card.prototype.appendSubTitleRender = function (elem) {
-                        if (this.subTitle !== undefined) {
-                            elem.append("<div class=\"card-sub-title\">" + this.subTitle + "</div>");
-                        }
-                    };
-                    Card.prototype.appendDateRender = function (elem) {
-                        if (this.startDate !== undefined) {
-                            elem.append("<h4 class=\"card-text card-date\">" + this.startDate.getDay() + "/" + this.startDate.getMonth() + "/" + this.startDate.getFullYear() + "</h4>");
-                        }
-                    };
-                    Card.prototype.appendSummaryRender = function (elem) {
-                        if (this.summary !== undefined) {
-                            elem.append("<div class=\"card-text block-txt\">" + this.summary + "</div>");
-                        }
-                    };
-                    Card.prototype.appendButtonRender = function (elem) {
-                        if (this.link !== undefined) {
-                            var label = 'Read more';
-                            if (this.formatSource !== undefined && decodeURIComponent(this.formatSource).indexOf("jobs") != -1) {
-                                label = 'Apply';
-                            }
-                            if (this.formatSource !== undefined && decodeURIComponent(this.formatSource).indexOf("customer-stories") != -1) {
-                                label = 'Discover';
-                            }
-                            if (this.formatSource !== undefined && decodeURIComponent(this.formatSource).indexOf("events") != -1) {
-                                label = 'Subscribe';
-                            }
-                            elem.append("<div class=\"card-footer-right txt-right\"><a class=\"btn-old btn-shout\" href=\"" + this.link + "\" title=\"" + this.title + "\">" + label + "</a></div>");
-                        }
-                    };
-                    Card.prototype.appendImageRender = function (elem) {
-                        if (this.link !== undefined && this.link.indexOf("youtube") != -1 && this.link.indexOf("v=") != -1) {
-                            var id = this.getUrlParam(this.link, 'v');
-                            elem.append("<iframe width=\"100%\" height=\"" + this.videoHeight() + "\" src=\"https://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>");
-                        } else if (this.link !== undefined && this.link.indexOf("youtube") != -1) {
-                            var id = this.link.substr(this.link.lastIndexOf('/') + 1);
-                            elem.append("<iframe width=\"100%\" height=\"100%\" style=\"min-height: " + this.videoHeight() + "px; \" src=\"https://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>");
-                        } else if (this.image !== undefined) {
-                            elem.append("<figure class=\"card-img\"><img src=\"" + this.image + "\" alt=\"" + this.title + "\" width=\"100%\" /></figure>");
-                        }
-                    };
-                    Card.prototype.appendBackgroundImageRender = function (elem) {
-                        if (this.image !== undefined) {
-                            elem.addClass('card-format-landscape').css("background-color", "transparent").css("background-image", "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url(" + this.image + ")").css("background-repeat", "repeat, no-repeat").css("background-attachment", "scroll, scroll").css("background-position", "0% 0%, center center").css("background-clip", "border-box, border-box").css("background-origin", "padding-box, padding-box").css("background-size", "cover");
-                        }
-                    };
-                    Card.prototype.getUrlParam = function (url, param) {
-                        var results = new RegExp('[\?&]' + param + '=([^&#]*)').exec(url);
-                        return results[1] || 0;
-                    };
-                    Card.prototype.isVideo = function () {
-                        if (this.link !== undefined && this.link.indexOf("youtube") != -1 && this.link.indexOf("v=") != -1) {
-                            return true;
-                        } else if (this.link !== undefined && this.link.indexOf("youtube") != -1) {
-                            return true;
-                        }
-                        return false;
-                    };
-                    Card.prototype.videoHeight = function () {
-                        if (this.isLandscape()) return 350;
-                        return 250;
-                    };
-                    Card.prototype.isLandscape = function () {
-                        if (this._displayFormat == 'landscape') return true;
-                        return false;
-                    };
-                    Card.prototype.isImage = function () {
-                        if (this.formatSource !== undefined && this.formatSource.indexOf("3dexperiencelab") != -1) return true;
-                        return false;
-                    };
-                    Card.prototype.uri = function (text) {
-                        var tmp = text.replace(/^[^-_a-zA-Z]+/, '').replace(/^-(?:[-0-9]+)/, '-');
-                        return (tmp && tmp.replace(/[^-_a-zA-Z0-9]+/g, '-')).toLowerCase();
-                    };
-                    Card.prototype.render = function () {
-                        var container = $('<div>').addClass('card-container');
-                        var article = $('<article>').addClass('card  brand-color');
-                        var footer = $('<footer>').addClass('footer-card');
-                        if (this.isLandscape()) {
-                            container.addClass('pure-u-1-1 pure-u-sm-1-2  pure-u-md-2-4 pure-u-lg-2-4 ');
-                        } else {
-                            container.addClass('pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-4');
-                        }
-                        for (var k in this.categorys) {
-                            container.addClass("card-category-type-".concat(this.uri(this.categorys[k])));
-                        }
-                        container.addClass("card-format-content-".concat(this.uri(this.formatContent)));
-                        if (this.isImage()) {
-                            this.appendBackgroundImageRender(article);
-                            var front = $('<div>').addClass('card-front');
-                            var back = $('<div>').addClass('card-back');
-                            this.appendImageRender(front);
-                            this.appendSummaryRender(front);
-                            this.appendSubTitleRender(front);
-                            this.appendTitleRender(front);
-                            this.appendDateRender(front);
-                            front.find('figure img').css('visibility', 'hidden');
-                            front.find('.card-text.block-txt').css('visibility', 'hidden');
-                            this.appendImageRender(back);
-                            this.appendTitleRender(back);
-                            this.appendSubTitleRender(back);
-                            this.appendDateRender(back);
-                            this.appendSummaryRender(back);
-                            back.find('figure img').css('visibility', 'hidden');
-                            article.append(front).append(back).wrapInner($('<a>').attr('href', this.link));
-                        } else {
-                            this.appendImageRender(article);
-                            this.appendTitleRender(article);
-                            this.appendSubTitleRender(article);
-                            this.appendDateRender(article);
-                            this.appendSummaryRender(article);
-                            if (!this.isVideo()) {
-                                this.appendButtonRender(footer);
-                            }
-                            article.append(footer);
-                        }
-                        return container.append(article.append(footer));
-                    };
-                    return Card;
-                }();
-                Card_1.Card = Card;
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card) {
-                var Cards = function () {
-                    function Cards(data) {}
-                    return Cards;
-                }();
-                Card.Cards = Cards;
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card) {
-                var Image = function () {
-                    function Image() {}
-                    Image.prototype.gcd = function (w, h) {
-                        return h == 0 ? w : this.gcd(h, w % h);
-                    };
-                    return Image;
-                }();
-                Card.Image = Image;
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card) {
-                var MyBehavior = function (_super) {
-                    __extends(MyBehavior, _super);
-                    function MyBehavior() {
-                        _super.apply(this, arguments);
-                    }
-                    MyBehavior.prototype.onButtonWasClicked = function (e) {
-                        console.log('event "greet-event" received');
-                    };
-                    __decorate([listen("greet-event")], MyBehavior.prototype, "onButtonWasClicked", null);
-                    return MyBehavior;
-                }(polymer.Base);
-                Card.MyBehavior = MyBehavior;
-                var MyElement = function (_super) {
-                    __extends(MyElement, _super);
-                    function MyElement(data) {
-                        _super.call(this);
-                        this.greet = 'Hello';
-                    }
-                    MyElement.prototype.greetChanged = function (newValue, oldValue) {
-                        console.log("greet has changed from " + oldValue + " to " + newValue);
-                    };
-                    MyElement.prototype.greetAll = function (test) {
-                        return test + " to all";
-                    };
-                    MyElement.prototype.handleClick = function (e) {
-                        this.greet = "Holà";
-                        this.fire("greet-event");
-                    };
-                    MyElement.prototype.ready = function () {
-                        console.log(this['is'], "ready!");
-                    };
-                    MyElement.prototype.created = function () {};
-                    MyElement.prototype.attached = function () {};
-                    MyElement.prototype.detached = function () {};
-                    __decorate([property({ type: String })], MyElement.prototype, "greet", void 0);
-                    __decorate([observe("greet")], MyElement.prototype, "greetChanged", null);
-                    __decorate([computed()], MyElement.prototype, "greetAll", null);
-                    MyElement = __decorate([component('my-element'), extend("div"), template("<p>I'm a DOM element. This is my local DOM!</p><p>And this is 'greet' property: <span>{{greet}}</span></p><p><button on-click=\"handleClick\">Change greet</button></p><p>Computed property 'greetAll' is <span>{{greetAll}}</span></p>"), style(":host { display: block; } div { color: red; }"), behavior(MyBehavior)], MyElement);
-                    return MyElement;
-                }(polymer.Base);
-                Card.MyElement = MyElement;
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-Com.Theeds.Component.Card.MyElement.register();
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
         var Service;
         (function (Service) {
             var Adapter;
@@ -594,207 +324,6 @@ var Com;
                 Adapter.Exalead = Exalead;
             })(Adapter = Service.Adapter || (Service.Adapter = {}));
         })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card) {
-                var AbstractPlugin = Com.Theeds.Plugin.AbstractPlugin;
-                var MyElement = Com.Theeds.Component.Card.MyElement;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            search: {
-                                query: '',
-                                offset: 0,
-                                limit: 50,
-                                adapter: 'Com.Theeds.Service.Adapter.Exalead',
-                                url: 'http://10.8.240.11:10010/'
-                            },
-                            infiniteScroll: {
-                                enable: true
-                            },
-                            masonry: {
-                                itemSelector: '.card-container',
-                                columnWidth: '.pure-u-md-1-4',
-                                isAnimated: false,
-                                percentPosition: true,
-                                gutter: 0,
-                                transitionDuration: 0
-                            },
-                            hook: {
-                                search: undefined,
-                                render: undefined
-                            },
-                            render: {
-                                adapter: 'Com.Theeds.Component.Card.Render'
-                            }
-                        };
-                        sessionStorage.setItem("cards_search", JSON.stringify(options));
-                        var data = { "did": 28, "url": "uid=2&", "buildGroup": "bg0", "source": "mysql", "slice": 1, "score": 73333, "sort": 0, "groups": [{ "id": "card_lang_flag", "root": "Top/classproperties/card/lang_flag", "refinable": true, "categories": [{ "path": "en", "fullPath": "Top/classproperties/card/lang_flag/en", "id": "Top/classproperties/card/lang_flag/en", "zapId": "Top/classproperties/card/lang_flag/en", "title": "en", "categories": [] }] }, { "id": "card_lang_title", "root": "Top/classproperties/card/lang_title", "refinable": true, "categories": [{ "path": "english", "fullPath": "Top/classproperties/card/lang_title/english", "id": "Top/classproperties/card/lang_title/english", "zapId": "Top/classproperties/card/lang_title/english", "title": "English", "categories": [] }] }, { "id": "Source", "root": "Top/source", "refinable": true, "categories": [{ "path": "mysql", "fullPath": "Top/source/mysql", "id": "Top/source/mysql", "zapId": "Top/source/mysql", "title": "mysql", "categories": [] }] }, { "id": "dataModelClass", "root": "Top/datamodelclass", "refinable": true, "categories": [{ "path": "card", "fullPath": "Top/datamodelclass/card", "id": "Top/datamodelclass/card", "zapId": "Top/datamodelclass/card", "title": "card", "categories": [] }] }, { "id": "Language", "root": "Top/language", "refinable": true, "categories": [{ "path": "en", "fullPath": "Top/language/en", "id": "Top/language/en", "zapId": "Top/language/en", "title": "en", "categories": [] }] }, { "id": "card_format_source", "root": "Top/classproperties/card/format_source", "refinable": true, "categories": [{ "path": "3dexperiencelab.3ds.com", "fullPath": "Top/classproperties/card/format_source/3dexperiencelab.3ds.com", "id": "Top/classproperties/card/format_source/3dexperiencelab.3ds.com", "zapId": "Top/classproperties/card/format_source/3dexperiencelab.3ds.com", "title": "3dexperiencelab.3ds.com", "categories": [] }] }, { "id": "card_format_content", "root": "Top/classproperties/card/format_content", "refinable": true, "categories": [{ "path": "blog", "fullPath": "Top/classproperties/card/format_content/blog", "id": "Top/classproperties/card/format_content/blog", "zapId": "Top/classproperties/card/format_content/blog", "title": "blog", "categories": [] }] }, { "id": "card_category_type", "root": "Top/classproperties/card/category_type", "refinable": true, "categories": [{ "path": "life", "fullPath": "Top/classproperties/card/category_type/life", "id": "Top/classproperties/card/category_type/life", "zapId": "Top/classproperties/card/category_type/life", "title": "LIFE", "categories": [] }] }], "metas": [{ "name": "category_type", "type": 2, "value": "LIFE" }, { "name": "deleted", "type": 0, "value": 0 }, { "name": "format_content", "type": 2, "value": "blog" }, { "name": "format_source", "type": 2, "value": "3dexperiencelab.3ds.com" }, { "name": "hidden", "type": 0, "value": 0 }, { "name": "image", "type": 2, "value": "http://3dexperiencelab.3ds.com/en/projects/life/organ_twins/slider/big/DSC02207.jpg" }, { "name": "lang_flag", "type": 2, "value": "en" }, { "name": "lang_title", "type": 2, "value": "English" }, { "name": "link", "type": 2, "value": "http://3ds.co:3000/s/c198601a" }, { "name": "start_date", "type": 0, "value": 1447056000 }, { "name": "summary", "type": 2, "value": "Advances in 3D printing technology and virtual simulation are creating new opportunities to improve the quality of treatments and patient safety. Biomodex is innovating in this area by developing sophisticated software and fabricating life-like human organs that can be used by medical students to learn and by doctors to practice surgical procedures before proceeding with a live operation. The 3DEXPERIENCE Lab is involved in this project providing Biomodex with access to its FabLab and with assistance using the Dassault SystÃ¨mes? applications for organ design and for the manufacture of its first prototypes." }, { "name": "tstamp", "type": 0, "value": 1456498561 }, { "name": "uid", "type": 0, "value": 2 }, { "name": "weight", "type": 0, "value": 0 }, { "name": "fullurl", "type": 2, "value": "http://3dexperiencelab.3ds.com/en/projects/life/organ_twins/" }, { "name": "title", "type": 3, "value": "Organ Twins" }, { "name": "url", "type": 2, "value": "uid=2&" }] };
-                        var el = MyElement.create({});
-                        document.body.appendChild(el);
-                        var service = eval('new ' + this.settings.search.adapter);
-                    }
-                    Plugin.prototype.bindInputSearch = function (context) {
-                        var data;
-                        var value;
-                        $('#' + context.elem.attr('id') + '-search').bind("change paste keyup", function () {
-                            data = JSON.parse(sessionStorage.getItem('cards_search'));
-                            value = $(this).val();
-                            if (data.query != value) {
-                                data.query = value;
-                                data.offset = 0;
-                                context.destroy();
-                                context.search(data);
-                            }
-                        });
-                    };
-                    Plugin.prototype.destroy = function () {
-                        this.elem.masonry('destroy');
-                        this.elem.html('');
-                    };
-                    Plugin.prototype.infiniteScroll = function (context) {
-                        if (context.settings.infiniteScroll.enable === true) {
-                            $(window).scroll(function () {
-                                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                                    context.search(context.next(context.settings.search));
-                                }
-                            });
-                        }
-                    };
-                    Plugin.prototype.search = function (options) {
-                        if (!options.query.trim()) options.query += "#all";
-                        var conext = this;
-                        var elem;
-                        var values;
-                        $("select[data-exalead-group], select[data-exalead-group-custom]").each(function (index) {
-                            elem = $(this);
-                            if (null === (values = elem.val())) return;
-                            for (var k in values) {
-                                if (options.query != '') options.query += " AND ";
-                                if (elem.data('exalead-group') != undefined) {
-                                    options.query += elem.data('exalead-group') + "=(" + values[k] + ")";
-                                } else {
-                                    options.query += elem.data('exalead-group-custom') + "=(" + values[k] + ")";
-                                }
-                            }
-                        }).promise().done(function () {
-                            eval('new ' + conext.settings.search.adapter).cards(conext, options);
-                            sessionStorage.setItem("cards_search", JSON.stringify(options));
-                        });
-                    };
-                    Plugin.prototype.next = function (options) {
-                        options.offset = options.offset + 1;
-                        return options;
-                    };
-                    Plugin.prototype.masonry = function (context) {
-                        return context.elem.masonry(context.settings.masonry);
-                    };
-                    return Plugin;
-                }(AbstractPlugin);
-                Card.Plugin = Plugin;
-                $.fn.cards = function (options) {
-                    return new Plugin(this, options);
-                };
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Theeds || (Com.Theeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Component;
-        (function (Component) {
-            var Card;
-            (function (Card_1) {
-                var Card = Com.Theeds.Component.Card.Card;
-                var Image = Com.Theeds.Component.Card.Image;
-                var Render = function () {
-                    function Render() {}
-                    Render.prototype.cards = function (context, data) {
-                        if (data === false || typeof data === "undefined") return;
-                        context.elem.addClass('cards pure-g');
-                        var $grid = context.masonry(context);
-                        var card;
-                        for (var k in data.hits) {
-                            var summary = false;
-                            var link = false;
-                            var image = false;
-                            for (var i in data.hits[k].metas) {
-                                if (data.hits[k].metas[i].name == "summary") summary = true;
-                                if (data.hits[k].metas[i].name == "link") link = true;
-                                if (data.hits[k].metas[i].name == "image") image = true;
-                            }
-                            if (summary && image && link) {
-                                card = new Card(data.hits[k]);
-                                if (k == '0') card.displayFormat = 'landscape';
-                                $(card.render()).imagesLoaded().always(function (instance) {}).done(function (instance) {
-                                    $grid.append(instance.elements).masonry('appended', instance.elements).masonry();
-                                }).fail(function () {}).progress(function (instance, image) {
-                                    var gcd, pct;
-                                    var naturalWidth = image.img.naturalWidth;
-                                    var naturalHeight = image.img.naturalHeight;
-                                    if (naturalWidth != 0 && naturalHeight != 0) {
-                                        gcd = Image.prototype.gcd(naturalWidth, naturalHeight);
-                                        pct = naturalWidth / gcd * 100 / (naturalHeight / gcd) - 100;
-                                    }
-                                });
-                            }
-                        }
-                    };
-                    Render.prototype.groups = function (context, data) {
-                        if (data === false || typeof data === "undefined") return;
-                        var elem;
-                        for (var k in data.groups) {
-                            elem = $("select[data-exalead-group='" + data.groups[k].id + "']");
-                            if (elem.length) {
-                                elem.find('option').remove().end().append('<option value=""></option>');
-                                for (var i in data.groups[k].categories) {
-                                    elem.append('<option value="' + data.groups[k].categories[i].path + '">' + data.groups[k].categories[i].title + '</option>');
-                                }
-                                elem.chosen({ disable_search_threshold: 10 }).bind("change", function () {
-                                    $('#' + context.elem.attr('id') + '-search').trigger('change');
-                                });
-                            }
-                        }
-                    };
-                    Render.prototype.customGroups = function (context, data) {
-                        if (data === false || typeof data === "undefined") return;
-                        var elem;
-                        var ref;
-                        $("select[data-exalead-group-custom]").each(function (index) {
-                            elem = $(this);
-                            ref = elem.data('exalead-group-custom-ref');
-                            if (ref == undefined && data[ref] == undefined) return true;
-                            for (var i in data[ref]) {
-                                elem.append('<option value="' + data[ref][i].title + '">' + data[ref][i].title + '</option>');
-                            }
-                            elem.chosen({ disable_search_threshold: 10 }).bind("change", function () {
-                                $('#' + context.elem.attr('id') + '-search').trigger('change');
-                            });
-                        });
-                    };
-                    return Render;
-                }();
-                Card_1.Render = Render;
-            })(Card = Component.Card || (Component.Card = {}));
-        })(Component = Theeds.Component || (Theeds.Component = {}));
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
@@ -1600,10 +1129,7 @@ var Com;
                                     } else if (Object.isDefined(data, 'result.thankYouPage')) {
                                         if (data.result.properties.displayThankYou) {
                                             form.success(data.result.thankYouPage);
-                                            if (data.result.properties.openUrl) {
-                                                var w = window.open(data.result.asset.url, '_blank');
-                                                w.focus();
-                                            }
+                                            if (data.result.properties.openUrl) {}
                                         } else if (data.result.properties.openUrl) {
                                             form.redirect(data.result.asset.url);
                                         }
@@ -1771,10 +1297,25 @@ var Com;
                         __extends(From, _super);
                         function From(context, data) {
                             _super.call(this, data);
-                            this._errors = [{ workPhone: "invalid" }, { custom2: "missing" }, { custom4: "missing" }];
+                            this._currentPosition = 0;
+                            this._steps = [];
+                            this._errors = [];
                             this.context = context;
                             this.dispatch(data);
                         }
+                        Object.defineProperty(From.prototype, "currentPosition", {
+                            get: function () {
+                                return this._currentPosition;
+                            },
+                            set: function (value) {
+                                if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
+                                    this.context.settings.hook.setCurrentPosition(this, value);
+                                }
+                                this._currentPosition = value;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
                         Object.defineProperty(From.prototype, "settings", {
                             get: function () {
                                 return this.context.settings;
@@ -1788,7 +1329,6 @@ var Com;
                             },
                             set: function (value) {
                                 this._errors = value;
-                                console.log(value);
                                 for (var i = 0; i < Polymer.dom(this).node.length; i++) {
                                     if (typeof Polymer.dom(this).node[i].displayError === 'function') {
                                         for (var k in this._errors) {
@@ -1798,7 +1338,6 @@ var Com;
                                         }
                                     }
                                 }
-                                console.log(this._errors);
                             },
                             enumerable: true,
                             configurable: true
@@ -1822,9 +1361,45 @@ var Com;
                             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
                             this.innerHTML = '';
                         };
+                        From.prototype.add = function (data) {
+                            if (!Polymer.dom(this).node.length) {
+                                this._steps.push(data);
+                                this.currentPosition = 0;
+                                return true;
+                            }
+                            var name;
+                            for (var n = 0; n < Polymer.dom(this).node.length; n++) {
+                                if (Polymer.dom(this).node[n].name == undefined) continue;
+                                name = Polymer.dom(this).node[n].name;
+                                for (var k in data.result.config) {
+                                    if (data.result.config[k].name = name && data.result.config[k].type != 'hidden') {
+                                        this._steps.push(data);
+                                        this.currentPosition++;
+                                        return true;
+                                    }
+                                }
+                            }
+                            return false;
+                        };
                         From.prototype.update = function (data) {
+                            this.add(data);
                             this.clear();
                             this.appendChild(StepElement.create(this.context, data));
+                        };
+                        From.prototype.goTo = function (id) {
+                            if (typeof this._steps[id] != "undefined") {
+                                this.clear();
+                                this.appendChild(StepElement.create(this.context, this._steps[id]));
+                                this.currentPosition = id;
+                            }
+                        };
+                        From.prototype.prev = function () {
+                            var id = this.currentPosition - 1;
+                            this.goTo(id);
+                        };
+                        From.prototype.next = function () {
+                            var id = this.currentPosition + 1;
+                            this.goTo(id);
                         };
                         From.prototype.append = function (data) {
                             for (var i = 0; i < Polymer.dom(this).node.length; i++) {
@@ -1837,15 +1412,27 @@ var Com;
                             return this;
                         };
                         From.prototype.success = function (data) {
-                            this.clear();
-                            this.innerHTML = "<h1>" + data.title + "</h1>" + data.content;
+                            if (typeof this.context.settings.hook.success == 'function') {
+                                this.context.settings.hook.success(this, data);
+                            } else {
+                                this.clear();
+                                this.innerHTML = "<h1>" + data.title + "</h1>" + data.content;
+                            }
                         };
                         From.prototype.warning = function (message) {
-                            this.clear();
-                            this.innerHTML = message;
+                            if (typeof this.context.settings.hook.warning == 'function') {
+                                this.context.settings.hook.warning(this, message);
+                            } else {
+                                this.clear();
+                                this.innerHTML = message;
+                            }
                         };
                         From.prototype.redirect = function (url) {
-                            window.location = url;
+                            if (typeof this.context.settings.hook.redirect == 'function') {
+                                this.context.settings.hook.redirect(this, url);
+                            } else {
+                                window.location = url;
+                            }
                         };
                         From.serialize = function (form) {
                             if (!form || form.nodeName !== "FORM") {
@@ -1961,14 +1548,22 @@ var Com;
                                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
                             },
                             hook: {
-                                search: undefined,
-                                render: undefined
+                                render: undefined,
+                                success: undefined,
+                                redirect: undefined,
+                                warning: undefined,
+                                setCurrentPosition: undefined
                             }
                         };
+                        this.settings = $.extend({}, this.settings, options);
                         this.service('form').form(this, {});
                     }
                     Plugin.prototype.render = function (type, data) {
-                        this.elem.append(From.create(this, data));
+                        if (typeof this.settings.hook.render == 'function') {
+                            this.settings.hook.render(this, type, data);
+                        } else {
+                            this.elem.append(From.create(this, data));
+                        }
                     };
                     return Plugin;
                 }(AbstractPlugin);
@@ -2004,9 +1599,8 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
+                            type: "GET", dataType: "jsonp", url: context.settings.form.url, data: { op: 'GetFormJson', lpid: context.settings.form.id },
                             success: function (response) {
-                                console.log(response);
                                 context.render('form', self.data(response));
                             },
                             error: function (resultat, statut, erreur) {

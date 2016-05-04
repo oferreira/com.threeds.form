@@ -28,7 +28,7 @@ namespace Com.Theeds.Component.Form {
 
     export class Plugin extends AbstractPlugin {
 
-        public  settings:any = {
+        public settings:any = {
             display: {
                 label: true,
                 placeholder: true,
@@ -45,19 +45,27 @@ namespace Com.Theeds.Component.Form {
                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
             hook: {
-                search: undefined,
-                render: undefined
+                render: undefined,
+                success: undefined,
+                redirect: undefined,
+                warning: undefined,
+                setCurrentPosition: undefined,
             },
 
         };
 
         constructor(elem:any, options:Object) {
             super(elem, options);
+            this.settings = $.extend({}, this.settings, options);
             this.service('form').form(this, {});
         }
 
         render(type:string, data:any):void {
-            this.elem.append(From.create(this, data));
+            if(typeof this.settings.hook.render == 'function'){
+                this.settings.hook.render(this, type, data);
+            } else {
+                this.elem.append(From.create(this, data));
+            }
         }
     }
 
