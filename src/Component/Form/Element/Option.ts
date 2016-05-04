@@ -24,6 +24,11 @@ namespace Com.Theeds.Component.Form.Element {
             if (data.selected != undefined) this.selected = data.selected;
         }
 
+        @observe("label")
+        labelChanged(newValue:string, oldValue:string) {
+            this.innerText = newValue;
+        }
+
         ready() {
         }
     }

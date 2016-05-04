@@ -41,14 +41,6 @@ var Com;
         };
     })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-String.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -119,6 +111,14 @@ Object.find = function (o, s) {
         }
     }
     return o;
+};
+String.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
 };
 var Com;
 (function (Com) {
@@ -1708,10 +1708,14 @@ var Com;
                             if (data.value != undefined) this.value = data.value;
                             if (data.selected != undefined) this.selected = data.selected;
                         }
+                        Option.prototype.labelChanged = function (newValue, oldValue) {
+                            this.innerText = newValue;
+                        };
                         Option.prototype.ready = function () {};
                         __decorate([property({ type: String, reflectToAttribute: true })], Option.prototype, "label", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], Option.prototype, "value", void 0);
                         __decorate([property({ type: Boolean, reflectToAttribute: true })], Option.prototype, "selected", void 0);
+                        __decorate([observe("label")], Option.prototype, "labelChanged", null);
                         Option = __decorate([component('option-element'), extend("option")], Option);
                         return Option;
                     }(AbstractPolymerElement);
