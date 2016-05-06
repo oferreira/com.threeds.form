@@ -16,39 +16,30 @@ You need to install  on your local machine :
 Guide of installation
 -------------
 
-Install NodeJs got to  https://nodejs.org/en/download/ and download nodejs  installer
+Got to  https://nodejs.org/en/download/ and install nodejs
 
-![install](https://github.com/oferreira/card-3ds/blob/master/docs/assets/images/readme/download_node_js.jpg)
+![install](/assets/images/nodejs.jpg)
 
-----------
-
-Install Gulp open a terminal and execute
+After execute :
 
     sudo npm install -g gulp
-
-----------
-
-Install Typescript open a terminal and execute
-
+    sudo npm install -g bower
     sudo npm install -g typescript
     sudo npm install -g tsd
 
 ----------
 
-Install Ruby got to http://rubyinstaller.org/ and download ruby installer
+Got to http://rubyinstaller.org/ and install ruby
 
-![install](https://github.com/oferreira/card-3ds/blob/master/docs/assets/images/readme/rubyinstaller.jpg)
-
-----------
-
-Install Bower open a terminal and execute
-
-    sudo npm install -g bower
+![install](/assets/images/rubyinstaller.jpg)
 
 ----------
 
-Install all packages open a terminal and execute
+Open a terminal and execute :
 
+    cd ~/ 
+    git clone https://github.com/oferreira/com.threeds.form.git
+    cd ~/com.threeds.form
     sudo npm install
     sudo tsd install
     bower install
@@ -56,23 +47,10 @@ Install all packages open a terminal and execute
 ----------
 
 
-Build
+RUN
 -------------------
 
  Open a terminal and execute
  
     clear & gul watch --release
-
-----------
-
-
-bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'
-
-docker-machine start default
-
-
-
---------- error
-
-$ docker-machine restart default      # Restart the environment
-$ eval $(docker-machine env default)  # Refresh your environment settings
+    open http://localhost:2000/
