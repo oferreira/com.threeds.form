@@ -22,7 +22,6 @@ namespace Com.Theeds.Component.Form.Element {
             if (data.label != undefined) this.label = data.label;
             if (data.value != undefined) this.value = data.value;
             if (data.selected != undefined) this.selected = data.selected;
-            console.log('salut')
         }
 
         @observe("label")

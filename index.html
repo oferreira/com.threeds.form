@@ -40,20 +40,16 @@
 <body>
 <div class="col-md-12">
     <div class="col-md-6">
-        <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-tabs-step" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+            <li role="presentation" class="active disabled"><a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">Step 1</a>
             </li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+            <li role="presentation" class="disabled"><a href="#step-2" aria-controls="step-2" role="tab" data-toggle="tab" >Step</a>
             </li>
         </ul>
 
-        <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">...</div>
-            <div role="tabpanel" class="tab-pane" id="profile">...</div>
-            <div role="tabpanel" class="tab-pane" id="messages">...</div>
-            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+            <div role="tabpanel" class="tab-pane active" id="step-1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            <div role="tabpanel" class="tab-pane" id="step-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
         </div>
 
     </div>
@@ -63,6 +59,13 @@
 
 <script type="text/javascript">
     $(function () {
+        $(".nav-tabs .disabled a").on("click", function(e) {
+            if ($(this).parent().hasClass("disabled")) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         addEventListener('WebComponentsReady', function () {
             $("#form").form({
                 form: {
@@ -84,8 +87,7 @@
                         console.log(url);
                     },
                     setCurrentPosition: function (context, index) {
-                        // 0, 1, 2, ...
-                        console.log(index);
+                        $('.nav-tabs a[href="#step-' + (index + 1) + '"]').tab('show');
                     },
                 }
             });
