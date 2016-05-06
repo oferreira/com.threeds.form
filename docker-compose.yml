@@ -1,6 +1,11 @@
-web:
+site:
   build: .
+  ports :
+   - "2000:2000"
   volumes:
-    - ./:/src
-  ports:
-    - "2000:2000"
+    - .:/var/www
+    - /var/www/node_modules
+    - /var/www/bower_components
+  environment:
+    - APP_WORKDIR=/var/www
+

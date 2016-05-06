@@ -1,31 +1,31 @@
-FROM node:6.0-wheezy
+FROM debian:latest
 
-#ENV http_proxy http://dsone%5Cofa1:3DS%40ds002@10.6.69.50:8080
-#ENV https_proxy http://dsone%5Cofa1:3DS%40ds002@10.6.69.50:8080
+MAINTAINER Olivier Ferreira <olivier@mediainvest.io>
+ENV APP_WORKDIR=/var/www
 
+RUN mkdir -p $APP_WORKDIR
+WORKDIR $APP_WORKDIR
 
-#RUN apt-get update -qq
-#RUN apt-get install -y build-essential
-#RUN apt-get install -y ruby
-#RUN gem install sass
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install -y git
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /src
-
-#RUN npm cache clean
-RUN npm install -g graceful-fs
-RUN npm install -g gulp
 RUN npm install -g bower
+RUN npm install -g gulp-cli
 RUN npm install -g typescript
 RUN npm install -g tsd
+RUN npm cache clean
 
-WORKDIR /src
+COPY package.json $APP_WORKDIR
+RUN npm install
 
-#RUN bash -c "cd /src && npm install"
-#RUN /src bower --allow-root install
-#RUN /src tsd install
+COPY bower.json $APP_WORKDIR
+RUN bower --allow-root install
 
+EXPOSE 2000
 
-
-#RUN ["npm", "install"]
-##CMD ["bower", "--allow-root", "install"]
-#CMD ["tsd", "start"]
+CMD ["npm", "start"]

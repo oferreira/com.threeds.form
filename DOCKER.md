@@ -23,7 +23,7 @@ After open a docker terminal and execute :
     cd ~/
     git clone https://github.com/oferreira/com.threeds.form.git
     cd com.threeds.form
-    docker-compose build
+    docker-compose build --no-cache
 
 ----------
 
