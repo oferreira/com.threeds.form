@@ -7,7 +7,8 @@ Get started
 
 You need to install  on your local machine :
 
- 1. docker toolbox
+ 1. virtual box
+ 2. docker toolbox
  
 Guide of installation
 -------------
@@ -15,6 +16,10 @@ Guide of installation
 Got to https://www.docker.com/products/docker-toolbox to install docker
 
 ![install](/assets/images/docker-toolbox.jpg)
+
+Got to https://www.virtualbox.org/ to virtual box
+
+![install](/assets/images/virtualbox.jpg)
 
 After open a docker terminal and execute :
 
