@@ -2,16 +2,75 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
 
-  <script src="/bower_components/codemirror/lib/codemirror.js"></script>
-  <link rel="stylesheet" href="/bower_components/codemirror/lib/codemirror.css">
-  <script src="/bower_components/codemirror/mode/javascript/javascript.js"></script>
 
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/cayman.css">
+
+
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/bower_components/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="/bower_components/codemirror/addon/hint/show-hint.css">
+  <script src="/bower_components/codemirror/lib/codemirror.js"></script>
+  <script src="/bower_components/codemirror/addon/hint/show-hint.js"></script>
+  <script src="/bower_components/codemirror/addon/hint/xml-hint.js"></script>
+  <script src="/bower_components/codemirror/addon/hint/html-hint.js"></script>
+  <script src="/bower_components/codemirror/mode/xml/xml.js"></script>
+  <script src="/bower_components/codemirror/mode/javascript/javascript.js"></script>
+  <script src="/bower_components/codemirror/mode/vbscript/vbscript.js"></script>
+  <script src="/bower_components/codemirror/mode/css/css.js"></script>
+  <script src="/bower_components/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <style>
+    .CodeMirror {
+      font-size: 0.8rem;
+      height: auto;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .CodeMirror-scroll {
+      max-height: 400px;
+    }
+
+    .CodeMirror pre {
+      padding-left: 7px;
+      line-height: 1.2rem;
+    }
+  </style>
+
+  <script type="text/javascript">
+    (function ($) {
+      $.fn.editor = function (options) {
+        var options = $.extend({
+          url: null,
+          content: null
+        }, options);
+
+        console.log(this);
+
+        var editor = CodeMirror.fromTextArea(this[0], {
+          mode: "text/html",
+          lineNumbers: true
+        });
+
+        if (options.url != null) {
+          $.get(options.url, function (data) {
+            editor.setValue(data);
+          });
+        }
+      };
+
+    })(jQuery);
+  </script>
 </head>
