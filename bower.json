@@ -9,6 +9,7 @@
   "homepage": "https://github.com/oferreira/com.threeds.form",
   "moduleType": [],
   "devDependencies": {
-    "codemirror": "~5.14.2"
+    "codemirror": "~5.14.2",
+    "jquery": "~2.2.3"
   }
 }

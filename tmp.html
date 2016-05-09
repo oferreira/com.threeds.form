@@ -68,6 +68,16 @@
 
         addEventListener('WebComponentsReady', function () {
             $("#form").form({
+                display: {
+                    label: true,
+                    placeholder: true,
+                },
+                styling: {
+                    label:{
+                        suffixe:' : ',
+                        mandatory:' * '
+                    }
+                },
                 form: {
                     id: 'LDP6312',
                     adapter: 'Com.Theeds.Service.Adapter.Neolane',
@@ -88,7 +98,7 @@
                     },
                     setCurrentPosition: function (context, index) {
                         $('.nav-tabs a[href="#step-' + (index + 1) + '"]').tab('show');
-                    },
+                    }
                 }
             });
         });
