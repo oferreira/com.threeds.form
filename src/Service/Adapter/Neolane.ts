@@ -16,7 +16,7 @@ namespace Com.Theeds.Service.Adapter {
         public form(context:any, options:any):void {
             let self:any = this;
             $.ajax({
-                type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.form.id},
+                type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
@@ -36,7 +36,7 @@ namespace Com.Theeds.Service.Adapter {
         public post(context:any, data:any):void {
             let self:any = this;
 
-            data['lpid'] = context.settings.form.id;
+            data['lpid'] = context.settings.id;
 
             $.ajax({
                 type: "POST",

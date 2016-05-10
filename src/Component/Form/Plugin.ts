@@ -29,6 +29,7 @@ namespace Com.Theeds.Component.Form {
     export class Plugin extends AbstractPlugin {
 
         public settings:any = {
+            id: 'LDP6312',
             display: {
                 label: true,
                 placeholder: true,
@@ -40,7 +41,6 @@ namespace Com.Theeds.Component.Form {
                 }
             },
             form: {
-                id: 'LDP6312',
                 adapter: 'Com.Theeds.Service.Adapter.Neolane',
                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
