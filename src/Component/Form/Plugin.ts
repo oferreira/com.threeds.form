@@ -4,6 +4,7 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../Component/Form/Element/From.ts" />
 /// <reference path="../../I18n/Translator.ts" />
+/// <reference path="../../Core/Ajax/AutoComplete.ts" />
 
 
 
@@ -56,6 +57,9 @@ namespace Com.Theeds.Component.Form {
 
         constructor(elem:any, options:Object) {
             super(elem, options);
+            // todo delete exemple
+            var autoComplete:Com.Theeds.Core.Ajax.AutoComplete =  new Com.Theeds.Core.Ajax.AutoComplete(document.querySelector('.tab-content'), {lorem:'lorem ipsum'});
+
             this.settings = $.extend({}, this.settings, options);
             this.service('form').form(this, {});
         }

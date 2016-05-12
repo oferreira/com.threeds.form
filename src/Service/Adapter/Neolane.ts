@@ -58,20 +58,22 @@ namespace Com.Theeds.Service.Adapter {
 
 
 
-        public customerAutocomplete(context:any, data:any):void {
-            let self:any = this;
+        public customerAutocomplete(context:Object, data:any):void {
+
+            console.log(context);
+            console.log(data);
+
             $.ajax({
-                type: "GET",
-                //type: "POST",
-                data: data,
-                //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
-                dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
-                success: function (response:any) {
-                    context.render('form', self.data(response));
+                url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                dataType: 'jsonp',
+                data: {
+                    query: 'lorem',
+                    iso: 'fr'
                 },
-                error: function (resultat:any, statut:any, erreur:any) {
-                    context.render('form', false);
-                }
+                success: function (data) {
+                    context.render(context, data);
+                },
+
             });
         }
 
