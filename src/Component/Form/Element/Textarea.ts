@@ -1,9 +1,9 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
     @component('textarea-element')
     @extend("textarea")
@@ -81,5 +81,5 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.Textarea.register();
+Com.Threeds.Component.Form.Element.Textarea.register();
 

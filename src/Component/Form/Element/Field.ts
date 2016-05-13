@@ -9,9 +9,9 @@
 /// <reference path="../../../Validator/Email.ts" />
 /// <reference path="../../../Validator/Email.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
     @component('field-element')
     @extend("div")
@@ -119,8 +119,8 @@ namespace Com.Theeds.Component.Form.Element {
         hydrateValidators(data:Object) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
-            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Theeds.Validator.Email');
-            if (data.required) validators.push('Com.Theeds.Validator.Require');
+            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
+            if (data.required) validators.push('Com.Threeds.Validator.Require');
 
             if (validators.length) data.validators = validators;
         }
@@ -153,4 +153,4 @@ namespace Com.Theeds.Component.Form.Element {
 
 }
 
-Com.Theeds.Component.Form.Element.Field.register();
+Com.Threeds.Component.Form.Element.Field.register();

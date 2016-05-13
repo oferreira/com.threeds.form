@@ -12,7 +12,7 @@ interface JQuery {
     progress(data?:any, options?:any): JQuery;
 }
 
-namespace Com.Theeds.Plugin {
+namespace Com.Threeds.Plugin {
 
     export class AbstractPlugin {
 

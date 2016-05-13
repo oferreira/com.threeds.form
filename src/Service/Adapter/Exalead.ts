@@ -2,9 +2,9 @@
 /// <reference path="../../Service/Adapter/AbstractAdapter.ts" />
 
 
-namespace Com.Theeds.Service.Adapter {
+namespace Com.Threeds.Service.Adapter {
 
-    import AbstractAdapter = Com.Theeds.Service.Adapter.AbstractAdapter;
+    import AbstractAdapter = Com.Threeds.Service.Adapter.AbstractAdapter;
 
     export class Exalead extends AbstractAdapter {
 

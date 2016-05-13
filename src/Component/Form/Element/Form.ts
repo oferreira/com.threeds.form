@@ -1,25 +1,25 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Component/Form/Element/Step.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../Component/Form/Element/Behavior/Neolane/FromBehavior.ts" />
+/// <reference path="../../../Component/Form/Element/Behavior/Neolane/FormBehavior.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
-    import StepElement = Com.Theeds.Component.Form.Element.Step;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import StepElement = Com.Threeds.Component.Form.Element.Step;
 
     export interface Map<T> {
         [K: string]: T;
     }
 
-    export interface From {
+    export interface Form {
         behaviors: any;
     }
 
     @component('form-element')
     @extend("form")
-    @behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)
-    export class From extends AbstractPolymerElement {
+    @behavior(Com.Threeds.Component.Form.Element.Behavior.Neolane.FormBehavior)
+    export class Form extends AbstractPolymerElement {
         context:any;
 
         @property({type: String, reflectToAttribute: true})
@@ -152,7 +152,7 @@ namespace Com.Theeds.Component.Form.Element {
             this.goTo(id);
         }
 
-        append(data:any):From {
+        append(data:any):Form {
             for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
                 if (typeof  (<any>Polymer.dom(this)).node[i].name != 'undefined' && Polymer.dom(this).node[i].name == data.name) {
                     Polymer.dom(this).node[i].value = data.value;
@@ -257,5 +257,5 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.From.register();
+Com.Threeds.Component.Form.Element.Form.register();
 

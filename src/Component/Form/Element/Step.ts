@@ -5,10 +5,10 @@
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Component/Form/Element/Input.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
-    import SubmitElement = Com.Theeds.Component.Form.Element.Submit;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import SubmitElement = Com.Threeds.Component.Form.Element.Submit;
 
     @component('step-element')
     @extend("div")
@@ -39,5 +39,5 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.Step.register();
+Com.Threeds.Component.Form.Element.Step.register();
 

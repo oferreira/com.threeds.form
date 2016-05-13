@@ -1,9 +1,9 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 /// <reference path="../Validator/AbstractValidator.ts" />
 
-namespace Com.Theeds.Validator {
+namespace Com.Threeds.Validator {
 
-    import AbstractValidator = Com.Theeds.Validator.AbstractValidator;
+    import AbstractValidator = Com.Threeds.Validator.AbstractValidator;
 
     export class Require extends AbstractValidator {
 

@@ -1,5 +1,5 @@
 
-namespace Com.Theeds.Service.Adapter {
+namespace Com.Threeds.Service.Adapter {
 
     export class AbstractAdapter {
 

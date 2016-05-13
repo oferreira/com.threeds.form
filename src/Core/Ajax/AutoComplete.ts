@@ -1,13 +1,13 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 
-namespace Com.Theeds.Core.Ajax {
+namespace Com.Threeds.Core.Ajax {
 
-    import AbstractPlugin = Com.Theeds.Plugin.AbstractPlugin;
+    import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
 
     export class AutoComplete extends AbstractPlugin {
         public settings:any = {
             api: {
-                adapter: 'Com.Theeds.Service.Adapter.Neolane',
+                adapter: 'Com.Threeds.Service.Adapter.Neolane',
                 serviceName: 'customerAutocomplete'
             },
             select: function (data){

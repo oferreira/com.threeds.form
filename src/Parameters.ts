@@ -1,8 +1,8 @@
-namespace Com.Theeds {
+namespace Com.Threeds {
     export var _parameters = {
         'translator': {
             'lang': 'en',
-            'adapter': 'Com.Theeds._locale',
+            'adapter': 'Com.Threeds._locale',
         }
     };
 }

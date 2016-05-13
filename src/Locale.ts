@@ -1,4 +1,4 @@
-namespace Com.Theeds {
+namespace Com.Threeds {
     export var _locale = {
         'en': {
             'error': {

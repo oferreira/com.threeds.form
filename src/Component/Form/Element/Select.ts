@@ -2,9 +2,9 @@
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
     @component('select-element')
     @extend("select")
@@ -107,4 +107,4 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.Select.register();
+Com.Threeds.Component.Form.Element.Select.register();

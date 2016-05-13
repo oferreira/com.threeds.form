@@ -1,6 +1,6 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 
-namespace Com.Theeds.Service {
+namespace Com.Threeds.Service {
 
     export class ServiceManager {
         instance:ServiceManager;

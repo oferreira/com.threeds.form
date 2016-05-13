@@ -1,9 +1,9 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
     @component('option-element')
     @extend("option")
@@ -35,4 +35,4 @@ namespace Com.Theeds.Component.Form.Element {
     }
 }
 
-Com.Theeds.Component.Form.Element.Option.register();
+Com.Threeds.Component.Form.Element.Option.register();

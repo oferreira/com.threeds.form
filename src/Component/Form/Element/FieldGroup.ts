@@ -4,9 +4,9 @@
 /// <reference path="../../../Component/Form/Element/Select.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 
-namespace Com.Theeds.Component.Form.Element {
+namespace Com.Threeds.Component.Form.Element {
 
-    import AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
     @component('field-group-element')
     @extend("div")
@@ -36,4 +36,4 @@ namespace Com.Theeds.Component.Form.Element {
 
 }
 
-Com.Theeds.Component.Form.Element.FieldGroup.register();
+Com.Threeds.Component.Form.Element.FieldGroup.register();

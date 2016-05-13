@@ -1,7 +1,7 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 /// <reference path="../Parameters.ts" />
 
-namespace Com.Theeds.I18n {
+namespace Com.Threeds.I18n {
 
     export class Translator {
 
@@ -15,9 +15,9 @@ namespace Com.Theeds.I18n {
             this.adapter = options.adapter;
         }
 
-        public static get instance():Com.Theeds.I18n.Translator {
+        public static get instance():Com.Threeds.I18n.Translator {
             if (Translator._instance == undefined) {
-                Translator._instance = new Com.Theeds.I18n.Translator(Object.find(Com.Theeds._parameters, 'translator'));
+                Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
             }
 
             return Translator._instance;
@@ -29,7 +29,7 @@ namespace Com.Theeds.I18n {
     }
 
     $.i18n = function () {
-        return Com.Theeds.I18n.Translator.instance;
+        return Com.Threeds.I18n.Translator.instance;
     };
 }
 
