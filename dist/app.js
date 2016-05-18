@@ -6,11 +6,11 @@ var Com;
         Theeds._config = {
             form: {
                 id: '32f91ef071fe9e8974f3e6468c36312d',
-                adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                adapter: 'Com.Theeds.Service.Adapter.Neolane',
                 url: 'http://dassault-dev.neolane.net/dsx/lp_api.jssp'
             }
         };
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
 (function (Com) {
@@ -27,7 +27,7 @@ var Com;
             },
             'fr': {}
         };
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
 (function (Com) {
@@ -36,10 +36,10 @@ var Com;
         Theeds._parameters = {
             'translator': {
                 'lang': 'en',
-                'adapter': 'Com.Threeds._locale'
+                'adapter': 'Com.Theeds._locale'
             }
         };
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 String.format = function () {
     var formatted = this;
@@ -71,7 +71,7 @@ var Com;
             }(polymer.Base);
             Element.AbstractPolymerElement = AbstractPolymerElement;
         })(Element = Theeds.Element || (Theeds.Element = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
 (function (Com) {
@@ -87,7 +87,7 @@ var Com;
                 Object.defineProperty(Translator, "instance", {
                     get: function () {
                         if (Translator._instance == undefined) {
-                            Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
+                            Translator._instance = new Com.Theeds.I18n.Translator(Object.find(Com.Theeds._parameters, 'translator'));
                         }
                         return Translator._instance;
                     },
@@ -101,10 +101,10 @@ var Com;
             }();
             I18n.Translator = Translator;
             $.i18n = function () {
-                return Com.Threeds.I18n.Translator.instance;
+                return Com.Theeds.I18n.Translator.instance;
             };
         })(I18n = Theeds.I18n || (Theeds.I18n = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 Object.find = function (o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1');
@@ -142,7 +142,83 @@ var Com;
             }();
             Plugin.AbstractPlugin = AbstractPlugin;
         })(Plugin = Theeds.Plugin || (Theeds.Plugin = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Validator;
+        (function (Validator) {
+            var AbstractValidator = function () {
+                function AbstractValidator() {}
+                return AbstractValidator;
+            }();
+            Validator.AbstractValidator = AbstractValidator;
+        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Validator;
+        (function (Validator) {
+            var AbstractValidator = Com.Theeds.Validator.AbstractValidator;
+            var Email = function (_super) {
+                __extends(Email, _super);
+                function Email() {
+                    _super.apply(this, arguments);
+                }
+                Email.isValid = function (value) {
+                    if (!/^(.+@.+\..{2,4})$/.test(value)) {
+                        return $.i18n().t('error.email_invalid');
+                    }
+                    return true;
+                };
+                return Email;
+            }(AbstractValidator);
+            Validator.Email = Email;
+        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Theeds;
+    (function (Theeds) {
+        var Validator;
+        (function (Validator) {
+            var AbstractValidator = Com.Theeds.Validator.AbstractValidator;
+            var Require = function (_super) {
+                __extends(Require, _super);
+                function Require() {
+                    _super.apply(this, arguments);
+                }
+                Require.isValid = function (value) {
+                    if (value == '' || value == undefined) {
+                        return $.i18n().t('error.field_require');
+                    }
+                    return true;
+                };
+                return Require;
+            }(AbstractValidator);
+            Validator.Require = Require;
+        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
 (function (Com) {
@@ -164,125 +240,7 @@ var Com;
                 return new ServiceManager().get(name);
             };
         })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Validator;
-        (function (Validator) {
-            var AbstractValidator = function () {
-                function AbstractValidator() {}
-                return AbstractValidator;
-            }();
-            Validator.AbstractValidator = AbstractValidator;
-        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Validator;
-        (function (Validator) {
-            var AbstractValidator = Com.Threeds.Validator.AbstractValidator;
-            var Email = function (_super) {
-                __extends(Email, _super);
-                function Email() {
-                    _super.apply(this, arguments);
-                }
-                Email.isValid = function (value) {
-                    if (!/^(.+@.+\..{2,4})$/.test(value)) {
-                        return $.i18n().t('error.email_invalid');
-                    }
-                    return true;
-                };
-                return Email;
-            }(AbstractValidator);
-            Validator.Email = Email;
-        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Validator;
-        (function (Validator) {
-            var AbstractValidator = Com.Threeds.Validator.AbstractValidator;
-            var Require = function (_super) {
-                __extends(Require, _super);
-                function Require() {
-                    _super.apply(this, arguments);
-                }
-                Require.isValid = function (value) {
-                    if (value == '' || value == undefined) {
-                        return $.i18n().t('error.field_require');
-                    }
-                    return true;
-                };
-                return Require;
-            }(AbstractValidator);
-            Validator.Require = Require;
-        })(Validator = Theeds.Validator || (Theeds.Validator = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Theeds;
-    (function (Theeds) {
-        var Core;
-        (function (Core) {
-            var Ajax;
-            (function (Ajax) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var AutoComplete = function (_super) {
-                    __extends(AutoComplete, _super);
-                    function AutoComplete(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            api: {
-                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                                serviceName: 'customerAutocomplete'
-                            },
-                            select: function (data) {}
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.service('api')[this.settings.api.serviceName](this, this.settings);
-                    }
-                    AutoComplete.prototype.render = function (conext, data) {
-                        console.log('render -->_>_>_>_>_>_>_>_>_');
-                        console.log(data);
-                    };
-                    return AutoComplete;
-                }(AbstractPlugin);
-                Ajax.AutoComplete = AutoComplete;
-            })(Ajax = Core.Ajax || (Core.Ajax = {}));
-        })(Core = Theeds.Core || (Theeds.Core = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var Com;
 (function (Com) {
@@ -299,7 +257,7 @@ var Com;
                 Adapter.AbstractAdapter = AbstractAdapter;
             })(Adapter = Service.Adapter || (Service.Adapter = {}));
         })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -316,7 +274,7 @@ var Com;
         (function (Service) {
             var Adapter;
             (function (Adapter) {
-                var AbstractAdapter = Com.Threeds.Service.Adapter.AbstractAdapter;
+                var AbstractAdapter = Com.Theeds.Service.Adapter.AbstractAdapter;
                 var Exalead = function (_super) {
                     __extends(Exalead, _super);
                     function Exalead() {
@@ -366,7 +324,7 @@ var Com;
                 Adapter.Exalead = Exalead;
             })(Adapter = Service.Adapter || (Service.Adapter = {}));
         })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -392,7 +350,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Input = function (_super) {
                         __extends(Input, _super);
                         function Input(context, data) {
@@ -459,9 +417,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Input.register();
+Com.Theeds.Component.Form.Element.Input.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -486,7 +444,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Textarea = function (_super) {
                         __extends(Textarea, _super);
                         function Textarea(context, data) {
@@ -550,9 +508,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Textarea.register();
+Com.Theeds.Component.Form.Element.Textarea.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -577,7 +535,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Checkbox = function (_super) {
                         __extends(Checkbox, _super);
                         function Checkbox(context, data) {
@@ -638,9 +596,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Checkbox.register();
+Com.Theeds.Component.Form.Element.Checkbox.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -665,7 +623,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Radio = function (_super) {
                         __extends(Radio, _super);
                         function Radio(context, data) {
@@ -725,9 +683,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Radio.register();
+Com.Theeds.Component.Form.Element.Radio.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -752,7 +710,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Select = function (_super) {
                         __extends(Select, _super);
                         function Select(context, data) {
@@ -831,9 +789,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Select.register();
+Com.Theeds.Component.Form.Element.Select.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -858,7 +816,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var FieldGroup = function (_super) {
                         __extends(FieldGroup, _super);
                         function FieldGroup(context, data) {
@@ -883,9 +841,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.FieldGroup.register();
+Com.Theeds.Component.Form.Element.FieldGroup.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -910,7 +868,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Field = function (_super) {
                         __extends(Field, _super);
                         function Field(context, data) {
@@ -994,8 +952,8 @@ var Com;
                         };
                         Field.prototype.hydrateValidators = function (data) {
                             var validators = data.validators == undefined ? [] : data.validators;
-                            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
-                            if (data.required) validators.push('Com.Threeds.Validator.Require');
+                            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Theeds.Validator.Email');
+                            if (data.required) validators.push('Com.Theeds.Validator.Require');
                             if (validators.length) data.validators = validators;
                         };
                         Field.prototype.handleError = function (e, detail) {
@@ -1026,9 +984,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Field.register();
+Com.Theeds.Component.Form.Element.Field.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1053,7 +1011,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Submit = function (_super) {
                         __extends(Submit, _super);
                         function Submit(context, data) {
@@ -1072,9 +1030,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Submit.register();
+Com.Theeds.Component.Form.Element.Submit.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1099,8 +1057,8 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-                    var SubmitElement = Com.Threeds.Component.Form.Element.Submit;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+                    var SubmitElement = Com.Theeds.Component.Form.Element.Submit;
                     var Step = function (_super) {
                         __extends(Step, _super);
                         function Step(context, data) {
@@ -1129,9 +1087,9 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Step.register();
+Com.Theeds.Component.Form.Element.Step.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1266,7 +1224,7 @@ var Com;
                                     if (!Object.keys(this.errors).length) this.post();
                                 };
                                 FromBehavior.prototype.post = function () {
-                                    var data = Com.Threeds.Component.Form.Element.From.serialize(this);
+                                    var data = Com.Theeds.Component.Form.Element.From.serialize(this);
                                     this.context.service('form').post(this, data);
                                 };
                                 FromBehavior.prototype.render = function (type, data) {
@@ -1283,7 +1241,7 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 Object.isDefined = function (obj, prop) {
     var parts = prop.split('.');
@@ -1333,8 +1291,8 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-                    var StepElement = Com.Threeds.Component.Form.Element.Step;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
+                    var StepElement = Com.Theeds.Component.Form.Element.Step;
                     var From = function (_super) {
                         __extends(From, _super);
                         function From(context, data) {
@@ -1542,16 +1500,16 @@ var Com;
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "name", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "method", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], From.prototype, "action", void 0);
-                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Threeds.Component.Form.Element.Behavior.Neolane.FromBehavior)], From);
+                        From = __decorate([component('form-element'), extend("form"), behavior(Com.Theeds.Component.Form.Element.Behavior.Neolane.FromBehavior)], From);
                         return From;
                     }(AbstractPolymerElement);
                     Element.From = From;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.From.register();
+Com.Theeds.Component.Form.Element.From.register();
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -1567,14 +1525,13 @@ var Com;
         (function (Component) {
             var Form;
             (function (Form) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var From = Com.Threeds.Component.Form.Element.From;
+                var AbstractPlugin = Com.Theeds.Plugin.AbstractPlugin;
+                var From = Com.Theeds.Component.Form.Element.From;
                 var Plugin = function (_super) {
                     __extends(Plugin, _super);
                     function Plugin(elem, options) {
                         _super.call(this, elem, options);
                         this.settings = {
-                            id: 'LDP6312',
                             display: {
                                 label: true,
                                 placeholder: true
@@ -1586,7 +1543,8 @@ var Com;
                                 }
                             },
                             form: {
-                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                                id: 'LDP6312',
+                                adapter: 'Com.Theeds.Service.Adapter.Neolane',
                                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
                             },
                             hook: {
@@ -1597,7 +1555,6 @@ var Com;
                                 setCurrentPosition: undefined
                             }
                         };
-                        var autoComplete = new Com.Threeds.Core.Ajax.AutoComplete(document.querySelector('.tab-content'), { lorem: 'lorem ipsum' });
                         this.settings = $.extend({}, this.settings, options);
                         this.service('form').form(this, {});
                     }
@@ -1616,7 +1573,7 @@ var Com;
                 };
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1633,7 +1590,7 @@ var Com;
         (function (Service) {
             var Adapter;
             (function (Adapter) {
-                var AbstractAdapter = Com.Threeds.Service.Adapter.AbstractAdapter;
+                var AbstractAdapter = Com.Theeds.Service.Adapter.AbstractAdapter;
                 var Neolane = function (_super) {
                     __extends(Neolane, _super);
                     function Neolane() {
@@ -1642,7 +1599,7 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "GET", dataType: "jsonp", url: context.settings.form.url, data: { op: 'GetFormJson', lpid: context.settings.id },
+                            type: "GET", dataType: "jsonp", url: context.settings.form.url, data: { op: 'GetFormJson', lpid: context.settings.form.id },
                             success: function (response) {
                                 context.render('form', self.data(response));
                             },
@@ -1653,7 +1610,7 @@ var Com;
                     };
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
-                        data['lpid'] = context.settings.id;
+                        data['lpid'] = context.settings.form.id;
                         $.ajax({
                             type: "POST",
                             dataType: "jsonp",
@@ -1669,17 +1626,16 @@ var Com;
                         });
                     };
                     Neolane.prototype.customerAutocomplete = function (context, data) {
-                        console.log(context);
-                        console.log(data);
+                        var self = this;
                         $.ajax({
-                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                            dataType: 'jsonp',
-                            data: {
-                                query: 'lorem',
-                                iso: 'fr'
+                            type: "GET",
+                            data: data,
+                            dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
+                            success: function (response) {
+                                context.render('form', self.data(response));
                             },
-                            success: function (data) {
-                                context.render(context, data);
+                            error: function (resultat, statut, erreur) {
+                                context.render('form', false);
                             }
                         });
                     };
@@ -1717,7 +1673,7 @@ var Com;
                 Adapter.Neolane = Neolane;
             })(Adapter = Service.Adapter || (Service.Adapter = {}));
         })(Service = Theeds.Service || (Theeds.Service = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1743,7 +1699,7 @@ var Com;
             (function (Form) {
                 var Element;
                 (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var AbstractPolymerElement = Com.Theeds.Element.AbstractPolymerElement;
                     var Option = function (_super) {
                         __extends(Option, _super);
                         function Option(data) {
@@ -1768,7 +1724,7 @@ var Com;
                 })(Element = Form.Element || (Form.Element = {}));
             })(Form = Component.Form || (Component.Form = {}));
         })(Component = Theeds.Component || (Theeds.Component = {}));
-    })(Theeds = Com.Threeds || (Com.Threeds = {}));
+    })(Theeds = Com.Theeds || (Com.Theeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Option.register();});});
+Com.Theeds.Component.Form.Element.Option.register();});});
 //# sourceMappingURL=app.js.map
