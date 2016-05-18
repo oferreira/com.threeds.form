@@ -16,10 +16,11 @@ namespace Com.Threeds.Service.Adapter {
         public form(context:any, options:any):void {
             let self:any = this;
             $.ajax({
-                type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                //type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
                // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
@@ -59,10 +60,6 @@ namespace Com.Threeds.Service.Adapter {
 
 
         public customerAutocomplete(context:Object, data:any):void {
-
-            console.log(context);
-            console.log(data);
-
             $.ajax({
                 url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
                 dataType: 'jsonp',

@@ -41,7 +41,7 @@ namespace Com.Threeds.Component.Form {
                     mandatory:' * '
                 }
             },
-            form: {
+            api: {
                 adapter: 'Com.Threeds.Service.Adapter.Neolane',
                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
@@ -57,8 +57,6 @@ namespace Com.Threeds.Component.Form {
 
         constructor(elem:any, options:Object) {
             super(elem, options);
-            // todo delete exemple
-            var autoComplete:Com.Threeds.Core.Ajax.AutoComplete =  new Com.Threeds.Core.Ajax.AutoComplete(document.querySelector('.tab-content'), {lorem:'lorem ipsum'});
 
             this.settings = $.extend({}, this.settings, options);
             this.service('api').form(this, {});
@@ -73,7 +71,9 @@ namespace Com.Threeds.Component.Form {
         }
     }
 
-    $.fn.form = function (options:Object) {
-        return new Plugin(this, options);
-    };
+    $.namespace('threeds', {
+        form: function (options:Object) {
+            return new Plugin(this, options);
+        }
+    });
 }

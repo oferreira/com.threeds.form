@@ -5,6 +5,8 @@ namespace Com.Threeds.Core.Ajax {
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
 
     export class AutoComplete extends AbstractPlugin {
+        context:any;
+
         public settings:any = {
             api: {
                 adapter: 'Com.Threeds.Service.Adapter.Neolane',
@@ -18,16 +20,17 @@ namespace Com.Threeds.Core.Ajax {
         public elem:any;
 
 
-        constructor(elem:any, options:Object) {
+        constructor(context:any, elem:any, options:Object) {
             super(elem, options);
+            this.context = context;
             this.elem = elem;
             this.settings = $.extend({}, this.settings, options);
 
             this.service('api')[this.settings.api.serviceName](this, this.settings);
         }
 
-        render(conext:any, data:any) {
-            console.log('render -->_>_>_>_>_>_>_>_>_');
+        render(context:any, data:any) {
+            console.log('AutoComplete->render->>>>>');
             console.log(data);
         }
 
