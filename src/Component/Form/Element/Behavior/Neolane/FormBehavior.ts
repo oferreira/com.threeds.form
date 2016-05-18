@@ -1,8 +1,11 @@
 /// <reference path="../../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../../../Core/Ajax/AutoComplete.ts" />
 
 namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
+
+    import AutoComplete = Com.Threeds.Core.Ajax.AutoComplete;
 
     export interface FormBehavior {
         valid(): void;
@@ -45,66 +48,69 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             let context = this;
 
             if(elem.data.name == 'company'){
-                $('#company').autocomplete({
-                    source: function (requete, reponse) {
-                        $.ajax({
-                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                            dataType: 'jsonp',
-                            data: {
-                                query: $('#company').val(),
-                                iso: $('#country').val()
-                            },
-                            success: function (data) {
-                                reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
-                                    return {
-                                        label: objet.companyName,
-                                        value: objet.companyName,
-                                        duns: objet.duns,
-                                        postalCode: objet.postalCode,
-                                        city: objet.city,
-                                        address1: objet.address1,
-                                        address2: objet.address2,
-                                        stateCode: objet.stateCode,
-                                    };
-                                }));
-                            },
+                //new AutoComplete(this, document.querySelector('#company'), {lorem:'lorem ipsum'});
 
-                        });
-                    },
-                    select: function(event, ui) {
-                        $(this).val(ui.item.value);
+                /*
+                    $('#company').autocomplete({
+                        source: function (requete, reponse) {
+                            $.ajax({
+                                url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                                dataType: 'jsonp',
+                                data: {
+                                    query: $('#company').val(),
+                                    iso: $('#country').val()
+                                },
+                                success: function (data) {
+                                    reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                        return {
+                                            label: objet.companyName,
+                                            value: objet.companyName,
+                                            duns: objet.duns,
+                                            postalCode: objet.postalCode,
+                                            city: objet.city,
+                                            address1: objet.address1,
+                                            address2: objet.address2,
+                                            stateCode: objet.stateCode,
+                                        };
+                                    }));
+                                },
 
-                        context.append({
-                            name: "duns",
-                            type: "hidden",
-                            value: ui.item.duns
-                        }).append({
-                            name: "zipCode",
-                            type: "hidden",
-                            value: ui.item.postalCode
-                        }).append({
-                            name: "city",
-                            type: "hidden",
-                            value: ui.item.city
-                        }).append({
-                            name: "address1",
-                            type: "hidden",
-                            value: ui.item.address1
-                        }).append({
-                            name: "address2",
-                            type: "hidden",
-                            value: ui.item.address2
-                        }).append({
-                            name: "state",
-                            type: "hidden",
-                            value: ui.item.stateCode
-                        });
+                            });
+                        },
+                        select: function(event, ui) {
+                            $(this).val(ui.item.value);
+
+                            context.append({
+                                name: "duns",
+                                type: "hidden",
+                                value: ui.item.duns
+                            }).append({
+                                name: "zipCode",
+                                type: "hidden",
+                                value: ui.item.postalCode
+                            }).append({
+                                name: "city",
+                                type: "hidden",
+                                value: ui.item.city
+                            }).append({
+                                name: "address1",
+                                type: "hidden",
+                                value: ui.item.address1
+                            }).append({
+                                name: "address2",
+                                type: "hidden",
+                                value: ui.item.address2
+                            }).append({
+                                name: "state",
+                                type: "hidden",
+                                value: ui.item.stateCode
+                            });
 
 
 
-                        return false;
-                    }
-                });
+                            return false;
+                        }
+                    });*/
             }
 
 

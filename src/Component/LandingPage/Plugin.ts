@@ -7,7 +7,6 @@
 /// <reference path="../../Core/Ajax/AutoComplete.ts" />
 
 
-
 interface Document {
     registerElement(tagName:string, implementation:any):any;
 }
@@ -22,7 +21,7 @@ interface JQuery {
     progress(data?:any, options?:any): JQuery;
 }
 
-namespace Com.Threeds.Component.Form {
+namespace Com.Threeds.Component.LandingPage {
 
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
     import Form = Com.Threeds.Component.Form.Element.Form;
@@ -31,39 +30,44 @@ namespace Com.Threeds.Component.Form {
 
         public settings:any = {
             id: 'LDP6312',
-            display: {
-                label: true,
-                placeholder: true,
+            type: 'download',
+            steps: {
+                0: {
+                    //name: '1',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+                    button: 'Submit'
+                },
+                1: {
+                    //name: '2',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+                    button: 'download'
+                },
             },
-            styling: {
-                label:{
-                    suffixe:' : ',
-                    mandatory:' * '
-                }
+            thankyou: {
+                title: 'Step 1',
+                content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+            },
+            error: {
+                title: 'Step 1',
+                content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua'
             },
             api: {
                 adapter: 'Com.Threeds.Service.Adapter.Neolane',
                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
-            hook: {
-                render: undefined,
-                success: undefined,
-                redirect: undefined,
-                warning: undefined,
-                setCurrentPosition: undefined,
-            },
-
+            callback: {
+                success: undefined
+            }
         };
 
         constructor(elem:any, options:Object) {
             super(elem, options);
-
             this.settings = $.extend({}, this.settings, options);
             this.service('api').form(this, {});
         }
 
         render(type:string, data:any):void {
-            if(typeof this.settings.hook.render == 'function'){
+            if (typeof this.settings.hook.render == 'function') {
                 this.settings.hook.render(this, type, data);
             } else {
                 this.elem.append(Form.create(this, data));
@@ -72,7 +76,7 @@ namespace Com.Threeds.Component.Form {
     }
 
     $.namespace('threeds', {
-        form: function (options:Object) {
+        landingPage: function (options:Object) {
             return new Plugin(this, options);
         }
     });
