@@ -14,23 +14,33 @@ var tsProject = ts.createProject('./tsconfig.json');
 var vulcanize = require('gulp-vulcanize');
 var jshint = require("gulp-jshint"),
     extract = require("gulp-html-extract")
-uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify')
+    stripComments = require('gulp-strip-comments');
 
 
 var buildHelper = require('../helpers/build-helper');
-gulp.task('app-js', function() {
 
+gulp.task('polymer-js', function () {
     gulp.src(["bower_components/polymer/polymer-micro.html", "bower_components/polymer/polymer-mini.html", "bower_components/polymer/polymer.html"])
         .pipe(extract({
             sel: "script"
         }))
         .pipe(addsrc('bower_components/polymer-ts/polymer-ts.js'))
-        .pipe(addsrc('bower_components/webcomponentsjs/webcomponents-lite.js'))
-        .pipe(addsrc('bower_components/jquery.namespace/jquery.namespace.js'))
+        .pipe(stripComments())
+        .pipe(uglify())
+        .pipe($.concat('polymer.js'))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('platform-js', function () {
+    gulp.src(["bower_components/webcomponentsjs/webcomponents-lite.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js"])
+        .pipe(stripComments())
         .pipe(uglify())
         .pipe($.concat('platform.js'))
         .pipe(gulp.dest('dist'));
+});
 
+gulp.task('app-js', function() {
     var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
@@ -40,6 +50,7 @@ gulp.task('app-js', function() {
             header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
             footer: '});});'
         }))
+        .pipe(stripComments())
         .pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
@@ -51,5 +62,14 @@ gulp.task('app-js', function() {
     return $return;
 });
 
-gulp.task('scripts', ['app-js']);
+gulp.task('build-js', function() {
+    gulp.src(["dist/platform.js", "dist/app.js"])
+        .pipe(stripComments())
+        .pipe(uglify())
+        .pipe($.concat('build.js'))
+        .pipe(gulp.dest('dist'));
+});
+
+
+gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
 gulp.task('scripts-changed', ['scripts']);
