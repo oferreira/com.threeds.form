@@ -5,20 +5,17 @@ var handleErrors = require('../utils/handle-error');
 var $ = require('gulp-load-plugins')({
     camelize: true
 });
-var gulpSequence = require('gulp-sequence');
-var addsrc = require('gulp-add-src');
-var sourcemaps = require('gulp-sourcemaps');
-var ts = require('gulp-typescript');
-var babel = require('gulp-babel');
-var tsProject = ts.createProject('./tsconfig.json');
-var vulcanize = require('gulp-vulcanize');
-var jshint = require("gulp-jshint"),
+var gulpSequence = require('gulp-sequence')
+    addsrc = require('gulp-add-src')
+    sourcemaps = require('gulp-sourcemaps')
+    ts = require('gulp-typescript')
+    babel = require('gulp-babel')
+    tsProject = ts.createProject('./tsconfig.json')
+    jshint = require("gulp-jshint"),
     extract = require("gulp-html-extract")
     uglify = require('gulp-uglify')
-    stripComments = require('gulp-strip-comments');
-
-
-var buildHelper = require('../helpers/build-helper');
+    stripComments = require('gulp-strip-comments')
+    buildHelper = require('../helpers/build-helper');
 
 gulp.task('polymer-js', function () {
     gulp.src(["bower_components/polymer/polymer-micro.html", "bower_components/polymer/polymer-mini.html", "bower_components/polymer/polymer.html"])

@@ -2,7 +2,7 @@ module.exports = {
     project: {
         name: 'cards-3ds',
     },
-    docs: {
+    app: {
         scripts: {
             app: {
                 filename: 'app',
@@ -16,9 +16,9 @@ module.exports = {
         },
         styles: {
             sass: {
-                base: 'doc/client/stylesheets/sass',
-                src: 'doc/client/stylesheets/sass/style.scss',
-                dist: 'doc/client/stylesheets'
+                base: 'sass',
+                src: 'sass/style.scss',
+                dist: 'dist'
             }
         },
         browserSync: {

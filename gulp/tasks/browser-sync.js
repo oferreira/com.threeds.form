@@ -9,7 +9,7 @@ gulp.task('browser-sync', function(){
         port: 2000,
         ghostMode: false,
         server: {
-            baseDir: config.docs.browserSync.root + '/',
+            baseDir: config.app.browserSync.root + '/',
             middleware: function (req, res, next) {
                 //console.log('Adding CORS header for ' + req.method + ': ' + req.url);
                 res.setHeader('Access-Control-Allow-Origin', '*');
