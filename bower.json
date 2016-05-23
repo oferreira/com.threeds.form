@@ -22,5 +22,8 @@
     "polymer": "Polymer/polymer#~1.4.0",
     "chosen": "~1.5.1",
     "jquery.namespace": "https://github.com/oferreira/jquery.namespace.git"
+  },
+  "devDependencies": {
+    "mustache.js": "mustache#~2.2.1"
   }
 }

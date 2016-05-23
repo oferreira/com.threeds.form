@@ -1,0 +1,41 @@
+/// <reference path="../../../Element/AbstractPolymerElement.ts" />
+
+namespace Com.Threeds.Component.Tabs.Element {
+
+    import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+
+    @component('tabs-header-element')
+    @extend("div")
+    export class Header extends AbstractPolymerElement {
+        public settings:any = {
+            data: {
+                0: {
+                    title: 'tab 1',
+                },
+                1: {
+                    title: 'tab 2',
+                }
+            }
+        };
+
+        constructor(context:any, data:any) {
+            super(data);
+
+            let items:HTMLUListElement = document.createElement('ul');
+            items.classList.add('ds-tabs-header');
+
+            let item:HTMLLIElement;
+            for (let k in this.settings.data) {
+                item = document.createElement('li');
+                item.setAttribute("data-index", k);
+                item.innerText = this.settings.data[k].title;
+                items.appendChild(item);
+            }
+
+            this.appendChild(items);
+        }
+    }
+}
+
+Com.Threeds.Component.Tabs.Element.Header.register();
+

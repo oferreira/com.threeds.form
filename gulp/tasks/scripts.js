@@ -5,8 +5,8 @@ var handleErrors = require('../utils/handle-error');
 var $ = require('gulp-load-plugins')({
     camelize: true
 });
-var gulpSequence = require('gulp-sequence')
-    addsrc = require('gulp-add-src')
+var gulpSequence = require('gulp-sequence').use(gulp);
+var addsrc = require('gulp-add-src')
     sourcemaps = require('gulp-sourcemaps')
     ts = require('gulp-typescript')
     babel = require('gulp-babel')
@@ -30,7 +30,7 @@ gulp.task('polymer-js', function () {
 });
 
 gulp.task('platform-js', function () {
-    gulp.src(["bower_components/webcomponentsjs/webcomponents-lite.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js"])
+    gulp.src(["bower_components/webcomponentsjs/webcomponents-lite.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/mustache.js/mustache.min.js"])
         .pipe(stripComments())
         .pipe(uglify())
         .pipe($.concat('platform.js'))
@@ -68,5 +68,22 @@ gulp.task('build-js', function() {
 });
 
 
-gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
+gulp.task('scripts', function(){
+  gulp.src(['src/*.ts', 'src/**/*.ts'])
+        .pipe(sourcemaps.init())
+        .pipe(ts(tsProject))
+        .pipe(babel())
+        .pipe($.concat('app.js'))
+        .pipe(wrapper({
+            header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});});'
+        }))
+        .pipe(stripComments())
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist'));
+
+
+    gulpSequence('polymer-js', 'platform-js'/*, 'app-js', 'build-js'*/)
+});
 gulp.task('scripts-changed', ['scripts']);

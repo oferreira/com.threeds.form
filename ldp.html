@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Landing page</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/dist/platform.js"></script>
+    <script type="text/javascript" src="/dist/app.js"></script>
+    <link rel="stylesheet" href="/dist/style.css" >
+
+    <style type="text/css">
+        .error {
+            border: 1px solid red;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="ldp"></div>
+<script type="text/javascript">
+    $(function () {
+        addEventListener('WebComponentsReady', function () {
+            var options = {
+
+            };
+            $('#ldp').threeds().landingPage(options);
+        });
+    });
+</script>
+</body>
+</html>

@@ -5,7 +5,8 @@
 /// <reference path="../../Component/Form/Element/Form.ts" />
 /// <reference path="../../I18n/Translator.ts" />
 /// <reference path="../../Core/Ajax/AutoComplete.ts" />
-
+/// <reference path="../../Component/Tabs/Element/Tabs.ts" />
+/// <reference path="../../Component/Form/Element/Form.ts" />
 
 interface Document {
     registerElement(tagName:string, implementation:any):any;
@@ -24,26 +25,31 @@ interface JQuery {
 namespace Com.Threeds.Component.LandingPage {
 
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+    import Tabs = Com.Threeds.Component.Tabs.Element.Tabs;
     import Form = Com.Threeds.Component.Form.Element.Form;
 
     export class Plugin extends AbstractPlugin {
-
+        public elem:any;
         public settings:any = {
             id: 'LDP6312',
             type: 'download',
             steps: {
                 0: {
-                    //name: '1',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
-                    button: 'Submit'
+                    title: 'tab 1',
+                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                    button: {
+                        'label': 'send'
+                    }
                 },
                 1: {
-                    //name: '2',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
-                    button: 'download'
-                },
+                    title: 'tab 2',
+                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                    button: {
+                        'label': 'send'
+                    }
+                }
             },
-            thankyou: {
+            success: {
                 title: 'Step 1',
                 content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
             },
@@ -51,27 +57,63 @@ namespace Com.Threeds.Component.LandingPage {
                 title: 'Step 1',
                 content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua'
             },
-            api: {
-                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
-            },
-            callback: {
-                success: undefined
+            form: {
+                display: {
+                    label: false,
+                    placeholder: true,
+                },
+                styling: {
+                    label:{
+                        suffixe:' : ',
+                        mandatory:' * '
+                    }
+                },
+                api: {
+                    adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                },
+                hook: {
+                    render: undefined,
+                    success: undefined,
+                    redirect: undefined,
+                    warning: undefined,
+                    setCurrentPosition: undefined,
+                },
+                callback: {
+                    success: undefined
+                },
             }
         };
 
         constructor(elem:any, options:Object) {
             super(elem, options);
+            this.elem = elem;
             this.settings = $.extend({}, this.settings, options);
-            this.service('api').form(this, {});
+            this.service('form.api').form(this, {});
+        }
+
+        tabs():Tabs{
+            let options:Object = {
+                data: this.settings.steps
+            };
+
+            return Tabs.create(this, options);
+        }
+
+        form(data:any):Form{
+            this.settings.form.id = this.settings.id;
+            this.settings.form.callback = this.settings.callback;
+
+            return new Form.create(this,this.settings.form, data);
         }
 
         render(type:string, data:any):void {
-            if (typeof this.settings.hook.render == 'function') {
-                this.settings.hook.render(this, type, data);
-            } else {
-                this.elem.append(Form.create(this, data));
-            }
+            this.elem.append(this.tabs());
+
+            let container:HTMLDivElement = document.createElement('div');
+            container.classList.add('ds-form');
+            container.appendChild(this.form(data));
+            this.elem.append(container);
         }
     }
 
