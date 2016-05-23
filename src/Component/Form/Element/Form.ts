@@ -55,6 +55,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             super(data);
             this.context = context;
+            this.classList.add('ds-form')
             this.dispatch(data);
         }
 

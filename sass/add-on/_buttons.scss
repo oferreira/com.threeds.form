@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+//   =============================================================================
+//   Btn
+//   =============================================================================
+
+
+//   Btn Default
+//   =============================================================================
+.ds-btn{
+	display: inline-block;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform: uppercase;
+	@include box-sizing(border-box);
+	border-radius:100px;
+	cursor: pointer;
+	color:$white;
+	border:2px solid $blueAction;
+	font-size: $font-size-btn;
+	font-family: $ds-regular;
+	padding: $padding-btn-small $padding-btn;
+	background: $blueAction;
+}
+
+//   Btn Scream
+//   =============================================================================
+.ds-btn-scream{}
+
+//   Btn shout
+//   =============================================================================
+.ds-btn-shout{}
+

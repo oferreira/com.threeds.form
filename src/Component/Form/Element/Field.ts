@@ -27,10 +27,9 @@ namespace Com.Threeds.Component.Form.Element {
             this.hydrateValidators(data);
             super(data);
             this.data = data;
-            this.classList.add('form-group')
-            this.classList.add('row')
+            this.classList.add('ds-form-group-element')
             if (typeof data.required != 'undefined' && typeof data.required) {
-                this.classList.add('field-required');
+                this.classList.add('ds-field-required');
             }
             this.classList.add(`field-${data.name}`);
             this.append(context, data);

@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>CardsDS</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Form 3DS</title>
 
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="/dist/build.js"></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/dist/style.css" >
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
+    -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
-
-
 
 
     <style type="text/css">
@@ -30,13 +41,12 @@
 
 </head>
 <body>
-<div class="col-md-12">
-    <div class="col-md-6">
+<div class="pure-g">
+    <div class="pure-u-1-2">
+
         <ul class="nav nav-tabs nav-tabs-step" role="tablist">
-            <li role="presentation" class="active disabled"><a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">Step 1</a>
-            </li>
-            <li role="presentation" class="disabled"><a href="#step-2" aria-controls="step-2" role="tab" data-toggle="tab" >Step</a>
-            </li>
+            <li role="presentation" class="active disabled"><a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">Step 1</a></li>
+            <li role="presentation" class="disabled"><a href="#step-2" aria-controls="step-2" role="tab" data-toggle="tab" >Step</a></li>
         </ul>
 
         <div class="tab-content">
@@ -46,7 +56,7 @@
 
     </div>
 
-    <div id="form" class="col-md-6"></div>
+    <div id="form" class="pure-u-1-2"></div>
 </div>
 
 <script type="text/javascript">

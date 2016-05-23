@@ -11,12 +11,12 @@ namespace Com.Threeds.Component.Form.Element {
     import SubmitElement = Com.Threeds.Component.Form.Element.Submit;
 
     @component('step-element')
-    @extend("div")
+    @extend("fieldset")
     export class Step extends AbstractPolymerElement {
         constructor(context:any, data:any) {
             if (data.success == undefined && !data.success && data.result.config !== undefined) return;
             super(data);
-
+            this.classList.add('ds-form-fieldset');
 
             this.appendChild(Input.create(context, {
                 name: "op",
@@ -24,17 +24,23 @@ namespace Com.Threeds.Component.Form.Element {
                 value: data.result.nextAction
             }));
 
+            let container:HTMLDivElement = document.createElement('div');
+            container.classList.add('testest');
+
             for (let k in data.result.config) {
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
-                    this.appendChild(Input.create(context, data.result.config[k]));
+                    container.appendChild(Input.create(context, data.result.config[k]));
                 } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
-                    this.appendChild(FieldGroup.create(context, data.result.config[k]));
+                    container.appendChild(FieldGroup.create(context, data.result.config[k]));
                 } else {
-                    this.appendChild(Field.create(context, data.result.config[k]));
+                    container.appendChild(Field.create(context, data.result.config[k]));
                 }
             }
 
+            this.appendChild(container);
+
             this.appendChild(SubmitElement.create({}));
+
         }
     }
 }

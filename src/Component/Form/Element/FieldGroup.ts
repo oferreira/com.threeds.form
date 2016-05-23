@@ -14,8 +14,7 @@ namespace Com.Threeds.Component.Form.Element {
 
         constructor(context:any, data:any) {
             super(data);
-            this.classList.add('form-group');
-            this.classList.add('row');
+            this.classList.add('ds-form-group-element');
 
             let label:HTMLLabelElement = document.createElement('label');
             label.className = 'col-sm-2 form-control-label';
