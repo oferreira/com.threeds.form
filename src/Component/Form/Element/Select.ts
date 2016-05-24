@@ -49,8 +49,8 @@ namespace Com.Threeds.Component.Form.Element {
             for (let k in this.data.options) {
                 if (this.data.value != undefined && this.data.options[k].value == this.data.value)  this.data.options[k].selected = true;
                 if (typeof this.data.parentField != 'undefined') {
-                    if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value)
-                        this.appendChild(Option.create(this.data.options[k]));
+                    //if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value)
+                     ///   this.appendChild(Option.create(this.data.options[k]));
                 } else {
                     this.appendChild(Option.create(this.data.options[k]));
                 }

@@ -66,7 +66,7 @@ namespace Com.Threeds.Component.Form {
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);
             } else {
-                this.elem.append(Form.create(this, this.settings, data));
+                this.elem.append(Form.create(this, data));
             }
         }
     }

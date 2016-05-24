@@ -22,32 +22,6 @@ namespace Com.Threeds.Component.Form.Element {
     export class Form extends AbstractPolymerElement {
         context:any;
 
-        public settings:any = {
-            id: 'LDP6312',
-            display: {
-                label: true,
-                placeholder: true,
-            },
-            styling: {
-                label:{
-                    suffixe:' : ',
-                    mandatory:' * '
-                }
-            },
-            api: {
-                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
-            },
-            hook: {
-                render: undefined,
-                success: undefined,
-                redirect: undefined,
-                warning: undefined,
-                setCurrentPosition: undefined,
-            },
-
-        };
-
         @property({type: String, reflectToAttribute: true})
             id:string;
 
@@ -67,7 +41,7 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         public set currentPosition(value:number) {
-            if (typeof this.settings.hook.setCurrentPosition == 'function') {
+            if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
                 this.settings.hook.setCurrentPosition(this, value);
             }
 
@@ -78,13 +52,15 @@ namespace Com.Threeds.Component.Form.Element {
 
         public _errors:Object[] = [];
 
-        constructor(context:any, options:any, data:any) {
+        constructor(context:any, data:any) {
             super(data);
             this.context = context;
-            this.settings = $.extend({}, this.settings, options);
-
             this.classList.add('ds-form')
             this.dispatch(data);
+        }
+
+        public get settings():any {
+            return this.context.settings;
         }
 
         public get errors():Object[] {
@@ -156,13 +132,13 @@ namespace Com.Threeds.Component.Form.Element {
         update(data:any) {
             this.add(data);
             this.clear();
-            this.appendChild(StepElement.create(this, data));
+            this.appendChild(StepElement.create(this.context, data));
         }
 
         goTo(id:number):void {
             if (typeof this._steps[id] != "undefined") {
                 this.clear();
-                this.appendChild(StepElement.create(this, this._steps[id]));
+                this.appendChild(StepElement.create(this.context, this._steps[id]));
                 this.currentPosition = id;
             }
         }
@@ -191,8 +167,8 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         success(data:any) {
-            if (typeof this.settings.hook.success == 'function') {
-                this.settings.hook.success(this, data);
+            if (typeof this.context.settings.hook.success == 'function') {
+                this.context.settings.hook.success(this, data);
             } else {
                 this.clear();
                 this.innerHTML = `<h1>${data.title}</h1>${data.content}`;
@@ -200,8 +176,8 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         warning(message:string) {
-            if (typeof this.settings.hook.warning == 'function') {
-                this.settings.hook.warning(this, message);
+            if (typeof this.context.settings.hook.warning == 'function') {
+                this.context.settings.hook.warning(this, message);
             } else {
                 this.clear();
                 this.innerHTML = message;
@@ -209,8 +185,8 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         redirect(url:string) {
-            if (typeof this.settings.hook.redirect == 'function') {
-                this.settings.hook.redirect(this, url);
+            if (typeof this.context.settings.hook.redirect == 'function') {
+                this.context.settings.hook.redirect(this, url);
             } else {
                 window.location = <any>url;
             }

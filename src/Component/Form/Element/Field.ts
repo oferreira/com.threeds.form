@@ -36,7 +36,7 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         label(context:any, data:Object):HTMLLabelElement {
-            if (!context.settings.display.label) return;
+            if (!context.settings.display.label && data.type.toLowerCase() != 'checkbox' && data.type.toLowerCase() != 'radio') return;
 
             let label:HTMLLabelElement = document.createElement('label');
             label.htmlFor = data.name;
@@ -74,6 +74,7 @@ namespace Com.Threeds.Component.Form.Element {
             let type:string = data.type.toLowerCase();
             let container:HTMLDivElement = this.container(context, data);
             let label:HTMLLabelElement = this.label(context, data);
+
             if (type != 'checkbox' && type != 'radio' && context.settings.display.label) {
                 this.appendChild(label);
             }

@@ -5,7 +5,7 @@ var handleErrors = require('../utils/handle-error');
 var $ = require('gulp-load-plugins')({
     camelize: true
 });
-var gulpSequence = require('gulp-sequence').use(gulp);
+var gulpSequence = require('gulp-sequence');
 var addsrc = require('gulp-add-src')
     sourcemaps = require('gulp-sourcemaps')
     ts = require('gulp-typescript')
@@ -68,22 +68,5 @@ gulp.task('build-js', function() {
 });
 
 
-gulp.task('scripts', function(){
-  gulp.src(['src/*.ts', 'src/**/*.ts'])
-        .pipe(sourcemaps.init())
-        .pipe(ts(tsProject))
-        .pipe(babel())
-        .pipe($.concat('app.js'))
-        .pipe(wrapper({
-            header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
-            footer: '});});'
-        }))
-        .pipe(stripComments())
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
-
-
-    gulpSequence('polymer-js', 'platform-js'/*, 'app-js', 'build-js'*/)
-});
+gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
 gulp.task('scripts-changed', ['scripts']);

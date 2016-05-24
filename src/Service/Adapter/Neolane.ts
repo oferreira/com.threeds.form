@@ -12,15 +12,15 @@ namespace Com.Threeds.Service.Adapter {
 
     export class Neolane extends AbstractAdapter {
 
-
         public form(context:any, options:any):void {
             let self:any = this;
+
             $.ajax({
-                //type: "GET",dataType: "jsonp",url: context.settings.form.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-                type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
+                //type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
                // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
@@ -42,7 +42,7 @@ namespace Com.Threeds.Service.Adapter {
             $.ajax({
                 type: "POST",
                 dataType: "jsonp",
-                url: context.settings.form.url,
+                url: context.settings.api.url,
                 //data: data,
                 data:data,
                 //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
@@ -110,4 +110,20 @@ namespace Com.Threeds.Service.Adapter {
         }
 
     }
+}
+
+
+Object.find = function (o:any, s:string):boolean {
+    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+    s = s.replace(/^\./, '');           // strip a leading dot
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
 }

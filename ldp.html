@@ -2,19 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Landing page</title>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/dist/platform.js"></script>
     <script type="text/javascript" src="/dist/app.js"></script>
-    <link rel="stylesheet" href="/dist/style.css" >
-
     <style type="text/css">
-        .error {
-            border: 1px solid red;
-        }
-
-        .hide {
-            display: none;
-        }
+        .hide,
+        .ds-tabs .ds-tab{display: none;}
+        .ds-tabs .ds-tab.active{display: block;}
+        .ds-tabs ul li.active,
+        .ds-tabs ul li.active a{color: red;}
     </style>
 </head>
 <body>
@@ -23,7 +19,58 @@
     $(function () {
         addEventListener('WebComponentsReady', function () {
             var options = {
-
+                id: 'LDP6312',
+                type: 'download',
+                steps: {
+                    0: {
+                        title: 'tab 1',
+                        content: 'tab 1 = Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
+                        button: {
+                            'label': 'send'
+                        }
+                    },
+                    1: {
+                        title: 'tab 2',
+                        content: 'tab 2 = Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
+                        button: {
+                            'label': 'send'
+                        }
+                    }
+                },
+                success: {
+                    title: 'Thanks you !',
+                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+                },
+                error: {
+                    title: 'Error !',
+                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua'
+                },
+                form: {
+                    display: {
+                        label: false,
+                        placeholder: true,
+                    },
+                    styling: {
+                        label:{
+                            suffixe:' : ',
+                            mandatory:' * '
+                        }
+                    },
+                    api: {
+                        adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                        url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                    },
+                    hook: {
+                        render: undefined,
+                        success: undefined,
+                        redirect: undefined,
+                        warning: undefined,
+                        setCurrentPosition: undefined,
+                    },
+                    callback: {
+                        success: undefined
+                    },
+                }
             };
             $('#ldp').threeds().landingPage(options);
         });

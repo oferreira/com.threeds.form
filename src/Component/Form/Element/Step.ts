@@ -24,20 +24,15 @@ namespace Com.Threeds.Component.Form.Element {
                 value: data.result.nextAction
             }));
 
-            let container:HTMLDivElement = document.createElement('div');
-            container.classList.add('testest');
-
             for (let k in data.result.config) {
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
-                    container.appendChild(Input.create(context, data.result.config[k]));
+                    this.appendChild(Input.create(context, data.result.config[k]));
                 } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
-                    container.appendChild(FieldGroup.create(context, data.result.config[k]));
+                    this.appendChild(FieldGroup.create(context, data.result.config[k]));
                 } else {
-                    container.appendChild(Field.create(context, data.result.config[k]));
+                    this.appendChild(Field.create(context, data.result.config[k]));
                 }
             }
-
-            this.appendChild(container);
 
             this.appendChild(SubmitElement.create({}));
 

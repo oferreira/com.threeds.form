@@ -7,6 +7,7 @@ namespace Com.Threeds.Component.Tabs.Element {
     @component('tabs-header-element')
     @extend("div")
     export class Header extends AbstractPolymerElement {
+
         public settings:any = {
             data: {
                 0: {
@@ -25,15 +26,25 @@ namespace Com.Threeds.Component.Tabs.Element {
             items.classList.add('ds-tabs-header');
 
             let item:HTMLLIElement;
+            let link:HTMLAnchorElement;
             for (let k in this.settings.data) {
+                link = document.createElement('a');
+                link.innerText = this.settings.data[k].title;
+                link.setAttribute("data-index", k);
+                link.href = `#step-${k}`;
+
+                link.onclick = function(e:any){
+                    alert('event click disabled ...');
+                    e.preventDefault();
+                };
                 item = document.createElement('li');
-                item.setAttribute("data-index", k);
-                item.innerText = this.settings.data[k].title;
+                item.appendChild(link);
                 items.appendChild(item);
             }
 
             this.appendChild(items);
         }
+
     }
 }
 

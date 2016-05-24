@@ -27,13 +27,13 @@ namespace Com.Threeds.Component.Tabs.Element {
         constructor(context:any, options:any, data:any) {
             super(data);
             this.settings = $.extend({}, this.settings, options);
-
+            this.classList.add('ds-tabs');
             this.appendChild(Header.create(this, this.settings.data[k]));
 
             let container:HTMLDivElement = document.createElement('div');
             container.classList.add('ds-tabs-container');
             for (let k in this.settings.data) {
-                container.appendChild(Tab.create(this, this.settings.data[k]));
+               container.appendChild(Tab.create(this, this.settings.data[k]));
             }
 
             this.appendChild(container);

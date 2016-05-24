@@ -9,8 +9,7 @@ namespace Com.Threeds.Component.Tabs.Element {
     export class Tab extends AbstractPolymerElement {
         constructor(context:any, data:any) {
             super(data);
-            console.log(data);
-
+            this.classList.add('ds-tab');
             this.innerHTML = data.content;
         }
     }
