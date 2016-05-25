@@ -26,7 +26,7 @@ namespace Com.Threeds.Component.Form.Element {
 
         @observe("label")
         labelChanged(newValue:string, oldValue:string) {
-            this.innerText = newValue;
+            this.innerHTML = newValue;
         }
 
         ready() {

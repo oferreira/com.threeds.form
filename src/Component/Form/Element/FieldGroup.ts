@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             let label:HTMLLabelElement = document.createElement('label');
             label.className = 'col-sm-2 form-control-label';
-            label.innerText = data.label;
+            label.innerHTML = data.label;
             this.appendChild(label);
 
             let container:HTMLDivElement = document.createElement('div');

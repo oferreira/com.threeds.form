@@ -53,7 +53,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (typeof data.required != 'undefined' && data.required && context.settings.styling.label.mandatory != '') {
                 let mandatory = document.createElement('span');
                 mandatory.setAttribute('class', 'mandatory');
-                mandatory.innerText = context.settings.styling.label.mandatory;
+                mandatory.innerHTML = context.settings.styling.label.mandatory;
                 label.appendChild(mandatory);
             }
 

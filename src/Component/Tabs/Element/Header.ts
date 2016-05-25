@@ -29,7 +29,7 @@ namespace Com.Threeds.Component.Tabs.Element {
             let link:HTMLAnchorElement;
             for (let k in this.settings.data) {
                 link = document.createElement('a');
-                link.innerText = this.settings.data[k].title;
+                link.innerHTML = this.settings.data[k].title;
                 link.setAttribute("data-index", k);
                 link.href = `#step-${k}`;
 
