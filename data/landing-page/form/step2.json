@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "properties": {
+      "title": "This is the page title",
+      "language": "fr",
+      "submitLabel": "Télécharger"
+    },
+    "config": [
+
+      {
+        "name": "domain-of-interest",
+        "type": "text",
+        "label": "Domain of interest",
+        "required": true
+      },
+      {
+        "name": "level",
+        "type": "text",
+        "label": "Level",
+        "required": true
+      },
+      {
+        "name": "job-level",
+        "type": "text",
+        "label": "Job level",
+        "required": true
+      },
+      {
+        "name": "department",
+        "label": "Department",
+        "type": "text"
+      },
+      {
+        "name": "optin",
+        "type": "checkbox",
+        "label": "I want to receive emails from Dassault Systèmes Group (\"3DS\") on 3DS products, services and companies. I will have the right to access or modify my data or object to the sending of any further marketing communications by 3DS by following the instructions inserted within the marketing communications I will receive from 3DS.",
+        "value": "1",
+        "required": false
+      }
+    ],
+    "data": {
+      "email": "john.doe@company.com",
+      "custom2": true
+    }
+  }
+}

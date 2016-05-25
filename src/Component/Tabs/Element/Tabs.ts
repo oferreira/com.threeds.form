@@ -12,7 +12,7 @@ namespace Com.Threeds.Component.Tabs.Element {
     @extend("div")
     export class Tabs extends AbstractPolymerElement {
         public settings:any = {
-            data: {
+            /*data: {
                 0: {
                     title: 'tab 1',
                     content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
@@ -21,14 +21,14 @@ namespace Com.Threeds.Component.Tabs.Element {
                     title: 'tab 2',
                     content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
                 }
-            }
+            }*/
         };
 
         constructor(context:any, options:any, data:any) {
             super(data);
             this.settings = $.extend({}, this.settings, options);
             this.classList.add('ds-tabs');
-            this.appendChild(Header.create(this, this.settings.data[k]));
+            this.appendChild(Header.create(this, this.settings));
 
             let container:HTMLDivElement = document.createElement('div');
             container.classList.add('ds-tabs-container');

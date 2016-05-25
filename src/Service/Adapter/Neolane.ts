@@ -19,7 +19,8 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
-                type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
+                type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
                // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
@@ -40,13 +41,11 @@ namespace Com.Threeds.Service.Adapter {
             data['lpid'] = context.settings.id;
 
             $.ajax({
-                type: "POST",
-                dataType: "jsonp",
-                url: context.settings.api.url,
-                //data: data,
+                //type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
+                //type: "GET",dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
                 data:data,
-                //dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
-                //dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
                 success: function (response:any) {
                     console.log(response);
                     context.render('form', self.data(response));

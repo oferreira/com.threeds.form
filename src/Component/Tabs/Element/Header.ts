@@ -9,18 +9,19 @@ namespace Com.Threeds.Component.Tabs.Element {
     export class Header extends AbstractPolymerElement {
 
         public settings:any = {
-            data: {
+            /*data: {
                 0: {
                     title: 'tab 1',
                 },
                 1: {
                     title: 'tab 2',
                 }
-            }
+            }*/
         };
 
-        constructor(context:any, data:any) {
-            super(data);
+        constructor(context:any, options:any) {
+            super();
+            this.settings = $.extend({}, this.settings, options);
 
             let items:HTMLUListElement = document.createElement('ul');
             items.classList.add('ds-tabs-header');

@@ -5,6 +5,7 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/dist/platform.js"></script>
     <script type="text/javascript" src="/dist/app.js"></script>
+    <link rel="stylesheet" href="/dist/style.css" >
     <style type="text/css">
         .hide,
         .ds-tabs .ds-tab{display: none;}
@@ -13,7 +14,7 @@
         .ds-tabs ul li.active a{color: red;}
     </style>
 </head>
-<body>
+<body>Email
 <div id="ldp"></div>
 <script type="text/javascript">
     $(function () {
@@ -22,18 +23,18 @@
                 id: 'LDP6312',
                 type: 'download',
                 steps: {
-                    0: {
-                        title: 'tab 1',
-                        content: 'zerùezrùze',
+                    1: {
+                        title: '1',
+                        content: 'To download the Case Study, please provide your email',
                         button: {
-                            'label': 'send'
+                            'label': 'NEXT'
                         }
                     },
-                    1: {
-                        title: 'tab 2',
-                        content: 'tab 2 = Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
+                    0: {
+                        title: '2',
+                        content: 'Please provide more informations to complete your Case Study download',
                         button: {
-                            'label': 'send'
+                            'label': 'DOWNLOAD'
                         }
                     }
                 },
