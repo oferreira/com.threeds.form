@@ -14,7 +14,7 @@
         .ds-tabs ul li.active a{color: red;}
     </style>
 </head>
-<body>Email
+<body>
 <div id="ldp"></div>
 <script type="text/javascript">
     $(function () {
@@ -23,14 +23,14 @@
                 id: 'LDP6312',
                 type: 'download',
                 steps: {
-                    1: {
+                    0: {
                         title: '1',
                         content: 'To download the Case Study, please provide your email',
                         button: {
                             'label': 'NEXT'
                         }
                     },
-                    0: {
+                    1: {
                         title: '2',
                         content: 'Please provide more informations to complete your Case Study download',
                         button: {
@@ -39,12 +39,15 @@
                     }
                 },
                 success: {
-                    title: 'Thanks you !',
-                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+                    title: 'Thanks for your download',
+                    contents: {
+                        content: '<p>Your download should start automatically, if not use the direct link</p><p><a href="#">&gt; Download</a><br />PDF - 3,84Mo</p>',
+                        footer: '<p>You want to be contacted for a commercial purpose?</p><p><a href="#" class="btn btn-primary">CONTACT ME</a></p>',
+                    }
                 },
                 error: {
-                    title: 'Error !',
-                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua'
+                    title: 'Sorry !',
+                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
                 },
                 form: {
                     display: {
