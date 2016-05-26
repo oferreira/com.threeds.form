@@ -185,6 +185,8 @@
 
 		&.no-border{border:0;}
 
+		.ds-form-label{display: none;}
+
 		.ds-form-select,
 		.ds-form-input-text{
 			@include box-sizing(border-box);

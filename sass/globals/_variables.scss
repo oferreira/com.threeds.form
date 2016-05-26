@@ -14,6 +14,14 @@
 //  6. Icon
 
 
+// Opacity
+// ==========================================================================
+$opacity-12 :0.12;
+$opacity-22 :0.22;
+$opacity-35 :0.35;
+$opacity-57 :0.57;
+$opacity-92 :0.92;
+
 // 1. Fonts
 // ==========================================================================
 
@@ -75,19 +83,26 @@ $biovia: #007EB9;
 
 //Black
 $black:#000000;
-$black-12:rgba(0, 0, 0, 0.12);
-$black-22:rgba(0, 0, 0, 0.22);
-$black-35:rgba(0, 0, 0, 0.35);
-$black-57:rgba(0, 0, 0, 0.57);
-$black-92:rgba(0, 0, 0, 0.92);
+$black-12:rgba(0, 0, 0, $opacity-12);
+$black-22:rgba(0, 0, 0, $opacity-22);
+$black-35:rgba(0, 0, 0, $opacity-35);
+$black-57:rgba(0, 0, 0, $opacity-57);
+$black-92:rgba(0, 0, 0, $opacity-92);
 
 //White
 $white:#ffffff;
-$white-12:rgba(255, 255, 255, 0.12);
-$white-22:rgba(255, 255, 255, 0.22);
-$white-35:rgba(255, 255, 255, 0.35);
-$white-57:rgba(255, 255, 255, 0.57);
-$white-92:rgba(255, 255, 255, 0.92);
+$white-12:rgba(255, 255, 255, $opacity-12);
+$white-22:rgba(255, 255, 255, $opacity-22);
+$white-35:rgba(255, 255, 255, $opacity-35);
+$white-57:rgba(255, 255, 255, $opacity-57);
+$white-92:rgba(255, 255, 255, $opacity-92);
+
+//blue overlay
+$overlay-blue-12:rgba(0, 82, 134, $opacity-12);
+$overlay-blue-22:rgba(0, 82, 134, $opacity-22);
+$overlay-blue-35:rgba(0, 82, 134, $opacity-35);
+$overlay-blue-57:rgba(0, 82, 134, $opacity-57);
+$overlay-blue-92:rgba(0, 82, 134, $opacity-92);
 
 
 //Light Theme
@@ -144,6 +159,12 @@ $size-switch:27px;
 // ==========================================================================
 
 $ico-error:url('../icon/shape.svg');
+
+
+
+
+
+
 
 
 
