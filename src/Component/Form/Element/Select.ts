@@ -49,6 +49,7 @@ namespace Com.Threeds.Component.Form.Element {
             for (let k in this.data.options) {
                 if (this.data.value != undefined && this.data.options[k].value == this.data.value)  this.data.options[k].selected = true;
                 if (typeof this.data.parentField != 'undefined') {
+                    console.log(parentField);
                     if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value){
                         this.appendChild(Option.create(this.data.options[k]));
                     }
@@ -69,13 +70,13 @@ namespace Com.Threeds.Component.Form.Element {
             this._errorMessage = (value == undefined ? '' : value);
         }
 
-        @listen('input')
+        @listen('change')
         _onChange(e:Event):void {
             this.fire('field-value-changed', this);
             this.selectOption(this.value);
         }
 
-        selectOption(value:string):void {
+      selectOption(value:string):void {
             for (let i = 0; i < (<any>Polymer.dom(this)).node.length; i++) {
                 (<any>Polymer.dom(this)).node[i].selected = ((<any>Polymer.dom(this)).node[i].value === value ? true : false);
             }

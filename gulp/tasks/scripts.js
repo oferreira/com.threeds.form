@@ -30,7 +30,7 @@ gulp.task('polymer-js', function () {
 });
 
 gulp.task('platform-js', function () {
-    gulp.src(["bower_components/webcomponentsjs/webcomponents-lite.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/mustache.js/mustache.min.js"])
+    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/mustache.js/mustache.min.js"])
         .pipe(stripComments())
         .pipe(uglify())
         .pipe($.concat('platform.js'))
@@ -69,4 +69,4 @@ gulp.task('build-js', function() {
 
 
 gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
-gulp.task('scripts-changed', ['scripts']);
+gulp.task('scripts-changed', ['app-js']);
