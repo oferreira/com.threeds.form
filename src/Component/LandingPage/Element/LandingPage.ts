@@ -50,9 +50,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
         success(context:any, data:any) {
-            console.log(context.settings);
            context.context.elem.html(`<h1>${context.settings.success.title}</h1>${context.context.settings.success.content}`);
-
         }
 
         error(context:any, message:string) {
