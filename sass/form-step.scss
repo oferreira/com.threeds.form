@@ -39,7 +39,7 @@ body{padding: 150px;}
 
 //STEP 1
 .ds-ldp-global-step-1{
-	width: 476px;
+	max-width: 476px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {width: 100%;}
 	.ds-ldp-form-container{
@@ -47,7 +47,7 @@ body{padding: 150px;}
 		z-index: 2;
 		left:0;
 		right:0;
-		top:0;
+		top:480px;
 		bottom: 0;
 	}
 	.ds-form-fieldset{
@@ -60,6 +60,30 @@ body{padding: 150px;}
 	width: 952px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {width: 50%;}
+}
+
+//STEP 3
+.ds-ldp-global-step-3{
+	max-width: 520px;
+	.ds-lpd-info-form,
+	.ds-ldp-form-container {width: 100%;}
+
+	.ds-lpd-info-form{
+		max-height:330px;
+	}
+
+	.ds-ldp-form-container{
+		max-height: 190px;
+	}
+
+
+}
+
+
+.ds-ldp-form-contact{
+	max-width: 476px;
+	margin: auto;
+	text-align: center;
 }
 
 
@@ -75,6 +99,21 @@ body{padding: 150px;}
 	background-size: cover;
 	-webkit-filter: blur(4px);
 	filter: blur(4px);
+	@extend .ds-overlay-57;
+	@include box-sizing(border-box);
+	z-index: -1;
+}
+
+// background blur
+.ds-lpd-info-no-blur{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	background-size: cover;
 	@extend .ds-overlay-57;
 	@include box-sizing(border-box);
 	z-index: -1;
@@ -138,6 +177,8 @@ body{padding: 150px;}
 
 //tab container
 .ds-tabs-container{
+	height: 260px;
+	overflow: hidden;
 	.ds-tab{
 		font-size: 32px;
 		line-height: 30px;
@@ -150,3 +191,110 @@ body{padding: 150px;}
 	}
 }
 
+
+// Form
+
+.ds-btn-circle{
+	background: url("../assets/images/icon-arrow-circle.svg") center top no-repeat;
+	font-family:$ds-regular;
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+	width:40px;
+	color: $white;
+	padding-top: 40px;
+	border:0;
+}
+
+// Email valid
+.email-valid{
+	font-size: 17px;
+	font-family: $ds-regular;
+	color: $white;
+	text-align: left;
+	position: relative;
+	padding-top: 40px;
+	&:before{
+		content: ' ';
+		position: absolute;
+		width: 9px;
+		height: 5px;
+		top: 4px;
+		left: 4px;
+		border-width: medium medium 3px 3px;
+		border-style: none none solid solid;
+		border-color: -moz-use-text-color -moz-use-text-color #89d000 #89d000;
+		-moz-border-top-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-bottom-colors: none;
+		-moz-border-left-colors: none;
+		border-image: none;
+		transform: rotate(-45deg);
+		z-index: 1000;
+	}
+}
+
+//Thank you message
+
+.ds-title-ty{
+	font-size: rem(40px);
+	font-family: $ds-light;
+	line-height: 48px;
+	text-align: center;
+	font-weight: normal;
+	color: $white;
+	position: relative;
+	&:after{
+		content: ' ';
+		position: absolute;
+		width: 110px;
+		height: 50px;
+		top: 150px;
+		left: 0;
+		margin:auto;
+		right:0;
+		border-width: medium medium 3px 3px;
+		border-style: none none solid solid;
+		border-color: -moz-use-text-color -moz-use-text-color $white $white;
+		-moz-border-top-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-bottom-colors: none;
+		-moz-border-left-colors: none;
+		border-image: none;
+		transform: rotate(-45deg);
+		z-index: 1000;
+	}
+}
+
+.ds-dl-info{
+	background: white;
+	text-align: center;
+	p{
+		font-size:rem(17px);
+		font-family: $ds-light;
+		padding: 32px 25% 21px 25%;
+		text-align: center;
+		color: $black-35;
+		margin: 0;
+	}
+	a{
+
+
+		span{
+			text-transform: uppercase;
+			font-family: $ds-light;
+			color: $black-35;
+		}
+	}
+}
+
+
+.ds-ldp-form-contact{
+	p{
+		font-size: rem(17px);
+		font-family: $ds-light;
+		color: $black-35;
+		margin: 43px 0 31px 0;
+	}
+
+}
