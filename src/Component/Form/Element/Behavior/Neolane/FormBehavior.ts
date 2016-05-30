@@ -118,16 +118,19 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
-            console.log('ajazejazokeoazkeokazokeka');
-            for (let n = 0; n < ((<any>Polymer.dom(this)).node.length); n++) {
-                if (typeof  (<any>Polymer.dom(this)).node[n].parentField != 'undefined' && elem.name == Polymer.dom(this).node[n].parentField) {
-                    for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
-                        if (typeof  (<any>Polymer.dom(this)).node[i].name != 'undefined' && Polymer.dom(this).node[i].name.toLowerCase() == Polymer.dom(this).node[n].name.toLowerCase()) {
-                            console.log(Polymer.dom(this));
-                            Polymer.dom(this).node[i].update();
-                        }
-                    }
+            this.updateAllChildrenField(elem, Polymer.dom(this));
+        }
+
+        updateAllChildrenField(elem:any, node:any) {
+            let child:any;
+            for (let i = 0; i < node.childNodes.length; i++) {
+                child = node.childNodes[i];
+
+                if(typeof child.update == 'function' && child.parentField == elem.name && child.parentField != 'undefined'){
+                    child.update();
                 }
+
+                this.updateAllChildrenField(elem, child);
             }
         }
 
