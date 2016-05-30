@@ -1,0 +1,33 @@
+{
+  "name": "jquery.namespace",
+  "homepage": "https://github.com/oferreira/jquery.namespace",
+  "authors": [
+    "olivier <olivier@mediainvest.io>"
+  ],
+  "description": "create a namespace for your plugin jQuery exemple $('#element').mycompany().myplugin() ",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "jquery",
+    "namespace",
+    "create namespace",
+    "jquery create namespace",
+    "jquery namespace"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "9eca5aa893",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9eca5aa8937513d6e68e7b298494e8ed20ee1070"
+  },
+  "_source": "https://github.com/oferreira/jquery.namespace.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/oferreira/jquery.namespace.git"
+}
