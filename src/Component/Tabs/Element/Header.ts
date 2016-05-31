@@ -11,10 +11,10 @@ namespace Com.Threeds.Component.Tabs.Element {
         public settings:any = {
             /*data: {
                 0: {
-                    title: 'tab 1',
+                    name: 'tab 1',
                 },
                 1: {
-                    title: 'tab 2',
+                    name: 'tab 2',
                 }
             }*/
         };
@@ -30,12 +30,11 @@ namespace Com.Threeds.Component.Tabs.Element {
             let link:HTMLAnchorElement;
             for (let k in this.settings.data) {
                 link = document.createElement('a');
-                link.innerHTML = this.settings.data[k].title;
+                link.innerHTML = this.settings.data[k].name;
                 link.setAttribute("data-index", k);
                 link.href = `#step-${k}`;
 
                 link.onclick = function(e:any){
-                    alert('event click disabled ...');
                     e.preventDefault();
                 };
                 item = document.createElement('li');

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Landing page</title>
+    <!--<link rel="stylesheet" href="/dist/style.css" >-->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="/dist/platform.js"></script>
+    <script type="text/javascript" src="/dist/app.js"></script>
+
+    <style type="text/css">
+        .hide,
+        .ds-tabs .ds-tab{display: none;}
+        .ds-tabs .ds-tab.active{display: block;}
+        .ds-tabs ul li.active,
+        .ds-tabs ul li.active a{color: red;}
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    $(function () {
+        addEventListener('WebComponentsReady', function () {
+            var options = {
+                id: 'LDP6312',
+                type: 'download',
+                'background-image': 'http://image.url',
+                steps: {
+                    0: {
+                        name: '1',
+                        title: 'To download the Case Study, please provide your email'
+                    },
+                    1: {
+                        name: '2',
+                        title: 'Please provide more informations to complete your Case Study download'
+                    }
+                },
+                success: {
+                    title: 'Thanks for your download',
+                    content: 'Your download should start automatically, if not use the direct link',
+
+                },
+                action: {
+                    url: 'http://www.3ds.com/en/file.pdf',
+                    label: 'Download',
+                    content: 'PDF - 3,84Mo',
+                },
+                accelerate: {
+                    url: 'http://www.3ds.com/en/contact-us',
+                    label: 'contact me',
+                    content: 'You want to be contacted for a commercial purpose?',
+                },
+                error: {
+                    title: 'Sorry !',
+                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                },
+                form: {
+                    nextLabel: 'Next',
+                    prevLabel: 'Back',
+                    api: {
+                        url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                    },
+                    callback: {
+                        success: function(){
+                            alert('zerkoezkrzekrokzeokr');
+                        }
+                    },
+                }
+            };
+
+            $('#container').threeds().landingPage(options);
+        });
+    });
+
+</script>
+</body>
+</html>

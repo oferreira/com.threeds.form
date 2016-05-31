@@ -65,14 +65,6 @@ var Com;
         })(Element = Threeds.Element || (Threeds.Element = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-String.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
 var Com;
 (function (Com) {
     var Threeds;
@@ -120,28 +112,14 @@ Object.find = function (o, s) {
     }
     return o;
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Threeds.Service || (Threeds.Service = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
+String.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
 var Com;
 (function (Com) {
     var Threeds;
@@ -254,6 +232,28 @@ var Com;
             }(AbstractValidator);
             Validator.Require = Require;
         })(Validator = Threeds.Validator || (Threeds.Validator = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Threeds.Service || (Threeds.Service = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -1201,7 +1201,63 @@ var Com;
                                 };
                                 FormBehavior.prototype._onCreate = function (e, elem) {
                                     var context = this;
-                                    if (elem.data.name == 'company') {}
+                                    if (elem.data.name == 'company') {
+                                        $('#company').autocomplete({
+                                            source: function (requete, reponse) {
+                                                $.ajax({
+                                                    url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                                                    dataType: 'jsonp',
+                                                    data: {
+                                                        query: $('#company').val(),
+                                                        iso: $('#country').val()
+                                                    },
+                                                    success: function (data) {
+                                                        reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                                            return {
+                                                                label: objet.companyName,
+                                                                value: objet.companyName,
+                                                                duns: objet.duns,
+                                                                postalCode: objet.postalCode,
+                                                                city: objet.city,
+                                                                address1: objet.address1,
+                                                                address2: objet.address2,
+                                                                stateCode: objet.stateCode
+                                                            };
+                                                        }));
+                                                    }
+                                                });
+                                            },
+                                            select: function (event, ui) {
+                                                $(this).val(ui.item.value);
+                                                context.append({
+                                                    name: "duns",
+                                                    type: "hidden",
+                                                    value: ui.item.duns
+                                                }).append({
+                                                    name: "zipCode",
+                                                    type: "hidden",
+                                                    value: ui.item.postalCode
+                                                }).append({
+                                                    name: "city",
+                                                    type: "hidden",
+                                                    value: ui.item.city
+                                                }).append({
+                                                    name: "address1",
+                                                    type: "hidden",
+                                                    value: ui.item.address1
+                                                }).append({
+                                                    name: "address2",
+                                                    type: "hidden",
+                                                    value: ui.item.address2
+                                                }).append({
+                                                    name: "state",
+                                                    type: "hidden",
+                                                    value: ui.item.stateCode
+                                                });
+                                                return false;
+                                            }
+                                        });
+                                    }
                                 };
                                 FormBehavior.prototype._onChange = function (e, elem) {
                                     this.updateAllChildrenField(elem, Polymer.dom(this));
@@ -1711,11 +1767,10 @@ var Com;
                             var link;
                             for (var k in this.settings.data) {
                                 link = document.createElement('a');
-                                link.innerHTML = this.settings.data[k].title;
+                                link.innerHTML = this.settings.data[k].name;
                                 link.setAttribute("data-index", k);
                                 link.href = "#step-" + k;
                                 link.onclick = function (e) {
-                                    alert('event click disabled ...');
                                     e.preventDefault();
                                 };
                                 item = document.createElement('li');
