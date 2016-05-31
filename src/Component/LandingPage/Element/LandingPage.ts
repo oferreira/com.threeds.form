@@ -2,12 +2,16 @@
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Component/Tabs/Element/Tabs.ts" />
 /// <reference path="../../../Component/Form/Element/Form.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Success.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Error.ts" />
 
 namespace Com.Threeds.Component.LandingPage.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
     import Tabs = Com.Threeds.Component.Tabs.Element.Tabs;
     import Form = Com.Threeds.Component.Form.Element.Form;
+    import Success = Com.Threeds.Component.LandingPage.Element.Success;
+    import Error = Com.Threeds.Component.LandingPage.Element.Error;
 
     @component('landingpage-element')
     @extend("div")
@@ -16,11 +20,33 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
         constructor(context:any, data:any) {
             super(data);
-            this.context = context;
-            this.classList.add('ds-landingpage');
+            if(typeof context =='undefined') return;
 
-            this.appendChild(this.tabs());
+            this.context = context;
+
+            let tabsContainer:HTMLDivElement = document.createElement('div');
+            tabsContainer.classList.add('ds-lpd-info-form');
+
+            let tabsContainer2:HTMLDivElement = document.createElement('div');
+            tabsContainer2.classList.add('ds-landingpage');
+
+
+            let blur:HTMLDivElement = document.createElement('div');
+
+            blur.style.backgroundImage = `url('${this.context.settings.backgroundImage}')`;
+            blur.classList.add('ds-lpd-info-blur');
+
+            tabsContainer2.appendChild(this.tabs());
+            tabsContainer2.appendChild(blur);
+            tabsContainer.appendChild(tabsContainer2);
+
+            this.appendChild(tabsContainer);
             this.appendChild(this.form(data));
+        }
+
+        clear():void {
+            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+            this.innerHTML = '';
         }
 
 
@@ -33,49 +59,38 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         form(data:any):Form{
+            var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
-                this.context.settings.hook.setCurrentPosition = this.setCurrentPosition;
+                this.context.settings.hook.setCurrentPosition = function(context, index){
+                    self.setCurrentPosition(index);
+                };
             }
 
             if(typeof this.context.settings.hook.success == 'undefined') {
-                this.context.settings.hook.success = this.success;
+                this.context.settings.hook.success = function(context:any, data:any) {
+                    self.context.elem.html('');
+                    self.context.elem.attr('class', '');
+                    self.context.elem.addClass('ds-ldp-global-step-3');
+                    self.context.elem.append(Success.create(self.context, self.context.settings.success));
+                };
             }
 
             if(typeof this.context.settings.hook.warning == 'undefined') {
-                this.context.settings.hook.warning = this.error;
+                this.context.settings.hook.warning = function(context:any, message:any) {
+                    self.context.elem.html('');
+                    self.context.elem.attr('class', '');
+                    self.context.elem.addClass('ds-ldp-global-step-3');
+                    self.context.elem.append(Error.create(self.context, self.context.settings.error));
+                };
             }
 
-            return new Form.create(this.context, data);
+            return Form.create(this.context, data);
         }
 
-
-        success(context:any, data:any) {
-           context.context.elem.html(`<h1>${context.settings.success.title}</h1>${context.context.settings.success.content}`);
-        }
-
-        error(context:any, message:string) {
-           context.context.elem.html(`<h1>${context.context.settings.error.title}</h1>${context.context.settings.error.content}`);
-        }
-
-        setCurrentPosition(context:string, index:number):void {
-            let items:any = document.querySelectorAll('ul.ds-tabs-header li');
-            for (let i = 0; i < items.length; ++i) {
-                if(i === index){
-                    items[i].classList.add('active');
-                } else {
-                    items[i].classList.remove('active');
-                }
-            }
-
-
-            let items:any = document.querySelectorAll('.ds-tabs-container .ds-tab');
-            for (let i = 0; i < items.length; ++i) {
-                if(i === index){
-                    items[i].classList.add('active');
-                } else {
-                    items[i].classList.remove('active');
-                }
-            }
+        setCurrentPosition(index:number):void {
+            this.context.elem.addClass('ds-ldp-global-container');
+            this.context.elem.addClass(`ds-ldp-global-step-${index}`);
+            document.querySelector('.ds-tabs').currentPosition = index;
         }
     }
 }

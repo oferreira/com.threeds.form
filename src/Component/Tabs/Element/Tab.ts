@@ -10,7 +10,7 @@ namespace Com.Threeds.Component.Tabs.Element {
         constructor(context:any, data:any) {
             super(data);
             this.classList.add('ds-tab');
-            this.innerHTML = data.content;
+            this.innerHTML = data.title;
         }
     }
 }

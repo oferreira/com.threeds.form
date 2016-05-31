@@ -30,30 +30,38 @@ namespace Com.Threeds.Component.LandingPage {
         public settings:any = {
             id: 'LDP6312',
             type: 'download',
+            backgroundImage: 'http://lorempixel.com/500/680',
             steps: {
                 0: {
-                    title: 'tab 1',
-                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
-                    button: {
-                        'label': 'send'
-                    }
+                    name: '1',
+                    title: 'To download the Case Study, please provide your email'
                 },
                 1: {
-                    title: 'tab 2',
-                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt',
-                    button: {
-                        'label': 'send'
-                    }
+                    name: '2',
+                    title: 'Please provide more informations to complete your Case Study download'
                 }
             },
             success: {
-                title: 'Thanks you !',
-                content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+                title: 'Thanks for your download',
+                content: 'Your download should start automatically, if not use the direct link',
+
+            },
+            action: {
+                url: 'http://www.3ds.com/en/file.pdf',
+                label: 'Download',
+                content: 'PDF - 3,84Mo',
+            },
+            accelerate: {
+                url: 'http://www.3ds.com/en/contact-us',
+                label: 'contact me',
+                content: 'You want to be contacted for a commercial purpose?',
             },
             error: {
-                title: 'Error !',
-                content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua'
+                title: 'Sorry !',
+                content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
             },
+            nextLabel: 'Next',
+            prevLabel: 'Back',
             display: {
                 label: false,
                 placeholder: true,
@@ -83,12 +91,11 @@ namespace Com.Threeds.Component.LandingPage {
         constructor(elem:any, options:Object) {
             super(elem, options);
             this.elem = elem;
+            this.elem.addClass('ds-ldp-global-container');
             this.settings = $.extend({}, this.settings, options);
 
             this.service('api').form(this, {});
         }
-
-
 
         render(type:string, data:any):void {
             this.elem.append(LandingPage.create(this, data));

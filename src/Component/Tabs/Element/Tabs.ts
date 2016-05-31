@@ -11,6 +11,9 @@ namespace Com.Threeds.Component.Tabs.Element {
     @component('tabs-element')
     @extend("div")
     export class Tabs extends AbstractPolymerElement {
+
+        public context:any;
+        private _currentPosition:number = 0;
         public settings:any = {
             /*data: {
                 0: {
@@ -25,9 +28,10 @@ namespace Com.Threeds.Component.Tabs.Element {
         };
 
         constructor(context:any, options:any, data:any) {
-            super(data);
+            this.context = context;
             this.settings = $.extend({}, this.settings, options);
             this.classList.add('ds-tabs');
+
             this.appendChild(Header.create(this, this.settings));
 
             let container:HTMLDivElement = document.createElement('div');
@@ -35,9 +39,35 @@ namespace Com.Threeds.Component.Tabs.Element {
             for (let k in this.settings.data) {
                container.appendChild(Tab.create(this, this.settings.data[k]));
             }
-
             this.appendChild(container);
         }
+
+        public get currentPosition():number {
+            return this._currentPosition;
+        }
+
+        public set currentPosition(value:number) {
+            $('ul.ds-tabs-header').addClass(`step-${value}-active`);
+
+            $( ".ds-tabs-header li" ).each(function( index ) {
+                if(index == value){
+                    $( this ).addClass('active');
+                } else {
+                    $( this ).removeClass('active');
+                }
+            });
+
+            $( ".ds-tabs-container .ds-tab" ).each(function( index ) {
+                if(index == value){
+                    $( this ).addClass('active');
+                } else {
+                    $( this ).removeClass('active');
+                }
+            });
+
+            this._currentPosition = value;
+        }
+
     }
 }
 

@@ -48,8 +48,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             let context = this;
 
             if(elem.data.name == 'company'){
-                //new AutoComplete(this, document.querySelector('#company'), {lorem:'lorem ipsum'});
-
+               /*
                     $('#company').autocomplete({
                         source: function (requete, reponse) {
                             $.ajax({
@@ -110,6 +109,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                             return false;
                         }
                     });
+                    */
             }
 
 

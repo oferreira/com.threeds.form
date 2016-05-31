@@ -33,7 +33,6 @@ namespace Com.Threeds.Component.Tabs.Element {
                 link.innerHTML = this.settings.data[k].name;
                 link.setAttribute("data-index", k);
                 link.href = `#step-${k}`;
-
                 link.onclick = function(e:any){
                     e.preventDefault();
                 };
@@ -42,6 +41,9 @@ namespace Com.Threeds.Component.Tabs.Element {
                 items.appendChild(item);
             }
 
+
+
+            //step-0-active
             this.appendChild(items);
         }
 
