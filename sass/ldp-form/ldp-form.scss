@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+// ==========================================================================
+// FORM
+// ==========================================================================
+
+body{padding: 150px;}
+
+@import "ldp-form-step";
+@import "ldp-form-animation";
+
+// STEP 1
+// ==========================================================================
+
+.ds-ldp-global-step-1{
+	max-width: 476px;
+	.ds-lpd-info-form,
+	.ds-ldp-form-container {width: 100%;}
+	.ds-ldp-form-container{
+		position: absolute;
+		z-index: 2;
+		left:0;
+		right:0;
+		top:480px;
+		bottom: 0;
+	}
+	.ds-form-fieldset{
+		background: none;
+	}
+}
+
+// STEP 2
+// ==========================================================================
+
+.ds-ldp-global-step-2{
+	width: 952px;
+	.ds-lpd-info-form,
+	.ds-ldp-form-container {width: 50%;}
+}
+
+// STEP 3
+// ==========================================================================
+
+.ds-ldp-global-step-3{
+	max-width: 476px;
+	.ds-lpd-info-form,
+	.ds-ldp-form-container {width: 100%;}
+
+	.ds-lpd-info-form{
+		max-height:330px;
+	}
+
+	.ds-ldp-form-container{
+		max-height: 190px;
+	}
+}
+
+
+
+
+
+
+
+

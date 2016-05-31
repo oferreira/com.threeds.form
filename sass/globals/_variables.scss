@@ -10,8 +10,10 @@
 //  2. Colors
 //  3. Prefixer
 //  4. Radius
-//  5. Form
-//  6. Icon
+//  5. Button
+//  6. Link
+//  7. Forms
+//  8. Icon
 
 
 // Opacity
@@ -21,6 +23,7 @@ $opacity-22 :0.22;
 $opacity-35 :0.35;
 $opacity-57 :0.57;
 $opacity-92 :0.92;
+
 
 // 1. Fonts
 // ==========================================================================
@@ -137,6 +140,7 @@ $prefix-for-spec:      true !default;
 
 $radius-form:25px;
 
+
 // 5. button
 // ==========================================================================
 
@@ -144,11 +148,11 @@ $padding-btn:24px;
 $padding-btn-small:16px;
 $font-size-btn:17px;
 
+
 // 6. Link
 // ==========================================================================
 
 $font-size-link:14px;
-
 
 
 // 7. Forms
