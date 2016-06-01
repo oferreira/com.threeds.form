@@ -62,6 +62,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function(context, index){
+                    console.log(context.data);
                     self.setCurrentPosition(index);
                 };
             }
@@ -88,6 +89,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         setCurrentPosition(index:number):void {
+            this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
             document.querySelector('.ds-tabs').currentPosition = index;

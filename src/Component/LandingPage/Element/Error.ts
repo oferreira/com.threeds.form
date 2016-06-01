@@ -14,13 +14,13 @@ namespace Com.Threeds.Component.LandingPage.Element{
             super(data);
             this.context = context;
 
-            let tpl = `<div class="ds-ldp-global-step-3">
-                            <div class="ds-ldp-global-container">
-                                <div id="ldp" class="ds-lpd-info-form">
-                                    <div class="ds-landingpage" is="landingpage-element">
-                                        <h3 class="ds-title-ty">${data.title}</h3>
-                                        <div class="ds-lpd-info-no-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
+            let tpl = `<div class="ds-ldp-global-container ds-ldp-global-step-error">
+                            <div id="ldp" class="ds-lpd-info-form">
+                                <div class="ds-landingpage">
+                                    <div class="ds-tabs">
+                                        <p class="ds-ldp-form-error">${data.content}</p>
                                     </div>
+                                    <div class="ds-lpd-info-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
                                 </div>
                             </div>
                         </div>`;

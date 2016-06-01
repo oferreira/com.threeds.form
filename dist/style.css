@@ -462,75 +462,7 @@ body {
   padding: 0 57px;
 }
 
-.ds-ldp-global-step-1 {
-  max-width: 476px;
-}
-
-.ds-ldp-global-step-1 .ds-lpd-info-form,
-.ds-ldp-global-step-1 .ds-ldp-form-container {
-  width: 100%;
-}
-
-.ds-ldp-global-step-1 .ds-ldp-form-container {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  top: 480px;
-  bottom: 0;
-}
-
-.ds-ldp-global-step-1 .ds-form-fieldset {
-  background: none;
-}
-
-.ds-ldp-global-step-2 {
-  width: 952px;
-}
-
-.ds-ldp-global-step-2 .ds-lpd-info-form,
-.ds-ldp-global-step-2 .ds-ldp-form-container {
-  width: 50%;
-}
-
-.ds-ldp-global-step-3 {
-  max-width: 520px;
-}
-
-.ds-ldp-global-step-3 .ds-lpd-info-form,
-.ds-ldp-global-step-3 .ds-ldp-form-container {
-  width: 100%;
-}
-
-.ds-ldp-global-step-3 .ds-lpd-info-form {
-  max-height: 330px;
-}
-
-.ds-ldp-global-step-3 .ds-ldp-form-container {
-  max-height: 190px;
-}
-
-.ds-ldp-form-contact {
-  max-width: 476px;
-  margin: auto;
-  text-align: center;
-}
-
-.ds-lpd-info-blur {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-size: cover;
-  -webkit-filter: blur(4px);
-  filter: blur(4px);
-  box-sizing: border-box;
-  z-index: -1;
-}
-
+.ds-lpd-info-blur,
 .ds-lpd-info-no-blur {
   width: 100%;
   height: 100%;
@@ -542,6 +474,11 @@ body {
   background-size: cover;
   box-sizing: border-box;
   z-index: -1;
+}
+
+.ds-lpd-info-no-blur {
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
 }
 
 .ds-tabs-header {
@@ -620,7 +557,7 @@ body {
 }
 
 .ds-btn-circle {
-  background: url("../assets/images/icon-arrow-circle.svg") center top no-repeat;
+  background: url("../../assets/images/icon-arrow-circle.svg") center top no-repeat;
   font-family: "3dsregular";
   font-size: 14px;
   font-weight: normal;
@@ -716,10 +653,78 @@ body {
   color: rgba(0, 0, 0, 0.35);
 }
 
+.ds-ldp-form-contact {
+  max-width: 476px;
+  margin: auto;
+  text-align: center;
+}
+
 .ds-ldp-form-contact p {
   font-size: 1.0625rem;
   font-family: "3dslight";
   color: rgba(0, 0, 0, 0.35);
   margin: 43px 0 31px 0;
+}
+
+.ds-ldp-global-step-error {
+  max-width: 476px;
+}
+
+.ds-ldp-form-error {
+  font-size: 2rem;
+  text-align: center;
+  padding: 0;
+  line-height: 40px;
+  text-decoration: none;
+  font-family: "3dslight";
+  color: #ffffff;
+}
+
+.ds-ldp-global-step-1 {
+  max-width: 476px;
+}
+
+.ds-ldp-global-step-1 .ds-lpd-info-form,
+.ds-ldp-global-step-1 .ds-ldp-form-container {
+  width: 100%;
+}
+
+.ds-ldp-global-step-1 .ds-ldp-form-container {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 480px;
+  bottom: 0;
+}
+
+.ds-ldp-global-step-1 .ds-form-fieldset {
+  background: none;
+}
+
+.ds-ldp-global-step-2 {
+  width: 952px;
+}
+
+.ds-ldp-global-step-2 .ds-lpd-info-form,
+.ds-ldp-global-step-2 .ds-ldp-form-container {
+  width: 50%;
+}
+
+.ds-ldp-global-step-3 {
+  max-width: 476px;
+}
+
+.ds-ldp-global-step-3 .ds-lpd-info-form,
+.ds-ldp-global-step-3 .ds-ldp-form-container {
+  width: 100%;
+}
+
+.ds-ldp-global-step-3 .ds-lpd-info-form {
+  max-height: 330px;
+}
+
+.ds-ldp-global-step-3 .ds-ldp-form-container {
+  max-height: 190px;
 }
 /*# sourceMappingURL=style.css.map */
