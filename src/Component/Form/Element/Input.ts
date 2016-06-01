@@ -32,7 +32,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             super(data);
 
-            if (data.type != undefined && data.type != 'hidden') this.classList.add('form-control');
+            if (data.type != undefined && data.type != 'hidden') this.classList.add('ds-form-input-text');
 
             if (context.settings.display.placeholder) this.placeholder = data.label
             if (data.name != undefined) this.id = data.name, this.name = data.name;

@@ -25,6 +25,7 @@
 	height:685px;
 	position: relative;
 	margin:0;
+
 }
 
 //Info (left)
@@ -50,10 +51,21 @@
 	@extend .ds-overlay-57;
 	@include box-sizing(border-box);
 	z-index: -1;
+	&:after{
+		content: '';
+		width:100%;
+		height:100%;
+		position: absolute;
+		top:0;
+		bottom: 0;
+		left:0;
+		right:0;
+		@extend .ds-overlay-57;
+	}
 }
 
 // background blur
-.ds-lpd-info-no-blur{
+.ds-lpd-info-blur{
 	-webkit-filter: blur(4px);
 	filter: blur(4px);
 }
@@ -78,8 +90,8 @@
 	}
 
 	//Tab active 1
-	&.step-1-active:before,
-	&.step-2-active:before{
+	&.step-0-active:before,
+	&.step-1-active:before{
 		content: ' ';
 		position: absolute;
 		bottom: -16px;
@@ -127,7 +139,8 @@
 		font-family: $ds-light;
 		color:$white;
 		text-align: center;
-		display: block;
+		display: none;
+		&.active{display: block;}
 	}
 }
 

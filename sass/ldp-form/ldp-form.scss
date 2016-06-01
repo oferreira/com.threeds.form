@@ -12,10 +12,10 @@ body{padding: 150px;}
 // STEP 1
 // ==========================================================================
 
-.ds-ldp-global-step-1{
-	max-width: 476px;
+.ds-ldp-global-step-0{
+	width: 476px;
 	.ds-lpd-info-form,
-	.ds-ldp-form-container {width: 100%;}
+	.ds-ldp-form-container {width: 476px;}
 	.ds-ldp-form-container{
 		position: absolute;
 		z-index: 2;
@@ -23,6 +23,7 @@ body{padding: 150px;}
 		right:0;
 		top:480px;
 		bottom: 0;
+		padding: 0 57px;
 	}
 	.ds-form-fieldset{
 		background: none;
@@ -32,7 +33,7 @@ body{padding: 150px;}
 // STEP 2
 // ==========================================================================
 
-.ds-ldp-global-step-2{
+.ds-ldp-global-step-1{
 	width: 952px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {width: 50%;}
@@ -41,7 +42,7 @@ body{padding: 150px;}
 // STEP 3
 // ==========================================================================
 
-.ds-ldp-global-step-3{
+.ds-ldp-global-step-2{
 	max-width: 476px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {width: 100%;}

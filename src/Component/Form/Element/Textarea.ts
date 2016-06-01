@@ -29,7 +29,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             super(data);
 
-            this.classList.add('form-control');
+            this.classList.add('ds-form-input-text');
 
             if (context.settings.display.placeholder) this.placeholder = data.label
             if (data.name != undefined) this.id = data.name, this.name = data.name;

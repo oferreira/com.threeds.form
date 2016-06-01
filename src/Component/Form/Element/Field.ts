@@ -15,7 +15,7 @@ namespace Com.Threeds.Component.Form.Element {
 
     @component('field-element')
     @extend("div")
-    @template(`<template is="dom-if" if="{{error}}"><div class="alert alert-danger">{{error}}</div></template>`)
+    @template(`<template is="dom-if" if="{{error}}"><span class="ds-form-error">{{error}}</span></template>`)
     export class Field extends AbstractPolymerElement {
 
         @property({type: String})
@@ -64,7 +64,7 @@ namespace Com.Threeds.Component.Form.Element {
         container(context:any, data:Object):HTMLDivElement {
             let type:string = data.type.toLowerCase();
             let container:HTMLDivElement = document.createElement('div');
-            container.classList.add(context.settings.display.label ? 'col-sm-10' : 'col-sm-12');
+            //container.classList.add(context.settings.display.label ? 'col-sm-10' : 'col-sm-12');
 
             return container;
         }

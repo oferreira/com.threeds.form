@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
             value:string;
 
         @property({type: String, reflectToAttribute: true})
-            class:string = 'btn btn-default';
+            class:string = 'ds-btn ds-btn-circle';
 
         constructor(context:any, data:any) {
             super(data);

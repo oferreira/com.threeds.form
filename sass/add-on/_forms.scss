@@ -170,7 +170,6 @@
 	border:0;
 	padding: 0;
 	margin:10px 0;
-	background: $white;
 
 	.ds-form-input-text:focus,
 	.ds-form-input-text:invalid,
@@ -179,13 +178,12 @@
 		outline: none;
 	}
 
+
 	.ds-form-group-element {
 		border: solid 1px $black-12;
-		padding: $padding-input;
-
-		&.no-border{border:0;}
-
-		.ds-form-label{display: none;}
+		padding: $padding-input-y $padding-input-x;
+		background: $white;
+		position: relative;
 
 		.ds-form-select,
 		.ds-form-input-text{
@@ -199,22 +197,21 @@
 			border: 0 none;
 		}
 
-		&.ds-form-group-element:first-child {
+		&.no-border{border:0;}
+
+		&:first-child,
+		&:first-of-type{
 			@include border-top-radius($radius-form);
 		}
 
-		&.ds-form-group-element:last-child {
-			@include border-bottom-radius($radius-form);
+		& + .ds-form-group-element {
+			border-top: 0;
 		}
 
-		&.ds-form-group-element + &.ds-form-group-element:last-child {
+		&:last-child,
+		&:last-of-type{
 			@include border-bottom-radius($radius-form);
 		}
-	}
-
-	.ds-form-group-element + .ds-form-group-element {
-		border-radius: 0;
-		border-top: 0;
 	}
 }
 
@@ -223,7 +220,9 @@
 // ==========================================================================
 
 .ds-form-error{
-	position: relative;
+	position: absolute;
+	z-index: 1;
+	@include box-sizing(border-box);
 	display: block;
 	width: 100%;
 	padding: $padding-field-error $padding-input;
@@ -232,11 +231,13 @@
 	font-size: 14px;
 	font-family: $ds-light;
 	text-align: left;
-	margin: $padding-input 0 (-$padding-input)  (-$padding-input);
+	margin: 50px 0 (0)  (-$padding-input);
 	@include transition(1s ease all);
+
 
 	&:after{
 		position: absolute;
+		z-index: 1;
 		content: " ";
 		right:8px;
 		top:-20.5px;
@@ -249,6 +250,7 @@
 
 	&:before{
 		position: absolute;
+		z-index: 1;
 		content: " ";
 		right:22px;
 		top:-40px;
