@@ -14,7 +14,7 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: String, reflectToAttribute: true})
             name:string;
 
-        @property({type: String})
+        @property({type: String, reflectToAttribute: true})
             value:string;
 
         @property({type: String, reflectToAttribute: true})
@@ -22,6 +22,7 @@ namespace Com.Threeds.Component.Form.Element {
 
         constructor(context:any, data:any) {
             super(data);
+            if (typeof data.value != undefined) this.value = data.value;
         }
     }
 }

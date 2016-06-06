@@ -62,7 +62,13 @@ namespace Com.Threeds.Component.Form {
             this.service('api').form(this, {});
         }
 
+        clear() {
+            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+            this.innerHTML = '';
+        }
+
         render(type:string, data:any):void {
+            this.clear();
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);
             } else {

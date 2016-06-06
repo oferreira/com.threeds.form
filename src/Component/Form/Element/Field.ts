@@ -31,6 +31,9 @@ namespace Com.Threeds.Component.Form.Element {
             if (typeof data.required != 'undefined' && typeof data.required) {
                 this.classList.add('ds-field-required');
             }
+
+            if(typeof data.fieldname == 'string') data.name = data.fieldname;
+
             this.classList.add(`field-${data.name}`);
             this.append(context, data);
         }
@@ -102,6 +105,8 @@ namespace Com.Threeds.Component.Form.Element {
                 case 'text':
                     container.appendChild(Input.create(context, data));
                     this.appendChild(container);
+                    this.fire('field-create', this);
+
                     break;
                 case 'textarea':
                     container.appendChild(Textarea.create(context, data));
@@ -112,8 +117,6 @@ namespace Com.Threeds.Component.Form.Element {
                     console.log(data);
                     break;
             }
-
-            this.fire('field-create', this);
         }
 
         hydrateValidators(data:Object) {
@@ -140,17 +143,20 @@ namespace Com.Threeds.Component.Form.Element {
             }
         }
 
+
         @listen('field-hide')
-        handleHide(e:Event, status:string) {
+        handleHide(e:Event, status:boolean) {
             if (status) {
-                this.classList.remove('hide');
-            } else {
                 this.classList.add('hide');
+            } else {
+                this.classList.remove('hide');
             }
         }
 
     }
 
 }
+
+
 
 Com.Threeds.Component.Form.Element.Field.register();

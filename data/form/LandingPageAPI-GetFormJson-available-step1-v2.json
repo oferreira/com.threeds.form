@@ -8,7 +8,7 @@
     },
     "config": [
       {
-        "name": "email",
+        "fieldname": "email",
         "type": "text",
         "label": "E-mail",
         "required": true

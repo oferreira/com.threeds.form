@@ -17,11 +17,10 @@ namespace Com.Threeds.Service.Adapter {
 
             $.ajax({
                 //type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
-
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
-                type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
+                //  type: "GET",dataType: "json", url: './data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-
+                type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
@@ -42,19 +41,16 @@ namespace Com.Threeds.Service.Adapter {
             let self:any = this;
 
             data['lpid'] = context.settings.id;
+            data['op'] = 'GetFormJson';
 
             $.ajax({
                 //type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
-                //type: "GET",dataType: "jsonp",url: `${options.url}search-api/search?q=${query}&applicationId=default&b=${offset}&hf=${limit}&d=all&output_format=json`,
-                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-error-v2.json',
+                type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
                 data:data,
-                success: function (response:any) {
-                    console.log(response);
+                success: function (response:Object) {
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
-                    console.log(context);
                     context.render('form', false);
                 }
             });
@@ -84,6 +80,12 @@ namespace Com.Threeds.Service.Adapter {
 
             if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined' && typeof reponse.result.data != 'undefined') {
                 this.hydrate(reponse.result.config, reponse.result.data);
+
+                for (let i = 0; i < reponse.result.config.length; i++) {
+                    if (typeof reponse.result.config[i].parentField != 'undefined') {
+                        reponse.result.config[i].parentFieldData = this.findParentData(reponse.result.config[i].parentField , reponse.result.config);
+                    }
+                }
             }
 
             return reponse;
@@ -101,8 +103,22 @@ namespace Com.Threeds.Service.Adapter {
             }
         }
 
+
+        public findParentData(parentField:any, data:any):any {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].fieldname == parentField) {
+                    return data[i];
+                }
+            }
+            return;
+        }
+
+
         public hydrate(data:any, values:any):any {
             for (let i = 0; i < data.length; i++) {
+                if (typeof data[i].fieldname == 'string') {
+                    data[i]['name'] = data[i].fieldname;
+                }
                 if (typeof data[i].name != 'undefined' && values[data[i].name] != 'undefined') {
                     data[i].value = values[data[i].name];
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {

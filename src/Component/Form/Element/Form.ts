@@ -6,7 +6,7 @@
 namespace Com.Threeds.Component.Form.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-    import StepElement = Com.Threeds.Component.Form.Element.Step;
+    import Step = Com.Threeds.Component.Form.Element.Step;
 
     export interface Map<T> {
         [K: string]: T;
@@ -40,6 +40,12 @@ namespace Com.Threeds.Component.Form.Element {
             return this._currentPosition;
         }
 
+        @listen('field-select-value')
+        _selectVChange(e:Event, detail:any):void {
+            console.log(this);
+            console.log(detail);
+        }
+
         public set currentPosition(value:number) {
             if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
                 this.settings.hook.setCurrentPosition(this, value);
@@ -71,7 +77,6 @@ namespace Com.Threeds.Component.Form.Element {
 
         public set errors(value:Object[]) {
             this._errors = value;
-
             for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
                 if (typeof  (<any>Polymer.dom(this)).node[i].displayError === 'function') {
                     for (var k in this._errors) {
@@ -86,10 +91,20 @@ namespace Com.Threeds.Component.Form.Element {
         public valid() {
             this._errors = [];
 
-            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
-                if (typeof  (<any>Polymer.dom(this)).node[i].isValid === 'function') {
-                    if ((<any>Polymer.dom(this)).node[i].isValid() == true) this._errors[(<any>Polymer.dom(this)).node[i].name] = (<any>Polymer.dom(this)).node[i].errorMessage;
+            this.validateAllElement((<any>Polymer.dom(this)), this._errors);
+        }
+
+        validateAllElement(node:any, errors:any) {
+            let child:any;
+            for (let i = 0; i < node.childNodes.length; i++) {
+                child = node.childNodes[i];
+
+                if(typeof child.isValid == 'function'){
+                    if (child.isValid() == true) this._errors[child.name] = child.errorMessage;
                 }
+
+                this.validateAllElement(child, errors);
+
             }
         }
 
@@ -108,23 +123,34 @@ namespace Com.Threeds.Component.Form.Element {
 
 
         add(data:any) {
-            if (!((<any>Polymer.dom(this)).node.length)) {
+            if (!((<any>Polymer.dom(this)).childNodes.length)) {
                 this._steps.push(data)
                 this.currentPosition = 0;
                 return true;
             }
 
-            let name:string;
-            for (let n = 0; n < ((<any>Polymer.dom(this)).node.length); n++) {
-                if (Polymer.dom(this).node[n].name == undefined) continue;
-                name = Polymer.dom(this).node[n].name;
-                for (let k in data.result.config) {
-                    if (data.result.config[k].name = name && data.result.config[k].type != 'hidden') {
-                        this._steps.push(data)
-                        this.currentPosition++;
-                        return true;
+            return this.isNewStep(this, (<any>Polymer.dom(this)), data);
+        }
+
+
+        isNewStep(context:any, node:any, data:any):boolean {
+            let child:any;
+            for (let i = 0; i < node.childNodes.length; i++) {
+                child = node.childNodes[i];
+
+                if(child.name != undefined){
+                    for (let k in data.result.config) {
+                        if (data.result.config[k].name = child.name && data.result.config[k].type != 'hidden') {
+                            context._steps.push(data)
+                            context.currentPosition++;
+                            return true;
+                        }
                     }
                 }
+
+                return this.isNewStep(context, child, data);
+
+
             }
 
             return false;
@@ -133,13 +159,13 @@ namespace Com.Threeds.Component.Form.Element {
         update(data:any) {
             this.add(data);
             this.clear();
-            this.appendChild(StepElement.create(this.context, data));
+            this.appendChild(Step.create(this, data));
         }
 
         goTo(id:number):void {
             if (typeof this._steps[id] != "undefined") {
                 this.clear();
-                this.appendChild(StepElement.create(this.context, this._steps[id]));
+                this.appendChild(Step.create(this.context, this._steps[id]));
                 this.currentPosition = id;
             }
         }
@@ -155,16 +181,26 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         append(data:any):Form {
-            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
-                if (typeof  (<any>Polymer.dom(this)).node[i].name != 'undefined' && Polymer.dom(this).node[i].name == data.name) {
-                    Polymer.dom(this).node[i].value = data.value;
-                    return this;
+            if(!this.updateChildren(Polymer.dom(this), data)){
+                this.insertBefore(Input.create(this, data), this.firstChild);
+            }
+
+            return this;
+        }
+
+        updateChildren(node:any, data:any):boolean {
+            for (let i = 0; i < node.childNodes.length; i++) {
+                if(typeof node.childNodes[i].name != 'undefined' && node.childNodes[i].name == data.name){
+                    node.childNodes[i].value  = data.value;
+                    return true;
+                }
+
+                if(this.updateChildren(node.childNodes[i], data)){
+                    return true;
                 }
             }
 
-            this.insertBefore(Input.create(this, data), this.firstChild);
-
-            return this;
+            return false;
         }
 
         success(data:any) {

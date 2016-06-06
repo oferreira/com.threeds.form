@@ -54,3 +54,6 @@ RUN
  
     clear & gul watch --release
     open http://localhost:2000/
+
+
+// yo polymerts:el my-element

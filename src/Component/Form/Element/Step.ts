@@ -34,10 +34,24 @@ namespace Com.Threeds.Component.Form.Element {
                 }
             }
 
-            this.appendChild(SubmitElement.create({}));
 
+            let container:HTMLElement = document.createElement('div');
+            container.classList.add('ds-form-group-element');
+            container.classList.add('ds-border');
+
+            let options:Object = {value:context.settings.nextLabel};
+            if(context._currentPosition == (Object.keys(context.settings.steps).length -1)){
+                options.value = context.settings.action.label;
+            }
+
+            this.appendChild(SubmitElement.create(context, options));
+        }
+
+        public get settings():any {
+            return this.context.settings;
         }
     }
+
 }
 
 Com.Threeds.Component.Form.Element.Step.register();

@@ -24,16 +24,16 @@ gulp.task('polymer-js', function () {
         }))
         .pipe(addsrc('bower_components/polymer-ts/polymer-ts.js'))
         .pipe(stripComments())
-        .pipe(uglify())
+      //  .pipe(uglify())
         .pipe($.concat('polymer.js'))
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('platform-js', function () {
-    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/mustache.js/mustache.min.js"])
+gulp.task('webcomponents-js', function () {
+    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js","bower_components/jquery.namespace/jquery.namespace.js", "bower_components/javascript-auto-complete/auto-complete.min.js"])
         .pipe(stripComments())
-        .pipe(uglify())
-        .pipe($.concat('platform.js'))
+        //.pipe(uglify())
+        .pipe($.concat('webcomponents.js'))
         .pipe(gulp.dest('dist'));
 });
 
@@ -48,7 +48,7 @@ gulp.task('app-js', function() {
             footer: '});});'
         }))
         .pipe(stripComments())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 
@@ -60,13 +60,13 @@ gulp.task('app-js', function() {
 });
 
 gulp.task('build-js', function() {
-    gulp.src(["dist/platform.js", "dist/app.js"])
+    gulp.src(["dist/webcomponents.js", "dist/app.js"])
         .pipe(stripComments())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe($.concat('build.js'))
         .pipe(gulp.dest('dist'));
 });
 
 
-gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
+gulp.task('scripts', gulpSequence('polymer-js', 'webcomponents-js', 'app-js', 'build-js'));
 gulp.task('scripts-changed', ['app-js']);

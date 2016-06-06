@@ -45,79 +45,99 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
         @listen('field-create')
         _onCreate(e:Event, elem:any) {
-            let context = this;
 
-            if(elem.data.name == 'company'){
-               /*
-                    $('#company').autocomplete({
-                        source: function (requete, reponse) {
-                            $.ajax({
-                                url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                                dataType: 'jsonp',
-                                data: {
-                                    query: $('#company').val(),
-                                    iso: $('#country').val()
-                                },
-                                success: function (data) {
-                                    reponse($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
-                                        return {
-                                            label: objet.companyName,
-                                            value: objet.companyName,
-                                            duns: objet.duns,
-                                            postalCode: objet.postalCode,
-                                            city: objet.city,
-                                            address1: objet.address1,
-                                            address2: objet.address2,
-                                            stateCode: objet.stateCode,
-                                        };
-                                    }));
-                                },
-
-                            });
-                        },
-                        select: function(event, ui) {
-                            $(this).val(ui.item.value);
-
-                            context.append({
-                                name: "duns",
-                                type: "hidden",
-                                value: ui.item.duns
-                            }).append({
-                                name: "zipCode",
-                                type: "hidden",
-                                value: ui.item.postalCode
-                            }).append({
-                                name: "city",
-                                type: "hidden",
-                                value: ui.item.city
-                            }).append({
-                                name: "address1",
-                                type: "hidden",
-                                value: ui.item.address1
-                            }).append({
-                                name: "address2",
-                                type: "hidden",
-                                value: ui.item.address2
-                            }).append({
-                                name: "state",
-                                type: "hidden",
-                                value: ui.item.stateCode
-                            });
-
-
-
-                            return false;
-                        }
-                    });
-                    */
-            }
 
 
         }
 
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
+            let context = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
+            console.log(elem.name)
+            console.log('field-value-changed')
+
+
+            if(elem.name == 'company'){
+
+                console.log('field-create');
+                console.log(elem.name);
+                console.log($('#company').val());
+                console.log($('#country').val());
+                var companyAutoComplete = new autoComplete({
+                    selector: `#${elem.name}`,
+                    minChars: 3,
+                    source: function(term, suggest){
+                        term = term.toLowerCase();
+
+                        $.ajax({
+                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                            dataType: 'jsonp',
+                            data: {
+                                //query: $('#company').val(),
+                                // iso: $('#country').val()
+                                query: 'aaa',
+                                iso: 'FR'
+                            },
+                            success: function (data) {
+                                suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                    return {
+                                        companyName: objet.companyName,
+                                        duns: objet.duns,
+                                        postalCode: objet.postalCode,
+                                        city: objet.city,
+                                        address1: objet.address1,
+                                        address2: objet.address2,
+                                        stateCode: objet.stateCode,
+                                    };
+                                }));
+                            },
+
+                        });
+
+                    },
+                    renderItem: function (item:Object, search:string){
+                        search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
+                        var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                        let label:string = item.companyName.replace(re, "<b>$1</b>");
+                        return '<div class="autocomplete-suggestion" data-companyName="'+item.companyName+'" data-duns="'+item.duns+'" data-postalCode="'+item.postalCode+'" data-city="'+item.city+'" data-address1="'+item.address1+'" data-address2="'+item.address2+'" data-stateCode="'+item.stateCode+'" data-val="'+search+'">'+label+'</div>';
+                    },
+                    onSelect: function(e, term, item){
+
+                        console.log(term);
+                        context.append({
+                            name: "duns",
+                            type: "hidden",
+                            value: item.getAttribute('data-duns')
+                        }).append({
+                            name: "zipCode",
+                            type: "hidden",
+                            value: item.getAttribute('data-postalCode')
+                        }).append({
+                            name: "city",
+                            type: "hidden",
+                            value: item.getAttribute('data-city')
+                        }).append({
+                            name: "address1",
+                            type: "hidden",
+                            value: item.getAttribute('data-address1')
+                        }).append({
+                            name: "address2",
+                            type: "hidden",
+                            value: item.getAttribute('data-address2')
+                        }).append({
+                            name: "state",
+                            type: "hidden",
+                            value: item.getAttribute('data-stateCode')
+                        });
+
+                        elem.value = item.getAttribute('data-companyName');
+
+                        console.log('Item "'+item.getAttribute('data-companyName'));
+                    }
+                });
+
+            }
         }
 
         updateAllChildrenField(elem:any, node:any) {
@@ -126,6 +146,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                 child = node.childNodes[i];
 
                 if(typeof child.update == 'function' && child.parentField == elem.name && child.parentField != 'undefined'){
+                    child.parentFieldValue = elem.value;
                     child.update();
                 }
 
