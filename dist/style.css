@@ -295,14 +295,15 @@
   z-index: 1;
   box-sizing: border-box;
   display: block;
-  width: 100%;
+  width: calc(100% + 2px);
   padding: 16px 24px;
   background: #e57373;
+  border: 1px solid #e57373;
   color: #ffffff;
   font-size: 14px;
   font-family: "3dslight";
   text-align: left;
-  margin: 50px 0 0 -17px;
+  margin: 43px 0 0 -25px;
   -webkit-transition: 1s ease all;
   transition: 1s ease all;
 }
@@ -329,6 +330,23 @@
   width: 12px;
   height: 12px;
   background: url("../icon/shape.svg") center center no-repeat;
+}
+
+.ds-form-fieldset .has-error:first-child,
+.ds-form-fieldset .has-error:first-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ds-form-fieldset .has-error:last-child,
+.ds-form-fieldset .has-error:last-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ds-form-fieldset .has-error:last-child .ds-form-error,
+.ds-form-fieldset .has-error:last-of-type .ds-form-error {
+  border-radius: 0 0 25px 0;
 }
 
 .ds-btn {
@@ -759,7 +777,8 @@ body {
 
 .ds-ldp-global-step-1 .ds-lpd-info-form,
 .ds-ldp-global-step-1 .ds-ldp-form-container {
-  width: 50%;
+  width: 476px;
+  padding: 0 57px;
 }
 
 .ds-ldp-global-step-2 {

@@ -49,30 +49,6 @@ String.format = function () {
     }
     return formatted;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Threeds.Element || (Threeds.Element = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -120,6 +96,52 @@ Object.find = function (o, s) {
     }
     return o;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
+                }
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Threeds.Element || (Threeds.Element = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Threeds.Service || (Threeds.Service = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -158,28 +180,6 @@ Object.find = function (o, s) {
     }
     return o;
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Threeds.Service || (Threeds.Service = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -746,7 +746,7 @@ var Com;
                                 if (this.data.value != undefined && this.data.options[k].value == this.data.value) {
                                     this.data.options[k].selected = true;
                                 }
-                                if (this.data.options[k].selected && this.data.options[k].parentValue != '') {
+                                if (this.data.options[k].selected && this.data.options[k].parentValue != '' && this.parentFieldValue == undefined) {
                                     this.parentFieldValue = this.data.options[k].parentValue;
                                 }
                             }
@@ -1220,8 +1220,6 @@ var Com;
                                 FormBehavior.prototype._onChange = function (e, elem) {
                                     var context = this;
                                     this.updateAllChildrenField(elem, Polymer.dom(this));
-                                    console.log(elem.name);
-                                    console.log('field-value-changed');
                                     if (elem.name == 'company') {
                                         console.log('field-create');
                                         console.log(elem.name);
@@ -1294,14 +1292,12 @@ var Com;
                                     }
                                 };
                                 FormBehavior.prototype.updateAllChildrenField = function (elem, node) {
-                                    var child;
                                     for (var i = 0; i < node.childNodes.length; i++) {
-                                        child = node.childNodes[i];
-                                        if (typeof child.update == 'function' && child.parentField == elem.name && child.parentField != 'undefined') {
-                                            child.parentFieldValue = elem.value;
-                                            child.update();
+                                        if (typeof node.childNodes[i].update == 'function' && node.childNodes[i].parentField == elem.name && node.childNodes[i].parentField != 'undefined') {
+                                            node.childNodes[i].parentFieldValue = elem.value;
+                                            node.childNodes[i].update();
                                         }
-                                        this.updateAllChildrenField(elem, child);
+                                        this.updateAllChildrenField(elem, node.childNodes[i]);
                                     }
                                 };
                                 FormBehavior.prototype._onSubmit = function (e) {
@@ -2240,7 +2236,7 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                            type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
                             success: function (response) {
                                 context.render('form', self.data(response));
                             },
@@ -2254,7 +2250,7 @@ var Com;
                         data['lpid'] = context.settings.id;
                         data['op'] = 'GetFormJson';
                         $.ajax({
-                            type: "GET", dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                            type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
                             data: data,
                             success: function (response) {
                                 context.render('form', self.data(response));

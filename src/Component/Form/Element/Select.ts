@@ -48,13 +48,12 @@ namespace Com.Threeds.Component.Form.Element {
                     this.data.options[k].selected = true;
                 }
 
-                if(this.data.options[k].selected && this.data.options[k].parentValue != ''){
+                if(this.data.options[k].selected && this.data.options[k].parentValue != '' && this.parentFieldValue == undefined){
                     this.parentFieldValue = this.data.options[k].parentValue
                 }
 
 
             }
-
 
             for (let k in this.data.options) {
                 if (this.parentFieldValue == undefined && this.parentField == undefined) {

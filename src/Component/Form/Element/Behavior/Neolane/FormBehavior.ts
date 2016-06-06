@@ -54,9 +54,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         _onChange(e:Event, elem:any) {
             let context = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
-            console.log(elem.name)
-            console.log('field-value-changed')
-
 
             if(elem.name == 'company'){
 
@@ -141,16 +138,13 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         }
 
         updateAllChildrenField(elem:any, node:any) {
-            let child:any;
             for (let i = 0; i < node.childNodes.length; i++) {
-                child = node.childNodes[i];
-
-                if(typeof child.update == 'function' && child.parentField == elem.name && child.parentField != 'undefined'){
-                    child.parentFieldValue = elem.value;
-                    child.update();
+                if(typeof node.childNodes[i].update == 'function' && node.childNodes[i].parentField == elem.name && node.childNodes[i].parentField != 'undefined'){
+                    node.childNodes[i].parentFieldValue = elem.value;
+                    node.childNodes[i].update();
                 }
 
-                this.updateAllChildrenField(elem, child);
+                this.updateAllChildrenField(elem, node.childNodes[i]);
             }
         }
 
