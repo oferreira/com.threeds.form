@@ -18,23 +18,42 @@ var addsrc = require('gulp-add-src')
     buildHelper = require('../helpers/build-helper');
 
 gulp.task('polymer-js', function () {
-    gulp.src(["bower_components/polymer/polymer-micro.html", "bower_components/polymer/polymer-mini.html", "bower_components/polymer/polymer.html"])
+    var $return = gulp.src(["bower_components/polymer/polymer-micro.html", "bower_components/polymer/polymer-mini.html", "bower_components/polymer/polymer.html"])
         .pipe(extract({
             sel: "script"
         }))
         .pipe(addsrc('bower_components/polymer-ts/polymer-ts.js'))
+        //.pipe(sourcemaps.init())
         .pipe(stripComments())
-      //  .pipe(uglify())
         .pipe($.concat('polymer.js'))
+        //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
+
+
+    if (buildHelper.isRelease()) {
+        $return.pipe(uglify())
+            .pipe($.concat('polymer.min.js'))
+            .pipe(gulp.dest('dist'));
+    }
+
+    return $return;
 });
 
 gulp.task('webcomponents-js', function () {
-    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js","bower_components/jquery.namespace/jquery.namespace.js", "bower_components/javascript-auto-complete/auto-complete.min.js"])
+    var $return = gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js"])
+        //.pipe(sourcemaps.init())
         .pipe(stripComments())
-        //.pipe(uglify())
         .pipe($.concat('webcomponents.js'))
+        //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
+
+    if (buildHelper.isRelease()) {
+        $return.pipe(uglify())
+            .pipe($.concat('webcomponents.min.js'))
+            .pipe(gulp.dest('dist'));
+    }
+
+    return $return;
 });
 
 gulp.task('app-js', function() {
@@ -42,18 +61,20 @@ gulp.task('app-js', function() {
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(babel())
+        .pipe(addsrc('bower_components/jquery.namespace/jquery.namespace.js'))
+        .pipe(addsrc('bower_components/javascript-auto-complete/auto-complete.min.js'))
         .pipe($.concat('app.js'))
         .pipe(wrapper({
             header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
             footer: '});});'
         }))
         .pipe(stripComments())
-        //.pipe(uglify())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
+        .pipe(sourcemaps.write('.'));
 
     if(buildHelper.isRelease()){
-
+        $return.pipe($.concat('app.min.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('dist'));
     }
 
     return $return;

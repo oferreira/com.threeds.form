@@ -4,21 +4,7 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../I18n/Translator.ts" />
 /// <reference path="../../Component/LandingPage/Element/LandingPage.ts" />
-
-interface Document {
-    registerElement(tagName:string, implementation:any):any;
-}
-
-interface JQuery {
-    masonry(data?:any, options?:any): JQuery;
-    chosen(data?:any, options?:any): JQuery;
-    imagesLoaded(data?:any, options?:any): JQuery;
-    always(data?:any, options?:any): JQuery;
-    done(data?:any, options?:any): JQuery;
-    fail(data?:any, options?:any): JQuery;
-    progress(data?:any, options?:any): JQuery;
-    namespace(name?:any, options?:any): JQuery;
-}
+/// <reference path="../../Core/Bootstrap.ts" />
 
 namespace Com.Threeds.Component.LandingPage {
 

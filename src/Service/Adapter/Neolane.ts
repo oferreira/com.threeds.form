@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/jquery/jquery.d.ts" />
 /// <reference path="../../Service/Adapter/AbstractAdapter.ts" />
-
+/// <reference path="../../Core/Bootstrap.ts" />
 
 namespace Com.Threeds.Service.Adapter {
 
@@ -20,7 +20,8 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 //  type: "GET",dataType: "json", url: './data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-                type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
@@ -129,20 +130,4 @@ namespace Com.Threeds.Service.Adapter {
         }
 
     }
-}
-
-
-Object.find = function (o:any, s:string):boolean {
-    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-    s = s.replace(/^\./, '');           // strip a leading dot
-    var a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-            o = o[k];
-        } else {
-            return;
-        }
-    }
-    return o;
 }

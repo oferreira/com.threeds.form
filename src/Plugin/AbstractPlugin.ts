@@ -1,16 +1,5 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
-
-
-interface Document {
-    registerElement(tagName:string, implementation:any):any;
-}
-
-interface JQuery {
-    always(data?:any, options?:any): JQuery;
-    done(data?:any, options?:any): JQuery;
-    fail(data?:any, options?:any): JQuery;
-    progress(data?:any, options?:any): JQuery;
-}
+/// <reference path="../Core/Bootstrap.ts" />
 
 namespace Com.Threeds.Plugin {
 
@@ -32,19 +21,4 @@ namespace Com.Threeds.Plugin {
             return eval('new ' + Object.find(this.settings,name).adapter);
         }
     }
-}
-
-Object.find = function (o:any, s:string):boolean {
-    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-    s = s.replace(/^\./, '');           // strip a leading dot
-    var a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-            o = o[k];
-        } else {
-            return;
-        }
-    }
-    return o;
 }
