@@ -30,7 +30,7 @@ gulp.task('polymer-js', function () {
 });
 
 gulp.task('platform-js', function () {
-    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/mustache.js/mustache.min.js"])
+    gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/javascript-auto-complete/auto-complete.js"])
         .pipe(stripComments())
         .pipe(uglify())
         .pipe($.concat('platform.js'))
