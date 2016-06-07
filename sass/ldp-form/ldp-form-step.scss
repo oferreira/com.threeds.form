@@ -102,6 +102,17 @@
 		@include transition(1s ease all);
 	}
 
+	&.step-0-active,
+	&.step-1-active{
+		li.active{
+			color:$white;
+			a{
+				color:$white;
+			}
+		}
+	}
+
+
 	//Tab active 1
 	&.step-0-active:before{left:0;}
 
@@ -117,12 +128,12 @@
 		font-size: 14px;
 		text-decoration: none;
 		font-family: $ds-regular;
-		color:$white;
+		color:$white-22;
 		a{
 			font-size: 14px;
 			text-decoration: none;
 			font-family: $ds-regular;
-			color:$white;
+			color:$white-22;
 			display: block;
 		}
 	}
