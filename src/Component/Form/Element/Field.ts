@@ -32,7 +32,7 @@ namespace Com.Threeds.Component.Form.Element {
                 this.classList.add('ds-field-required');
             }
 
-            if(typeof data.fieldname == 'string') data.name = data.fieldname;
+            if(typeof data.fieldName == 'string') data.name = data.fieldName;
 
             this.classList.add(`field-${data.name}`);
             this.append(context, data);
@@ -105,6 +105,7 @@ namespace Com.Threeds.Component.Form.Element {
                 case 'text':
                     container.appendChild(Input.create(context, data));
                     this.appendChild(container);
+
                     break;
                 case 'textarea':
                     container.appendChild(Textarea.create(context, data));
@@ -144,11 +145,11 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         @listen('field-hide')
-        handleHide(e:Event, status:string) {
+        handleHide(e:Event, status:boolean) {
             if (status) {
-                this.classList.remove('hide');
-            } else {
                 this.classList.add('hide');
+            } else {
+                this.classList.remove('hide');
             }
         }
 

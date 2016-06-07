@@ -27,7 +27,7 @@ namespace Com.Threeds.Component.Form.Element {
             super(data);
 
             if (data.name != undefined) this.id = data.name, this.name = data.name;
-            if (data.fieldname != undefined) this.id = data.fieldname, this.name = data.fieldname;
+            if (data.fieldName != undefined) this.id = data.fieldName, this.name = data.fieldName;
             if (data.required != undefined) this.required = data.required;
             if (data.value != undefined) this.checked = data.value;
         }

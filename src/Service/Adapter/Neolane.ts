@@ -16,12 +16,11 @@ namespace Com.Threeds.Service.Adapter {
             let self:any = this;
 
             $.ajax({
-                //type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
 
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
-                type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
+                //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v2.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step2-v2.json',
-
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/AutoComplete.json',
@@ -30,6 +29,7 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
+                    console.log(response);
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
@@ -45,8 +45,8 @@ namespace Com.Threeds.Service.Adapter {
             data['op'] = 'GetFormJson';
 
             $.ajax({
-                //type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
                 data:data,
                 success: function (response:Object) {
                     context.render('form', self.data(response));
@@ -108,7 +108,7 @@ namespace Com.Threeds.Service.Adapter {
 
         public findParentData(parentField:any, data:any):any {
             for (let i = 0; i < data.length; i++) {
-                if (data[i].fieldname == parentField) {
+                if (data[i].fieldName == parentField) {
                     return data[i];
                 }
             }
@@ -118,8 +118,8 @@ namespace Com.Threeds.Service.Adapter {
 
         public hydrate(data:any, values:any):any {
             for (let i = 0; i < data.length; i++) {
-                if (typeof data[i].fieldname == 'string') {
-                    data[i]['name'] = data[i].fieldname;
+                if (typeof data[i].fieldName == 'string') {
+                    data[i]['name'] = data[i].fieldName;
                 }
                 if (typeof data[i].name != 'undefined' && values[data[i].name] != 'undefined') {
                     data[i].value = values[data[i].name];
