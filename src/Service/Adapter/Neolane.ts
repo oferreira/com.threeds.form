@@ -42,8 +42,8 @@ namespace Com.Threeds.Service.Adapter {
             data['op'] = 'GetFormJson';
 
             $.ajax({
-                type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/form/LandingPageAPI-GetFormJson-available-step2-v22.json',
+                //type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.json',
                 data:data,
                 success: function (response:Object) {
                     context.render('form', self.data(response));

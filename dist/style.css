@@ -252,7 +252,9 @@
 }
 
 .ds-form-fieldset .ds-form-group-element {
-  border: solid 1px rgba(0, 0, 0, 0.12);
+  border-left: solid 1px rgba(0, 0, 0, 0.12);
+  border-right: solid 1px rgba(0, 0, 0, 0.12);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.12);
   padding: 17px 24px;
   background: #ffffff;
   position: relative;
@@ -270,6 +272,12 @@
   border: 0 none;
 }
 
+.ds-form-fieldset .ds-form-group-element .ds-form-select {
+  background-image: none \9;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 .ds-form-fieldset .ds-form-group-element.no-border {
   border: 0;
 }
@@ -278,6 +286,7 @@
 .ds-form-fieldset .ds-form-group-element:first-of-type {
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+  border-top: solid 1px rgba(0, 0, 0, 0.12);
 }
 
 .ds-form-fieldset .ds-form-group-element + .ds-form-group-element {
@@ -295,14 +304,15 @@
   z-index: 1;
   box-sizing: border-box;
   display: block;
-  width: 100%;
+  width: calc(100% + 2px);
   padding: 16px 24px;
   background: #e57373;
+  border: 1px solid #e57373;
   color: #ffffff;
   font-size: 14px;
   font-family: "3dslight";
   text-align: left;
-  margin: 50px 0 0 -17px;
+  margin: 43px 0 0 -25px;
   -webkit-transition: 1s ease all;
   transition: 1s ease all;
 }
@@ -329,6 +339,23 @@
   width: 12px;
   height: 12px;
   background: url("../icon/shape.svg") center center no-repeat;
+}
+
+.ds-form-fieldset .has-error:first-child,
+.ds-form-fieldset .has-error:first-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ds-form-fieldset .has-error:last-child,
+.ds-form-fieldset .has-error:last-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ds-form-fieldset .has-error:last-child .ds-form-error,
+.ds-form-fieldset .has-error:last-of-type .ds-form-error {
+  border-radius: 0 0 25px 0;
 }
 
 .ds-btn {
@@ -526,11 +553,11 @@ body {
   transition: 1s ease all;
 }
 
-.ds-tabs-header.step-1-active:before {
+.ds-tabs-header.step-0-active:before {
   left: 0;
 }
 
-.ds-tabs-header.step-2-active:before {
+.ds-tabs-header.step-1-active:before {
   left: 50%;
 }
 
@@ -759,7 +786,8 @@ body {
 
 .ds-ldp-global-step-1 .ds-lpd-info-form,
 .ds-ldp-global-step-1 .ds-ldp-form-container {
-  width: 50%;
+  width: 476px;
+  padding: 0 57px;
 }
 
 .ds-ldp-global-step-2 {
@@ -777,5 +805,9 @@ body {
 
 .ds-ldp-global-step-2 .ds-ldp-form-container {
   max-height: 190px;
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
