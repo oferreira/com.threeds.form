@@ -180,7 +180,9 @@
 
 
 	.ds-form-group-element {
-		border: solid 1px $black-12;
+		border-left: solid 1px $black-12;
+		border-right: solid 1px $black-12;
+		border-bottom: solid 1px $black-12;
 		padding: $padding-input-y $padding-input-x;
 		background: $white;
 		position: relative;
@@ -197,11 +199,20 @@
 			border: 0 none;
 		}
 
+		.ds-form-select{
+			//background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
+			background-image: none \9;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+		}
+
+
 		&.no-border{border:0;}
 
 		&:first-child,
 		&:first-of-type{
 			@include border-top-radius($radius-form);
+			border-top: solid 1px $black-12;
 		}
 
 		& + .ds-form-group-element {
@@ -224,16 +235,16 @@
 	z-index: 1;
 	@include box-sizing(border-box);
 	display: block;
-	width: 100%;
+	width: calc(100% + 2px);
 	padding: $padding-field-error $padding-input-x;
 	background: $error;
+	border: 1px solid $error;
 	color:$white;
 	font-size: 14px;
 	font-family: $ds-light;
 	text-align: left;
-	margin: 50px 0 (0)  (-$padding-input-y);
+	margin: 43px 0 (0)  (-$padding-input-x - 1);
 	@include transition(1s ease all);
-
 
 	&:after{
 		position: absolute;
@@ -261,3 +272,15 @@
 }
 
 
+.ds-form-fieldset .has-error:first-child,
+.ds-form-fieldset .has-error:first-of-type{
+	@include border-bottom-radius(0);
+}
+
+.ds-form-fieldset .has-error:last-child,
+.ds-form-fieldset .has-error:last-of-type{
+	@include border-bottom-radius(0);
+	.ds-form-error{
+		border-radius: 0 0 $radius-form 0;
+	}
+}

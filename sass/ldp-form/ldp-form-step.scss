@@ -103,10 +103,10 @@
 	}
 
 	//Tab active 1
-	&.step-1-active:before{left:0;}
+	&.step-0-active:before{left:0;}
 
 	//Tab active 2
-	&.step-2-active:before{left:50%;}
+	&.step-1-active:before{left:50%;}
 
 	li{
 		list-style: none;

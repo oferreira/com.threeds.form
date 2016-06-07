@@ -27,7 +27,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             this.data = data;
             super(data);
-            this.classList.add('form-control');
+            this.classList.add('ds-form-select');
             if (this.data.name != undefined) this.id = this.data.name, this.name = this.data.name;
             if (this.data.parentField != undefined) this.parentField = this.data.parentField;
 
