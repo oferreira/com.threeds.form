@@ -31,6 +31,9 @@ namespace Com.Threeds.Component.Form.Element {
             if (typeof data.required != 'undefined' && typeof data.required) {
                 this.classList.add('ds-field-required');
             }
+
+            if(typeof data.fieldname == 'string') data.name = data.fieldname;
+
             this.classList.add(`field-${data.name}`);
             this.append(context, data);
         }

@@ -62,7 +62,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function(context, index){
-                    console.log(context.data);
                     self.setCurrentPosition(index);
                 };
             }

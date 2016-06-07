@@ -17,6 +17,7 @@ namespace Com.Threeds.Component.Form.Element {
             required:boolean = false;
 
         parentField:string;
+        parentFieldValue:string;
         value:string;
 
         data:any = [];
@@ -33,6 +34,7 @@ namespace Com.Threeds.Component.Form.Element {
             this.update();
         }
 
+
         clear():void {
             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
             this.innerHTML = '';
@@ -41,26 +43,27 @@ namespace Com.Threeds.Component.Form.Element {
         update():void {
             this.clear();
 
-            let parentField:any;
-            if (typeof  this.data.parentField != 'undefined') {
-                parentField = document.querySelector(`#${this.data.parentField}`);
+            for (let k in this.data.options) {
+                if (this.data.value != undefined && this.data.options[k].value == this.data.value) {
+                    this.data.options[k].selected = true;
+                }
+
+                if(this.data.options[k].selected && this.data.options[k].parentValue != '' && this.parentFieldValue == undefined){
+                    this.parentFieldValue = this.data.options[k].parentValue
+                }
+
+
             }
 
             for (let k in this.data.options) {
-                if (this.data.value != undefined && this.data.options[k].value == this.data.value)  this.data.options[k].selected = true;
-                if (typeof this.data.parentField != 'undefined') {
-                    if (typeof parentField != 'undefined' && this.data.options[k].parentValue == parentField.options[parentField.selectedIndex].value){
-                        this.appendChild(Option.create(this.data.options[k]));
-                    }
-                } else {
-                    console.log(this.data.options)
-                    console.log(this.data.options[k]);
-                    //this.appendChild(Option.create(this.data.options[k]));
+                if (this.parentFieldValue == undefined && this.parentField == undefined) {
+                    this.appendChild(Option.create(this, this.data.options[k]));
+                } else if (this.parentFieldValue == this.data.options[k].parentValue) {
+                    this.appendChild(Option.create(this, this.data.options[k]));
                 }
-
             }
 
-            this.fire('field-hide', (!this.options.length ? false:true))
+            this.fire('field-hide', (this.options.length ? false : true))
         }
 
         public get errorMessage():string {
@@ -73,14 +76,15 @@ namespace Com.Threeds.Component.Form.Element {
 
         @listen('change')
         _onChange(e:Event):void {
-            this.fire('field-value-changed', this);
             this.selectOption(this.value);
         }
 
       selectOption(value:string):void {
+            this.fire('field-value-changed', this);
             for (let i = 0; i < (<any>Polymer.dom(this)).childNodes.length; i++) {
                 (<any>Polymer.dom(this)).childNodes[i].selected = ((<any>Polymer.dom(this)).childNodes[i].value === value ? true : false);
             }
+          this.fire('field-select-value', {'value': value, 'name': this.name});
         }
 
         isValid() {

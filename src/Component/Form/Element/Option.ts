@@ -17,7 +17,7 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             selected:boolean;
 
-        constructor(data:any) {
+        constructor(context:any, data:any) {
             super(data);
             if (data.label != undefined) this.label = data.label;
             if (data.value != undefined) this.value = data.value;

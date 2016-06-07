@@ -4,7 +4,6 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../Component/Form/Element/Form.ts" />
 /// <reference path="../../I18n/Translator.ts" />
-/// <reference path="../../Core/Ajax/AutoComplete.ts" />
 
 
 
@@ -62,7 +61,13 @@ namespace Com.Threeds.Component.Form {
             this.service('api').form(this, {});
         }
 
+        clear() {
+            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+            this.innerHTML = '';
+        }
+
         render(type:string, data:any):void {
+            this.clear();
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);
             } else {
