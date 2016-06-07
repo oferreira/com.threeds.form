@@ -37,14 +37,16 @@ namespace Com.Threeds.Component.Form.Element {
 
             let container:HTMLElement = document.createElement('div');
             container.classList.add('ds-form-group-element');
-            container.classList.add('ds-border');
+            container.classList.add('no-border');
 
-            let options:Object = {value:context.settings.nextLabel};
+            let options:Object = {value:context.settings.nextLabel, class:'ds-btn-circle'};
             if(context._currentPosition == (Object.keys(context.settings.steps).length -1)){
                 options.value = context.settings.action.label;
+                options.class = 'ds-btn-scream';
             }
+            container.appendChild(SubmitElement.create(context, options));
 
-            this.appendChild(SubmitElement.create(context, options));
+            this.appendChild(container);
         }
 
         public get settings():any {

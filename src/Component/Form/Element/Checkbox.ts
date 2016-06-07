@@ -24,6 +24,9 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             required:boolean = false;
 
+        @property({type: String, reflectToAttribute: true})
+        class:string = 'ds-form-input-checkbox ';
+
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
@@ -32,6 +35,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (data.fieldName != undefined) this.id = data.fieldName, this.name = data.fieldName;
             if (data.required != undefined) this.required = data.required;
             if (data.value != undefined) this.checked = data.value;
+            if (data.class != undefined) this.class += data.class;
         }
 
         public get errorMessage():string {

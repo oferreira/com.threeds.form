@@ -18,11 +18,12 @@ namespace Com.Threeds.Component.Form.Element {
             value:string;
 
         @property({type: String, reflectToAttribute: true})
-            class:string = 'ds-btn ds-btn-circle';
+            class:string = 'ds-btn ';
 
         constructor(context:any, data:any) {
             super(data);
             if (typeof data.value != undefined) this.value = data.value;
+            if (typeof data.class != undefined) this.class +=  data.class;
         }
     }
 }

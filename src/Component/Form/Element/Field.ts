@@ -73,7 +73,7 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
 
-        append(context:any, data:Object):void {
+        append(context:any, data:any):void {
             let type:string = data.type.toLowerCase();
             let container:HTMLDivElement = this.container(context, data);
             let label:HTMLLabelElement = this.label(context, data);
@@ -91,10 +91,10 @@ namespace Com.Threeds.Component.Form.Element {
                     this.appendChild(container);
                     break;
                 case 'checkbox':
-                    label.insertBefore(Checkbox.create(context, data), label.firstChild);
-                    container.appendChild(label);
-                    container.classList.add('checkbox');
-                    this.appendChild(container);
+                    data.class =  'ds-form-switch-checkbox';
+                    this.appendChild(Checkbox.create(context, data));
+                    label.classList.add('ds-form-switch-label');
+                    this.appendChild(label);
                     break;
                 case 'radio':
                     label.insertBefore(Radio.create(context, data), label.firstChild);

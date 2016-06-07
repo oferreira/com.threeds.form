@@ -34,7 +34,7 @@
         "required": true
       },
       {
-        "fieldName": "optin",
+        "fieldName": "radio1",
         "type": "radio",
         "label": "My Custom Field Radio",
         "required": false,
