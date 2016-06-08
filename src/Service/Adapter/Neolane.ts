@@ -91,6 +91,8 @@ namespace Com.Threeds.Service.Adapter {
 
         public clean(data:any):any {
             for (let i = 0; i < data.length; i++) {
+                data[i].fieldclass = [];
+
                 if (typeof data[i].type != 'undefined' && data[i].type == 'picklist') {
                     data[i].type = 'select';
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'string') {
@@ -99,6 +101,19 @@ namespace Com.Threeds.Service.Adapter {
                     this.clean(data[i].items);
                 }
             }
+
+            for (let i = data.length; i >= 0; i--) {
+                if(typeof data[i] != 'undefined' && data[i].fieldName != 'optin'){
+                    data[i].fieldclass.push('ds-form-group-element-last');
+                    break;
+                }
+            }
+
+            if (typeof data[0] != 'undefined'){
+                data[0].fieldclass.push('ds-form-group-element-first');
+            }
+
+            console.log(data[0])
         }
 
 
