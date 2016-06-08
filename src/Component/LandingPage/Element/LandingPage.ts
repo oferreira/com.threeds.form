@@ -70,7 +70,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.hook.success = function(context:any, data:any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-ldp-global-step-3');
+                    self.context.elem.addClass('ds-ldp-global-step-2');
                     self.context.elem.append(Success.create(self.context, self.context.settings.success));
                 };
             }
@@ -79,7 +79,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.hook.warning = function(context:any, message:any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-ldp-global-step-3');
+                    self.context.elem.addClass('ds-ldp-global-step-2');
                     self.context.elem.append(Error.create(self.context, self.context.settings.error));
                 };
             }

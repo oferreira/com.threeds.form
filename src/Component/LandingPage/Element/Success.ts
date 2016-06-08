@@ -14,7 +14,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
             super(data);
             this.context = context;
 
-            let tpl = `<div class="ds-ldp-global-step-3">
+            let tpl = `<div class="ds-ldp-global-step-2">
                             <div class="ds-ldp-global-container">
                                 <div id="ldp" class="ds-lpd-info-form">
                                     <div class="ds-landingpage" is="landingpage-element">

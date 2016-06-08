@@ -99,6 +99,13 @@
 // Select
 // ==========================================================================
 
+.ds-form-select{
+	//background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
+	background-image: none \9;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
 
 // textarea
 // ==========================================================================
@@ -199,14 +206,6 @@
 			border: 0 none;
 		}
 
-		.ds-form-select{
-			//background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
-			background-image: none \9;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-		}
-
-
 		&.no-border{border:0;}
 
 		&:first-child,
@@ -272,13 +271,11 @@
 }
 
 
-.ds-form-fieldset .has-error:first-child,
-.ds-form-fieldset .has-error:first-of-type{
+.ds-form-fieldset .has-error.ds-form-group-element-first{
 	@include border-bottom-radius(0);
 }
 
-.ds-form-fieldset .has-error:last-child,
-.ds-form-fieldset .has-error:last-of-type{
+.ds-form-fieldset .has-error.ds-form-group-element-last{
 	@include border-bottom-radius(0);
 	.ds-form-error{
 		border-radius: 0 0 $radius-form 0;
