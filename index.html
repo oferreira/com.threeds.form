@@ -1,101 +1,118 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <title>Form 3DS</title>
-
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/dist/style.css" >
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/dist/platform.js"></script>
     <script type="text/javascript" src="/dist/app.js"></script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="/dist/style.css" >
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-
-    <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
-
-
-    <style type="text/css">
-        .error {
-            border: 1px solid red;
-        }
-
+    <style>
         .hide {
             display: none;
         }
-    </style>
+        .autocomplete-suggestions {
+            text-align: left;
+            cursor: default;
+            border: 1px solid #ccc;
+            border-top: 0;
+            background: #fff;
+            box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
 
+            /* core styles should not be changed */
+            position: absolute;
+            display: none;
+            z-index: 9999;
+            max-height: 254px;
+            overflow: hidden;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .autocomplete-suggestion {
+            position: relative;
+            padding: 0 .6em;
+            line-height: 23px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.02em;
+            color: #333;
+        }
+
+        .autocomplete-suggestion b {
+            font-weight: normal;
+            color: #1f8dd6;
+        }
+
+        .autocomplete-suggestion.selected {
+            background: #f0f0f0;
+        }
+
+    </style>
 </head>
 <body>
-<div class="ds-form-global-container">
-    <div class="ds-info-form" style="background-image:url('assets/img-test/img.jpg');">
-
-        <ul class="nav nav-tabs nav-tabs-step ds-tabs" role="tablist">
-            <li role="presentation" class="active disabled"><a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">Step 1</a></li>
-            <li role="presentation" class="disabled"><a href="#step-2" aria-controls="step-2" role="tab" data-toggle="tab" >Step</a></li>
-        </ul>
-
-        <div class="tab-content ds-tab-content">
-            <div role="tabpanel" class="tab-pane active" id="step-1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-            <div role="tabpanel" class="tab-pane" id="step-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-        </div>
-
-    </div>
-
-    <div id="form" class="ds-form-container"></div>
-</div>
-
+<div id="container"></div>
 <script type="text/javascript">
     $(function () {
-        $(".nav-tabs .disabled a").on("click", function(e) {
-            if ($(this).parent().hasClass("disabled")) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
         addEventListener('WebComponentsReady', function () {
-            $("#form").threeds().form({
-                form: {
-                    id: 'LDP6312',
-                    adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+            var options = {
+                id: 'LDP6312',
+                type: 'download',
+                backgroundImage: 'http://lorempixel.com/500/680',
+                steps: {
+                    0: {
+                        name: '1',
+                        title: 'To download the Case Study, please provide your email'
+                    },
+                    1: {
+                        name: '2',
+                        title: 'Please provide more informations to complete your Case Study download'
+                    }
                 },
-                hook: {
-                    success: function (context, data) {
-                        // {title: "Thank You", content: "<p>Thank you for your interest in Dassault Système…ossible.</p><p>Regards,<br/>Dassault Systèmes</p>"}
-                        console.log(data);
+                success: {
+                    title: 'Thanks for your download',
+                    content: 'Your download should start automatically, if not use the direct link',
+
+                },
+                action: {
+                    url: 'http://www.3ds.com/en/file.pdf',
+                    label: 'Download',
+                    content: 'PDF - 3,84Mo',
+                },
+                accelerate: {
+                    url: 'http://www.3ds.com/en/contact-us',
+                    label: 'contact me',
+                    content: 'You want to be contacted for a commercial purpose?',
+                },
+                error: {
+                    title: 'Sorry !',
+                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                },
+                form: {
+                    nextLabel: 'Next',
+                    prevLabel: 'Back',
+                    api: {
+                        url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
-                    warning: function (context, message) {
-                        // This landing page does not exists
-                        console.log(message);
-                    },
-                    redirect: function (context, url) {
-                        // http://www.3ds.com
-                        console.log(url);
-                    },
-                    setCurrentPosition: function (context, index) {
-                        $('.nav-tabs a[href="#step-' + (index + 1) + '"]').tab('show');
+                    callback: {
+                        success: function(){
+                            alert('zerkoezkrzekrokzeokr');
+                        }
                     },
                 }
-            });
+            };
+
+            $('#container').threeds().landingPage(options);
         });
     });
+
 </script>
+<style>
+    #container{
+        height: 1000px;
+    }
+</style>
 </body>
 </html>

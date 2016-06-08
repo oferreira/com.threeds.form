@@ -25,7 +25,6 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
-                    console.log(response);
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {

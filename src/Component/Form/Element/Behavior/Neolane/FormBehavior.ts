@@ -55,13 +55,13 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             let context = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
 
-            if(elem.name == 'company'){
+            let query:string = $('#company').val();
+            let isoCode:string = $('#country').val();
 
-                console.log('field-create');
-                console.log(elem.name);
-                console.log($('#company').val());
-                console.log($('#country').val());
-                var companyAutoComplete = new autoComplete({
+
+
+            if(elem.name == 'company' && query != undefined && isoCode != undefined && elem.autoComplete == undefined){
+                elem.autoComplete = new autoComplete({
                     selector: `#${elem.name}`,
                     minChars: 3,
                     source: function(term, suggest){
@@ -71,10 +71,8 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                             url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
                             dataType: 'jsonp',
                             data: {
-                                //query: $('#company').val(),
-                                // iso: $('#country').val()
-                                query: 'aaa',
-                                iso: 'FR'
+                                query: query,
+                                iso: isoCode
                             },
                             success: function (data) {
                                 suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
@@ -101,7 +99,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                     },
                     onSelect: function(e, term, item){
 
-                        console.log(term);
                         context.append({
                             name: "duns",
                             type: "hidden",
@@ -129,8 +126,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         });
 
                         elem.value = item.getAttribute('data-companyName');
-
-                        console.log('Item "'+item.getAttribute('data-companyName'));
                     }
                 });
 

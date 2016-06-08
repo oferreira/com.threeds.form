@@ -22,6 +22,7 @@ namespace Com.Threeds.Component.Form.Element {
             error:string;
 
         data:any;
+        public autoComplete:any;
 
         constructor(context:any, data:any) {
             this.hydrateValidators(data);
@@ -33,6 +34,16 @@ namespace Com.Threeds.Component.Form.Element {
             }
 
             if(typeof data.fieldName == 'string') data.name = data.fieldName;
+
+            if (typeof data.fieldclass == 'string') {
+                let items:any = data.fieldclass.split(' ');
+                for (var i = 0; i < items.length; i++) {
+                    this.classList.add(items[i]);
+                console.log(items[i])
+                console.log('-z-z-z-z-z-z')
+                }
+            }
+
 
             this.classList.add(`field-${data.name}`);
             this.append(context, data);

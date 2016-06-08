@@ -177,6 +177,12 @@
   border-radius: 100%;
 }
 
+.ds-form-select {
+  background-image: none \9;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 .ds-form-switch-checkbox {
   display: none;
   opacity: 0;
@@ -272,12 +278,6 @@
   border: 0 none;
 }
 
-.ds-form-fieldset .ds-form-group-element .ds-form-select {
-  background-image: none \9;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-}
-
 .ds-form-fieldset .ds-form-group-element.no-border {
   border: 0;
 }
@@ -341,20 +341,17 @@
   background: url("../icon/shape.svg") center center no-repeat;
 }
 
-.ds-form-fieldset .has-error:first-child,
-.ds-form-fieldset .has-error:first-of-type {
+.ds-form-fieldset .has-error.ds-form-group-element-first {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.ds-form-fieldset .has-error:last-child,
-.ds-form-fieldset .has-error:last-of-type {
+.ds-form-fieldset .has-error.ds-form-group-element-last {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.ds-form-fieldset .has-error:last-child .ds-form-error,
-.ds-form-fieldset .has-error:last-of-type .ds-form-error {
+.ds-form-fieldset .has-error.ds-form-group-element-last .ds-form-error {
   border-radius: 0 0 25px 0;
 }
 
@@ -553,6 +550,16 @@ body {
   transition: 1s ease all;
 }
 
+.ds-tabs-header.step-0-active li.active,
+.ds-tabs-header.step-1-active li.active {
+  color: #ffffff;
+}
+
+.ds-tabs-header.step-0-active li.active a,
+.ds-tabs-header.step-1-active li.active a {
+  color: #ffffff;
+}
+
 .ds-tabs-header.step-0-active:before {
   left: 0;
 }
@@ -570,14 +577,14 @@ body {
   font-size: 14px;
   text-decoration: none;
   font-family: "3dsregular";
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.22);
 }
 
 .ds-tabs-header li a {
   font-size: 14px;
   text-decoration: none;
   font-family: "3dsregular";
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.22);
   display: block;
 }
 
@@ -758,6 +765,7 @@ body {
 }
 
 .ds-ldp-global-step-0 {
+  margin: auto;
   width: 476px;
 }
 
@@ -781,6 +789,7 @@ body {
 }
 
 .ds-ldp-global-step-1 {
+  margin: auto;
   width: 952px;
 }
 
@@ -791,6 +800,7 @@ body {
 }
 
 .ds-ldp-global-step-2 {
+  margin: auto;
   max-width: 476px;
 }
 
