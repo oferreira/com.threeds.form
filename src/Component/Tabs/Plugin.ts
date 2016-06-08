@@ -49,8 +49,6 @@ namespace Com.Threeds.Component.Tabs {
         }
 
         render():void{
-            console.log('-_>>_>_>_>_>_>_>_>');
-            console.log(this.settings.data);
             //this.elem.append(Tabs.create(this, this.settings.data));
         }
 

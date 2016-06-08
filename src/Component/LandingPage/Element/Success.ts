@@ -14,6 +14,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
             super(data);
             this.context = context;
 
+            if(typeof this.context.settings.form.callback.success == 'function'){
+                this.context.settings.form.callback.success();
+            }
+
             let tpl = `<div class="ds-ldp-global-step-2">
                             <div class="ds-ldp-global-container">
                                 <div id="ldp" class="ds-lpd-info-form">

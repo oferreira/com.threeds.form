@@ -13,8 +13,6 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
         constructor(context:any, data:any) {
             super(data);
             this.context = context;
-
-            console.log('kqsodkqsokd)))°°°°');
         }
 
     }

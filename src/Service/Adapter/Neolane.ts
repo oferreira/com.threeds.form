@@ -17,6 +17,7 @@ namespace Com.Threeds.Service.Adapter {
 
             $.ajax({
                 type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
@@ -48,26 +49,8 @@ namespace Com.Threeds.Service.Adapter {
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
-                    console.log(context);
                     context.render('form', false);
                 }
-            });
-        }
-
-
-
-        public customerAutocomplete(context:Object, data:any):void {
-            $.ajax({
-                url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                dataType: 'jsonp',
-                data: {
-                    query: 'lorem',
-                    iso: 'fr'
-                },
-                success: function (data) {
-                    context.render(context, data);
-                },
-
             });
         }
 
@@ -112,8 +95,6 @@ namespace Com.Threeds.Service.Adapter {
             if (typeof data[0] != 'undefined'){
                 data[0].fieldclass.push('ds-form-group-element-first');
             }
-
-            console.log(data[0])
         }
 
 

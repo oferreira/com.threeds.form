@@ -37,8 +37,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
             blur.classList.add('ds-lpd-info-blur');
 
             tabsContainer2.appendChild(this.tabs());
+
             tabsContainer2.appendChild(blur);
             tabsContainer.appendChild(tabsContainer2);
+
 
             this.appendChild(tabsContainer);
             this.appendChild(this.form(data));
@@ -84,6 +86,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 };
             }
 
+            console.log(this.context.settings);
             return Form.create(this.context, data);
         }
 

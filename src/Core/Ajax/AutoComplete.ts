@@ -30,8 +30,6 @@ namespace Com.Threeds.Core.Ajax {
         }
 
         render(context:any, data:any) {
-            console.log('AutoComplete->render->>>>>');
-            console.log(data);
         }
 
 

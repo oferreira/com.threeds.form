@@ -19,9 +19,14 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         public action(form:any, data:any):void {
 
             if (Object.isDefined(data, 'result.config')) {
+                for (let i = 0; i < data.result.config.length; i++) {
+                    if(typeof data.result.config[i].name != 'undefined' && data.result.config[i].name == 'email' && data.result.config[i].type == 'hidden'){
+                        $('.ds-lpd-info-form').append(`<p class="email-valid">${data.result.config[i].value}</p>`);
+                    }
+                }
+
                 form.update(data);
             } else if (Object.isDefined(data, 'result.thankYouPage')) {
-
                 if (data.result.properties.displayThankYou) {
                     form.success(data.result.thankYouPage);
 
@@ -46,8 +51,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         @listen('field-create')
         _onCreate(e:Event, elem:any) {
 
-
-
         }
 
         @listen('field-value-changed')
@@ -57,8 +60,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
             let query:string = $('#company').val();
             let isoCode:string = $('#country').val();
-
-
 
             if(elem.name == 'company' && query != undefined && isoCode != undefined && elem.autoComplete == undefined){
                 elem.autoComplete = new autoComplete({
