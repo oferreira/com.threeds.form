@@ -19,7 +19,7 @@ namespace Com.Threeds.Component.Form.Element {
             this.classList.add('ds-form-fieldset');
 
             this.appendChild(Input.create(context, {
-                name: "op",
+                fieldName: "op",
                 type: "hidden",
                 value: data.result.nextAction
             }));

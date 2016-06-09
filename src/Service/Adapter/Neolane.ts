@@ -18,7 +18,7 @@ namespace Com.Threeds.Service.Adapter {
             $.ajax({
                 type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
+                //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
@@ -26,6 +26,7 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
+                    console.log(response);
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
@@ -38,18 +39,20 @@ namespace Com.Threeds.Service.Adapter {
             let self:any = this;
 
             data['lpid'] = context.settings.id;
-            data['op'] = 'GetFormJson';
+            console.log('console.log(data);');
+            console.log(data);
 
             $.ajax({
-                //type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                type: "POST",dataType: "jsonp",url: context.settings.api.url,
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
-                type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 data:data,
                 success: function (response:Object) {
-                    context.render('form', self.data(response));
+                    console.log(response);
+                   context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
-                    context.render('form', false);
+                   context.render('form', false);
                 }
             });
         }
@@ -110,11 +113,8 @@ namespace Com.Threeds.Service.Adapter {
 
         public hydrate(data:any, values:any):any {
             for (let i = 0; i < data.length; i++) {
-                if (typeof data[i].fieldName == 'string') {
-                    data[i]['name'] = data[i].fieldName;
-                }
-                if (typeof data[i].name != 'undefined' && values[data[i].name] != 'undefined') {
-                    data[i].value = values[data[i].name];
+                if (typeof data[i].fieldName != 'undefined' && values[data[i].fieldName] != 'undefined') {
+                    data[i].value = values[data[i].fieldName];
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {
                     this.hydrate(data[i].items, values);
                 }

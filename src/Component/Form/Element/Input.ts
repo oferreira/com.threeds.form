@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string;
+            value:string =  "lorem@lorem.fr";
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
@@ -35,7 +35,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (data.type != undefined && data.type != 'hidden') this.classList.add('ds-form-input-text');
 
             if (context.settings.display.placeholder) this.placeholder = data.label
-            if (data.name != undefined) this.id = data.name, this.name = data.name;
+            if (data.name != undefined) this.id = data.fieldName, this.name = data.fieldName;
             if (data.required != undefined) this.required = data.required;
             if (data.type != undefined) this.type = data.type;
             if (data.value != undefined) this.value = data.value;
