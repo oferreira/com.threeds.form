@@ -4,15 +4,15 @@
 // LDP FORM ANIMATION
 // ==========================================================================
 
-.test {
-	animation-name: test;
+.ds-ldp-global-step-1 {
+	animation-name: step1;
 	animation-duration: 600ms;
 	animation-iteration-count: 1;
 	animation-direction: normal;
 	animation-delay: 0;
 }
 
-@keyframes test {
+@keyframes step1 {
 
 	from {
 		width: 476px;

@@ -22,7 +22,7 @@
 .ds-ldp-form-container{
 	float: left;
 	@include box-sizing(border-box);
-	height:685px;
+
 	position: relative;
 	margin:0;
 
@@ -166,7 +166,6 @@
 	font-size: 14px;
 	font-weight: normal;
 	text-transform: uppercase;
-	width:40px;
 	color: $white;
 	padding-top: 40px;
 	border:0;

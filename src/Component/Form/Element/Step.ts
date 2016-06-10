@@ -37,7 +37,8 @@ namespace Com.Threeds.Component.Form.Element {
 
             let container:HTMLElement = document.createElement('div');
             container.classList.add('ds-form-group-element');
-            container.classList.add('no-border');
+            container.classList.add('ds-no-border');
+            container.classList.add('ds-txt-center');
 
             let options:Object = {value:context.settings.nextLabel, class:'ds-btn-circle'};
             if(context._currentPosition == (Object.keys(context.settings.steps).length -1)){

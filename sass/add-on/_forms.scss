@@ -17,154 +17,6 @@
 }
 
 
-// Radio & Checkbox
-// ==========================================================================
-
-.ds-form-checkbox,
-.ds-form-radio{display: none;}
-
-
-// Checkbox
-// ==========================================================================
-.ds-form-label-checkbox{
-	position: relative;
-	&:after,
-	&:before{
-		content: "";
-		display: inline-block;
-		cursor: pointer;
-		position: absolute;
-		margin: 0px;
-		padding: 0px;
-	}
-	&:after{
-		left:0;
-		border:2px solid black;
-		width:17px;
-		height:17px;
-
-	}
-	&:before{
-		width: 9px;
-		height: 5px;
-		top: 4px;
-		left: 4px;
-		border: 3px solid black;
-		border-top: none;
-		border-right: none;
-		background: transparent;
-		opacity: 0;
-		-webkit-transform: rotate(-45deg);
-		transform: rotate(-45deg);
-		background:red;
-		z-index: 1000;
-	}
-}
-
-
-// Radio
-// ==========================================================================
-
-.ds-form-label-radio{
-	position: relative;
-	&:after,
-	&:before{
-		content: "";
-		display: inline-block;
-		cursor: pointer;
-		position: absolute;
-		margin: 0px;
-		padding: 0px;
-	}
-
-	&:after{
-		left:0;
-		border:2px solid black;
-		border-radius:100%;
-		width:17px;
-		height:17px;
-
-	}
-	&:before{
-		left:2px;
-		top:2px;
-		width:15px;
-		height:15px;
-		background: red;
-		border-radius:100%;
-
-	}
-}
-
-// Select
-// ==========================================================================
-
-.ds-form-select{
-	//background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
-	background-image: none \9;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-}
-
-
-// textarea
-// ==========================================================================
-
-
-
-
-// Checkbox toogle IOS
-// ==========================================================================
-
-.ds-form-switch-checkbox{
-	display: none;
-	opacity: 0;
-}
-.ds-form-switch-label{
-	display: block;
-	font-size: 10px;
-	padding-left: ($size-switch * 2) + 11;
-	position: relative;
-	color:$black-35;
-	font-family: $ds-light;
-
-	&:before,
-	&:after {
-		content: "";
-		display: inline-block;
-		cursor: pointer;
-		position: absolute;
-		margin: 0px;
-		padding: 0px;
-	}
-
-	&:before{
-		@include transition (all 0.2s ease);
-		width: $size-switch;
-		height: $size-switch;
-		background: $white;
-		border-radius: $size-switch;
-		top: 2px;
-		left: 2px;
-		z-index: 10;
-	}
-
-	&:after{
-		@include transition (all 0.5s ease);
-		width: ($size-switch * 2) - 4;
-		height: $size-switch + 4;
-		background: $black-35;
-		border-radius: $size-switch;
-		top: 0px;
-		left: 0px;
-		z-index: 9;
-	}
-}
-
-.ds-form-switch-checkbox:checked + .ds-form-switch-label::before {left:21px;}
-.ds-form-switch-checkbox:checked + .ds-form-switch-label::after {background: $blueAction;}
-
-
 // Form type
 // ==========================================================================
 
@@ -173,56 +25,344 @@
 	margin: 10px 0;
 }
 
-.ds-form-fieldset{
-	border:0;
+.ds-form-fieldset {
+	border: 0;
 	padding: 0;
-	margin:10px 0;
+	margin: 10px 0;
+}
 
-	.ds-form-input-text:focus,
-	.ds-form-input-text:invalid,
-	.ds-form-select{
+
+.ds-form-group-element {
+	border-left: solid 1px $black-12;
+	border-right: solid 1px $black-12;
+	border-bottom: solid 1px $black-12;
+	padding: $padding-input-y $padding-input-x;
+	background: $white;
+	position: relative;
+
+	input[type="text"]:focus,
+	input[type="text"]:invalid,
+	select{
 		box-shadow: none;
 		outline: none;
 	}
 
+	label{@extend .ds-form-label;}
 
-	.ds-form-group-element {
-		border-left: solid 1px $black-12;
-		border-right: solid 1px $black-12;
-		border-bottom: solid 1px $black-12;
-		padding: $padding-input-y $padding-input-x;
-		background: $white;
+	select,
+	input[type="text"]{
+		@include box-sizing(border-box);
+		display: block;
+		width: 100%;
+		font-family: $ds-light;
+		font-size: rem(17px);
+		color: $black-35;
+		background-color: #ffffff;
+		border: 0 none;
+	}
+
+	&.ds-no-border{
+		border:0;
+		background: none;
+	}
+
+	&.ds-form-group-element-first{
+		@include border-top-radius($radius-form);
+		border-top: solid 1px $black-12;
+	}
+
+	& + .ds-form-group-element {
+		border-top: 0;
+	}
+
+	&.ds-form-group-element-last{
+		@include border-bottom-radius($radius-form);
+	}
+}
+
+
+
+
+// Radio & Checkbox
+// ==========================================================================
+
+/*
+.ds-form-checkbox,
+.ds-form-radio{display: none;}
+*/
+
+// Checkbox
+// ==========================================================================
+
+.ds-form-checkbox{
+	label{
+		display: block;
 		position: relative;
-
-		.ds-form-select,
-		.ds-form-input-text{
-			@include box-sizing(border-box);
-			display: block;
-			width: 100%;
-			font-family: $ds-light;
-			font-size: rem(17px);
-			color: $black-35;
-			background-color: #ffffff;
-			border: 0 none;
+		padding-left: 30px;
+		&:after,
+		&:before{
+			content: " ";
+			cursor: pointer;
+			position: absolute;
+			margin: 0px;
+			padding: 0px;
 		}
+		&:after{
+			left:0;
+			width:17px;
+			height:17px;
+			border-radius: 2px;
+			border:1px solid $black-12;
+			background: transparent;
 
-		&.no-border{border:0;}
-
-		&:first-child,
-		&:first-of-type{
-			@include border-top-radius($radius-form);
-			border-top: solid 1px $black-12;
 		}
-
-		& + .ds-form-group-element {
-			border-top: 0;
-		}
-
-		&:last-child,
-		&:last-of-type{
-			@include border-bottom-radius($radius-form);
+		&:before{
+			opacity: 0;
+			width: 9px;
+			height: 5px;
+			top: 4px;
+			left: 4px;
+			border: 2px solid $white;
+			border-top: none;
+			border-right: none;
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+			z-index: 1000;
 		}
 	}
+
+	input[type="checkbox"]{display: none;}
+
+	// Checked
+	input[type="checkbox"]:checked + label::after {
+		background: $blueAction;
+		@include transition (all 0.5s ease);
+	}
+	input[type="checkbox"]:checked + label::before{
+		opacity: 1;
+		@include transition (all 0.5s ease);
+	}
+}
+
+
+//Optin
+.ds-form-checkbox-optin{
+
+
+	.ds-form-element-optin{
+		margin: 16px 0;
+	}
+
+	input[type="checkbox"]{
+		display: none;
+		opacity: 0;
+	}
+
+	label{
+		display: block;
+		padding-right: ($size-switch * 2) + 10;
+		position: relative;
+
+		&:before,
+		&:after {
+			content: "";
+			display: inline-block;
+			cursor: pointer;
+			position: absolute;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		&:before{
+			@include transition (all 0.2s ease);
+			width: $size-switch;
+			height: $size-switch;
+			background: $white;
+			border-radius: $size-switch;
+			top: 2px;
+			right: 2px;
+			z-index: 10;
+		}
+
+		&:after{
+			@include transition (all 0.5s ease);
+			width: ($size-switch * 2);
+			height: $size-switch + 4;
+			background: $black-35;
+			border-radius: $size-switch;
+			top: 0px;
+			right: 0px;
+			z-index: 9;
+		}
+	}
+
+	input[type="checkbox"]:checked + label::before {right:$size-switch - 2;}
+	input[type="checkbox"]:checked + label::after {background: $blueAction;}
+}
+
+
+// Radio
+// ==========================================================================
+
+.ds-form-radio{
+
+	$spacing-radio: $size-radio /2;
+
+	.ds-form-element-radio{
+		display: inline-block;
+		padding-right:40px;
+	}
+
+	input[type="radio"]{
+		display: none;
+		opacity: 0;
+	}
+	label{
+
+		position: relative;
+		padding-left: ($size-radio + $spacing-radio) + 10;
+		&:after,
+		&:before{
+			content: "";
+			display: inline-block;
+			cursor: pointer;
+			position: absolute;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		&:after{
+			left:0;
+			top:0;
+			border:1px solid $black-12;
+			border-radius:100%;
+			width:$size-radio + $spacing-radio;
+			height:$size-radio + $spacing-radio;
+		}
+		&:before{
+			left:($spacing-radio / 2) + 1;
+			top:($spacing-radio / 2) + 1;
+			width:$size-radio;
+			height:$size-radio;
+			background: none;
+			border-radius:100%;
+		}
+	}
+
+	//Checked
+	input[type="radio"]:checked + label::before {
+		@include transition (all 0.5s ease);
+		background: $blueAction;
+	}
+}
+
+// Select
+// ==========================================================================
+
+.ds-form-select{
+	$border-size:2px;
+	&:before{
+		content: " ";
+		cursor: pointer;
+		position: absolute;
+		margin: 0px;
+		padding: 0px;
+		width: 9px;
+		height: 9px;
+		top: $padding-input-x;
+		right: $padding-input-x + $border-size;
+		border: $border-size solid $black-22;
+		border-top: none;
+		border-right: none;
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		z-index: 1000;
+	}
+
+	select {
+		color: $black-35;
+		background-image: none \9;
+		position: relative;
+		@include appearance(none);
+		// Hides the default caret in IE11
+		&::-ms-expand {
+			opacity: 0;
+		}
+
+	}
+}
+
+
+// textarea
+// ==========================================================================
+
+.ds-form-textarea{
+	textarea{
+		width:100%;
+		@include box-sizing(border-box);
+		font-family: $ds-light;
+		font-size: rem(17px);
+		color: $black-35;
+		border: 0 none;
+		resize: none;
+		background: none;
+	}
+}
+
+
+// Checkbox toogle IOS
+// ==========================================================================
+
+.ds-form-switch{
+	input{
+		display: none;
+		opacity: 0;
+	}
+
+	label{
+		display: block;
+		font-size: 10px;
+		padding-left: ($size-switch * 2) + 11;
+		position: relative;
+		color:$black-35;
+		font-family: $ds-light;
+
+		&:before,
+		&:after {
+			content: "";
+			display: inline-block;
+			cursor: pointer;
+			position: absolute;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		&:before{
+			@include transition (all 0.2s ease);
+			width: $size-switch;
+			height: $size-switch;
+			background: $white;
+			border-radius: $size-switch;
+			top: 2px;
+			left: 2px;
+			z-index: 10;
+		}
+
+		&:after{
+			@include transition (all 0.5s ease);
+			width: ($size-switch * 2);
+			height: $size-switch + 4;
+			background: $black-35;
+			border-radius: $size-switch;
+			top: 0px;
+			left: 0px;
+			z-index: 9;
+		}
+	}
+
+	input:checked + label::before {left:$size-switch - 2;}
+	input:checked + label::after {background: $blueAction;}
+
 }
 
 
