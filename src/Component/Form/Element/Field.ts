@@ -33,7 +33,7 @@ namespace Com.Threeds.Component.Form.Element {
                 this.classList.add('ds-field-required');
             }
 
-            if(typeof data.fieldName == 'string') data.name = data.fieldName;
+            //if(typeof data.fieldName == 'string') data.name = data.fieldName;
 
             if (typeof data.fieldclass != 'undefined' ) {
                 for (var i = 0; i < data.fieldclass.length; i++) {
