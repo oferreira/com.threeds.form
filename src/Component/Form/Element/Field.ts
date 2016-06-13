@@ -2,9 +2,9 @@
 /// <reference path="../../../Component/Form/Element/Input.ts" />
 /// <reference path="../../../Component/Form/Element/Textarea.ts" />
 /// <reference path="../../../Component/Form/Element/Checkbox.ts" />
-/// <reference path="../../../Component/Form/Element/Radio.ts" />
 /// <reference path="../../../Component/Form/Element/Select.ts" />
 /// <reference path="../../../Component/Form/Element/FieldGroup.ts" />
+/// <reference path="../../../Component/Form/Element/RadioGroup.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Validator/Email.ts" />
 /// <reference path="../../../Validator/Email.ts" />
@@ -103,11 +103,6 @@ namespace Com.Threeds.Component.Form.Element {
                     this.appendChild(Checkbox.create(context, data));
                     label.classList.add('ds-form-switch-label');
                     this.appendChild(label);
-                    break;
-                case 'radio':
-                    this.appendChild(Radio.create(context, data));
-                    this.appendChild(label)
-                   //this.appendChild(container);
                     break;
                 case 'text':
                     container.appendChild(Input.create(context, data));

@@ -27,6 +27,8 @@ namespace Com.Threeds.Component.Form.Element {
             for (let k in data.result.config) {
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                     this.appendChild(Input.create(context, data.result.config[k]));
+                } else if (data.result.config[k].type.toLowerCase() == 'radio') {
+                    this.appendChild(RadioGroup.create(context, data.result.config[k]));
                 } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
                     this.appendChild(FieldGroup.create(context, data.result.config[k]));
                 } else {

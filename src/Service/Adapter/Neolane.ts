@@ -39,7 +39,7 @@ namespace Com.Threeds.Service.Adapter {
             let self:any = this;
 
             data['lpid'] = context.settings.id;
-            console.log('console.log(data);');
+            console.log('post -------->>> data ------->>>console.log(data);');
             console.log(data);
 
             $.ajax({

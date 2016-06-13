@@ -86,7 +86,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 };
             }
 
-            console.log(this.context.settings);
             return Form.create(this.context, data);
         }
 

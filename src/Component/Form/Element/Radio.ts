@@ -12,7 +12,7 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             type:string = 'radio';
 
-        @property({type: Boolean})
+        @property({type: Boolean, reflectToAttribute: true})
             checked:boolean = false;
 
         @property({type: String, reflectToAttribute: true})
@@ -26,10 +26,11 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             super(data);
 
-            if (data.name != undefined) this.id = data.name, this.name = data.name;
             if (data.fieldName != undefined) this.id = data.fieldName, this.name = data.fieldName;
+            if (data.id != undefined) this.id = data.id;
             if (data.required != undefined) this.required = data.required;
             if (data.value != undefined) this.checked = data.value;
+            console.log(this);
         }
 
         public get errorMessage():string {
@@ -57,7 +58,7 @@ namespace Com.Threeds.Component.Form.Element {
             }
 
             return this.displayError();
-        }s
+        }
 
         displayError(detail?:string):boolean {
             this.errorMessage = detail;
