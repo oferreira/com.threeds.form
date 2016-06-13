@@ -14,10 +14,10 @@ namespace Com.Threeds.Component.Form.Element {
 
         constructor(context:any, data:any) {
             super(data);
-            this.classList.add('ds-form-group-element');
+            this.classList.add('ds-form-group');
 
             let container:HTMLDivElement = document.createElement('div');
-            container.classList.add('col-sm-10');
+            container.classList.add('ds-form-group-element');
 
 
             let label:HTMLLabelElement = document.createElement('label');

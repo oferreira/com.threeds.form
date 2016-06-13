@@ -95,13 +95,13 @@ namespace Com.Threeds.Service.Adapter {
 
             for (let i = data.length; i >= 0; i--) {
                 if(typeof data[i] != 'undefined' && data[i].fieldName != 'optin'){
-                    data[i].fieldclass.push('ds-form-group-element-last');
+                    data[i].fieldclass.push('ds-form-group-last');
                     break;
                 }
             }
 
             if (typeof data[0] != 'undefined'){
-                data[0].fieldclass.push('ds-form-group-element-first');
+                data[0].fieldclass.push('ds-form-group-first');
             }
         }
 

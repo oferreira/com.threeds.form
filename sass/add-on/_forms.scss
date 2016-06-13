@@ -31,8 +31,7 @@
 	margin: 10px 0;
 }
 
-
-.ds-form-group-element {
+.ds-form-group {
 	border-left: solid 1px $black-12;
 	border-right: solid 1px $black-12;
 	border-bottom: solid 1px $black-12;
@@ -66,35 +65,37 @@
 		background: none;
 	}
 
-	&.ds-form-group-element-first{
+	&.ds-form-group-first{
 		@include border-top-radius($radius-form);
 		border-top: solid 1px $black-12;
 	}
 
-	& + .ds-form-group-element {
+	& + .ds-form-group {
 		border-top: 0;
 	}
 
-	&.ds-form-group-element-last{
+	&.ds-form-group-last{
 		@include border-bottom-radius($radius-form);
+	}
+
+	.ds-form-group{
+		padding:0;
+		border:0;
+	}
+
+	.ds-form-group-element{
+		.ds-form-checkbox,
+		.ds-form-radio{
+			margin-top: 16px;
+		}
 	}
 }
 
 
-
-
-// Radio & Checkbox
-// ==========================================================================
-
-/*
-.ds-form-checkbox,
-.ds-form-radio{display: none;}
-*/
-
 // Checkbox
 // ==========================================================================
 
-.ds-form-checkbox{
+.ds-form-checkbox-type-2{
 	label{
 		display: block;
 		position: relative;
@@ -146,13 +147,9 @@
 
 
 //Optin
-.ds-form-checkbox-optin{
+.ds-form-checkbox {
 
-
-	.ds-form-element-optin{
-		margin: 16px 0;
-	}
-
+	&:last-child{margin-bottom: 0;}
 	input[type="checkbox"]{
 		display: none;
 		opacity: 0;
@@ -208,10 +205,9 @@
 
 	$spacing-radio: $size-radio /2;
 
-	.ds-form-element-radio{
-		display: inline-block;
-		padding-right:40px;
-	}
+	display: inline-block;
+	padding-right:40px;
+
 
 	input[type="radio"]{
 		display: none;
@@ -261,6 +257,7 @@
 
 .ds-form-select{
 	$border-size:2px;
+	/*
 	&:before{
 		content: " ";
 		cursor: pointer;
@@ -278,9 +275,10 @@
 		transform: rotate(-45deg);
 		z-index: 1000;
 	}
-
+	*/
 	select {
 		color: $black-35;
+		background: $ico-arrow-bot right center no-repeat;
 		background-image: none \9;
 		position: relative;
 		@include appearance(none);
@@ -411,11 +409,11 @@
 }
 
 
-.ds-form-fieldset .has-error.ds-form-group-element-first{
+.ds-form-fieldset .has-error.ds-form-group-first{
 	@include border-bottom-radius(0);
 }
 
-.ds-form-fieldset .has-error.ds-form-group-element-last{
+.ds-form-fieldset .has-error.ds-form-group-last{
 	@include border-bottom-radius(0);
 	.ds-form-error{
 		border-radius: 0 0 $radius-form 0;

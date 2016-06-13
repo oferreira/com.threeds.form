@@ -28,7 +28,7 @@ namespace Com.Threeds.Component.Form.Element {
             this.hydrateValidators(data);
             super(data);
             this.data = data;
-            this.classList.add('ds-form-group-element')
+            this.classList.add('ds-form-group')
             if (typeof data.required != 'undefined' && typeof data.required) {
                 this.classList.add('ds-field-required');
             }
@@ -53,7 +53,7 @@ namespace Com.Threeds.Component.Form.Element {
             label.htmlFor = data.fieldName;
 
             if (data.type != 'checkbox') {
-                label.className = 'col-sm-2 form-control-label';
+                label.className = 'form-label form-control-label';
             } else {
                 label.className = 'form-control-label';
             }

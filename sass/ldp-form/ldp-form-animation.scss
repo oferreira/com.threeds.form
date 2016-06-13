@@ -4,6 +4,52 @@
 // LDP FORM ANIMATION
 // ==========================================================================
 
+/*
+
+/Step 1
+.ds-ldp-global-step-1 {
+	animation-name: globalContainer;
+	animation-duration: 600ms;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-delay: 0;
+}
+
+//DS tab active
+.ds-ldp-global-step-1 .ds-tabs-header:before{
+	animation-name: tab-header;
+	animation-duration: 600ms;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-delay: 0;
+}
+
+@keyframes globalContainer {
+	0%{
+		width: 476px;
+	}
+	50% {
+		width: 476px;
+	}
+
+	100% {
+		width: 952px;
+	}
+
+}
+
+
+@keyframes tab-header {
+
+	from {
+		left: 0px;
+	}
+
+	to {
+		left: 50%;
+	}
+
+}
 
 
 //block right
@@ -32,3 +78,4 @@
 		opacity: 1;
 	}
 }
+*/

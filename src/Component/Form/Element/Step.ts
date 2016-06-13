@@ -38,7 +38,7 @@ namespace Com.Threeds.Component.Form.Element {
 
 
             let container:HTMLElement = document.createElement('div');
-            container.classList.add('ds-form-group-element');
+            container.classList.add('ds-form-group');
             container.classList.add('ds-no-border');
             container.classList.add('ds-txt-center');
 
