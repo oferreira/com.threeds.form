@@ -36,6 +36,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (data.required != undefined) this.required = data.required;
             if (data.value != undefined) this.checked = data.value;
             if (data.class != undefined) this.class += data.class;
+            if (data.checked != undefined) this.checked = data.checked;
         }
 
         public get errorMessage():string {

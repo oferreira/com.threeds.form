@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string =  "lorem@lorem.fr";
+            value:string =  "";
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
@@ -36,7 +36,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             if (context.settings.display.placeholder) this.placeholder = data.label
             if (data.fieldName != undefined) this.id = data.fieldName, this.name = data.fieldName;
-            if (data.required != undefined) this.required = data.required;
+            //if (data.required != undefined) this.required = data.required;
             if (data.type != undefined) this.type = data.type;
             if (data.value != undefined) this.value = data.value;
             if (data.validators != undefined) this._validators = data.validators
@@ -58,6 +58,7 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         isValid() {
+            return false;
             let message:boolean|string;
             for (let i = 0; i < this._validators.length; i++) {
                 message = eval(`${this._validators[i]}.isValid(this.value)`);

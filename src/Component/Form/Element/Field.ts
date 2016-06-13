@@ -47,12 +47,12 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         label(context:any, data:Object):HTMLLabelElement {
-            if (!context.settings.display.label && data.type.toLowerCase() != 'checkbox' && data.type.toLowerCase() != 'radio') return;
+            if (!context.settings.display.label && data.type.toLowerCase() != 'checkbox') return;
 
             let label:HTMLLabelElement = document.createElement('label');
             label.htmlFor = data.fieldName;
 
-            if (data.type != 'checkbox' && data.type != 'radio') {
+            if (data.type != 'checkbox') {
                 label.className = 'col-sm-2 form-control-label';
             } else {
                 label.className = 'form-control-label';
@@ -86,7 +86,7 @@ namespace Com.Threeds.Component.Form.Element {
             let container:HTMLDivElement = this.container(context, data);
             let label:HTMLLabelElement = this.label(context, data);
 
-            if (type != 'checkbox' && type != 'radio' && context.settings.display.label) {
+            if (type != 'checkbox' && context.settings.display.label) {
                 this.appendChild(label);
             }
 
@@ -125,7 +125,9 @@ namespace Com.Threeds.Component.Form.Element {
         hydrateValidators(data:any) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
-            if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
+            if(typeof data.regex != "undefined") console.log(data.regex)
+
+           // if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
             if (data.required) validators.push('Com.Threeds.Validator.Require');
 
             if (validators.length) data.validators = validators;

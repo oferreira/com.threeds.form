@@ -26,7 +26,9 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
-                    console.log(response);
+
+                    console.log('form -------->>> data ------->>>console.log(self.data(response));');
+                    console.log(self.data(response));
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
@@ -48,7 +50,10 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 data:data,
                 success: function (response:Object) {
-                    console.log(response);
+
+                    console.log('post -------->>> data -->>> response------->>>console.log(response);');
+                    console.log(self.data(response));
+
                    context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
