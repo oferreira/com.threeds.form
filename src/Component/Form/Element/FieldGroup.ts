@@ -16,13 +16,15 @@ namespace Com.Threeds.Component.Form.Element {
             super(data);
             this.classList.add('ds-form-group-element');
 
+            let container:HTMLDivElement = document.createElement('div');
+            container.classList.add('col-sm-10');
+
+
             let label:HTMLLabelElement = document.createElement('label');
             label.className = 'col-sm-2 form-control-label';
             label.innerHTML = data.label;
             this.appendChild(label);
 
-            let container:HTMLDivElement = document.createElement('div');
-            container.classList.add('col-sm-10');
 
             for (let i in data.items) {
                 container.appendChild(Field.create(context, data.items[i]));

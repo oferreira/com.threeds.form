@@ -99,7 +99,7 @@
 		height:5px;
 		border-radius: 25px;
 		background: $white;
-		@include transition(1s ease all);
+		left:0;
 	}
 
 	&.step-0-active,
