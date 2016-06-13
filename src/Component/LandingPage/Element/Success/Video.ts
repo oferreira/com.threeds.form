@@ -5,9 +5,9 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
-    @component('landingpage-success-download-element')
+    @component('landingpage-success-video-element')
     @extend("div")
-    export class Download extends AbstractPolymerElement {
+    export class Video extends AbstractPolymerElement {
         context:any;
 
         constructor(context:any, data:any) {
@@ -42,5 +42,4 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
     }
 }
 
-Com.Threeds.Component.LandingPage.Element.Success.Download.register();
-
+Com.Threeds.Component.LandingPage.Element.Success.Video.register();

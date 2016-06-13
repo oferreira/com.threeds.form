@@ -33,16 +33,16 @@ namespace Com.Threeds.Component.Form.Element {
                 this.classList.add('ds-field-required');
             }
 
-            //if(typeof data.fieldName == 'string') data.name = data.fieldName;
+            this.classList.add(`ds-form-${data.type}`);
 
             if (typeof data.fieldclass != 'undefined' ) {
                 for (var i = 0; i < data.fieldclass.length; i++) {
-                    this.classList.add(data.fieldclass[i]);
+                   this.classList.add(data.fieldclass[i]);
                 }
             }
 
 
-            this.classList.add(`field-${data.name}`);
+            this.classList.add(`field-${data.fieldName}`);
             this.append(context, data);
         }
 
@@ -50,7 +50,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (!context.settings.display.label && data.type.toLowerCase() != 'checkbox' && data.type.toLowerCase() != 'radio') return;
 
             let label:HTMLLabelElement = document.createElement('label');
-            label.htmlFor = data.name;
+            label.htmlFor = data.fieldName;
 
             if (data.type != 'checkbox' && data.type != 'radio') {
                 label.className = 'col-sm-2 form-control-label';
@@ -105,10 +105,9 @@ namespace Com.Threeds.Component.Form.Element {
                     this.appendChild(label);
                     break;
                 case 'radio':
-                    label.insertBefore(Radio.create(context, data), label.firstChild);
-                    container.appendChild(label);
-                    container.classList.add('radio');
-                    this.appendChild(container);
+                    this.appendChild(Radio.create(context, data));
+                    this.appendChild(label)
+                   //this.appendChild(container);
                     break;
                 case 'text':
                     container.appendChild(Input.create(context, data));
@@ -128,7 +127,7 @@ namespace Com.Threeds.Component.Form.Element {
             this.fire('field-create', this);
         }
 
-        hydrateValidators(data:Object) {
+        hydrateValidators(data:any) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
             if (data.name == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');

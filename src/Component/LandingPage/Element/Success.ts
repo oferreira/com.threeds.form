@@ -1,9 +1,13 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Success/Download.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Success/Video.ts" />
 
 namespace Com.Threeds.Component.LandingPage.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import Download = Com.Threeds.Component.LandingPage.Element.Success.Download;
+    import Video = Com.Threeds.Component.LandingPage.Element.Success.Video;
 
     @component('landingpage-success-element')
     @extend("div")
@@ -18,31 +22,16 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.form.callback.success();
             }
 
-            let tpl = `<div class="ds-ldp-global-step-2">
-                            <div class="ds-ldp-global-container">
-                                <div id="ldp" class="ds-lpd-info-form">
-                                    <div class="ds-landingpage" is="landingpage-element">
-                                        <h3 class="ds-title-ty">${data.title}</h3>
-                                        <div class="ds-lpd-info-no-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
-                                    </div>
-                                </div>
-                                <form class="ds-form ds-ldp-form-container ds-dl-info">
-                                    <p>${data.content}</p>
-                                    <a href="${context.settings.action.url}" class="ds-link ds-link-arrow-left">
-                                        ${context.settings.action.label}<br />
-                                        <span>${context.settings.action.content}</span>
-                                    </a>
-                                </form>
-                            </div>
+            if (this.context.settings.type == 'video') {
+                this.appendChild(Video.create(this, data));
+            } else if (this.context.settings.type == 'download') {
+                this.appendChild(Download.create(this, data));
+            }
 
-                            <div class="ds-ldp-form-contact">
-                                <p>${context.settings.accelerate.content}</p>
-                                <a href="${context.settings.accelerate.url}" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
-                            </div>
-                        </div>`;
+        }
 
-            context.elem.html(tpl);
-
+        public get settings():any {
+            return this.context.settings;
         }
 
     }
