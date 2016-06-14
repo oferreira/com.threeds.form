@@ -20,9 +20,8 @@
 // block left & right
 .ds-lpd-info-form,
 .ds-ldp-form-container{
-	float: left;
+	display: table-cell;
 	@include box-sizing(border-box);
-
 	position: relative;
 	margin:0;
 
@@ -111,6 +110,7 @@
 		li.active{
 			color:$white;
 			a{
+				cursor: default;
 				color:$white;
 			}
 		}
@@ -255,8 +255,7 @@
 		margin: 0;
 	}
 	a{
-
-
+		display: inline;
 		span{
 			text-transform: uppercase;
 			font-family: $ds-light;

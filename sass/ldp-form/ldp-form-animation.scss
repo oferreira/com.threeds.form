@@ -4,17 +4,84 @@
 // LDP FORM ANIMATION
 // ==========================================================================
 
-/*
 
-/Step 1
+/*
+//Step 1
+
 .ds-ldp-global-step-1 {
 	animation-name: globalContainer;
-	animation-duration: 600ms;
+	animation-duration: 1.5s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
 	animation-delay: 0;
 }
 
+
+
+@keyframes globalContainer {
+	0%{
+		width: 476px;
+	}
+	33%{
+		width: 476px;
+	}
+	66%{
+		width: 476px;
+	}
+	100% {
+		width: 952px;
+	}
+}
+*/
+
+/*
+.ds-ldp-global-step-1 .ds-ldp-form-container{
+	animation-name: block-right;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+
+}
+
+@keyframes block-right {
+
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+*/
+
+//block right
+/*
+.ds-ldp-global-step-1 .ds-ldp-form-container{
+	animation-name: block-right;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-delay: 0;
+	animation-play-state: running;
+	animation-fill-mode: forwards;
+
+}
+
+@keyframes block-right {
+
+	0%{
+		opacity: 1;
+	}
+
+	100%{
+		opacity: 0;
+	}
+}
+*/
+
+/*
 //DS tab active
 .ds-ldp-global-step-1 .ds-tabs-header:before{
 	animation-name: tab-header;
@@ -52,30 +119,5 @@
 }
 
 
-//block right
-.ds-ldp-global-step-1 .ds-ldp-form-container{
-	animation-name: block-right;
-	animation-duration: 1s;
-	animation-timing-function: linear;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-delay: 0;
-	animation-play-state: running;
-	animation-fill-mode: forwards;
 
-}
-
-@keyframes block-right {
-
-	0%{
-		opacity: 1;
-	}
-	48%{
-		opacity: 0;
-		z-index: 1;
-	}
-	49%{
-		opacity: 1;
-	}
-}
 */

@@ -16,11 +16,11 @@
 
 .ds-ldp-global-step-0{
 	margin: auto;
-	width: 476px;
+	max-width: 476px;
 
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {
-		width: 476px;
+		max-width: 476px;
 		height:685px;
 	}
 
@@ -43,13 +43,14 @@
 // ==========================================================================
 
 .ds-ldp-global-step-1{
-	width: 952px;
+
 	margin: auto;
-	//width: 952px;
+	max-width: 952px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {
 		width: 476px;
 		padding: 0 57px;
+		height:685px;
 	}
 }
 
@@ -60,14 +61,17 @@
 	margin: auto;
 	max-width: 476px;
 	.ds-lpd-info-form,
-	.ds-ldp-form-container {width: 100%;}
+	.ds-ldp-form-container {
+		width: 100%;
+		display: block;
+	}
 
 	.ds-lpd-info-form{
-		max-height:330px;
+		height:330px;
 	}
 
 	.ds-ldp-form-container{
-		max-height: 190px;
+		height: 190px;
 	}
 }
 

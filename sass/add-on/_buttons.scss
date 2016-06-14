@@ -44,6 +44,7 @@
 	font-size: $font-size-link;
 	text-decoration: none;
 	font-family: $ds-regular;
+	margin-bottom: 32px;
 }
 
 .ds-link-arrow-left{
@@ -53,7 +54,7 @@
 		position: absolute;
 		width: 6px;
 		height: 6px;
-		top: 0px;
+		top: 5px;
 		left: -12px;
 		margin:auto;
 		border-width: medium medium 2px 2px;

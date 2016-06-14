@@ -158,8 +158,23 @@ namespace Com.Threeds.Component.Form.Element {
 
         update(data:any) {
             this.add(data);
-            this.clear();
-            this.appendChild(Step.create(this, data));
+            let self:any = this;
+
+            if(this.currentPosition == 0){
+                this.appendChild(Step.create(this, data))
+            } else {
+                setTimeout(function() {
+                    self.clear();
+                    self.appendChild(Step.create(self, data))
+                }, 0);
+            }
+
+
+            //this.appendChild(Step.create(this, data));
+        }
+
+        toto() {
+           // this.appendChild(Step.create(this, data))
         }
 
         goTo(id:number):void {

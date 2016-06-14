@@ -67,6 +67,7 @@ namespace Com.Threeds.Component.Form {
         }
 
         render(type:string, data:any):void {
+
             this.clear();
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);
