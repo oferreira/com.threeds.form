@@ -21,7 +21,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             if (Object.isDefined(data, 'result.config')) {
                 for (let i = 0; i < data.result.config.length; i++) {
                     if(typeof data.result.config[i].name != 'undefined' && data.result.config[i].name == 'email' && data.result.config[i].type == 'hidden'){
-                        $('.ds-lpd-info-form').append(`<p class="email-valid">${data.result.config[i].value}</p>`);
+                        $('.ds-lpd-info-form').append(`<p class="ds-email-valid">${data.result.config[i].value}</p>`);
                     }
                 }
                 form.update(data);
