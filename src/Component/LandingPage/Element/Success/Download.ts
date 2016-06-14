@@ -32,7 +32,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
                             <div class="ds-ldp-form-contact">
                                 <p>${context.settings.accelerate.content}</p>
-                                <a href="${context.settings.accelerate.url}" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
+                                <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
                             </div>
                         </div>`;
 

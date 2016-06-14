@@ -24,13 +24,12 @@ namespace Com.Threeds.Component.Form.Element {
                 value: data.result.nextAction
             }));
 
-            for (let i = data.result.config.length; i >= 0; i--) {
+            for (let i = data.result.config.length; i >= 0; --i) {
                 if(typeof data.result.config[i] != 'undefined' && data.result.config[i].fieldName != 'optin'){
                     data.result.config[i].fieldclass.push('ds-form-group-last');
                     break;
                 }
             }
-
 
             for (let i = 0; i <= data.result.config.length; i++) {
                 if(typeof data.result.config[i] != 'undefined' && data.result.config[i].type != 'hidden'){

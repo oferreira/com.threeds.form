@@ -43,6 +43,11 @@ namespace Com.Threeds.Component.Form.Element {
             }
 
 
+            if (data.fieldName == 'optin') {
+                this.classList.add(`ds-form-switch`);
+                this.classList.add(`ds-no-border`);
+            }
+
             this.classList.add(`field-${data.fieldName}`);
             this.append(context, data);
         }
@@ -126,7 +131,7 @@ namespace Com.Threeds.Component.Form.Element {
         hydrateValidators(data:any) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
-            if(typeof data.regex != "undefined") console.log(data.regex)
+            //if(typeof data.regex != "undefined") console.log(data.regex)
 
             if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
             if (data.required) validators.push('Com.Threeds.Validator.Require');

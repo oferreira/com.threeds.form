@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string =  "lorem@lorem.fr";
+            value:string =  "";
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
@@ -57,7 +57,6 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         isValid() {
-            return false;
             let message:boolean|string;
             for (let i = 0; i < this._validators.length; i++) {
                 message = eval(`${this._validators[i]}.isValid(this.value)`);
