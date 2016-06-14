@@ -24,6 +24,20 @@ namespace Com.Threeds.Component.Form.Element {
                 value: data.result.nextAction
             }));
 
+
+            for (let i = data.result.config.length; i >= 0; i--) {
+                if(typeof data.result.config[i] != 'undefined' && data.result.config[i].fieldName != 'optin'){
+                    data.result.config[i].fieldclass.push('ds-form-group-element-last');
+                    break;
+                }
+            }
+
+            if (typeof data.result.config[0] != 'undefined'){
+
+                data.result.config[0].fieldclass.push('ds-form-group-element-first');
+                console.log(data.result.config[0]);
+            }
+
             for (let k in data.result.config) {
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                     this.appendChild(Input.create(context, data.result.config[k]));

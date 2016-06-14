@@ -2397,7 +2397,7 @@
             "fieldName": "demo",
             "type": "checkbox",
             "label": "A Live Demo",
-            "value": "1"
+            "value": "0"
           },
           {
             "fieldName": "quote",

@@ -24,7 +24,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         $('.ds-lpd-info-form').append(`<p class="email-valid">${data.result.config[i].value}</p>`);
                     }
                 }
-
                 form.update(data);
             } else if (Object.isDefined(data, 'result.thankYouPage')) {
                 if (data.result.properties.displayThankYou) {
@@ -44,7 +43,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             } else if (Object.isDefined(data, 'errors.0.error.message')) {
                 form.warning(data.errors[0].error.message);
             } else if (Object.isDefined(data, 'errors')) {
-                form.errors = data.errors.fields;
+                form.errors = data.errors;
             }
         }
 

@@ -19,16 +19,13 @@ namespace Com.Threeds.Service.Adapter {
                 type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
-               //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
+                //type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
-               // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
+                // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
-
-                    console.log('form -------->>> data ------->>>console.log(self.data(response));');
-                    console.log(self.data(response));
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
@@ -41,25 +38,36 @@ namespace Com.Threeds.Service.Adapter {
             let self:any = this;
 
             data['lpid'] = context.settings.id;
-            console.log('post -------->>> data ------->>>console.log(data);');
-            console.log(data);
 
-            $.ajax({
-                type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
-                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                data:data,
-                success: function (response:Object) {
+            if(Object.keys(data).length > 3){
+                $.ajax({
+                    //type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                    type: "GET", dataType: "json", url: 'data/landing-page/form/error.json',
+                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
+                    data:data,
+                    success: function (response:Object) {
+                        context.render('form', self.data(response));
+                    },
+                    error: function (resultat:any, statut:any, erreur:any) {
+                        context.render('form', false);
+                    }
+                });
+            } else{
 
-                    console.log('post -------->>> data -->>> response------->>>console.log(response);');
-                    console.log(self.data(response));
+                $.ajax({
+                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
+                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
+                    data:data,
+                    success: function (response:Object) {
+                        context.render('form', self.data(response));
+                    },
+                    error: function (resultat:any, statut:any, erreur:any) {
+                        context.render('form', false);
+                    }
+                });
+            }
 
-                   context.render('form', self.data(response));
-                },
-                error: function (resultat:any, statut:any, erreur:any) {
-                   context.render('form', false);
-                }
-            });
         }
 
         public data(reponse:any):any {
@@ -91,17 +99,6 @@ namespace Com.Threeds.Service.Adapter {
                 } else if (typeof data[i].type != 'undefined' && data[i].type == 'fieldgroup') {
                     this.clean(data[i].items);
                 }
-            }
-
-            for (let i = data.length; i >= 0; i--) {
-                if(typeof data[i] != 'undefined' && data[i].fieldName != 'optin'){
-                    data[i].fieldclass.push('ds-form-group-last');
-                    break;
-                }
-            }
-
-            if (typeof data[0] != 'undefined'){
-                data[0].fieldclass.push('ds-form-group-first');
             }
         }
 

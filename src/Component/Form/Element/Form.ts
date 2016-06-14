@@ -71,20 +71,26 @@ namespace Com.Threeds.Component.Form.Element {
 
         public set errors(value:Object[]) {
             this._errors = value;
-            for (let i = 0; i < ((<any>Polymer.dom(this)).node.length); i++) {
-                if (typeof  (<any>Polymer.dom(this)).node[i].displayError === 'function') {
-                    for (var k in this._errors) {
-                        if ((<any>Polymer.dom(this)).node[i].name == k) {
-                            (<any>Polymer.dom(this)).node[i].displayError(this._errors[k]);
+            this.dispatchAllErrors((<any>Polymer.dom(this)), this._errors);
+        }
+
+
+        dispatchAllErrors(node:any, errors:any) {
+            for (let i = 0; i < node.childNodes.length; i++) {
+                if (typeof node.childNodes[i].displayError == 'function') {
+                    for (var k in errors) {
+                        if (node.childNodes[i].name == k) {
+                            node.childNodes[i].displayError(errors[k]);
                         }
                     }
                 }
+
+                this.dispatchAllErrors(node.childNodes[i], errors);
             }
         }
 
         public valid() {
             this._errors = [];
-
             this.validateAllElement((<any>Polymer.dom(this)), this._errors);
         }
 

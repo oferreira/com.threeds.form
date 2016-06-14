@@ -27,6 +27,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             this.hydrateValidators(data);
             super(data);
+
             this.data = data;
             this.classList.add('ds-form-group')
             if (typeof data.required != 'undefined' && typeof data.required) {
@@ -127,7 +128,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             if(typeof data.regex != "undefined") console.log(data.regex)
 
-           // if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
+            if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
             if (data.required) validators.push('Com.Threeds.Validator.Require');
 
             if (validators.length) data.validators = validators;
