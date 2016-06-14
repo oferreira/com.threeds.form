@@ -39,34 +39,18 @@ namespace Com.Threeds.Service.Adapter {
 
             data['lpid'] = context.settings.id;
 
-            if(Object.keys(data).length > 3){
-                $.ajax({
-                    //type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    type: "GET", dataType: "json", url: 'data/landing-page/form/error.json',
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            } else{
-
-                $.ajax({
-                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            }
+            $.ajax({
+                type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
+                data:data,
+                success: function (response:Object) {
+                    context.render('form', self.data(response));
+                },
+                error: function (resultat:any, statut:any, erreur:any) {
+                    context.render('form', false);
+                }
+            });
 
         }
 
