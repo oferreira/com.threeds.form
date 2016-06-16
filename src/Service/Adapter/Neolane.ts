@@ -15,12 +15,13 @@ namespace Com.Threeds.Service.Adapter {
         public form(context:any, options:any):void {
             let self:any = this;
 
+
             $.ajax({
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-               // type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
-                type: "GET",dataType: "json", url: 'data/landing-page/form/step1.json',
+                //type: "GET",dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-error-v2.json',
                 // type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-available-step1-v3.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
@@ -43,8 +44,8 @@ namespace Com.Threeds.Service.Adapter {
 
             if(Object.keys(data).length > 3){
                 $.ajax({
-                    //type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    type: "GET", dataType: "json", url: 'data/landing-page/form/success.json',
+                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                     data:data,
                     success: function (response:Object) {
                         context.render('form', self.data(response));
@@ -55,8 +56,8 @@ namespace Com.Threeds.Service.Adapter {
                 });
             } else{
                 $.ajax({
-                    //type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    type: "GET", dataType: "json", url: 'data/landing-page/form/step2.test.json',
+                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
+                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
                     //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                     data:data,
                     success: function (response:Object) {
