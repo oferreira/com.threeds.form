@@ -159,7 +159,7 @@ namespace Com.Threeds.Component.Form.Element {
         update(data:any) {
             this.add(data);
             let self:any = this;
-
+/*
             if(this.currentPosition == 0){
                 this.appendChild(Step.create(this, data))
             } else {
@@ -168,14 +168,11 @@ namespace Com.Threeds.Component.Form.Element {
                     self.appendChild(Step.create(self, data))
                 }, 0);
             }
+*/
 
-
-            //this.appendChild(Step.create(this, data));
+            this.appendChild(Step.create(this, data));
         }
 
-        toto() {
-           // this.appendChild(Step.create(this, data))
-        }
 
         goTo(id:number):void {
             if (typeof this._steps[id] != "undefined") {

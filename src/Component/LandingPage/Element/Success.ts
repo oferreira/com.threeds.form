@@ -22,7 +22,9 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.form.callback.success();
             }
 
+            console.log('video video ***');
             if (this.context.settings.type == 'video') {
+
                 this.appendChild(Video.create(this, data));
             } else if (this.context.settings.type == 'download') {
                 this.appendChild(Download.create(this, data));

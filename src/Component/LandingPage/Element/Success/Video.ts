@@ -1,5 +1,6 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../../../typings/jwplayer/jwplayer.d.ts" />
 
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 
@@ -12,6 +13,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
         constructor(context:any, data:any) {
             super(data);
+
 
             let tpl = `<div class="ds-ldp-global-step-2">
                             <div class="ds-ldp-global-container">
@@ -30,6 +32,9 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                                 </form>
                             </div>
 
+
+                        <div id="myDiv">This text will be replaced with a player.</div>
+
                             <div class="ds-ldp-form-contact">
                                 <p>${context.settings.accelerate.content}</p>
                                 <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
@@ -37,6 +42,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                         </div>`;
 
             this.innerHTML = tpl;
+
         }
 
     }
