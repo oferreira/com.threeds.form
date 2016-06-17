@@ -9,13 +9,13 @@
     <script type="text/javascript" src="./dist/build.js"></script>
 </head>
 <body>
-<div id="container"></div>
+<div id="myform"></div>
 <script type="text/javascript">
-    $(function () {
+    (function ($) {
         addEventListener('WebComponentsReady', function () {
             var options = {
-                id: 'LDP6312',
-                type: 'download',
+                id: 'LDP30030',
+                type: 'video',
                 backgroundImage: 'http://lorempixel.com/500/680',
                 steps: {
                     0: {
@@ -50,19 +50,19 @@
                     nextLabel: 'Next',
                     prevLabel: 'Back',
                     api: {
-                        url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                        url: 'http://emailing.3ds.com/dsx/lp_api.jssp',
                     },
                     callback: {
                         success: function(){
-                            alert('Thanks for your download !');
+                            //alert('Thanks for your download !');
                         }
                     },
                 }
             };
 
-            $('#container').threeds().landingPage(options);
+            $('#myform').threeds().landingPage(options);
         });
-    });
+    })(jQuery);
 </script>
 </body>
 </html>

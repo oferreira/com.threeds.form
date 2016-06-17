@@ -44,8 +44,8 @@ gulp.task('app-js', function() {
         .pipe(babel())
         .pipe($.concat('app.js'))
         .pipe(wrapper({
-            header: "$(function () {addEventListener('WebComponentsReady', function () {\n",
-            footer: '});});'
+            header: "(function ($) {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});})(jQuery);'
         }))
         .pipe(stripComments())
         .pipe(uglify())

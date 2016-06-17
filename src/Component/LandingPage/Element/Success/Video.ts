@@ -43,13 +43,13 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            jwplayer.key="Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
+            /*jwplayer.key="Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
             jwplayer("myDiv").setup({
                 "file": "http://example.com/myVideo.mp4",
                 "image": "http://example.com/myImage.png",
                 "height": 360,
                 "width": 640
-            });
+            });*/
         }
 
     }

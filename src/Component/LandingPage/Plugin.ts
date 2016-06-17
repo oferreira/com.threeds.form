@@ -88,11 +88,27 @@ namespace Com.Threeds.Component.LandingPage {
             },
         };
 
-        constructor(elem:any, options:Object) {
+        constructor(elem:any, options:any) {
             super(elem, options);
             this.elem = elem;
             this.elem.addClass('ds-ldp-global-container');
             this.settings = $.extend({}, this.settings, options);
+
+            if (Object.isDefined(options, 'form.nextLabel')){
+                this.settings.nextLabel = options.form.nextLabel;
+            }
+
+            if (Object.isDefined(options, 'form.prevLabel')){
+                this.settings.prevLabel = options.form.prevLabel;
+            }
+
+            if (Object.isDefined(options, 'form.api.url')){
+                this.settings.api.url = options.form.api.url;
+            }
+
+            if (Object.isDefined(options, 'form.callback')){
+               this.settings.callback = options.form.callback;
+            }
 
             this.service('api').form(this, {});
         }
@@ -110,4 +126,17 @@ namespace Com.Threeds.Component.LandingPage {
             return new Plugin(this, options);
         }
     });
+}
+
+Object.isDefined = function (obj:any, prop:string) {
+    var parts = prop.split('.');
+    for (var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if (obj !== null && typeof obj === "object" && part in obj) {
+            obj = obj[part];
+        } else {
+            return false;
+        }
+    }
+    return true;
 }
