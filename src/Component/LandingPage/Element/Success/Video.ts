@@ -25,15 +25,17 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                                 </div>
                                 <form class="ds-form ds-ldp-form-container ds-dl-info">
                                     <p>${data.content}</p>
-                                    <a href="${context.settings.action.url}" class="ds-link ds-link-arrow-left">
-                                        ${context.settings.action.label}<br />
-                                        <span>${context.settings.action.content}</span>
-                                    </a>
+
+                                    <div class="morph-button morph-button-modal morph-button-modal-4 morph-button-fixed ">
+                                        <button type="button">${context.settings.action.label}</button>
+                                        <div class="morph-content">
+                                            <span class="icon icon-close">Close the dialog</span>
+                                            <div id="myDiv">${context.settings.action.content}</div>
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
-
-
-                        <div id="myDiv">This text will be replaced with a player.</div>
 
                             <div class="ds-ldp-form-contact">
                                 <p>${context.settings.accelerate.content}</p>
@@ -43,13 +45,33 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            /*jwplayer.key="Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
-            jwplayer("myDiv").setup({
-                "file": "http://example.com/myVideo.mp4",
-                "image": "http://example.com/myImage.png",
+            new UIMorphingButton(this.querySelector('.morph-button'), {
+                closeEl: '.icon-close',
+                onBeforeOpen: function () {
+                    return false;
+                },
+                onAfterOpen: function () {
+                    jwplayer().play();
+                },
+                onBeforeClose: function () {
+                    return false;
+                },
+                onAfterClose: function () {
+                    jwplayer().pause();
+                    return false;
+                }
+            });
+
+            jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
+            jwplayer(this.querySelector('#myDiv')).setup({
+                "file": context.settings.action.url,
+                "image": context.settings.action.image,
+                //"skin": 'http://www.3ds.com/templates/3ds-player/3dsSkin/3dsSkin.xml',
                 "height": 360,
                 "width": 640
-            });*/
+            });
+
+
         }
 
     }

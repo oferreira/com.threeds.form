@@ -20,6 +20,9 @@
     <script type="text/javascript" src="./dist/build.js"></script>
 
 
+    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
+
+
 </head>
 <body>
 <div id="myform"></div>
@@ -28,7 +31,7 @@
         addEventListener('WebComponentsReady', function () {
             var options = {
                 id: 'LDP30030',
-                type: 'download',
+                type: 'video',
                 backgroundImage: 'http://lorempixel.com/500/680',
                 steps: {
                     0: {
@@ -41,14 +44,15 @@
                     }
                 },
                 success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
+                    title: 'Lorem ipsum dolor sit amet',
+                    content: 'labore et dolore magna aliquyam erat',
 
                 },
                 action: {
-                    url: 'http://www.3ds.com/en/file.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
+                    url: 'http://www.3ds.com/fileadmin/PRODUCTS/CATIA/VIDEOS/CATIA-Film/CATIA-Film-LD.mp4',
+                    label: 'Watch the Trailer<span>01:43</span>',
+                    image:'http://www.3ds.com/fileadmin/PRODUCTS/CATIA/VIDEOS/CATIA-Film/CATIA-Film-540x300.jpg',
+                    content: 'This text will be replaced with a player.',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
