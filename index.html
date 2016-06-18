@@ -4,6 +4,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Landing page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        var Drupal = {};
+    </script>
     <link rel="stylesheet" href="/dist/style.css" >
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/polyfills-6e87470526c496c0fc53fa87ed5a825eff61f1f3/classList.js"></script>
@@ -13,7 +16,7 @@
 <body>
 <div id="container"></div>
 <script type="text/javascript">
-    $(function () {
+    (function ($, Drupal) {
         addEventListener('WebComponentsReady', function () {
             var options = {
                 id: 'LDP6312',
@@ -65,7 +68,7 @@
 
             $('#container').threeds().landingPage(options);
         });
-    });
+    })(jQuery, Drupal);
 
 </script>
 </body>

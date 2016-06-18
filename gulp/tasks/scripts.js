@@ -24,7 +24,7 @@ gulp.task('polymer-js', function () {
         }))
         .pipe(addsrc('bower_components/polymer-ts/polymer-ts.js'))
         .pipe(stripComments())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe($.concat('polymer.js'))
         .pipe(gulp.dest('dist'));
 });
@@ -32,7 +32,7 @@ gulp.task('polymer-js', function () {
 gulp.task('platform-js', function () {
     gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/javascript-auto-complete/auto-complete.js"])
         .pipe(stripComments())
-        .pipe(uglify())
+       // .pipe(uglify())
         .pipe($.concat('platform.js'))
         .pipe(gulp.dest('dist'));
 });
@@ -44,11 +44,11 @@ gulp.task('app-js', function() {
         .pipe(babel())
         .pipe($.concat('app.js'))
         .pipe(wrapper({
-            header: "(function ($) {addEventListener('WebComponentsReady', function () {\n",
-            footer: '});})(jQuery);'
+            header: "(function ($, Drupal) {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});})(jQuery, Drupal);'
         }))
         .pipe(stripComments())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 
@@ -62,11 +62,10 @@ gulp.task('app-js', function() {
 gulp.task('build-js', function() {
     gulp.src(["dist/platform.js", "dist/app.js"])
         .pipe(stripComments())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe($.concat('build.js'))
         .pipe(gulp.dest('dist'));
 });
-
 
 gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
 gulp.task('scripts-changed', ['app-js']);
