@@ -158,8 +158,83 @@ namespace Com.Threeds.Component.Form.Element {
 
         update(data:any) {
             this.add(data);
-            this.clear();
-            this.appendChild(Step.create(this, data));
+            let self:any = this;
+
+            this.transition(this, this.currentPosition, function(){
+                self.clear();
+                self.appendChild(Step.create(self, data))
+            })
+
+        }
+
+
+        transition(context:any,currentPosition:number,callback:any):void{
+
+        var container = $('.ds-ldp-global-container');
+        var blockLeft = $('.ds-lpd-info-form');
+        var blockRight = $('.ds-ldp-form-container');
+
+        var heightBlocLeft = blockLeft.height();
+        var heightBlocRight = blockRight.height();
+
+        var tabsHead =  $('.ds-tabs-header');
+        var tabsContent =  $('.ds-tabs-container');
+
+            // Step 1
+            if(currentPosition == 0){
+                callback();
+
+                return;
+            }
+
+            // Step 2
+            setTimeout(function() {
+                callback();
+
+                //cache le form
+                $(blockRight).animate({
+                    opacity : 0
+                }, 500, "linear", function() {
+
+                    // A lancer quand le formulaire de la step 2 est chargé
+
+                    //remonte le form caché deriere
+                    $(blockRight).animate({
+                        opacity : 1,
+                        top : 0,
+                        zIndex : 1
+                    }, 10, "linear", function() {
+
+                        // Si la hauteur du form est superieur au block de gauche
+                        if(heightBlocRight > heightBlocLeft){
+                            $(container).animate({
+                                height: heightBlocRight
+                            }, 1000 );
+                        }
+
+                        //agrandi le conteneur
+                        $(container).animate({
+                            width: "952px"
+                        }, 1000, "swing");
+
+                        // active la tab 2
+                        $(tabsHead).addClass('step-1-active');
+                        //
+                        //if(tabsContent.hasClass('active'){
+                        //
+                        //}
+                        //
+                        //// active le conteneur 2
+                        //$(tabsContent).addClass('step-1-active');
+
+
+
+                    });
+                });
+            }, 0);
+
+
+
         }
 
 

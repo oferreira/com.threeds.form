@@ -10,22 +10,27 @@
 // Global
 .ds-ldp-global-container{
 	margin: auto;
+	width: 476px;
 	position: relative;
 	@include box-sizing(border-box);
 	border-radius:$radius-form;
 	overflow: hidden;
+	display: block;
+	z-index: 1000;
 	box-shadow: 0 12px 57px 0 $black-22;
 }
 
 // block left & right
 .ds-lpd-info-form,
 .ds-ldp-form-container{
-	display: table-cell;
 	@include box-sizing(border-box);
 	position: relative;
 	margin:0;
-
+	float:left;
+	width: 476px;
 }
+
+
 
 //Info (left)
 .ds-lpd-info-form{
@@ -33,6 +38,17 @@
 	position: relative;
 	z-index: 2;
 	overflow: hidden;
+	padding: 0 57px;
+	height:685px;
+}
+
+// Block right
+.ds-ldp-form-container{
+	position: absolute;
+	z-index: 2;
+	right:0;
+	top:480px;
+	bottom: 0;
 	padding: 0 57px;
 }
 
@@ -47,6 +63,7 @@
 	left:0;
 	right:0;
 	background-size: cover;
+	background-position: center center;
 	@extend .ds-overlay-57;
 	@include box-sizing(border-box);
 	z-index: -1;
@@ -103,15 +120,18 @@
 		border-radius: 25px;
 		background: $white;
 		left:0;
+		@include transition(1s ease all);
 	}
 
 	&.step-0-active,
 	&.step-1-active{
 		li.active{
 			color:$white;
+			@include transition(1s ease all);
 			a{
 				cursor: default;
 				color:$white;
+				@include transition(1s ease all);
 			}
 		}
 	}
@@ -122,6 +142,7 @@
 
 	//Tab active 2
 	&.step-1-active:before{left:50%;}
+
 
 	li{
 		list-style: none;
@@ -143,19 +164,29 @@
 	}
 }
 
+// overide Knack css
+ul.ds-tabs-header:first-child{
+	margin-top: 100px;
+}
+
 //tab container
 .ds-tabs-container{
 	height: 260px;
 	overflow: hidden;
+	position: relative;
 	.ds-tab{
+		position: absolute;
+		top:0;
 		font-size: 32px;
 		line-height: 30px;
 		text-decoration: none;
 		font-family: $ds-light;
 		color:$white;
 		text-align: center;
-		display: none;
-		&.active{display: block;}
+		opacity: 0;
+		&.active{
+			opacity: 1;
+		}
 	}
 }
 

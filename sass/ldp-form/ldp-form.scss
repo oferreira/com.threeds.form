@@ -11,22 +11,18 @@
 
 // STEP 1
 // ==========================================================================
-
+/*
 .ds-ldp-global-step-0{
 	margin: auto;
-	max-width: 476px;
 
-	.ds-lpd-info-form,
-	.ds-ldp-form-container {
-		max-width: 476px;
-		height:685px;
-	}
+
+
 
 	.ds-ldp-form-container{
 		position: absolute;
 		z-index: 2;
-		left:0;
 		right:0;
+		left:0;
 		top:480px;
 		bottom: 0;
 		padding: 0 57px;
@@ -39,18 +35,19 @@
 
 // STEP 2
 // ==========================================================================
-
+/*
 .ds-ldp-global-step-1{
 
 	margin: auto;
-	max-width: 952px;
+	//max-width: 952px;
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {
 		width: 476px;
 		padding: 0 57px;
-		height:685px;
+		//height:685px;
+		//position: relative;
 	}
-}
+}*/
 
 // STEP 3
 // ==========================================================================
@@ -82,12 +79,14 @@
 	}
 	.autocomplete-suggestions {
 		text-align: left;
+		font-family: $ds-light;
+		font-size: rem(17px);
+		color: $black-35;
+		background-color: #ffffff;
 		cursor: default;
-		border: 1px solid #ccc;
+		border: solid 1px $black-12;
 		border-top: 0;
 		background: #fff;
-		box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
-
 		/* core styles should not be changed */
 		position: absolute;
 		display: none;
@@ -101,12 +100,12 @@
 	.autocomplete-suggestion {
 		position: relative;
 		padding: 0 .6em;
-		line-height: 23px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		font-size: 1.02em;
-		color: #333;
+		font-family: $ds-light;
+		font-size: rem(17px);
+		color: $black-35;
 	}
 
 	.autocomplete-suggestion b {
