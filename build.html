@@ -26,54 +26,54 @@
 <script type="text/javascript">
     (function ($, Drupal) {
         addEventListener('WebComponentsReady', function () {
-            var options = {
-                id: 'LDP30030',
-                type: 'download',
-                backgroundImage: 'http://lorempixel.com/500/680',
-                steps: {
-                    0: {
-                        name: '1',
-                        title: 'To download the Case Study, please provide your email'
-                    },
-                    1: {
-                        name: '2',
-                        title: 'Please provide more informations to complete your Case Study download'
-                    }
-                },
-                success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
-
-                },
-                action: {
-                    url: 'http://www.3ds.com/en/file.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
-                },
-                accelerate: {
-                    url: 'http://www.3ds.com/en/contact-us',
-                    label: 'contact me',
-                    content: 'You want to be contacted for a commercial purpose?',
-                },
-                error: {
-                    title: 'Sorry !',
-                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
-                },
-                form: {
-                    nextLabel: 'Next',
-                    prevLabel: 'Back',
-                    api: {
-                        url: 'http://emailing.3ds.com/dsx/lp_api.jssp',
-                    },
-                    callback: {
-                        success: function(){
-                            //alert('Thanks for your download !');
+                var options = {
+                    id: 'LDP30030',
+                    type: 'download',
+                    backgroundImage: 'http://lorempixel.com/500/680',
+                    steps: {
+                        0: {
+                            name: '1',
+                            title: 'To download the Case Study, please provide your email'
+                        },
+                        1: {
+                            name: '2',
+                            title: 'Please provide more informations to complete your Case Study download'
                         }
                     },
-                }
-            };
+                    success: {
+                        title: 'Thanks for your download',
+                        content: 'Your download should start automatically, if not use the direct link',
 
-            $('#myform').threeds().landingPage(options);
+                    },
+                    action: {
+                        url: 'http://www.3ds.com/en/file.pdf',
+                        label: 'Download',
+                        content: 'PDF - 3,84Mo',
+                    },
+                    accelerate: {
+                        url: 'http://www.3ds.com/en/contact-us',
+                        label: 'contact me',
+                        content: 'You want to be contacted for a commercial purpose?',
+                    },
+                    error: {
+                        title: 'Sorry !',
+                        content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                    },
+                    form: {
+                        nextLabel: 'Next',
+                        prevLabel: 'Back',
+                        api: {
+                            url: 'http://emailing.3ds.com/dsx/lp_api.jssp',
+                        },
+                        callback: {
+                            success: function(){
+                                //alert('Thanks for your download !');
+                            }
+                        },
+                    }
+                };
+
+                $('.form-drupal-id-451').threeds().landingPage(options);
         });
     })(jQuery, Drupal);
 </script>

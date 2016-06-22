@@ -156,85 +156,93 @@ namespace Com.Threeds.Component.Form.Element {
             return false;
         }
 
+
         update(data:any) {
             this.add(data);
-            let self:any = this;
+            this.clear();
+            this.appendChild(Step.create(this, data));
 
-            this.transition(this, this.currentPosition, function(){
-                self.clear();
-                self.appendChild(Step.create(self, data))
-            })
-
+            //this.transition(this, this.currentPosition);
         }
 
 
-        transition(context:any,currentPosition:number,callback:any):void{
+        transition(context:any,currentPosition:number):void{
+            //context.clear();
+            //context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
 
-        var container = $('.ds-ldp-global-container');
-        var blockLeft = $('.ds-lpd-info-form');
-        var blockRight = $('.ds-ldp-form-container');
+            var container = context.context.elem;
+            var blockLeft = context.context.elem.find('.ds-lpd-info-form');
+            var blockRight = context.context.elem.find('.ds-ldp-form-container');
 
-        var heightBlocLeft = blockLeft.height();
-        var heightBlocRight = blockRight.height();
+            console.log(Polymer.dom(context.context.root));
+            //var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
+            //var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
 
-        var tabsHead =  $('.ds-tabs-header');
-        var tabsContent =  $('.ds-tabs-container');
 
-            // Step 1
-            if(currentPosition == 0){
-                callback();
+            /*
+                    var container = $('.ds-ldp-global-container');
+                    var blockLeft = $('.ds-lpd-info-form');
+                    var blockRight = $('.ds-ldp-form-container');
 
-                return;
-            }
+                    var heightBlocLeft = blockLeft.height();
+                    var heightBlocRight = blockRight.height();
 
-            // Step 2
-            setTimeout(function() {
-                callback();
+                    var tabsHead =  $('.ds-tabs-header');
+                    var tabsContent =  $('.ds-tabs-container');
 
-                //cache le form
-                $(blockRight).animate({
-                    opacity : 0
-                }, 500, "linear", function() {
+                        // Step 1
+                        if(currentPosition == 0){
+                           // callback();
 
-                    // A lancer quand le formulaire de la step 2 est chargé
-
-                    //remonte le form caché deriere
-                    $(blockRight).animate({
-                        opacity : 1,
-                        top : 0,
-                        zIndex : 1
-                    }, 10, "linear", function() {
-
-                        // Si la hauteur du form est superieur au block de gauche
-                        if(heightBlocRight > heightBlocLeft){
-                            $(container).animate({
-                                height: heightBlocRight
-                            }, 1000 );
+                            return;
                         }
 
-                        //agrandi le conteneur
-                        $(container).animate({
-                            width: "952px"
-                        }, 1000, "swing");
+                        // Step 2
+                        setTimeout(function() {
+                           // callback();
 
-                        // active la tab 2
-                        $(tabsHead).addClass('step-1-active');
-                        //
-                        //if(tabsContent.hasClass('active'){
-                        //
-                        //}
-                        //
-                        //// active le conteneur 2
-                        //$(tabsContent).addClass('step-1-active');
+                            //cache le form
+                            $(blockRight).animate({
+                                opacity : 0
+                            }, 500, "linear", function() {
+
+                                // A lancer quand le formulaire de la step 2 est chargé
+
+                                //remonte le form caché deriere
+                                $(blockRight).animate({
+                                    opacity : 1,
+                                    top : 0,
+                                    zIndex : 1
+                                }, 10, "linear", function() {
+
+                                    // Si la hauteur du form est superieur au block de gauche
+                                    if(heightBlocRight > heightBlocLeft){
+                                        $(container).animate({
+                                            height: heightBlocRight
+                                        }, 1000 );
+                                    }
+
+                                    //agrandi le conteneur
+                                    $(container).animate({
+                                        width: "952px"
+                                    }, 1000, "swing");
+
+                                    // active la tab 2
+                                    $(tabsHead).addClass('step-1-active');
+                                    //
+                                    //if(tabsContent.hasClass('active'){
+                                    //
+                                    //}
+                                    //
+                                    //// active le conteneur 2
+                                    //$(tabsContent).addClass('step-1-active');
 
 
 
-                    });
-                });
-            }, 0);
-
-
-
+                                });
+                            });
+                        }, 0);
+            */
         }
 
 
