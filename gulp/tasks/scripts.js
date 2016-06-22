@@ -7,15 +7,15 @@ var $ = require('gulp-load-plugins')({
 });
 var gulpSequence = require('gulp-sequence');
 var addsrc = require('gulp-add-src')
-    sourcemaps = require('gulp-sourcemaps')
-    ts = require('gulp-typescript')
-    babel = require('gulp-babel')
-    tsProject = ts.createProject('./tsconfig.json')
-    jshint = require("gulp-jshint"),
+sourcemaps = require('gulp-sourcemaps')
+ts = require('gulp-typescript')
+babel = require('gulp-babel')
+tsProject = ts.createProject('./tsconfig.json')
+jshint = require("gulp-jshint"),
     extract = require("gulp-html-extract")
-    uglify = require('gulp-uglify')
-    stripComments = require('gulp-strip-comments')
-    buildHelper = require('../helpers/build-helper');
+uglify = require('gulp-uglify')
+stripComments = require('gulp-strip-comments')
+buildHelper = require('../helpers/build-helper');
 
 gulp.task('polymer-js', function () {
     gulp.src(["bower_components/polymer/polymer-micro.html", "bower_components/polymer/polymer-mini.html", "bower_components/polymer/polymer.html"])
@@ -32,12 +32,12 @@ gulp.task('polymer-js', function () {
 gulp.task('platform-js', function () {
     gulp.src(["bower_components/webcomponentsjs/webcomponents.min.js", "dist/polymer.js", "bower_components/jquery.namespace/jquery.namespace.js", "bower_components/javascript-auto-complete/auto-complete.js"])
         .pipe(stripComments())
-       // .pipe(uglify())
+        // .pipe(uglify())
         .pipe($.concat('platform.js'))
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('app-js', function() {
+gulp.task('app-js', function () {
     var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
@@ -52,14 +52,14 @@ gulp.task('app-js', function() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 
-    if(buildHelper.isRelease()){
+    if (buildHelper.isRelease()) {
 
     }
 
     return $return;
 });
 
-gulp.task('build-js', function() {
+gulp.task('build-js', function () {
     gulp.src(["dist/platform.js", "dist/app.js"])
         .pipe(stripComments())
         //.pipe(uglify())
@@ -67,31 +67,35 @@ gulp.task('build-js', function() {
         .pipe(gulp.dest('dist'));
 });
 
-var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
-    .pipe(sourcemaps.init())
-    .pipe(ts(tsProject))
-    .pipe(babel())
-    .pipe($.concat('threeds.landingpage.js'))
-    .pipe(wrapper({
-        header: "addEventListener('WebComponentsReady', function () {\n",
-        footer: '});'
-    }))
-    .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
-    .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
-    .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
-    .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
-    .pipe($.concat('threeds.landingpage.js'))
-    .pipe(wrapper({
-        header: "(function ($, Drupal, window) {\n",
-        footer: '})(jQuery, Drupal, window);'
-    }))
-    .pipe(stripComments())
-    //.pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist'));
-gulp.task('threeds-landingpage-js', function() {
 
-    if(buildHelper.isRelease()){
+
+
+gulp.task('threeds-landingpage-js', function () {
+
+    var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
+        .pipe(sourcemaps.init())
+        .pipe(ts(tsProject))
+        .pipe(babel())
+        .pipe($.concat('threeds.landingpage.js'))
+        .pipe(wrapper({
+            header: "addEventListener('WebComponentsReady', function () {\n",
+            footer: '});'
+        }))
+        .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
+        .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
+        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
+        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
+        .pipe($.concat('threeds.landingpage.js'))
+        .pipe(wrapper({
+            header: "(function ($, Drupal, window) {\n",
+            footer: '})(jQuery, Drupal, window);'
+        }))
+        .pipe(stripComments())
+        //.pipe(uglify())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist'));
+
+    if (buildHelper.isRelease()) {
 
     }
 

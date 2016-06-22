@@ -159,22 +159,55 @@ namespace Com.Threeds.Component.Form.Element {
 
         update(data:any) {
             this.add(data);
-            this.clear();
-            this.appendChild(Step.create(this, data));
+            //this.clear();
+            //this.appendChild(Step.create(this, data));
 
-            //this.transition(this, this.currentPosition);
+            this.transition(this, this.currentPosition);
         }
 
 
         transition(context:any,currentPosition:number):void{
-            //context.clear();
-            //context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+            /*if(currentPosition == 0){
+                context.clear();
+                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                return;
+            }*/
 
-            var container = context.context.elem;
-            var blockLeft = context.context.elem.find('.ds-lpd-info-form');
-            var blockRight = context.context.elem.find('.ds-ldp-form-container');
+            console.log(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight);
+            console.log();
+            console.log();
 
-            console.log(Polymer.dom(context.context.root));
+
+            var dom = Polymer.dom(context.context.root);
+            var blockRight = dom.querySelector('.ds-ldp-form-container');
+            var container = dom.querySelector('.ds-ldp-global-container');
+
+            var heightBlocLeft = dom.querySelector('.ds-lpd-info-form').offsetHeight;
+            var heightBlocRight = dom.querySelector('.ds-ldp-form-container').offsetHeight;
+
+            $(blockRight).animate({
+                opacity : 0
+            }, 500, "linear", function() {
+
+                // A lancer quand le formulaire de la step 2 est chargé
+
+                //remonte le form caché deriere
+                $(blockRight).animate({
+                    opacity : 1,
+                    top : 0,
+                    zIndex : 1
+                }, 10, "linear", function() {
+
+                    //agrandi le conteneur
+                    $(container).animate({
+                        width: "952px"
+                    }, 1000, "swing");
+
+                });
+            });
+
+
+
             //var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
             //var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
 
