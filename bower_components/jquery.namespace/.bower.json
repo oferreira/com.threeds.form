@@ -21,11 +21,11 @@
     "test",
     "tests"
   ],
-  "_release": "8e3405ce22",
+  "_release": "e9c459dd48",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "8e3405ce221fed6a0d9d6a932cacf4d21d7010ca"
+    "commit": "e9c459dd48a77d19401f328f90424716fc785dbf"
   },
   "_source": "https://github.com/oferreira/jquery.namespace.git",
   "_target": "*",

@@ -8,9 +8,9 @@
         var Drupal = {};
     </script>
 
-    <link rel="import" href="http://localhost:2000/bower_components/polymer/polymer.html">
-    <link rel="import" href="http://localhost:2000/bower_components/polymer-ts/polymer-ts.html">
-    <script src="http://localhost:2000/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/polymer-ts/polymer-ts.html">
+    <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
@@ -21,18 +21,17 @@
     <script src="./bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="./dist/style.css" >
-    <script type="text/javascript" src="./dist/build.js"></script>
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
+    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
 
 
     <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
-
 
 </head>
 <body>
 <div id="myform"></div>
 <script type="text/javascript">
-    (function ($, Drupal) {
+    (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
                 id: 'LDP30030',
@@ -84,7 +83,7 @@
 
             $('#myform').threeds().landingPage(options);
         });
-    })(jQuery, Drupal);
+    })(jQuery, Drupal, window);
 </script>
 
 </body>

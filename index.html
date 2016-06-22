@@ -7,18 +7,31 @@
     <script type="text/javascript">
         var Drupal = {};
     </script>
-    <link rel="stylesheet" href="/dist/style.css" >
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/polyfills-6e87470526c496c0fc53fa87ed5a825eff61f1f3/classList.js"></script>
-    <script type="text/javascript" src="/dist/platform.js"></script>
-    <script type="text/javascript" src="/dist/app.js"></script>
 
+    <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/polymer-ts/polymer-ts.html">
+    <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/content.css" />
+    <script src="./bower_components/ButtonComponentMorph/js/modernizr.custom.js"></script>
+    <script src="./bower_components/ButtonComponentMorph/js/classie.js"></script>
+    <script src="./bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
+    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+
+
+    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
 
 </head>
 <body>
-<div id="container"></div>
+<div id="myform"></div>
 <script type="text/javascript">
-    (function ($, Drupal) {
+    (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
                 id: 'LDP6312',
@@ -68,10 +81,11 @@
                 }
             };
 
-            $('#container').threeds().landingPage(options);
+            $('#myform').threeds().landingPage(options);
         });
-    })(jQuery, Drupal);
-
+    })(jQuery, Drupal, window);
 </script>
+
 </body>
 </html>
+

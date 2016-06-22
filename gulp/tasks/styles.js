@@ -14,6 +14,7 @@ gulp.task('styles', function () {
         .pipe($.sass(config.libs.sass))
         .pipe( $.importCss() )
         .pipe( $.autoprefixer(config.libs.autoPrefixer ) )
+        .pipe($.concat('threeds.landingpage.css'))
         .pipe($.sourcemaps.write('./'));
 
 

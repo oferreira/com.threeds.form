@@ -24,7 +24,7 @@ gulp.task('polymer-js', function () {
         }))
         .pipe(addsrc('bower_components/polymer-ts/polymer-ts.js'))
         .pipe(stripComments())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe($.concat('polymer.js'))
         .pipe(gulp.dest('dist'));
 });
@@ -67,5 +67,37 @@ gulp.task('build-js', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
-gulp.task('scripts-changed', ['app-js']);
+
+var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
+    .pipe(sourcemaps.init())
+    .pipe(ts(tsProject))
+    .pipe(babel())
+    .pipe($.concat('threeds.landingpage.js'))
+    .pipe(wrapper({
+        header: "addEventListener('WebComponentsReady', function () {\n",
+        footer: '});'
+    }))
+    .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
+    .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
+    .pipe($.concat('threeds.landingpage.js'))
+    .pipe(wrapper({
+        header: "(function ($, Drupal, window) {\n",
+        footer: '})(jQuery, Drupal, window);'
+    }))
+    .pipe(stripComments())
+    //.pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist'));
+gulp.task('threeds-landingpage-js', function() {
+
+    if(buildHelper.isRelease()){
+
+    }
+
+    return $return;
+});
+
+
+//gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
+gulp.task('scripts', ['threeds-landingpage-js']);
+gulp.task('scripts-changed', ['threeds-landingpage-js']);
