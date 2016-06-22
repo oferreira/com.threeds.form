@@ -177,12 +177,10 @@ namespace Com.Threeds.Component.Form.Element {
             var blockRight = dom.querySelector('.ds-ldp-form-container');
             var container = dom.querySelector('.ds-ldp-global-container');
 
-            var heightBlocLeft = dom.querySelector('.ds-lpd-info-form').offsetHeight;
-            var heightBlocRight = dom.querySelector('.ds-ldp-form-container').offsetHeight;
+
 
             setTimeout(function () {
                 context.clear();
-                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
 
                 $(blockRight).animate({
                     opacity : 0
@@ -192,6 +190,27 @@ namespace Com.Threeds.Component.Form.Element {
                         top : 0,
                         zIndex : 1
                     }, 10, "linear", function() {
+
+
+                        context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+
+                        var heightBlocLeft = dom.querySelector('.ds-lpd-info-form').offsetHeight;
+                        var heightBlocRight = dom.querySelector('.ds-ldp-form-container').offsetHeight;
+                        var heightBlocRightForm = dom.querySelector('.ds-form-fieldset').offsetHeight;
+
+
+                        console.log(heightBlocLeft);
+
+                        console.log(heightBlocRight);
+
+                        console.log(heightBlocRightForm);
+
+                        // Si la hauteur du form est superieur au block de gauche
+                        if(heightBlocRight > heightBlocLeft){
+                            $(container).animate({
+                                height: heightBlocRight
+                            }, 1000 );
+                        }
 
                         //agrandi le conteneur
                         $(container).animate({
