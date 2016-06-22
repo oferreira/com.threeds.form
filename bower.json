@@ -24,7 +24,8 @@
     "jquery.namespace": "https://github.com/oferreira/jquery.namespace.git",
     "javascript-auto-complete": "*",
     "ButtonComponentMorph": "https://github.com/codrops/ButtonComponentMorph.git",
-    "jwplayer": "~6.12.4956"
+    "jwplayer": "~6.12.4956",
+    "modernizr": "~3.3.1"
   },
   "devDependencies": {
     "mustache.js": "mustache#~2.2.1"

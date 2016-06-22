@@ -67,7 +67,6 @@ gulp.task('build-js', function() {
         .pipe(gulp.dest('dist'));
 });
 
-
 var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
     .pipe(sourcemaps.init())
     .pipe(ts(tsProject))
@@ -79,6 +78,8 @@ var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
     }))
     .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
     .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
+    .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
+    .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
     .pipe($.concat('threeds.landingpage.js'))
     .pipe(wrapper({
         header: "(function ($, Drupal, window) {\n",

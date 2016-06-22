@@ -17,8 +17,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
     export class FormBehavior extends polymer.Base {
 
         public action(form:any, data:any):void {
-
-                console.log(data);
             if (Object.isDefined(data, 'result.config')) {
                 for (let i = 0; i < data.result.config.length; i++) {
                     if(typeof data.result.config[i].name != 'undefined' && data.result.config[i].name == 'email' && data.result.config[i].type == 'hidden'){
