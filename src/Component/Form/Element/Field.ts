@@ -7,7 +7,7 @@
 /// <reference path="../../../Component/Form/Element/RadioGroup.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Validator/Email.ts" />
-/// <reference path="../../../Validator/Email.ts" />
+/// <reference path="../../../Validator/Regex.ts" />
 
 namespace Com.Threeds.Component.Form.Element {
 
@@ -131,8 +131,7 @@ namespace Com.Threeds.Component.Form.Element {
         hydrateValidators(data:any) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
-            //if(typeof data.regex != "undefined") console.log(data.regex)
-
+            if(typeof data.regex != "undefined") validators.push(new Com.Threeds.Validator.Regex({regex:data.regex}))
             if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
             if (data.required) validators.push('Com.Threeds.Validator.Require');
 

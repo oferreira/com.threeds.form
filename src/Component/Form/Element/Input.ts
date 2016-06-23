@@ -57,11 +57,16 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         isValid() {
+            console.log(this._validators)
             let message:boolean|string;
             for (let i = 0; i < this._validators.length; i++) {
-                message = eval(`${this._validators[i]}.isValid(this.value)`);
-                if (typeof message == 'string') {
-                    return this.displayError(message)
+                if(typeof this._validators[i] == 'string'){
+                    message = eval(`${this._validators[i]}.isValid(this.value)`);
+                    if (typeof message == 'string') {
+                        return this.displayError(message)
+                    }
+                } else if(typeof this._validators[i] == 'object'){
+                    message = this._validators[i].isValid(this.value);
                 }
             }
 

@@ -10,7 +10,7 @@ namespace Com.Threeds.Validator {
         private settings:any = {
             regex: undefined,
             errors: {
-                invalid: 'error.invalid'
+                invalid: 'error.field_invalid'
             }
         };
 
@@ -25,8 +25,8 @@ namespace Com.Threeds.Validator {
                 return false;
             }
 
-            if (this.settings.regex.test(value)) {
-                return $.i18n().t(this.settings.settings.errors.invalid);
+            if (!eval(this.settings.regex).test(value)) {
+                return $.i18n().t(this.settings.errors.invalid);
             }
 
             return true;
