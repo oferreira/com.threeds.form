@@ -26,44 +26,59 @@ namespace Com.Threeds.Component.Form.Element {
 
             for (let i = data.result.config.length; i >= 0; --i) {
                 if(typeof data.result.config[i] != 'undefined' && data.result.config[i].fieldName != 'optin'){
-                    data.result.config[i].fieldclass.push('ds-form-group-last');
+                    data.result.config[i].lastElement = true;
                     break;
                 }
             }
 
             for (let i = 0; i <= data.result.config.length; i++) {
                 if(typeof data.result.config[i] != 'undefined' && data.result.config[i].type != 'hidden'){
-                    data.result.config[i].fieldclass.push('ds-form-group-first');
+                    data.result.config[i].firstElement = true;
                     break;
                 }
             }
 
+
+            let container:HTMLElement = document.createElement('div');
+            container.classList.add('ds-form-fieldset-content');
+
+            let isRounded:boolean = false;
             for (let k in data.result.config) {
+                if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded=true, console.log(data.result.config[i])
+
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                     this.appendChild(Input.create(context, data.result.config[k]));
                 } else if (data.result.config[k].type.toLowerCase() == 'radio') {
-                    this.appendChild(RadioGroup.create(context, data.result.config[k]));
+                    (isRounded ? container: this).appendChild(RadioGroup.create(context, data.result.config[k]));
                 } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
-                    this.appendChild(FieldGroup.create(context, data.result.config[k]));
+                    (isRounded ? container: this).appendChild(FieldGroup.create(context, data.result.config[k]));
                 } else {
-                    this.appendChild(Field.create(context, data.result.config[k]));
+                    (isRounded ? container: this).appendChild(Field.create(context, data.result.config[k]));
                 }
+
+
+                if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded=false, console.log(data.result.config[i])
             }
 
+            this.appendChild(container);
+            this.appendChild(this.submit(context));
+        }
+
+        submit(context:any):HTMLElement {
             let container:HTMLElement = document.createElement('div');
             container.classList.add('ds-form-group');
             container.classList.add('ds-no-border');
             container.classList.add('ds-txt-center');
 
-            let options:Object = {value:context.settings.nextLabel, class:'ds-btn-circle'};
-            if(context._currentPosition == (Object.keys(context.settings.steps).length -1)){
+            let options:Object = {value: context.settings.nextLabel, class: 'ds-btn-circle'};
+            if (context._currentPosition == (Object.keys(context.settings.steps).length - 1)) {
                 options.value = context.settings.action.label;
                 options.class = 'ds-btn-scream';
             }
             container.appendChild(SubmitElement.create(context, options));
-
-            this.appendChild(container);
+            return container;
         }
+
 
         public get settings():any {
             return this.context.settings;

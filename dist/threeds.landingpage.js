@@ -472,14 +472,6 @@ var Com;
         };
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-String.prototype.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -550,6 +542,14 @@ Object.find = function (o, s) {
         }
     }
     return o;
+};
+String.prototype.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
 };
 var Com;
 (function (Com) {
@@ -1652,27 +1652,36 @@ var Com;
                             }));
                             for (var i = data.result.config.length; i >= 0; --i) {
                                 if (typeof data.result.config[i] != 'undefined' && data.result.config[i].fieldName != 'optin') {
-                                    data.result.config[i].fieldclass.push('ds-form-group-last');
+                                    data.result.config[i].lastElement = true;
                                     break;
                                 }
                             }
                             for (var i = 0; i <= data.result.config.length; i++) {
                                 if (typeof data.result.config[i] != 'undefined' && data.result.config[i].type != 'hidden') {
-                                    data.result.config[i].fieldclass.push('ds-form-group-first');
+                                    data.result.config[i].firstElement = true;
                                     break;
                                 }
                             }
+                            var container = document.createElement('div');
+                            container.classList.add('ds-form-fieldset-content');
+                            var isRounded = false;
                             for (var k in data.result.config) {
+                                if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded = true, console.log(data.result.config[i]);
                                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                                     this.appendChild(Element.Input.create(context, data.result.config[k]));
                                 } else if (data.result.config[k].type.toLowerCase() == 'radio') {
-                                    this.appendChild(Element.RadioGroup.create(context, data.result.config[k]));
+                                    (isRounded ? container : this).appendChild(Element.RadioGroup.create(context, data.result.config[k]));
                                 } else if (data.result.config[k].type.toLowerCase() == 'fieldgroup') {
-                                    this.appendChild(Element.FieldGroup.create(context, data.result.config[k]));
+                                    (isRounded ? container : this).appendChild(Element.FieldGroup.create(context, data.result.config[k]));
                                 } else {
-                                    this.appendChild(Element.Field.create(context, data.result.config[k]));
+                                    (isRounded ? container : this).appendChild(Element.Field.create(context, data.result.config[k]));
                                 }
+                                if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded = false, console.log(data.result.config[i]);
                             }
+                            this.appendChild(container);
+                            this.appendChild(this.submit(context));
+                        }
+                        Step.prototype.submit = function (context) {
                             var container = document.createElement('div');
                             container.classList.add('ds-form-group');
                             container.classList.add('ds-no-border');
@@ -1683,8 +1692,8 @@ var Com;
                                 options.class = 'ds-btn-scream';
                             }
                             container.appendChild(SubmitElement.create(context, options));
-                            this.appendChild(container);
-                        }
+                            return container;
+                        };
                         Object.defineProperty(Step.prototype, "settings", {
                             get: function () {
                                 return this.context.settings;
@@ -2364,6 +2373,55 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend({}, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -2935,55 +2993,6 @@ Object.isDefined = function (obj, prop) {
     }
     return true;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
