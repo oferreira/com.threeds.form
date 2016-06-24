@@ -183,6 +183,7 @@ namespace Com.Threeds.Component.Form.Element {
             setTimeout(function () {
                 context.clear();
 
+
                 $(blockRight).animate({
                     opacity : 0
                 }, 500, "linear", function() {
@@ -193,11 +194,24 @@ namespace Com.Threeds.Component.Form.Element {
                     }, 10, "linear", function() {
 
 
-                        context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                        let step:Step = Step.create(context, context._steps.slice(-1)[0]);
+                        /*/step.onload = function() {
+                            console.log('sqkodkqs-----');
+                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
+                        }*/
+
+                        context.appendChild(step);
+
+
+                        setTimeout(function() {
+                            console.log('sqkodkqs-----');
+                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
+                        }, 1);
+
 
                         var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
                         var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+                        //var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
 
 
                         console.log('.ds-lpd-info-form');
@@ -205,7 +219,8 @@ namespace Com.Threeds.Component.Form.Element {
                         console.log('.ds-ldp-form-container');
                         console.log(heightBlocRight);
                         console.log('.ds-form-fieldset');
-                        console.log(heightBlocRightForm);
+                        //console.log(heightBlocRightForm);
+                        console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
 
                         // Si la hauteur du form est superieur au block de gauche
                         if(heightBlocRight > heightBlocLeft){

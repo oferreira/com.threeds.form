@@ -2085,16 +2085,20 @@ var Com;
                                         top: 0,
                                         zIndex: 1
                                     }, 10, "linear", function () {
-                                        context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                                        var step = Step.create(context, context._steps.slice(-1)[0]);
+                                        context.appendChild(step);
+                                        setTimeout(function () {
+                                            console.log('sqkodkqs-----');
+                                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
+                                        }, 1);
                                         var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
                                         var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
                                         console.log('.ds-lpd-info-form');
                                         console.log(heightBlocLeft);
                                         console.log('.ds-ldp-form-container');
                                         console.log(heightBlocRight);
                                         console.log('.ds-form-fieldset');
-                                        console.log(heightBlocRightForm);
+                                        console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
                                         if (heightBlocRight > heightBlocLeft) {
                                             $(container).animate({
                                                 height: heightBlocRight
@@ -2353,55 +2357,6 @@ var Com;
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 Com.Threeds.Component.Tabs.Element.Tab.register();
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -2980,6 +2935,55 @@ Object.isDefined = function (obj, prop) {
     }
     return true;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend({}, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
