@@ -23,7 +23,7 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
 
-        @property({type: Boolean, reflectToAttribute: true})
+        @property({type: Boolean})
             required:boolean = false;
 
         private _validators:string[] = [];
