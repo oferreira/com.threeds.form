@@ -47,9 +47,8 @@ namespace Com.Threeds.Component.Tabs.Element {
         }
 
         public set currentPosition(value:number) {
-            $('ul.ds-tabs-header').addClass(`step-${value}-active`);
-
-            $( ".ds-tabs-header li" ).each(function( index ) {
+            this.context.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
+            this.context.context.elem.find( ".ds-tabs-header li" ).each(function( index ) {
                 if(index == value){
                     $( this ).addClass('active');
                 } else {
@@ -57,7 +56,7 @@ namespace Com.Threeds.Component.Tabs.Element {
                 }
             });
 
-            $( ".ds-tabs-container .ds-tab" ).each(function( index ) {
+            this.context.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index ) {
                 if(index == value){
                     $( this ).addClass('active');
                 } else {

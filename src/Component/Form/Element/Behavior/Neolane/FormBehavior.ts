@@ -26,18 +26,13 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
                 form.update(data);
             } else if (Object.isDefined(data, 'result.thankYouPage')) {
-                if (data.result.properties.displayThankYou) {
-                    form.success(data.result.thankYouPage);
-
-                    if (data.result.properties.openUrl) {
-                        //var w = window.open(data.result.asset.url, '_blank');
-                        //w.focus();
-                    }
-                } else if (data.result.properties.openUrl) {
-                    form.redirect(data.result.asset.url);
+                form.success(data.result);
+                if (data.result.properties.openUrl) {
+                    //var w = window.open(data.result.asset.url, '_blank');
+                    //w.focus();
                 }
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
-                form.redirect(data.result.properties.content);
+                form.success(data.result);
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
                 form.warning(data.result.properties.content);
             } else if (Object.isDefined(data, 'errors.0.error.message')) {

@@ -57,7 +57,6 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         isValid() {
-            console.log(this._validators)
             let message:boolean|string;
             for (let i = 0; i < this._validators.length; i++) {
                 if(typeof this._validators[i] == 'string'){

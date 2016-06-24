@@ -42,6 +42,7 @@ namespace Com.Threeds.Component.Form.Element {
         update():void {
             this.clear();
 
+            let selected:Boolean = false;
             for (let k in this.data.options) {
                 if (this.data.value != undefined && this.data.options[k].value == this.data.value) {
                     this.data.options[k].selected = true;
@@ -51,8 +52,18 @@ namespace Com.Threeds.Component.Form.Element {
                     this.parentFieldValue = this.data.options[k].parentValue
                 }
 
-
+                if (this.data.options[k].selected != undefined && this.data.options[k].selected) {
+                    selected = true;
+                }
             }
+
+            let option:any = {
+                "label": this.data.label,
+                "value": "",
+                "disabled": true,
+                "selected": (selected ? true:false)
+            };
+            this.data.options.unshift(option);
 
             for (let k in this.data.options) {
                 if (this.parentFieldValue == undefined && this.parentField == undefined) {

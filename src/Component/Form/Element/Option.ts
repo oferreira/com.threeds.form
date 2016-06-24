@@ -17,11 +17,15 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             selected:boolean;
 
+        @property({type: Boolean, reflectToAttribute: true})
+            disabled:boolean;
+
         constructor(context:any, data:any) {
             super(data);
             if (data.label != undefined) this.label = data.label;
-            if (data.value != undefined) this.value = data.value;
+            if (data.value != undefined) this.value = encodeURIComponent(data.value);
             if (data.selected != undefined) this.selected = data.selected;
+            if (data.disabled != undefined) this.disabled = data.disabled;
         }
 
         @observe("label")

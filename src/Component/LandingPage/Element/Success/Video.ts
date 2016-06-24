@@ -57,7 +57,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                     return false;
                 },
                 onAfterClose: function () {
-                    jwplayer().pause();
+                    jwplayer().stop();
                     return false;
                 }
             });
