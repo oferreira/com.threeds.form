@@ -56,7 +56,6 @@ namespace Com.Threeds.Component.Form.Element {
                     (isRounded ? container: this).appendChild(Field.create(context, data.result.config[k]));
                 }
 
-
                 if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded=false, console.log(data.result.config[i])
             }
 
