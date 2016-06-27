@@ -28,15 +28,20 @@
 .ds-form-fieldset {
 	border: 0;
 	padding: 0;
+	margin:0;
+}
+
+.ds-form-fieldset-content{
+	border: solid 1px $black-12;
+	border-radius: $radius-form;
+	background: $white;
 	margin: 10px 0;
 }
 
+
 .ds-form-group {
-	border-left: solid 1px $black-12;
-	border-right: solid 1px $black-12;
-	border-bottom: solid 1px $black-12;
+	border-top: solid 1px $black-12;
 	padding: $padding-input-y $padding-input-x;
-	background: $white;
 	position: relative;
 
 	input[type="text"]:focus,
@@ -55,9 +60,11 @@
 		width: 100%;
 		font-family: $ds-light;
 		font-size: rem(17px);
-		color: $black-35;
+		color: $black-57;
 		background-color: #ffffff;
 		border: 0 none;
+		padding: 0;
+		margin: 0;
 	}
 
 	&.ds-no-border{
@@ -65,17 +72,9 @@
 		background: none;
 	}
 
-	&.ds-form-group-first{
-		@include border-top-radius($radius-form);
-		border-top: solid 1px $black-12;
-	}
-
-	& + .ds-form-group {
-		border-top: 0;
-	}
-
-	&.ds-form-group-last{
-		@include border-bottom-radius($radius-form);
+	&.ds-form-group-first,
+	&:first-child {
+		border-top:0 none;
 	}
 
 	.ds-form-group{
@@ -128,7 +127,7 @@
 			border-right: none;
 			-webkit-transform: rotate(-45deg);
 			transform: rotate(-45deg);
-			z-index: 1000;
+			z-index: 10;
 		}
 	}
 
@@ -202,7 +201,6 @@
 // ==========================================================================
 
 .ds-form-radio{
-
 	$spacing-radio: $size-radio /2;
 
 	display: inline-block;
@@ -319,11 +317,12 @@
 
 	label{
 		display: block;
-		font-size: 10px;
+		font-size: 12px;
 		padding-left: ($size-switch * 2) + 11;
 		position: relative;
 		color:$black-35;
 		font-family: $ds-light;
+		padding-right: 0;
 
 		&:before,
 		&:after {
@@ -369,7 +368,7 @@
 
 .ds-form-error{
 	position: absolute;
-	z-index: 1;
+	z-index: 20;
 	@include box-sizing(border-box);
 	display: block;
 	width: calc(100% + 2px);
@@ -378,14 +377,17 @@
 	border: 1px solid $error;
 	color:$white;
 	font-size: 14px;
+	line-height: 14px;
 	font-family: $ds-light;
 	text-align: left;
-	margin: 43px 0 (0)  (-$padding-input-x - 1);
+	margin: 0 0 (0)  (-$padding-input-x - 1);
 	@include transition(1s ease all);
+	bottom:-49px;
+	cursor: pointer;
 
 	&:after{
 		position: absolute;
-		z-index: 1;
+		z-index: 20;
 		content: " ";
 		right:8px;
 		top:-20.5px;
@@ -398,25 +400,14 @@
 
 	&:before{
 		position: absolute;
-		z-index: 1;
+		z-index: 20;
 		content: " ";
 		right:22px;
-		top:-40px;
+		top:-36px;
 		width:12px;
 		height:12px;
 		background: $ico-error center center no-repeat;
+		cursor: pointer;
 	}
 }
 
-/*
-.ds-form-fieldset .has-error.ds-form-group-first{
-	@include border-bottom-radius(0);
-}
-
-.ds-form-fieldset .has-error.ds-form-group-last{
-	@include border-bottom-radius(0);
-	.ds-form-error{
-		border-radius: 0 0 $radius-form 0;
-	}
-}
-*/

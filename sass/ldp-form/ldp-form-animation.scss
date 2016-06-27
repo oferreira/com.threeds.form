@@ -4,33 +4,29 @@
 // LDP FORM ANIMATION
 // ==========================================================================
 
-/*
+
 
 //Step 1
 
-.ds-ldp-global-step-1 {
-	animation-name: globalContainer;
-	animation-duration: 1.5s;
+.ds-anim-width-step-2 {
+	animation-name: globalContainerStep2Width;
+	animation-duration: 0.6s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
-	animation-delay: 0;
+	animation-fill-mode: forwards;
+	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+	animation-timing-function: ease-in-out;
 }
 
-@keyframes globalContainer {
+@keyframes globalContainerStep2Width {
 	0%{
-		width: 476px;
-	}
-	33%{
-		width: 476px;
-	}
-	66%{
 		width: 476px;
 	}
 	100% {
 		width: 952px;
 	}
 }
-*/
+
 /*
 .ds-ldp-global-step-1 .ds-ldp-form-container{
 	animation-name: block-right;

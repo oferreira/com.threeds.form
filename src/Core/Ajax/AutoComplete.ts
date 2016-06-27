@@ -26,6 +26,7 @@ namespace Com.Threeds.Core.Ajax {
             this.elem = elem;
             this.settings = $.extend({}, this.settings, options);
 
+
             this.service('api')[this.settings.api.serviceName](this, this.settings);
         }
 

@@ -47,7 +47,10 @@ namespace Com.Threeds.Component.Tabs.Element {
         }
 
         public set currentPosition(value:number) {
-            this.context.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
+
+            // @TODO a faire dans pendant l'animation
+            //this.context.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
+
             this.context.context.elem.find( ".ds-tabs-header li" ).each(function( index ) {
                 if(index == value){
                     $( this ).addClass('active');
@@ -56,13 +59,14 @@ namespace Com.Threeds.Component.Tabs.Element {
                 }
             });
 
-            this.context.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index ) {
-                if(index == value){
-                    $( this ).addClass('active');
-                } else {
-                    $( this ).removeClass('active');
-                }
-            });
+            // @TODO a faire dans pendant l'animation
+            //this.context.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index ) {
+            //    if(index == value){
+            //        $( this ).addClass('active');
+            //    } else {
+            //        $( this ).removeClass('active');
+            //    }
+            //});
 
             this._currentPosition = value;
         }

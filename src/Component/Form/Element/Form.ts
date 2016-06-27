@@ -171,72 +171,66 @@ namespace Com.Threeds.Component.Form.Element {
 
         transition(context:any,currentPosition:number):void{
             if(currentPosition == 0){
+
                 context.clear();
                 context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
                 return;
             }
+
             var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
             var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
 
-
-
-            setTimeout(function () {
+            $(blockRight).animate({
+                opacity : 0
+            }, 500, "linear", function() {
                 context.clear();
-
-
                 $(blockRight).animate({
-                    opacity : 0
-                }, 500, "linear", function() {
-                    $(blockRight).animate({
-                        opacity : 1,
-                        top : 0,
-                        zIndex : 1
-                    }, 10, "linear", function() {
+                    zIndex : 1,
+                    opacity : 1,
+                    top : 0
+                }, 1, "linear", function() {
 
+                    let step:Step = Step.create(context, context._steps.slice(-1)[0]);
 
-                        let step:Step = Step.create(context, context._steps.slice(-1)[0]);
-                        /*/step.onload = function() {
-                            console.log('sqkodkqs-----');
-                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
-                        }*/
+                    context.appendChild(step);
 
-                        context.appendChild(step);
+                    $(blockRight).animate({opacity : 1}, 1);
 
-
-                        setTimeout(function() {
-                            console.log('sqkodkqs-----');
-                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
-                        }, 1);
-
-
+                    setTimeout(function() {
+                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
                         var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
                         var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                        //var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
 
 
-                        console.log('.ds-lpd-info-form');
-                        console.log(heightBlocLeft);
-                        console.log('.ds-ldp-form-container');
-                        console.log(heightBlocRight);
-                        console.log('.ds-form-fieldset');
-                        //console.log(heightBlocRightForm);
-                        console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
+                         //Si la hauteur du form est superieur au block de gauche
+                        if(heightBlocRightForm > heightBlocLeft){
 
-                        // Si la hauteur du form est superieur au block de gauche
-                        if(heightBlocRight > heightBlocLeft){
-                            $(container).animate({
-                                height: heightBlocRight
-                            }, 1000 );
+                            // augmente la hauteur du conteneur
+                            $(BlocLeft).animate({
+                                height: heightBlocRightForm
+                            }, 500, "linear", function() {
+
+                                // augmente la largeur du conteneur
+                                //$(container).animate({
+                                //    width: "952px"
+                                //}, 600, "linear");
+                                $(container).addClass('ds-anim-width-step-2');
+
+                            });
+
+                        }else{
+                            $(container).addClass('ds-anim-width-step-2');
                         }
+                    }, 1);
 
-                        //agrandi le conteneur
-                        $(container).animate({
-                            width: "952px"
-                        }, 1000, "swing");
-
-                    });
                 });
-            }, 0);
+            });
+
+            if(currentPosition == 2) {
+                alert('step 3')
+            }
+
 
 
             /*
