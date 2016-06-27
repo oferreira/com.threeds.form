@@ -953,6 +953,28 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Threeds.Service || (Threeds.Service = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
         var Validator;
         (function (Validator) {
             var AbstractValidator = function () {
@@ -1073,28 +1095,6 @@ var Com;
     (function (Threeds) {
         var Service;
         (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Threeds.Service || (Threeds.Service = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Service;
-        (function (Service) {
             var Adapter;
             (function (Adapter) {
                 var AbstractAdapter = function () {
@@ -1203,7 +1203,7 @@ var Com;
                         function Input(context, data) {
                             _super.call(this, data);
                             this.type = 'text';
-                            this.value = "";
+                            this.value = "10010110";
                             this.required = false;
                             this._validators = [];
                             this._errorMessage = '';
@@ -1536,6 +1536,7 @@ var Com;
                         });
                         Select.prototype._onChange = function (e) {
                             this.selectOption(this.value);
+                            this.isValid();
                         };
                         Select.prototype.selectOption = function (value) {
                             this.fire('field-value-changed', this);
@@ -2341,10 +2342,15 @@ var Com;
                                 return this._currentPosition;
                             },
                             set: function (value) {
+                                if (typeof this.context.settings.hook.transition == 'function') {
+                                    this.context.settings.hook.transition(this, value);
+                                    return;
+                                }
                                 if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
                                     this.settings.hook.setCurrentPosition(this, value);
                                 }
                                 this._currentPosition = value;
+                                this.transition(this, value);
                             },
                             enumerable: true,
                             configurable: true
@@ -2431,51 +2437,13 @@ var Com;
                         };
                         Form.prototype.update = function (data) {
                             this.add(data);
-                            this.transition(this, this.currentPosition);
                         };
                         Form.prototype.dom = function () {
                             return Polymer.dom(context.context.root);
                         };
                         Form.prototype.transition = function (context, currentPosition) {
-                            if (currentPosition == 0) {
-                                context.clear();
-                                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
-                                return;
-                            }
-                            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
-                            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
-                            $(blockRight).animate({
-                                opacity: 0
-                            }, 500, "linear", function () {
-                                context.clear();
-                                $(blockRight).animate({
-                                    zIndex: 1,
-                                    opacity: 1,
-                                    top: 0
-                                }, 1, "linear", function () {
-                                    var step = Step.create(context, context._steps.slice(-1)[0]);
-                                    context.appendChild(step);
-                                    $(blockRight).animate({ opacity: 1 }, 1);
-                                    setTimeout(function () {
-                                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
-                                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
-                                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
-                                        if (heightBlocRightForm > heightBlocLeft) {
-                                            $(BlocLeft).animate({
-                                                height: heightBlocRightForm
-                                            }, 500, "linear", function () {
-                                                $(container).addClass('ds-anim-width-step-2');
-                                            });
-                                        } else {
-                                            $(container).addClass('ds-anim-width-step-2');
-                                        }
-                                    }, 1);
-                                });
-                            });
-                            if (currentPosition == 2) {
-                                alert('step 3');
-                            }
+                            context.clear();
+                            context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
                         };
                         Form.prototype.goTo = function (id) {
                             if (typeof this._steps[id] != "undefined") {
@@ -2730,55 +2698,6 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -2878,7 +2797,15 @@ var Com;
                                 return this._currentPosition;
                             },
                             set: function (value) {
+                                this.context.context.elem.find('ul.ds-tabs-header').addClass("step-" + value + "-active");
                                 this.context.context.elem.find(".ds-tabs-header li").each(function (index) {
+                                    if (index == value) {
+                                        $(this).addClass('active');
+                                    } else {
+                                        $(this).removeClass('active');
+                                    }
+                                });
+                                this.context.context.elem.find(".ds-tabs-container .ds-tab").each(function (index) {
                                     if (index == value) {
                                         $(this).addClass('active');
                                     } else {
@@ -2931,9 +2858,8 @@ var Com;
                             __extends(Download, _super);
                             function Download(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n                                    <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                        " + context.settings.action.label + "<br />\n                                        <span>" + context.settings.action.content + "</span>\n                                    </a>\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                                    <p>" + data.content + "</p>\n                                    <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                        " + context.settings.action.label + "<br />\n                                        <span>" + context.settings.action.content + "</span>\n                                    </a>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
                                 this.innerHTML = tpl;
-                                $.fileDownload(context.settings.action.url);
                             }
                             Download = __decorate([component('landingpage-success-download-element'), extend("div")], Download);
                             return Download;
@@ -3142,6 +3068,7 @@ var Com;
                     var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
                     var Tabs = Com.Threeds.Component.Tabs.Element.Tabs;
                     var Form = Com.Threeds.Component.Form.Element.Form;
+                    var Step = Com.Threeds.Component.Form.Element.Step;
                     var Success = Com.Threeds.Component.LandingPage.Element.Success;
                     var Error = Com.Threeds.Component.LandingPage.Element.Error;
                     var LandingPage = function (_super) {
@@ -3196,7 +3123,56 @@ var Com;
                                     self.context.elem.append(Error.create(self.context, self.context.settings.error));
                                 };
                             }
+                            if (typeof this.context.settings.hook.transition == 'undefined') {
+                                this.context.settings.hook.transition = self.transition;
+                            }
                             return Form.create(this.context, data);
+                        };
+                        LandingPage.prototype.transition = function (context, currentPosition) {
+                            if (currentPosition == 0) {
+                                if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                    context.settings.hook.setCurrentPosition(context, currentPosition);
+                                }
+                                context._currentPosition = currentPosition;
+                                context.clear();
+                                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                                return;
+                            }
+                            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
+                            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
+                            $(blockRight).animate({
+                                opacity: 0
+                            }, 500, "linear", function () {
+                                context.clear();
+                                $(blockRight).animate({
+                                    zIndex: 1,
+                                    opacity: 1,
+                                    top: 0
+                                }, 1, "linear", function () {
+                                    if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                        context.settings.hook.setCurrentPosition(context, currentPosition);
+                                    }
+                                    context._currentPosition = currentPosition;
+                                    var step = Step.create(context, context._steps.slice(-1)[0]);
+                                    context.appendChild(step);
+                                    $(blockRight).animate({ opacity: 1 }, 1);
+                                    setTimeout(function () {
+                                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
+                                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
+                                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
+                                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+                                        if (heightBlocRightForm > heightBlocLeft) {
+                                            $(BlocLeft).animate({
+                                                height: heightBlocRightForm
+                                            }, 500, "linear", function () {
+                                                $(container).addClass('ds-anim-width-step-2');
+                                            });
+                                        } else {
+                                            $(container).addClass('ds-anim-width-step-2');
+                                        }
+                                    }, 1);
+                                });
+                            });
                         };
                         LandingPage.prototype.setCurrentPosition = function (index) {
                             this.context.elem.attr('class', '');
@@ -3341,6 +3317,55 @@ Object.isDefined = function (obj, prop) {
     }
     return true;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend({}, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {

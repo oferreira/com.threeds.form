@@ -87,6 +87,7 @@ namespace Com.Threeds.Component.Form.Element {
         @listen('change')
         _onChange(e:Event):void {
             this.selectOption(this.value);
+            this.isValid();
         }
 
       selectOption(value:string):void {

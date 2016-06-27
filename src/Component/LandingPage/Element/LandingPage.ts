@@ -2,6 +2,7 @@
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Component/Tabs/Element/Tabs.ts" />
 /// <reference path="../../../Component/Form/Element/Form.ts" />
+/// <reference path="../../../Component/Form/Element/Step.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Success.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Error.ts" />
 
@@ -10,6 +11,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
     import Tabs = Com.Threeds.Component.Tabs.Element.Tabs;
     import Form = Com.Threeds.Component.Form.Element.Form;
+    import Step = Com.Threeds.Component.Form.Element.Step;
     import Success = Com.Threeds.Component.LandingPage.Element.Success;
     import Error = Com.Threeds.Component.LandingPage.Element.Error;
 
@@ -86,7 +88,83 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 };
             }
 
+            if(typeof this.context.settings.hook.transition == 'undefined') {
+                this.context.settings.hook.transition = self.transition;
+            }
+
             return Form.create(this.context, data);
+        }
+
+        transition(context:any,currentPosition:number):void{
+            if(currentPosition == 0){
+                if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                    context.settings.hook.setCurrentPosition(context, currentPosition);
+                }
+
+                context._currentPosition = currentPosition;
+
+                context.clear();
+                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                return;
+            }
+
+            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
+            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
+
+            $(blockRight).animate({
+                opacity : 0
+            }, 500, "linear", function() {
+                context.clear();
+                $(blockRight).animate({
+                    zIndex : 1,
+                    opacity : 1,
+                    top : 0
+                }, 1, "linear", function() {
+
+                    if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                        context.settings.hook.setCurrentPosition(context, currentPosition);
+                    }
+
+                    context._currentPosition = currentPosition;
+
+                    let step:Step = Step.create(context, context._steps.slice(-1)[0]);
+                    context.appendChild(step);
+
+
+
+                    $(blockRight).animate({opacity : 1}, 1);
+
+                    setTimeout(function() {
+                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
+                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
+                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
+                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+
+
+                        //Si la hauteur du form est superieur au block de gauche
+                        if(heightBlocRightForm > heightBlocLeft){
+
+                            // augmente la hauteur du conteneur
+                            $(BlocLeft).animate({
+                                height: heightBlocRightForm
+                            }, 500, "linear", function() {
+
+                                // augmente la largeur du conteneur
+                                //$(container).animate({
+                                //    width: "952px"
+                                //}, 600, "linear");
+                                $(container).addClass('ds-anim-width-step-2');
+
+                            });
+
+                        }else{
+                            $(container).addClass('ds-anim-width-step-2');
+                        }
+                    }, 1);
+
+                });
+            });
+
         }
 
         setCurrentPosition(index:number):void {

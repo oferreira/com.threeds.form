@@ -41,11 +41,17 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         public set currentPosition(value:number) {
+            if (typeof this.context.settings.hook.transition == 'function') {
+                this.context.settings.hook.transition(this, value);
+                return;
+            }
+
             if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
                 this.settings.hook.setCurrentPosition(this, value);
             }
 
             this._currentPosition = value;
+            this.transition(this, value);
         }
 
         public _steps:Object[] = [];
@@ -162,7 +168,7 @@ namespace Com.Threeds.Component.Form.Element {
             //this.clear();
             //this.appendChild(Step.create(this, data));
 
-            this.transition(this, this.currentPosition);
+
         }
 
         dom():any{
@@ -170,133 +176,8 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-            if(currentPosition == 0){
-
-                context.clear();
-                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
-                return;
-            }
-
-            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
-            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
-
-            $(blockRight).animate({
-                opacity : 0
-            }, 500, "linear", function() {
-                context.clear();
-                $(blockRight).animate({
-                    zIndex : 1,
-                    opacity : 1,
-                    top : 0
-                }, 1, "linear", function() {
-
-                    let step:Step = Step.create(context, context._steps.slice(-1)[0]);
-
-                    context.appendChild(step);
-
-                    $(blockRight).animate({opacity : 1}, 1);
-
-                    setTimeout(function() {
-                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
-                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
-                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
-
-
-                         //Si la hauteur du form est superieur au block de gauche
-                        if(heightBlocRightForm > heightBlocLeft){
-
-                            // augmente la hauteur du conteneur
-                            $(BlocLeft).animate({
-                                height: heightBlocRightForm
-                            }, 500, "linear", function() {
-
-                                // augmente la largeur du conteneur
-                                //$(container).animate({
-                                //    width: "952px"
-                                //}, 600, "linear");
-                                $(container).addClass('ds-anim-width-step-2');
-
-                            });
-
-                        }else{
-                            $(container).addClass('ds-anim-width-step-2');
-                        }
-                    }, 1);
-
-                });
-            });
-
-            if(currentPosition == 2) {
-                alert('step 3')
-            }
-
-
-
-            /*
-                    var container = $('.ds-ldp-global-container');
-                    var blockLeft = $('.ds-lpd-info-form');
-                    var blockRight = $('.ds-ldp-form-container');
-
-                    var heightBlocLeft = blockLeft.height();
-                    var heightBlocRight = blockRight.height();
-
-                    var tabsHead =  $('.ds-tabs-header');
-                    var tabsContent =  $('.ds-tabs-container');
-
-                        // Step 1
-                        if(currentPosition == 0){
-                           // callback();
-
-                            return;
-                        }
-
-                        // Step 2
-                        setTimeout(function() {
-                           // callback();
-
-                            //cache le form
-                            $(blockRight).animate({
-                                opacity : 0
-                            }, 500, "linear", function() {
-
-                                // A lancer quand le formulaire de la step 2 est chargé
-
-                                //remonte le form caché deriere
-                                $(blockRight).animate({
-                                    opacity : 1,
-                                    top : 0,
-                                    zIndex : 1
-                                }, 10, "linear", function() {
-
-                                    // Si la hauteur du form est superieur au block de gauche
-                                    if(heightBlocRight > heightBlocLeft){
-                                        $(container).animate({
-                                            height: heightBlocRight
-                                        }, 1000 );
-                                    }
-
-                                    //agrandi le conteneur
-                                    $(container).animate({
-                                        width: "952px"
-                                    }, 1000, "swing");
-
-                                    // active la tab 2
-                                    $(tabsHead).addClass('step-1-active');
-                                    //
-                                    //if(tabsContent.hasClass('active'){
-                                    //
-                                    //}
-                                    //
-                                    //// active le conteneur 2
-                                    //$(tabsContent).addClass('step-1-active');
-
-
-
-                                });
-                            });
-                        }, 0);
-            */
+            context.clear();
+            context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
         }
 
 
