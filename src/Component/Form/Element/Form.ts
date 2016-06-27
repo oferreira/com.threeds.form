@@ -281,17 +281,19 @@ namespace Com.Threeds.Component.Form.Element {
                         }
                         break;
                     case 'TEXTAREA':
-                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                        dict[form.elements[i].name] = form.elements[i].value;
                         break;
                     case 'SELECT':
                         switch (form.elements[i].type) {
                             case 'select-one':
-                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                dict[form.elements[i].name] = form.elements[i].value;
+                               // dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
                                 break;
                             case 'select-multiple':
                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                     if (form.elements[i].options[j].selected) {
-                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
+                                        dict[form.elements[i].name] = form.elements[i].options[j].value;
+                                       /// dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
                                     }
                                 }
                                 break;

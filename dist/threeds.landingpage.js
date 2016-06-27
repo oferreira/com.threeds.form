@@ -840,53 +840,6 @@ String.prototype.format = function () {
     }
     return formatted;
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var I18n;
-        (function (I18n) {
-            var Translator = function () {
-                function Translator(options) {
-                    this.lang = options.lang;
-                    this.adapter = options.adapter;
-                }
-                Object.defineProperty(Translator, "instance", {
-                    get: function () {
-                        if (Translator._instance == undefined) {
-                            Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
-                        }
-                        return Translator._instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Translator.prototype.t = function (key) {
-                    return Object.find(eval(this.adapter), this.lang + "." + key);
-                };
-                return Translator;
-            }();
-            I18n.Translator = Translator;
-            $.i18n = function () {
-                return Com.Threeds.I18n.Translator.instance;
-            };
-        })(I18n = Threeds.I18n || (Threeds.I18n = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Object.find = function (o, s) {
-    s = s.replace(/\[(\w+)\]/g, '.$1');
-    s = s.replace(/^\./, '');
-    var a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-            o = o[k];
-        } else {
-            return;
-        }
-    }
-    return o;
-};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -933,6 +886,53 @@ var Com;
             }();
             Plugin.AbstractPlugin = AbstractPlugin;
         })(Plugin = Threeds.Plugin || (Threeds.Plugin = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Object.find = function (o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1');
+    s = s.replace(/^\./, '');
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var I18n;
+        (function (I18n) {
+            var Translator = function () {
+                function Translator(options) {
+                    this.lang = options.lang;
+                    this.adapter = options.adapter;
+                }
+                Object.defineProperty(Translator, "instance", {
+                    get: function () {
+                        if (Translator._instance == undefined) {
+                            Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
+                        }
+                        return Translator._instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Translator.prototype.t = function (key) {
+                    return Object.find(eval(this.adapter), this.lang + "." + key);
+                };
+                return Translator;
+            }();
+            I18n.Translator = Translator;
+            $.i18n = function () {
+                return Com.Threeds.I18n.Translator.instance;
+            };
+        })(I18n = Threeds.I18n || (Threeds.I18n = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 Object.find = function (o, s) {
@@ -1203,7 +1203,7 @@ var Com;
                         function Input(context, data) {
                             _super.call(this, data);
                             this.type = 'text';
-                            this.value = "10010110";
+                            this.value = "";
                             this.required = false;
                             this._validators = [];
                             this._errorMessage = '';
@@ -2534,17 +2534,17 @@ var Com;
                                         }
                                         break;
                                     case 'TEXTAREA':
-                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                        dict[form.elements[i].name] = form.elements[i].value;
                                         break;
                                     case 'SELECT':
                                         switch (form.elements[i].type) {
                                             case 'select-one':
-                                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                                dict[form.elements[i].name] = form.elements[i].value;
                                                 break;
                                             case 'select-multiple':
                                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                                     if (form.elements[i].options[j].selected) {
-                                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
+                                                        dict[form.elements[i].name] = form.elements[i].options[j].value;
                                                     }
                                                 }
                                                 break;
@@ -2691,6 +2691,55 @@ var Com;
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 Com.Threeds.Component.Tabs.Element.Tab.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend({}, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -3317,55 +3366,6 @@ Object.isDefined = function (obj, prop) {
     }
     return true;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
