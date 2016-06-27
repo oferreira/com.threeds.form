@@ -1,4 +1,363 @@
-(function ($, Drupal, window) {
+
+(function($, window){
+	var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
+	var htmlSpecialCharsPlaceHolders = {
+				'<': 'lt;',
+				'>': 'gt;',
+				'&': 'amp;',
+				'\r': "#13;",
+				'\n': "#10;",
+				'"': 'quot;',
+				"'": '#39;' 
+	};
+
+$.extend({
+    fileDownload: function (fileUrl, options) {
+
+        var settings = $.extend({
+
+            preparingMessageHtml: null,
+
+            failMessageHtml: null,
+
+            androidPostUnsupportedMessageHtml: "Unfortunately your Android browser doesn't support this type of file download. Please try again with a different browser.",
+
+            dialogOptions: { modal: true },
+
+            prepareCallback: function (url) { },
+
+            successCallback: function (url) { },
+
+            failCallback: function (responseHtml, url, error) { },
+
+            httpMethod: "GET",
+
+            data: null,
+
+            checkInterval: 100,
+
+            cookieName: "fileDownload",
+
+            cookieValue: "true",
+
+            cookiePath: "/",
+
+            cookieDomain: null,
+
+            popupWindowTitle: "Initiating file download...",
+
+            encodeHTMLEntities: true
+
+        }, options);
+
+        var deferred = new $.Deferred();
+
+        var userAgent = (navigator.userAgent || navigator.vendor || window.opera).toLowerCase();
+
+        var isIos;                  
+        var isAndroid;              
+        var isOtherMobileBrowser;   
+
+        if (/ip(ad|hone|od)/.test(userAgent)) {
+
+            isIos = true;
+
+        } else if (userAgent.indexOf('android') !== -1) {
+
+            isAndroid = true;
+
+        } else {
+
+            isOtherMobileBrowser = /avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|playbook|silk|iemobile|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|e\-|e\/|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(di|rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|xda(\-|2|g)|yas\-|your|zeto|zte\-/i.test(userAgent.substr(0, 4));
+
+        }
+
+        var httpMethodUpper = settings.httpMethod.toUpperCase();
+
+        if (isAndroid && httpMethodUpper !== "GET" && settings.androidPostUnsupportedMessageHtml) {
+
+            if ($().dialog) {
+                $("<div>").html(settings.androidPostUnsupportedMessageHtml).dialog(settings.dialogOptions);
+            } else {
+                alert(settings.androidPostUnsupportedMessageHtml);
+            }
+
+            return deferred.reject();
+        }
+
+        var $preparingDialog = null;
+
+        var internalCallbacks = {
+
+            onPrepare: function (url) {
+
+                if (settings.preparingMessageHtml) {
+
+                    $preparingDialog = $("<div>").html(settings.preparingMessageHtml).dialog(settings.dialogOptions);
+
+                } else if (settings.prepareCallback) {
+
+                    settings.prepareCallback(url);
+
+                }
+
+            },
+
+            onSuccess: function (url) {
+
+                if ($preparingDialog) {
+                    $preparingDialog.dialog('close');
+                }
+
+                settings.successCallback(url);
+
+                deferred.resolve(url);
+            },
+
+            onFail: function (responseHtml, url, error) {
+
+                if ($preparingDialog) {
+                    $preparingDialog.dialog('close');
+                }
+
+                if (settings.failMessageHtml) {
+                    $("<div>").html(settings.failMessageHtml).dialog(settings.dialogOptions);
+                }
+
+                settings.failCallback(responseHtml, url, error);
+
+                deferred.reject(responseHtml, url);
+            }
+        };
+
+        internalCallbacks.onPrepare(fileUrl);
+
+        if (settings.data !== null && typeof settings.data !== "string") {
+            settings.data = $.param(settings.data);
+        }
+
+
+        var $iframe,
+            downloadWindow,
+            formDoc,
+            $form;
+
+        if (httpMethodUpper === "GET") {
+
+            if (settings.data !== null) {
+
+                var qsStart = fileUrl.indexOf('?');
+
+                if (qsStart !== -1) {
+
+                    if (fileUrl.substring(fileUrl.length - 1) !== "&") {
+                        fileUrl = fileUrl + "&";
+                    }
+                } else {
+
+                    fileUrl = fileUrl + "?";
+                }
+
+                fileUrl = fileUrl + settings.data;
+            }
+
+            if (isIos || isAndroid) {
+
+                downloadWindow = window.open(fileUrl);
+                downloadWindow.document.title = settings.popupWindowTitle;
+                window.focus();
+
+            } else if (isOtherMobileBrowser) {
+
+                window.location(fileUrl);
+
+            } else {
+
+                $iframe = $("<iframe>")
+                    .hide()
+                    .prop("src", fileUrl)
+                    .appendTo("body");
+            }
+
+        } else {
+
+            var formInnerHtml = "";
+
+            if (settings.data !== null) {
+
+                $.each(settings.data.replace(/\+/g, ' ').split("&"), function () {
+
+                    var kvp = this.split("=");
+
+                    var k = kvp[0];
+                    kvp.shift();
+                    var v = kvp.join("=");
+                    kvp = [k, v];
+
+                    var key = settings.encodeHTMLEntities ? htmlSpecialCharsEntityEncode(decodeURIComponent(kvp[0])) : decodeURIComponent(kvp[0]);
+                    if (key) {
+                        var value = settings.encodeHTMLEntities ? htmlSpecialCharsEntityEncode(decodeURIComponent(kvp[1])) : decodeURIComponent(kvp[1]);
+                    formInnerHtml += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+                    }
+                });
+            }
+
+            if (isOtherMobileBrowser) {
+
+                $form = $("<form>").appendTo("body");
+                $form.hide()
+                    .prop('method', settings.httpMethod)
+                    .prop('action', fileUrl)
+                    .html(formInnerHtml);
+
+            } else {
+
+                if (isIos) {
+
+                    downloadWindow = window.open("about:blank");
+                    downloadWindow.document.title = settings.popupWindowTitle;
+                    formDoc = downloadWindow.document;
+                    window.focus();
+
+                } else {
+
+                    $iframe = $("<iframe style='display: none' src='about:blank'></iframe>").appendTo("body");
+                    formDoc = getiframeDocument($iframe);
+                }
+
+                formDoc.write("<html><head></head><body><form method='" + settings.httpMethod + "' action='" + fileUrl + "'>" + formInnerHtml + "</form>" + settings.popupWindowTitle + "</body></html>");
+                $form = $(formDoc).find('form');
+            }
+
+            $form.submit();
+        }
+
+
+        setTimeout(checkFileDownloadComplete, settings.checkInterval);
+
+
+        function checkFileDownloadComplete() {
+
+            var cookieValue = settings.cookieValue;
+            if(typeof cookieValue == 'string') {
+                cookieValue = cookieValue.toLowerCase();
+            }
+
+            var lowerCaseCookie = settings.cookieName.toLowerCase() + "=" + cookieValue;
+
+            if (document.cookie.toLowerCase().indexOf(lowerCaseCookie) > -1) {
+
+                internalCallbacks.onSuccess(fileUrl);
+
+                var cookieData = settings.cookieName + "=; path=" + settings.cookiePath + "; expires=" + new Date(0).toUTCString() + ";";
+                if (settings.cookieDomain) cookieData += " domain=" + settings.cookieDomain + ";";
+                document.cookie = cookieData;
+
+                cleanUp(false);
+
+                return;
+            }
+
+            if (downloadWindow || $iframe) {
+
+                try {
+
+                    var formDoc = downloadWindow ? downloadWindow.document : getiframeDocument($iframe);
+
+                    if (formDoc && formDoc.body !== null && formDoc.body.innerHTML.length) {
+
+                        var isFailure = true;
+
+                        if ($form && $form.length) {
+                            var $contents = $(formDoc.body).contents().first();
+
+                            try {
+                                if ($contents.length && $contents[0] === $form[0]) {
+                                    isFailure = false;
+                                }
+                            } catch (e) {
+                                if (e && e.number == -2146828218) {
+                                    isFailure = true;
+                                } else {
+                                    throw e;
+                                }
+                            }
+                        }
+
+                        if (isFailure) {
+                            setTimeout(function () {
+                                internalCallbacks.onFail(formDoc.body.innerHTML, fileUrl);
+                                cleanUp(true);
+                            }, 100);
+
+                            return;
+                        }
+                    }
+                }
+                catch (err) {
+
+                    internalCallbacks.onFail('', fileUrl, err);
+
+                    cleanUp(true);
+
+                    return;
+                }
+            }
+
+
+            setTimeout(checkFileDownloadComplete, settings.checkInterval);
+        }
+
+        function getiframeDocument($iframe) {
+            var iframeDoc = $iframe[0].contentWindow || $iframe[0].contentDocument;
+            if (iframeDoc.document) {
+                iframeDoc = iframeDoc.document;
+            }
+            return iframeDoc;
+        }
+
+        function cleanUp(isFailure) {
+
+            setTimeout(function() {
+
+                if (downloadWindow) {
+
+                    if (isAndroid) {
+                        downloadWindow.close();
+                    }
+
+                    if (isIos) {
+                        if (downloadWindow.focus) {
+                            downloadWindow.focus(); 
+                            if (isFailure) {
+                                downloadWindow.close();
+                            }
+                        }
+                    }
+                }
+
+
+            }, 0);
+        }
+
+
+        function htmlSpecialCharsEntityEncode(str) {
+            return str.replace(htmlSpecialCharsRegEx, function(match) {
+                return '&' + htmlSpecialCharsPlaceHolders[match];
+        	});
+        }
+        var promise = deferred.promise();
+        promise.abort = function() {
+            cleanUp();
+            $iframe.remove();
+        };
+        return promise;
+    }
+});
+
+})(jQuery, this);
+
+;window.Modernizr=function(a,b,c){function x(a){j.cssText=a}function y(a,b){return x(prefixes.join(a+";")+(b||""))}function z(a,b){return typeof a===b}function A(a,b){return!!~(""+a).indexOf(b)}function B(a,b){for(var d in a){var e=a[d];if(!A(e,"-")&&j[e]!==c)return b=="pfx"?e:!0}return!1}function C(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:z(f,"function")?f.bind(d||b):f}return!1}function D(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+n.join(d+" ")+d).split(" ");return z(b,"string")||z(b,"undefined")?B(e,b):(e=(a+" "+o.join(d+" ")+d).split(" "),C(e,b,c))}var d="2.8.0",e={},f=!0,g=b.documentElement,h="modernizr",i=b.createElement(h),j=i.style,k,l={}.toString,m="Webkit Moz O ms",n=m.split(" "),o=m.toLowerCase().split(" "),p={},q={},r={},s=[],t=s.slice,u,v={}.hasOwnProperty,w;!z(v,"undefined")&&!z(v.call,"undefined")?w=function(a,b){return v.call(a,b)}:w=function(a,b){return b in a&&z(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=t.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(t.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(t.call(arguments)))};return e}),p.csstransitions=function(){return D("transition")};for(var E in p)w(p,E)&&(u=E.toLowerCase(),e[u]=p[E](),s.push((e[u]?"":"no-")+u));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)w(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof f!="undefined"&&f&&(g.className+=" "+(b?"":"no-")+a),e[a]=b}return e},x(""),i=k=null,function(a,b){function l(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function m(){var a=s.elements;return typeof a=="string"?a.split(" "):a}function n(a){var b=j[a[h]];return b||(b={},i++,a[h]=i,j[i]=b),b}function o(a,c,d){c||(c=b);if(k)return c.createElement(a);d||(d=n(c));var g;return d.cache[a]?g=d.cache[a].cloneNode():f.test(a)?g=(d.cache[a]=d.createElem(a)).cloneNode():g=d.createElem(a),g.canHaveChildren&&!e.test(a)&&!g.tagUrn?d.frag.appendChild(g):g}function p(a,c){a||(a=b);if(k)return a.createDocumentFragment();c=c||n(a);var d=c.frag.cloneNode(),e=0,f=m(),g=f.length;for(;e<g;e++)d.createElement(f[e]);return d}function q(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return s.shivMethods?o(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+m().join().replace(/[\w\-]+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(s,b.frag)}function r(a){a||(a=b);var c=n(a);return s.shivCSS&&!g&&!c.hasCSS&&(c.hasCSS=!!l(a,"article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")),k||q(a,c),a}var c="3.7.0",d=a.html5||{},e=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,f=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,g,h="_html5shiv",i=0,j={},k;(function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",g="hidden"in a,k=a.childNodes.length==1||function(){b.createElement("a");var a=b.createDocumentFragment();return typeof a.cloneNode=="undefined"||typeof a.createDocumentFragment=="undefined"||typeof a.createElement=="undefined"}()}catch(c){g=!0,k=!0}})();var s={elements:d.elements||"abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video",version:c,shivCSS:d.shivCSS!==!1,supportsUnknownElements:k,shivMethods:d.shivMethods!==!1,type:"default",shivDocument:r,createElement:o,createDocumentFragment:p};a.html5=s,r(b)}(this,b),e._version=d,e._domPrefixes=o,e._cssomPrefixes=n,e.testProp=function(a){return B([a])},e.testAllProps=D,e.prefixed=function(a,b,c){return b?D(a,b,c):D(a,"pfx")},g.className=g.className.replace(/(^|\s)no-js(\s|$)/,"$1$2")+(f?" js "+s.join(" "):""),e}(this,this.document),function(a,b,c){function d(a){return"[object Function]"==o.call(a)}function e(a){return"string"==typeof a}function f(){}function g(a){return!a||"loaded"==a||"complete"==a||"uninitialized"==a}function h(){var a=p.shift();q=1,a?a.t?m(function(){("c"==a.t?B.injectCss:B.injectJs)(a.s,0,a.a,a.x,a.e,1)},0):(a(),h()):q=0}function i(a,c,d,e,f,i,j){function k(b){if(!o&&g(l.readyState)&&(u.r=o=1,!q&&h(),l.onload=l.onreadystatechange=null,b)){"img"!=a&&m(function(){t.removeChild(l)},50);for(var d in y[c])y[c].hasOwnProperty(d)&&y[c][d].onload()}}var j=j||B.errorTimeout,l=b.createElement(a),o=0,r=0,u={t:d,s:c,e:f,a:i,x:j};1===y[c]&&(r=1,y[c]=[]),"object"==a?l.data=c:(l.src=c,l.type=a),l.width=l.height="0",l.onerror=l.onload=l.onreadystatechange=function(){k.call(this,r)},p.splice(e,0,u),"img"!=a&&(r||2===y[c]?(t.insertBefore(l,s?null:n),m(k,j)):y[c].push(l))}function j(a,b,c,d,f){return q=0,b=b||"j",e(a)?i("c"==b?v:u,a,b,this.i++,c,d,f):(p.splice(this.i++,0,a),1==p.length&&h()),this}function k(){var a=B;return a.loader={load:j,i:0},a}var l=b.documentElement,m=a.setTimeout,n=b.getElementsByTagName("script")[0],o={}.toString,p=[],q=0,r="MozAppearance"in l.style,s=r&&!!b.createRange().compareNode,t=s?l:n.parentNode,l=a.opera&&"[object Opera]"==o.call(a.opera),l=!!b.attachEvent&&!l,u=r?"object":l?"script":"img",v=l?"script":u,w=Array.isArray||function(a){return"[object Array]"==o.call(a)},x=[],y={},z={timeout:function(a,b){return b.length&&(a.timeout=b[0]),a}},A,B;B=function(a){function b(a){var a=a.split("!"),b=x.length,c=a.pop(),d=a.length,c={url:c,origUrl:c,prefixes:a},e,f,g;for(f=0;f<d;f++)g=a[f].split("="),(e=z[g.shift()])&&(c=e(c,g));for(f=0;f<b;f++)c=x[f](c);return c}function g(a,e,f,g,h){var i=b(a),j=i.autoCallback;i.url.split(".").pop().split("?").shift(),i.bypass||(e&&(e=d(e)?e:e[a]||e[g]||e[a.split("/").pop().split("?")[0]]),i.instead?i.instead(a,e,f,g,h):(y[i.url]?i.noexec=!0:y[i.url]=1,f.load(i.url,i.forceCSS||!i.forceJS&&"css"==i.url.split(".").pop().split("?").shift()?"c":c,i.noexec,i.attrs,i.timeout),(d(e)||d(j))&&f.load(function(){k(),e&&e(i.origUrl,h,g),j&&j(i.origUrl,h,g),y[i.url]=2})))}function h(a,b){function c(a,c){if(a){if(e(a))c||(j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}),g(a,j,b,0,h);else if(Object(a)===a)for(n in m=function(){var b=0,c;for(c in a)a.hasOwnProperty(c)&&b++;return b}(),a)a.hasOwnProperty(n)&&(!c&&!--m&&(d(j)?j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}:j[n]=function(a){return function(){var b=[].slice.call(arguments);a&&a.apply(this,b),l()}}(k[n])),g(a[n],j,b,n,h))}else!c&&l()}var h=!!a.test,i=a.load||a.both,j=a.callback||f,k=j,l=a.complete||f,m,n;c(h?a.yep:a.nope,!!i),i&&c(i)}var i,j,l=this.yepnope.loader;if(e(a))g(a,0,l,0);else if(w(a))for(i=0;i<a.length;i++)j=a[i],e(j)?g(j,0,l,0):w(j)?B(j):Object(j)===j&&h(j,l);else Object(a)===a&&h(a,l)},B.addPrefix=function(a,b){z[a]=b},B.addFilter=function(a){x.push(a)},B.errorTimeout=1e4,null==b.readyState&&b.addEventListener&&(b.readyState="loading",b.addEventListener("DOMContentLoaded",A=function(){b.removeEventListener("DOMContentLoaded",A,0),b.readyState="complete"},0)),a.yepnope=k(),a.yepnope.executeStack=h,a.yepnope.injectJs=function(a,c,d,e,i,j){var k=b.createElement("script"),l,o,e=e||B.errorTimeout;k.src=a;for(o in d)k.setAttribute(o,d[o]);c=j?h:c||f,k.onreadystatechange=k.onload=function(){!l&&g(k.readyState)&&(l=1,c(),k.onload=k.onreadystatechange=null)},m(function(){l||(l=1,c(1))},e),i?k.onload():n.parentNode.insertBefore(k,n)},a.yepnope.injectCss=function(a,c,d,e,g,i){var e=b.createElement("link"),j,c=i?h:c||f;e.href=a,e.rel="stylesheet",e.type="text/css";for(j in d)e.setAttribute(j,d[j]);g||(n.parentNode.insertBefore(e,n),m(c,0))}}(this,document),Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0))};
 ;( function( window ) {
 
 		'use strict';
@@ -195,6 +554,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+(function ($, Modernizr, Drupal, window) {
 
 var autoComplete = (function(){
     function autoComplete(options){
@@ -472,30 +832,14 @@ var Com;
         };
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
+String.prototype.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
     }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    return formatted;
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Threeds.Element || (Threeds.Element = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -543,14 +887,30 @@ Object.find = function (o, s) {
     }
     return o;
 };
-String.prototype.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
     }
-    return formatted;
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
+                }
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Threeds.Element || (Threeds.Element = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -589,28 +949,6 @@ Object.find = function (o, s) {
     }
     return o;
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Threeds.Service || (Threeds.Service = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -727,6 +1065,28 @@ var Com;
             }(AbstractValidator);
             Validator.Require = Require;
         })(Validator = Threeds.Validator || (Threeds.Validator = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Threeds.Service || (Threeds.Service = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 var Com;
@@ -2084,41 +2444,38 @@ var Com;
                             }
                             var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
                             var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
-                            setTimeout(function () {
+                            $(blockRight).animate({
+                                opacity: 0
+                            }, 500, "linear", function () {
                                 context.clear();
                                 $(blockRight).animate({
-                                    opacity: 0
-                                }, 500, "linear", function () {
-                                    $(blockRight).animate({
-                                        opacity: 1,
-                                        top: 0,
-                                        zIndex: 1
-                                    }, 10, "linear", function () {
-                                        var step = Step.create(context, context._steps.slice(-1)[0]);
-                                        context.appendChild(step);
-                                        setTimeout(function () {
-                                            console.log('sqkodkqs-----');
-                                            console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
-                                        }, 1);
+                                    zIndex: 1,
+                                    opacity: 1,
+                                    top: 0
+                                }, 1, "linear", function () {
+                                    var step = Step.create(context, context._steps.slice(-1)[0]);
+                                    context.appendChild(step);
+                                    $(blockRight).animate({ opacity: 1 }, 1);
+                                    setTimeout(function () {
+                                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
                                         var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
                                         var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                                        console.log('.ds-lpd-info-form');
-                                        console.log(heightBlocLeft);
-                                        console.log('.ds-ldp-form-container');
-                                        console.log(heightBlocRight);
-                                        console.log('.ds-form-fieldset');
-                                        console.log(Polymer.dom(context.context.root).querySelector('.ds-form-fieldset'));
-                                        if (heightBlocRight > heightBlocLeft) {
-                                            $(container).animate({
-                                                height: heightBlocRight
-                                            }, 1000);
+                                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+                                        if (heightBlocRightForm > heightBlocLeft) {
+                                            $(BlocLeft).animate({
+                                                height: heightBlocRightForm
+                                            }, 500, "linear", function () {
+                                                $(container).addClass('ds-anim-width-step-2');
+                                            });
+                                        } else {
+                                            $(container).addClass('ds-anim-width-step-2');
                                         }
-                                        $(container).animate({
-                                            width: "952px"
-                                        }, 1000, "swing");
-                                    });
+                                    }, 1);
                                 });
-                            }, 0);
+                            });
+                            if (currentPosition == 2) {
+                                alert('step 3');
+                            }
                         };
                         Form.prototype.goTo = function (id) {
                             if (typeof this._steps[id] != "undefined") {
@@ -2521,15 +2878,7 @@ var Com;
                                 return this._currentPosition;
                             },
                             set: function (value) {
-                                this.context.context.elem.find('ul.ds-tabs-header').addClass("step-" + value + "-active");
                                 this.context.context.elem.find(".ds-tabs-header li").each(function (index) {
-                                    if (index == value) {
-                                        $(this).addClass('active');
-                                    } else {
-                                        $(this).removeClass('active');
-                                    }
-                                });
-                                this.context.context.elem.find(".ds-tabs-container .ds-tab").each(function (index) {
                                     if (index == value) {
                                         $(this).addClass('active');
                                     } else {
@@ -2584,8 +2933,7 @@ var Com;
                                 _super.call(this, data);
                                 var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n                                    <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                        " + context.settings.action.label + "<br />\n                                        <span>" + context.settings.action.content + "</span>\n                                    </a>\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
                                 this.innerHTML = tpl;
-                                var w = window.open(context.settings.accelerate.url, '_blank');
-                                w.focus();
+                                $.fileDownload(context.settings.action.url);
                             }
                             Download = __decorate([component('landingpage-success-download-element'), extend("div")], Download);
                             return Download;
@@ -3156,4 +3504,4 @@ var Com;
         })(Component = Threeds.Component || (Threeds.Component = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Option.register();});})(jQuery, Drupal, window);
+Com.Threeds.Component.Form.Element.Option.register();});})(jQuery, Modernizr, Drupal, window);

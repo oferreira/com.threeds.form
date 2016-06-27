@@ -8,13 +8,13 @@
         var Drupal = {};
     </script>
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="./bower_components/ButtonComponentMorph/js/modernizr.custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <link rel="import" href="./bower_components/polymer/polymer.html">
     <link rel="import" href="./bower_components/polymer-ts/polymer-ts.html">
     <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
+
 
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
@@ -24,7 +24,6 @@
     <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
 
 
-    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
 
 </head>
 <body>
@@ -33,10 +32,11 @@
     (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
-                id: 'LDP6312',
+                //id: 'LDP6312',
                 //id: 'LDP24104',
+                id: 'LDP30043',
                 type: 'download',
-                backgroundImage: 'assets/images/image-de-paysage-3.jpg',
+                backgroundImage: 'http://lorempixel.com/500/680',
                 steps: {
                     0: {
                         name: '1',
@@ -53,7 +53,7 @@
 
                 },
                 action: {
-                    url: 'http://academy.3ds.com/fileadmin/files/shop/CATIA-SE-InstallationGuide.pdf',
+                    url: 'http://localhost:2000/assets/pdf/CATIA-SE-InstallationGuide.pdf',
                     label: 'Download',
                     content: 'PDF - 3,84Mo',
                 },

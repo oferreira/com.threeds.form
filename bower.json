@@ -25,7 +25,8 @@
     "javascript-auto-complete": "*",
     "ButtonComponentMorph": "https://github.com/codrops/ButtonComponentMorph.git",
     "jwplayer": "~6.12.4956",
-    "modernizr": "~3.3.1"
+    "modernizr": "~3.3.1",
+    "jquery-file-download": "~1.4.4"
   },
   "devDependencies": {
     "mustache.js": "mustache#~2.2.1"

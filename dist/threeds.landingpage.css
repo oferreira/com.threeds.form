@@ -112,15 +112,19 @@
 .ds-form-fieldset {
   border: 0;
   padding: 0;
+  margin: 0;
+}
+
+.ds-form-fieldset-content {
+  border: solid 1px rgba(0, 0, 0, 0.12);
+  border-radius: 25px;
+  background: #ffffff;
   margin: 10px 0;
 }
 
 .ds-form-group {
-  border-left: solid 1px rgba(0, 0, 0, 0.12);
-  border-right: solid 1px rgba(0, 0, 0, 0.12);
-  border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+  border-top: solid 1px rgba(0, 0, 0, 0.12);
   padding: 17px 24px;
-  background: #ffffff;
   position: relative;
 }
 
@@ -138,9 +142,11 @@
   width: 100%;
   font-family: "3dslight";
   font-size: 1.0625rem;
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 0, 0, 0.57);
   background-color: #ffffff;
   border: 0 none;
+  padding: 0;
+  margin: 0;
 }
 
 .ds-form-group.ds-no-border {
@@ -148,19 +154,9 @@
   background: none;
 }
 
-.ds-form-group.ds-form-group-first {
-  border-top-right-radius: 25px;
-  border-top-left-radius: 25px;
-  border-top: solid 1px rgba(0, 0, 0, 0.12);
-}
-
-.ds-form-group + .ds-form-group {
-  border-top: 0;
-}
-
-.ds-form-group.ds-form-group-last {
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
+.ds-form-group.ds-form-group-first,
+.ds-form-group:first-child {
+  border-top: 0 none;
 }
 
 .ds-form-group .ds-form-group {
@@ -209,7 +205,7 @@
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
-  z-index: 1000;
+  z-index: 10;
 }
 
 .ds-form-checkbox-type-2 input[type="checkbox"] {
@@ -390,11 +386,12 @@
 
 .ds-form-switch label {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   padding-left: 51px;
   position: relative;
   color: rgba(0, 0, 0, 0.35);
   font-family: "3dslight";
+  padding-right: 0;
 }
 
 .ds-form-switch label:before,
@@ -441,7 +438,7 @@
 
 .ds-form-error {
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   box-sizing: border-box;
   display: block;
   width: calc(100% + 2px);
@@ -450,16 +447,19 @@
   border: 1px solid #e57373;
   color: #ffffff;
   font-size: 14px;
+  line-height: 14px;
   font-family: "3dslight";
   text-align: left;
-  margin: 43px 0 0 -25px;
+  margin: 0 0 0 -25px;
   -webkit-transition: 1s ease all;
   transition: 1s ease all;
+  bottom: -49px;
+  cursor: pointer;
 }
 
 .ds-form-error:after {
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   content: " ";
   right: 8px;
   top: -20.5px;
@@ -472,27 +472,15 @@
 
 .ds-form-error:before {
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   content: " ";
   right: 22px;
-  top: -40px;
+  top: -36px;
   width: 12px;
   height: 12px;
   background: url("../../icon/shape.svg") center center no-repeat;
+  cursor: pointer;
 }
-
-/*
-.ds-form-fieldset .has-error.ds-form-group-first{
-	@include border-bottom-radius(0);
-}
-
-.ds-form-fieldset .has-error.ds-form-group-last{
-	@include border-bottom-radius(0);
-	.ds-form-error{
-		border-radius: 0 0 $radius-form 0;
-	}
-}
-*/
 
 .ds-btn {
   display: inline-block;
@@ -614,6 +602,8 @@
   display: block;
   z-index: 1000;
   box-shadow: 0 12px 57px 0 rgba(0, 0, 0, 0.22);
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 .ds-lpd-info-form,
@@ -639,6 +629,7 @@
   right: 0;
   top: 480px;
   bottom: 0;
+  opacity: 1;
   padding: 0 57px;
 }
 
@@ -907,33 +898,41 @@ ul.ds-tabs-header:first-child {
   color: #ffffff;
 }
 
-/*
-
-//Step 1
-
-.ds-ldp-global-step-1 {
-	animation-name: globalContainer;
-	animation-duration: 1.5s;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-delay: 0;
+.ds-anim-width-step-2 {
+  -webkit-animation-name: globalContainerStep2Width;
+          animation-name: globalContainerStep2Width;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+  /* Chrome, Safari, Opera */
+  animation-timing-function: ease-in-out;
 }
 
-@keyframes globalContainer {
-	0%{
-		width: 476px;
-	}
-	33%{
-		width: 476px;
-	}
-	66%{
-		width: 476px;
-	}
-	100% {
-		width: 952px;
-	}
+@-webkit-keyframes globalContainerStep2Width {
+  0% {
+    width: 476px;
+  }
+
+  100% {
+    width: 952px;
+  }
 }
-*/
+
+@keyframes globalContainerStep2Width {
+  0% {
+    width: 476px;
+  }
+
+  100% {
+    width: 952px;
+  }
+}
 
 /*
 .ds-ldp-global-step-1 .ds-ldp-form-container{
@@ -1083,7 +1082,7 @@ ul.ds-tabs-header:first-child {
   display: none;
 }
 
-.ds-ldp-global-container .autocomplete-suggestions {
+.ds-autocomplete.autocomplete-suggestions {
   text-align: left;
   font-family: "3dslight";
   font-size: 1.0625rem;
@@ -1103,7 +1102,7 @@ ul.ds-tabs-header:first-child {
   box-sizing: border-box;
 }
 
-.ds-ldp-global-container .autocomplete-suggestion {
+.ds-autocomplete.autocomplete-suggestion {
   position: relative;
   padding: 0 .6em;
   white-space: nowrap;
@@ -1114,12 +1113,12 @@ ul.ds-tabs-header:first-child {
   color: rgba(0, 0, 0, 0.35);
 }
 
-.ds-ldp-global-container .autocomplete-suggestion b {
+.ds-autocomplete.autocomplete-suggestion b {
   font-weight: normal;
   color: #1f8dd6;
 }
 
-.ds-ldp-global-container .autocomplete-suggestion.selected {
+.ds-autocomplete.autocomplete-suggestion.selected {
   background: #f0f0f0;
 }
 

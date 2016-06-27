@@ -38,8 +38,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            var w = window.open(context.settings.accelerate.url, '_blank');
-            w.focus();
+            $.fileDownload(context.settings.action.url);
         }
 
     }

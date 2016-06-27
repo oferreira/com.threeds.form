@@ -44,8 +44,8 @@ gulp.task('app-js', function () {
         .pipe(babel())
         .pipe($.concat('app.js'))
         .pipe(wrapper({
-            header: "(function ($, Drupal) {addEventListener('WebComponentsReady', function () {\n",
-            footer: '});})(jQuery, Drupal);'
+            header: "(function ($, Modernizr, Drupal) {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});})(jQuery, Modernizr, Drupal);'
         }))
         .pipe(stripComments())
         //.pipe(uglify())
@@ -83,13 +83,16 @@ gulp.task('threeds-landingpage-js', function () {
         }))
         .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
         .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
-        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
-        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(wrapper({
-            header: "(function ($, Drupal, window) {\n",
-            footer: '})(jQuery, Drupal, window);'
+            header: "(function ($, Modernizr, Drupal, window) {\n",
+            footer: '})(jQuery, Modernizr, Drupal, window);'
         }))
+        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
+        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
+        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/modernizr.custom.js'))
+        .pipe(addsrc.prepend('bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js'))
+        .pipe($.concat('threeds.landingpage.js'))
         .pipe(stripComments())
         //.pipe(uglify())
         .pipe(sourcemaps.write('.'))
