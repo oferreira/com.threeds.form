@@ -72,13 +72,25 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
-                    self.context.elem.html('');
-                    self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-form-sucess');
-                    self.context.elem.append(Success.create(self.context, self.context.settings.success));
-                    console.log('Sucesss');
+                    //self.context.elem.html('');
+                    //self.context.elem.attr('class', '');
+                    //self.context.elem.addClass('ds-ldp-global-step-2');
+                    //self.context.elem.append(Success.create(self.context, self.context.settings.success));
+                    //return;
+
+                    context.context.elem.addClass('ds-form-sucess');
+                    context.context.elem.find('.ds-ldp-form-container').css( "zIndex", -1).animate({
+                        left: "0%",
+                    }, 500, function() {
+                        self.context.elem.html('');
+                        self.context.elem.append(Success.create(self.context, self.context.settings.success));
+
+                    });
 
 
+                    setTimeout(function() {
+                        console.log('hello');
+                    }, 5000);
                 };
             }
 
@@ -127,10 +139,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                         context.settings.hook.setCurrentPosition(context, currentPosition);
                     }
+
                     context._currentPosition = currentPosition;
 
                     let step:Step = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
+
+
 
                     $(blockRight).animate({opacity : 1}, 1);
 

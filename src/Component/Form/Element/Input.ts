@@ -18,12 +18,12 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string =  "";
+            value:string = '2222';
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
 
-        @property({type: Boolean})
+        @property({type: Boolean, reflectToAttribute: false})
             required:boolean = false;
 
         private _validators:string[] = [];

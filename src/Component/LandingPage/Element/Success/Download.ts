@@ -13,7 +13,6 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
         constructor(context:any, data:any) {
             super(data);
 
-
             let tpl = `<div class="ds-ldp-global-step-2">
                             <div class="ds-ldp-global-container">
                                 <div id="ldp" class="ds-lpd-info-form">
@@ -41,7 +40,8 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                             </div>
                         </div>`;
 
-           this.innerHTML = tpl;
+
+            this.innerHTML = tpl;
 
             //$.fileDownload(context.settings.action.url);
         }

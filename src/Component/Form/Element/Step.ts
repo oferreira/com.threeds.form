@@ -44,7 +44,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             let isRounded:boolean = false;
             for (let k in data.result.config) {
-                if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded=true, console.log(data.result.config[i])
+                if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded=true
 
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                     this.appendChild(Input.create(context, data.result.config[k]));
@@ -56,7 +56,7 @@ namespace Com.Threeds.Component.Form.Element {
                     (isRounded ? container: this).appendChild(Field.create(context, data.result.config[k]));
                 }
 
-                if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded=false, console.log(data.result.config[i])
+                if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded=false
             }
 
             this.appendChild(container);
