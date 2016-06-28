@@ -26,7 +26,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
             if (this.context.settings.type == 'video') {
                 this.appendChild(Video.create(this, data));
             } else if (this.context.settings.type == 'download') {
-                Download.create(this, data)
                 this.appendChild(Download.create(this, data));
             }
 

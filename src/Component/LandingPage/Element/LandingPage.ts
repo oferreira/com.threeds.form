@@ -79,18 +79,32 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //return;
 
                     context.context.elem.addClass('ds-form-sucess');
-                    context.context.elem.find('.ds-ldp-form-container').css( "zIndex", -1).animate({
-                        left: "0%",
-                    }, 500, function() {
+
+
+                    context.context.elem.find('.ds-tabs').animate({
+                        opacity : 0
+                    }, 300, "linear", function() {
+
+
                         self.context.elem.html('');
                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
 
+
+
                     });
 
-
-                    setTimeout(function() {
-                        console.log('hello');
-                    }, 5000);
+                    //context.context.elem.find('.ds-ldp-form-container').animate({
+                    //    width : 476
+                    //}, 600, function() {
+                    //
+                    //    console.log('test');
+                    //
+                    //});
+                    ////
+                    //
+                    //setTimeout(function() {
+                    //
+                    //}, 300);
                 };
             }
 
@@ -100,6 +114,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     self.context.elem.attr('class', '');
                     self.context.elem.addClass('ds-form-sucess');
                     self.context.elem.append(Error.create(self.context, self.context.settings.error));
+
                 };
             }
 
@@ -135,7 +150,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     opacity : 1,
                     top : 0
                 }, 1, "linear", function() {
-
+                    
                     if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                         context.settings.hook.setCurrentPosition(context, currentPosition);
                     }
