@@ -52,9 +52,10 @@
 // STEP 3
 // ==========================================================================
 
-.ds-ldp-global-step-2{
+.ds-form-sucess{
 	margin: auto;
-	max-width: 476px;
+	width: 476px;
+	/*
 	.ds-lpd-info-form,
 	.ds-ldp-form-container {
 		width: 100%;
@@ -68,13 +69,14 @@
 	.ds-ldp-form-container{
 		height: 190px;
 	}
+	*/
 }
 
 
 // Autocomplete
-// ==========================================================================
 
 .ds-ldp-global-container .hide {display: none;}
+// ==========================================================================
 
 .ds-autocomplete.autocomplete-suggestions {
 	text-align: left;

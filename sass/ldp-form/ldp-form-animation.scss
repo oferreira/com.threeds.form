@@ -27,90 +27,43 @@
 	}
 }
 
-/*
-.ds-ldp-global-step-1 .ds-ldp-form-container{
-	animation-name: block-right;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-
-}
-
-@keyframes block-right {
-
-	0%{
-		opacity: 1;
-	}
-	100%{
-		opacity: 0;
-	}
-}
-*/
-
-//block right
-/*
-.ds-ldp-global-step-1 .ds-ldp-form-container{
-	animation-name: block-right;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
+// Sucess
+.ds-form-sucess {
+	animation-name: globalContainerSucess;
+	animation-duration: 0.6s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
-	animation-delay: 0;
-	animation-play-state: running;
 	animation-fill-mode: forwards;
-
+	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+	animation-timing-function: ease-in-out;
 }
 
-@keyframes block-right {
-
+@keyframes globalContainerSucess {
 	0%{
-		opacity: 1;
-	}
-
-	100%{
-		opacity: 0;
-	}
-}
-*/
-
-/*
-//DS tab active
-.ds-ldp-global-step-1 .ds-tabs-header:before{
-	animation-name: tab-header;
-	animation-duration: 600ms;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-delay: 0;
-}
-
-@keyframes globalContainer {
-	0%{
-		width: 476px;
-	}
-	50% {
-		width: 476px;
-	}
-
-	100% {
 		width: 952px;
 	}
-
+	100% {
+		width: 476px;
+	}
 }
 
-
-@keyframes tab-header {
-
-	from {
-		left: 0px;
-	}
-
-	to {
-		left: 50%;
-	}
-
+.ds-form-sucess .ds-lpd-info-form{
+	animation-name: SucessInfoText;
+	animation-duration: 0.6s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+	animation-timing-function: ease-in-out;
+	animation-delay: 1s;
 }
 
+@keyframes SucessInfoText {
+	0%{
+		height: auto;
+	}
+	100% {
+		height: 330px;
+	}
+}
 
-
-*/

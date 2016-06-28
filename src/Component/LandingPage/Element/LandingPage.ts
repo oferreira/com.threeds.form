@@ -74,8 +74,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.hook.success = function(context:any, data:any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-ldp-global-step-2');
+                    self.context.elem.addClass('ds-form-sucess');
                     self.context.elem.append(Success.create(self.context, self.context.settings.success));
+                    console.log('Sucesss');
+
+
                 };
             }
 
@@ -83,7 +86,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.hook.warning = function(context:any, message:any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-ldp-global-step-2');
+                    self.context.elem.addClass('ds-form-sucess');
                     self.context.elem.append(Error.create(self.context, self.context.settings.error));
                 };
             }
@@ -124,13 +127,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                         context.settings.hook.setCurrentPosition(context, currentPosition);
                     }
-
                     context._currentPosition = currentPosition;
 
                     let step:Step = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
-
-
 
                     $(blockRight).animate({opacity : 1}, 1);
 

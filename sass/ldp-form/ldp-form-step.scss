@@ -122,7 +122,7 @@
 		border-radius: 25px;
 		background: $white;
 		left:0;
-		@include transition(1s ease all);
+		@include transition(0.6s ease-in-out all);
 	}
 
 	&.step-0-active,
@@ -186,8 +186,18 @@ ul.ds-tabs-header:first-child{
 		color:$white;
 		text-align: center;
 		opacity: 0;
+
+		transition-property: all;
+		transition-duration: .6s;
+		transition-timing-function: ease-in;
+
 		&.active{
 			opacity: 1;
+			transition-property: all;
+			transition-duration: .6s;
+			transition-timing-function: ease-in;
+			transition-delay: 0.2s;
+
 		}
 	}
 }
