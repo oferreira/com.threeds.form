@@ -117,6 +117,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                                     // Supprime l overflow hidden pour pourvoir afficher le block contact
                                     $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({overflow : 'visible'});
+                                    //$(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess .ds-block-video')).css({overflow : 'visible'});
 
                                     // Reduit la hauteur du block de gauche
                                     context.context.elem.find('.ds-block-ty').animate({

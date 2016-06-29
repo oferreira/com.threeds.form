@@ -27,49 +27,34 @@
 	}
 }
 
-// Sucess
-.ds-form-sucess {
-	animation-name: globalContainerSucess;
-	animation-duration: 0.6s;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-fill-mode: forwards;
-	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
-	animation-timing-function: ease-in-out;
+
+$breakpoint:  1024px;
+
+@media screen and (min-width: $breakpoint) {
+	// Sucess
+	.ds-form-sucess {
+		animation-name: globalContainerSucess;
+		animation-duration: 0.6s;
+		animation-iteration-count: 1;
+		animation-direction: normal;
+		animation-fill-mode: forwards;
+		-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+		animation-timing-function: ease-in-out;
+	}
+
+	@keyframes globalContainerSucess {
+		0% {
+			width: 952px;
+		}
+		100% {
+			width: 476px;
+		}
+	}
 }
 
-@keyframes globalContainerSucess {
-	0%{
-		width: 952px;
-	}
-	100% {
-		width: 476px;
-	}
-}
 
 
 
 
 
-
-//
-//.ds-form-sucess .ds-lpd-info-form{
-//	animation-name: SucessInfoText;
-//	animation-duration: 0.6s;
-//	animation-iteration-count: 1;
-//	animation-direction: normal;
-//	animation-fill-mode: forwards;
-//	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
-//	animation-timing-function: ease-in-out;
-//	animation-delay: 1s;
-//}
-//
-//@keyframes SucessInfoText {
-//	0%{
-//		height: auto;
-//	}
-//	100% {
-//		height: 330px;
-//	}
-//}
 
