@@ -166,7 +166,12 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-            if(currentPosition == 0){
+
+            console.log(window.innerWidth);
+
+
+
+            if(currentPosition == 0 || window.innerWidth <= 1024){
                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                     context.settings.hook.setCurrentPosition(context, currentPosition);
                 }
