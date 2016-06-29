@@ -9,18 +9,20 @@
     },
     "config": [
       {
-        "name": "enabledFields",
+        "fieldName": "enabledFields",
         "type": "hidden"
       },
       {
-        "name": "email",
+        "fieldName": "email",
         "type": "text",
         "label": "E-mail",
-        "required": true
+        "required": true,
+        "regex": "/^[a-zA-Z0-9_\+\.-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]{2,}$/"
       }
     ],
     "data": {
-      "enabledFields": "fieldEmail,fieldFirstName,fieldCompany,fieldCountry,fieldLevelOfInterest,fieldWorkPhone,fieldSolutionInterest,fieldJobLevel,fieldJobDepartment,fieldJobDepartment,fieldJobSubDepartment,fieldIndustry,fieldIndustry,fieldSubIndustry,fieldAddress,fieldAddress1,fieldAddressZipCode,fieldAddressCity,fieldIWouldLike,addCustomFields,custom1,custom2,custom3,custom4,fieldComment,fieldOptin"
+      "enabledFields": "fieldEmail",
+      "email": "olivier@live.fr"
     }
   }
 }

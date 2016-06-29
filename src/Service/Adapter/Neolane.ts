@@ -19,7 +19,7 @@ namespace Com.Threeds.Service.Adapter {
             $.ajax({
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/redirect.json',
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                type: "POST",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
                 //type: "GET",dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
@@ -42,31 +42,16 @@ namespace Com.Threeds.Service.Adapter {
 
             data['lpid'] = context.settings.id;
 
-            if(Object.keys(data).length > 4){
-                $.ajax({
-                    type: "GET",dataType: "json", url: 'data/landing-page/form/success.json',
-                    //type: "POST", dataType: "jsonp", url: context.settings.api.url,
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
-                    //type: "POST", dataType: "jsonp", url: context.settings.api.url,
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            }
+            $.ajax({
+                type: "GET", dataType: "jsonp", url: context.settings.api.url,
+                data:data,
+                success: function (response:Object) {
+                    context.render('form', self.data(response));
+                },
+                error: function (resultat:any, statut:any, erreur:any) {
+                    context.render('form', false);
+                }
+            });
 
 
         }

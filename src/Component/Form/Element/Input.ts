@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string = '2222';
+            value:string = '';
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;

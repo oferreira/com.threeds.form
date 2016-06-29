@@ -14,7 +14,6 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
         constructor(context:any, data:any) {
             super(data);
 
-
             let tpl = `<div class="ds-ldp-global-step-2">
                             <div class="ds-ldp-global-container">
                                 <div id="ldp" class="ds-lpd-info-form">
@@ -30,7 +29,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                                         <button type="button">${context.settings.action.label}</button>
                                         <div class="morph-content">
                                             <span class="icon icon-close">Close the dialog</span>
-                                            <div id="myDiv">${context.settings.action.content}</div>
+                                            <div id="ds-player"></div>
                                         </div>
                                     </div>
 
@@ -45,33 +44,62 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            new UIMorphingButton(this.querySelector('.morph-button'), {
-                closeEl: '.icon-close',
-                onBeforeOpen: function () {
-                    return false;
-                },
-                onAfterOpen: function () {
-                    jwplayer().play();
-                },
-                onBeforeClose: function () {
-                    return false;
-                },
-                onAfterClose: function () {
-                    jwplayer().stop();
-                    return false;
-                }
-            });
+            if (!this.getYouTubeIdFromURL(context.settings.action.url)) {
+                new UIMorphingButton(this.querySelector('.morph-button'), {
+                    closeEl: '.icon-close',
+                    onBeforeOpen: function () {
+                        return false;
+                    },
+                    onAfterOpen: function () {
+                        jwplayer().play();
+                    },
+                    onBeforeClose: function () {
+                        return false;
+                    },
+                    onAfterClose: function () {
+                        jwplayer().stop();
+                        return false;
+                    }
+                });
 
-            jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
-            jwplayer(this.querySelector('#myDiv')).setup({
-                "file": context.settings.action.url,
-                "image": context.settings.action.image,
-                //"skin": 'http://www.3ds.com/templates/3ds-player/3dsSkin/3dsSkin.xml',
-                "height": 360,
-                "width": 640
-            });
+                jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
+                jwplayer(this.querySelector('#ds-player')).setup({
+                    "file": context.settings.action.url,
+                    "image": context.settings.action.image,
+                    "skin": '/assets/3ds-player/3dsSkin.xml',
+                    "height": 360,
+                    "width": 640
+                });
+            } else {
+                let player:any = new YT.Player('ds-player', {
+                    height: '390',
+                    width: '640',
+                    videoId: this.getYouTubeIdFromURL(context.settings.action.url)
+                });
 
+                new UIMorphingButton(this.querySelector('.morph-button'), {
+                    closeEl: '.icon-close',
+                    onBeforeOpen: function () {
+                        return false;
+                    },
+                    onAfterOpen: function () {
+                        player.playVideo();
+                    },
+                    onBeforeClose: function () {
+                        return false;
+                    },
+                    onAfterClose: function () {
+                        player.stopVideo();
+                        return false;
+                    }
+                });
 
+            }
+        }
+
+        getYouTubeIdFromURL(url:string):any {
+            let matches:any = url.match(/^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]{11,11}).*/);
+            return (matches!=null && typeof matches[1] == 'string' ? matches[1] : false);
         }
 
     }
