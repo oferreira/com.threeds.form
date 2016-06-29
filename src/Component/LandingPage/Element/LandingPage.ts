@@ -78,12 +78,21 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //self.context.elem.append(Success.create(self.context, self.context.settings.success));
                     //return;
 
+
+                    // reduit la largeur du form
                     context.context.elem.addClass('ds-form-sucess');
 
+                    // fade le contenu du block de gauche
+
+
+                    context.context.elem.find('.ds-form-fieldset').animate({opacity : 0});
 
                     context.context.elem.find('.ds-tabs').animate({
+
                         opacity : 0
+
                     }, 300, "linear", function() {
+                        // supprime et charge la page Sucess
 
 
                         self.context.elem.html('');
@@ -91,20 +100,45 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
 
+                        // Affiche le titre
+                        setTimeout(function() {
+
+                            $(Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form')).css({
+                                height: Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight
+                            });
+
+                            context.context.elem.find('.ds-form-fieldset').css({opacity : 1});
+
+                            context.context.elem.find('.ds-title-ty').animate({
+
+                                opacity : 1
+
+                            }, 300, "linear", function() {
+                                    $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({overflow : 'visible'});
+                                    context.context.elem.find('.ds-block-ty').animate({
+
+                                        height : 331
+
+                                    }, 300);
+
+                                    $(Polymer.dom(context.context.root).querySelector('.ds-form-sucess')).animate({
+
+                                        height : 520
+
+                                    }, 300, 'linear', function(){
+
+                                        $(Polymer.dom(context.context.root).querySelector('.ds-ldp-form-contact')).animate({
+                                            opacity : 1
+                                        }, 300);
+
+                                    });
+
+                            });
+
+                        }, 1);
+
                     });
 
-                    //context.context.elem.find('.ds-ldp-form-container').animate({
-                    //    width : 476
-                    //}, 600, function() {
-                    //
-                    //    console.log('test');
-                    //
-                    //});
-                    ////
-                    //
-                    //setTimeout(function() {
-                    //
-                    //}, 300);
                 };
             }
 
@@ -143,26 +177,21 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             $(blockRight).animate({
                 opacity : 0
-            }, 500, "linear", function() {
+            }, 300, "linear", function() {
                 context.clear();
                 $(blockRight).animate({
                     zIndex : 1,
                     opacity : 1,
                     top : 0
                 }, 1, "linear", function() {
-                    
-                    if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
-                        context.settings.hook.setCurrentPosition(context, currentPosition);
-                    }
 
-                    context._currentPosition = currentPosition;
+
 
                     let step:Step = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
 
-
-
                     $(blockRight).animate({opacity : 1}, 1);
+
 
                     setTimeout(function() {
                         var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
@@ -177,17 +206,24 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             // augmente la hauteur du conteneur
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
-                            }, 500, "linear", function() {
-
-                                // augmente la largeur du conteneur
-                                //$(container).animate({
-                                //    width: "952px"
-                                //}, 600, "linear");
+                            }, 300, "linear", function() {
+                                if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                    context.settings.hook.setCurrentPosition(context, currentPosition);
+                                }
+                                context._currentPosition = currentPosition;
                                 $(container).addClass('ds-anim-width-step-2');
+
+                                $(container).css({
+                                    height : heightBlocRightForm
+                                });
 
                             });
 
                         }else{
+                            if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                context.settings.hook.setCurrentPosition(context, currentPosition);
+                            }
+                            context._currentPosition = currentPosition;
                             $(container).addClass('ds-anim-width-step-2');
                         }
                     }, 1);

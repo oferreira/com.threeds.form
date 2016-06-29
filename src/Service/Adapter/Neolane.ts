@@ -56,7 +56,7 @@ namespace Com.Threeds.Service.Adapter {
                 });
             } else {
                 $.ajax({
-                    type: "GET",dataType: "json", url: 'data/landing-page/form/step22.json',
+                    type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
                     //type: "POST", dataType: "jsonp", url: context.settings.api.url,
                     data:data,
                     success: function (response:Object) {
