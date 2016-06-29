@@ -14,33 +14,36 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
         constructor(context:any, data:any) {
             super(data);
 
-            let tpl = `<div class="ds-ldp-global-step-2">
-                            <div class="ds-ldp-global-container">
-                                <div id="ldp" class="ds-lpd-info-form">
-                                    <div class="ds-landingpage" is="landingpage-element">
-                                        <h3 class="ds-title-ty">${data.title}</h3>
-                                        <div class="ds-lpd-info-no-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
-                                    </div>
-                                </div>
-                                <form class="ds-form ds-ldp-form-container ds-dl-info">
-                                    <p>${data.content}</p>
+            let tpl = `     <div class="ds-lpd-info-form ds-block-ty ds-block-video">
 
-                                    <div class="morph-button morph-button-modal morph-button-modal-4 morph-button-fixed ">
-                                        <button type="button">${context.settings.action.label}</button>
+                                <div class="ds-info-ty">
+
+                                     <div class="morph-button morph-button-modal morph-button-modal-4 morph-button-fixed ">
+                                        <button class="ds-btn-video" type="button">${context.settings.action.label}</button>
                                         <div class="morph-content">
                                             <span class="icon icon-close">Close the dialog</span>
                                             <div id="ds-player"></div>
                                         </div>
                                     </div>
 
-                                </form>
+                                </div>
+
+                                <div class="ds-lpd-info-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
+
                             </div>
 
+                            <form class="ds-form ds-ldp-form-container ds-dl-info">
+
+                                <p>${data.content}</p>
+
+                            </form>
+
                             <div class="ds-ldp-form-contact">
+
                                 <p>${context.settings.accelerate.content}</p>
                                 <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
-                            </div>
-                        </div>`;
+
+                            </div>`;
 
             this.innerHTML = tpl;
 

@@ -348,6 +348,34 @@ ul.ds-tabs-header:first-child{
 }
 
 
+// Video
+// ==========================================================================
+
+.morph-button{
+	display: block;
+	width: auto;
+	height: auto;
+	.ds-btn-video{
+		background: url("../assets/images/iconmonstr-video.png") center -40px no-repeat;
+		background-color: none ;
+		background-size: 181px auto;
+		font-weight: normal;
+		padding: 0;
+		height:82px;
+		display: block;
+		border: 0;
+		margin:120px auto 0 auto;
+		text-indent: -5000px;
+	}
+}
+
+
+
+.morph-button .ds-btn-video{
+
+}
+
+
 // STEP ERROR
 // ==========================================================================
 
@@ -364,3 +392,5 @@ ul.ds-tabs-header:first-child{
 	font-family: $ds-light;
 	color:$white;
 }
+
+

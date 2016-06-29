@@ -16,7 +16,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
             let tpl = `<div id="ldp" class="ds-lpd-info-form ds-block-ty">
 
                             <div class="ds-landingpage" is="landingpage-element">
-                                <h3 class="ds-title-ty">${data.title}</h3>
+                                <h3 class="ds-title-ty ds-info-ty">${data.title}</h3>
                                 <div class="ds-lpd-info-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
                             </div>
 

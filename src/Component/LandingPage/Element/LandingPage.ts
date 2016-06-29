@@ -79,54 +79,60 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //return;
 
 
-                    // reduit la largeur du form
+                    // Reduit la largeur du form
                     context.context.elem.addClass('ds-form-sucess');
 
-                    // fade le contenu du block de gauche
-
-
+                    // Fade le formulaire de droite
                     context.context.elem.find('.ds-form-fieldset').animate({opacity : 0});
 
+                    // Fade les tabs
                     context.context.elem.find('.ds-tabs').animate({
 
                         opacity : 0
 
                     }, 300, "linear", function() {
                         // supprime et charge la page Sucess
-
-
                         self.context.elem.html('');
                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
-
 
 
                         // Affiche le titre
                         setTimeout(function() {
 
+
+                            // Fixe la hauteur du conteneur
                             $(Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form')).css({
                                 height: Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight
                             });
 
+                            // Affiche le formulaire masqué avec le z index
                             context.context.elem.find('.ds-form-fieldset').css({opacity : 1});
 
-                            context.context.elem.find('.ds-title-ty').animate({
+                            // Affiche le message thank you
+                            context.context.elem.find('.ds-info-ty').animate({
 
                                 opacity : 1
 
                             }, 300, "linear", function() {
+
+                                    // Supprime l overflow hidden pour pourvoir afficher le block contact
                                     $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({overflow : 'visible'});
+
+                                    // Reduit la hauteur du block de gauche
                                     context.context.elem.find('.ds-block-ty').animate({
 
                                         height : 331
 
                                     }, 300);
 
+                                    // Reduit la hauteur conteneur
                                     $(Polymer.dom(context.context.root).querySelector('.ds-form-sucess')).animate({
 
                                         height : 520
 
                                     }, 300, 'linear', function(){
 
+                                        // Affiche le block contact
                                         $(Polymer.dom(context.context.root).querySelector('.ds-ldp-form-contact')).animate({
                                             opacity : 1
                                         }, 300);
@@ -185,8 +191,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     top : 0
                 }, 1, "linear", function() {
 
-
-
                     let step:Step = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
 
@@ -207,6 +211,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
                             }, 300, "linear", function() {
+
                                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                     context.settings.hook.setCurrentPosition(context, currentPosition);
                                 }

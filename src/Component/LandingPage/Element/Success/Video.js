@@ -26,32 +26,62 @@ var Com;
                             __extends(Video, _super);
                             function Video(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n\n                                    <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"myDiv\">" + context.settings.action.content + "</div>\n                                        </div>\n                                    </div>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                var tpl = "     <div class=\"ds-lpd-info-form ds-block-ty ds-block-video\">\n\n                                <div class=\"ds-info-ty\">\n\n                                     <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button class=\"ds-btn-video\" type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"ds-player\"></div>\n                                        </div>\n                                    </div>\n\n                                </div>\n\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n\n                            </div>\n\n                            <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                                <p>" + data.content + "</p>\n\n                            </form>\n\n                            <div class=\"ds-ldp-form-contact\">\n\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n\n                            </div>";
                                 this.innerHTML = tpl;
-                                new UIMorphingButton(this.querySelector('.morph-button'), {
-                                    closeEl: '.icon-close',
-                                    onBeforeOpen: function () {
-                                        return false;
-                                    },
-                                    onAfterOpen: function () {
-                                        jwplayer().play();
-                                    },
-                                    onBeforeClose: function () {
-                                        return false;
-                                    },
-                                    onAfterClose: function () {
-                                        jwplayer().stop();
-                                        return false;
-                                    }
-                                });
-                                jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
-                                jwplayer(this.querySelector('#myDiv')).setup({
-                                    "file": context.settings.action.url,
-                                    "image": context.settings.action.image,
-                                    "height": 360,
-                                    "width": 640
-                                });
+                                if (!this.getYouTubeIdFromURL(context.settings.action.url)) {
+                                    new UIMorphingButton(this.querySelector('.morph-button'), {
+                                        closeEl: '.icon-close',
+                                        onBeforeOpen: function () {
+                                            return false;
+                                        },
+                                        onAfterOpen: function () {
+                                            jwplayer().play();
+                                        },
+                                        onBeforeClose: function () {
+                                            return false;
+                                        },
+                                        onAfterClose: function () {
+                                            jwplayer().stop();
+                                            return false;
+                                        }
+                                    });
+                                    jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
+                                    jwplayer(this.querySelector('#ds-player')).setup({
+                                        "file": context.settings.action.url,
+                                        "image": context.settings.action.image,
+                                        "skin": '/assets/3ds-player/3dsSkin.xml',
+                                        "height": 360,
+                                        "width": 640
+                                    });
+                                }
+                                else {
+                                    var player = new YT.Player('ds-player', {
+                                        height: '390',
+                                        width: '640',
+                                        videoId: this.getYouTubeIdFromURL(context.settings.action.url)
+                                    });
+                                    new UIMorphingButton(this.querySelector('.morph-button'), {
+                                        closeEl: '.icon-close',
+                                        onBeforeOpen: function () {
+                                            return false;
+                                        },
+                                        onAfterOpen: function () {
+                                            player.playVideo();
+                                        },
+                                        onBeforeClose: function () {
+                                            return false;
+                                        },
+                                        onAfterClose: function () {
+                                            player.stopVideo();
+                                            return false;
+                                        }
+                                    });
+                                }
                             }
+                            Video.prototype.getYouTubeIdFromURL = function (url) {
+                                var matches = url.match(/^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]{11,11}).*/);
+                                return (matches != null && typeof matches[1] == 'string' ? matches[1] : false);
+                            };
                             Video = __decorate([
                                 component('landingpage-success-video-element'),
                                 extend("div")
