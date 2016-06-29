@@ -922,6 +922,25 @@ ul.ds-tabs-header:first-child {
   margin: 43px 0 31px 0;
 }
 
+.morph-button {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.morph-button .ds-btn-video {
+  background: url("../assets/images/iconmonstr-video.png") center -40px no-repeat;
+  background-color: none;
+  background-size: 181px auto;
+  font-weight: normal;
+  padding: 0;
+  height: 82px;
+  display: block;
+  border: 0;
+  margin: 120px auto 0 auto;
+  text-indent: -5000px;
+}
+
 .ds-ldp-global-step-error {
   max-width: 476px;
 }

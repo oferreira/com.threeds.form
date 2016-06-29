@@ -63,6 +63,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         term = term.toLowerCase();
 
                         $.ajax({
+                            //url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
                             url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
                             dataType: 'jsonp',
                             data: {

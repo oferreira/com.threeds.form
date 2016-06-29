@@ -68,6 +68,13 @@ gulp.task('build-js', function () {
 });
 
 
+gulp.task('copy', function () {
+    gulp.src(["bower_components/polymer/**/*", "bower_components/polymer-ts/**/*", "bower_components/youtube-iframe-api/**/*", "bower_components/bower_components/jwplayer/**/*"],{base:"."})
+
+        .pipe(gulp.dest('dist/bower_components'));
+});
+
+
 
 
 gulp.task('threeds-landingpage-js', function () {
@@ -107,5 +114,5 @@ gulp.task('threeds-landingpage-js', function () {
 
 
 //gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
-gulp.task('scripts', ['threeds-landingpage-js']);
+gulp.task('scripts', ['threeds-landingpage-js', 'copy']);
 gulp.task('scripts-changed', ['threeds-landingpage-js']);

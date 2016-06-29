@@ -11,21 +11,19 @@
     <link rel="import" href="./bower_components/polymer/polymer.html">
     <link rel="import" href="./bower_components/polymer-ts/polymer-ts.html">
     <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
+    <script src="./bower_components/youtube-iframe-api/youtube.iframe-api.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
-
     <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/content.css" />
-    <script src="./bower_components/ButtonComponentMorph/js/modernizr.custom.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
     <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
 
 
-    <script type="text/javascript" src="./bower_components/jwplayer/jwplayer.js"></script>
 
 </head>
 <body>
@@ -34,9 +32,9 @@
     (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
-                //id: 'LDP6312',
-                //id: 'LDP24104',
-                id: 'LDP30043',
+                ///id: 'LDP6312',
+                id: 'LDP24104',
+                //id: 'LDP30043',
                 type: 'video',
                 backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
@@ -73,7 +71,7 @@
                     nextLabel: 'Next',
                     prevLabel: 'Back',
                     api: {
-                        url: 'http://emailing.3ds.com/dsx/lp_api.jssp',
+                        url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
                     callback: {
                         success: function(){

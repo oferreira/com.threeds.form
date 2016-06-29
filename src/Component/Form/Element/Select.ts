@@ -57,23 +57,29 @@ namespace Com.Threeds.Component.Form.Element {
                 }
             }
 
+
+
+
+            for (let k in this.data.options) {
+                if ( (this.parentFieldValue == undefined && this.parentField == undefined) || (this.parentFieldValue == this.data.options[k].parentValue)) {
+                    let option:any = {
+                        "label": this.data.label,
+                        "value": "",
+                        "disabled": true,
+                        "selected": (selected ? true:false)
+                    };
+
+                    this.appendChild(Option.create(this, option));
+                    break;
+                }
+            }
+
             for (let k in this.data.options) {
                 if (this.parentFieldValue == undefined && this.parentField == undefined) {
                     this.appendChild(Option.create(this, this.data.options[k]));
                 } else if (this.parentFieldValue == this.data.options[k].parentValue) {
                     this.appendChild(Option.create(this, this.data.options[k]));
                 }
-            }
-
-
-            if(this.options.length != 0){
-                let option:any = {
-                    "label": this.data.label,
-                    "value": "",
-                    "disabled": true,
-                    "selected": (selected ? true:false)
-                };
-                this.insertBefore(Option.create(this, option), this.firstChild);
             }
 
             this.fire('field-hide', (this.options.length ? false : true))

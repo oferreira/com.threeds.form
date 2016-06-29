@@ -1509,20 +1509,23 @@ var Com;
                                 }
                             }
                             for (var k in this.data.options) {
+                                if (this.parentFieldValue == undefined && this.parentField == undefined || this.parentFieldValue == this.data.options[k].parentValue) {
+                                    var option = {
+                                        "label": this.data.label,
+                                        "value": "",
+                                        "disabled": true,
+                                        "selected": selected ? true : false
+                                    };
+                                    this.appendChild(Element.Option.create(this, option));
+                                    break;
+                                }
+                            }
+                            for (var k in this.data.options) {
                                 if (this.parentFieldValue == undefined && this.parentField == undefined) {
                                     this.appendChild(Element.Option.create(this, this.data.options[k]));
                                 } else if (this.parentFieldValue == this.data.options[k].parentValue) {
                                     this.appendChild(Element.Option.create(this, this.data.options[k]));
                                 }
-                            }
-                            if (this.options.length != 0) {
-                                var option = {
-                                    "label": this.data.label,
-                                    "value": "",
-                                    "disabled": true,
-                                    "selected": selected ? true : false
-                                };
-                                this.insertBefore(Element.Option.create(this, option), this.firstChild);
                             }
                             this.fire('field-hide', this.options.length ? false : true);
                         };
@@ -2050,7 +2053,7 @@ var Com;
                             container.classList.add('ds-no-border');
                             container.classList.add('ds-txt-center');
                             var options = { value: context.settings.nextLabel, class: 'ds-btn-circle' };
-                            if (context._currentPosition == Object.keys(context.settings.steps).length - 1) {
+                            if (Object.keys(context._steps).length - 1 >= 1) {
                                 options.value = context.settings.action.label;
                                 options.class = 'ds-btn-scream';
                             }
@@ -2418,7 +2421,13 @@ var Com;
                                 this.currentPosition = 0;
                                 return true;
                             }
-                            return this.isNewStep(this, Polymer.dom(this), data);
+                            var isNewStep = this.isNewStep(this, Polymer.dom(this), data);
+                            if (isNewStep) {
+                                this._steps.push(data);
+                                this.currentPosition++;
+                                return true;
+                            }
+                            return false;
                         };
                         Form.prototype.isNewStep = function (context, node, data) {
                             var child;
@@ -2427,8 +2436,6 @@ var Com;
                                 if (child.name != undefined) {
                                     for (var k in data.result.config) {
                                         if (data.result.config[k].name = child.name && data.result.config[k].type != 'hidden') {
-                                            context._steps.push(data);
-                                            context.currentPosition++;
                                             return true;
                                         }
                                     }
@@ -2860,7 +2867,7 @@ var Com;
                             __extends(Download, _super);
                             function Download(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div id=\"ldp\" class=\"ds-lpd-info-form ds-block-ty\">\n\n                            <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                            </div>\n\n                        </div>\n                        <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                            <p>" + data.content + "</p>\n                            <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                " + context.settings.action.label + "<br />\n                                <span>" + context.settings.action.content + "</span>\n                            </a>\n\n                        </form>\n\n\n                    <div class=\"ds-ldp-form-contact\">\n                        <p>" + context.settings.accelerate.content + "</p>\n                        <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                    </div>";
+                                var tpl = "<div id=\"ldp\" class=\"ds-lpd-info-form ds-block-ty\">\n\n                            <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                <h3 class=\"ds-title-ty ds-info-ty\">" + data.title + "</h3>\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                            </div>\n\n                        </div>\n                        <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                            <p>" + data.content + "</p>\n                            <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                " + context.settings.action.label + "<br />\n                                <span>" + context.settings.action.content + "</span>\n                            </a>\n\n                        </form>\n\n\n                    <div class=\"ds-ldp-form-contact\">\n                        <p>" + context.settings.accelerate.content + "</p>\n                        <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                    </div>";
                                 this.innerHTML = tpl;
                             }
                             Download = __decorate([component('landingpage-success-download-element'), extend("div")], Download);
@@ -2905,7 +2912,7 @@ var Com;
                             __extends(Video, _super);
                             function Video(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n\n                                    <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"ds-player\"></div>\n                                        </div>\n                                    </div>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                var tpl = "     <div class=\"ds-lpd-info-form ds-block-ty ds-block-video\">\n\n                                <div class=\"ds-info-ty\">\n\n                                     <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button class=\"ds-btn-video\" type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"ds-player\"></div>\n                                        </div>\n                                    </div>\n\n                                </div>\n\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n\n                            </div>\n\n                            <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                                <p>" + data.content + "</p>\n\n                            </form>\n\n                            <div class=\"ds-ldp-form-contact\">\n\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n\n                            </div>";
                                 this.innerHTML = tpl;
                                 if (!this.getYouTubeIdFromURL(context.settings.action.url)) {
                                     new UIMorphingButton(this.querySelector('.morph-button'), {
@@ -3152,7 +3159,7 @@ var Com;
                                                 height: Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight
                                             });
                                             context.context.elem.find('.ds-form-fieldset').css({ opacity: 1 });
-                                            context.context.elem.find('.ds-title-ty').animate({
+                                            context.context.elem.find('.ds-info-ty').animate({
                                                 opacity: 1
                                             }, 300, "linear", function () {
                                                 $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({ overflow: 'visible' });
@@ -3465,16 +3472,29 @@ var Com;
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
                         data['lpid'] = context.settings.id;
-                        $.ajax({
-                            type: "GET", dataType: "jsonp", url: context.settings.api.url,
-                            data: data,
-                            success: function (response) {
-                                context.render('form', self.data(response));
-                            },
-                            error: function (resultat, statut, erreur) {
-                                context.render('form', false);
-                            }
-                        });
+                        if (Object.keys(data).length > 4) {
+                            $.ajax({
+                                type: "GET", dataType: "json", url: '/data/landing-page/form/success.json',
+                                data: data,
+                                success: function (response) {
+                                    context.render('form', self.data(response));
+                                },
+                                error: function (resultat, statut, erreur) {
+                                    context.render('form', false);
+                                }
+                            });
+                        } else {
+                            $.ajax({
+                                type: "POST", dataType: "jsonp", url: context.settings.api.url,
+                                data: data,
+                                success: function (response) {
+                                    context.render('form', self.data(response));
+                                },
+                                error: function (resultat, statut, erreur) {
+                                    context.render('form', false);
+                                }
+                            });
+                        }
                     };
                     Neolane.prototype.data = function (reponse) {
                         if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {

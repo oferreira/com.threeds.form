@@ -70,13 +70,14 @@ namespace Com.Threeds.Component.Form.Element {
             container.classList.add('ds-txt-center');
 
             let options:Object = {value: context.settings.nextLabel, class: 'ds-btn-circle'};
-            if (context._currentPosition == (Object.keys(context.settings.steps).length - 1)) {
+            if ( (Object.keys(context._steps).length -1) >= 1 ) {
                 options.value = context.settings.action.label;
                 options.class = 'ds-btn-scream';
             }
             container.appendChild(SubmitElement.create(context, options));
             return container;
         }
+
 
 
         public get settings():any {

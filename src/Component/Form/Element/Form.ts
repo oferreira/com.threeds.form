@@ -135,7 +135,14 @@ namespace Com.Threeds.Component.Form.Element {
                 return true;
             }
 
-            return this.isNewStep(this, (<any>Polymer.dom(this)), data);
+            let isNewStep:boolean = this.isNewStep(this, (<any>Polymer.dom(this)), data);
+            if (isNewStep) {
+                this._steps.push(data)
+                this.currentPosition++;
+                return true;
+            }
+
+            return false;
         }
 
 
@@ -147,8 +154,6 @@ namespace Com.Threeds.Component.Form.Element {
                 if(child.name != undefined){
                     for (let k in data.result.config) {
                         if (data.result.config[k].name = child.name && data.result.config[k].type != 'hidden') {
-                            context._steps.push(data)
-                            context.currentPosition++;
                             return true;
                         }
                     }
