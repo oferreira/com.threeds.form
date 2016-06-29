@@ -953,6 +953,28 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
+        var Service;
+        (function (Service) {
+            var ServiceManager = function () {
+                function ServiceManager() {
+                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
+                }
+                ServiceManager.prototype.get = function (name) {
+                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
+                };
+                return ServiceManager;
+            }();
+            Service.ServiceManager = ServiceManager;
+            $.fn.service = function (name) {
+                return new ServiceManager().get(name);
+            };
+        })(Service = Threeds.Service || (Threeds.Service = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
         var Validator;
         (function (Validator) {
             var AbstractValidator = function () {
@@ -1065,28 +1087,6 @@ var Com;
             }(AbstractValidator);
             Validator.Require = Require;
         })(Validator = Threeds.Validator || (Threeds.Validator = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Service;
-        (function (Service) {
-            var ServiceManager = function () {
-                function ServiceManager() {
-                    if (typeof ServiceManager.prototype.instance === 'undefined') {}
-                }
-                ServiceManager.prototype.get = function (name) {
-                    return eval('new Service.' + name.charAt(0).toUpperCase() + name.slice(1));
-                };
-                return ServiceManager;
-            }();
-            Service.ServiceManager = ServiceManager;
-            $.fn.service = function (name) {
-                return new ServiceManager().get(name);
-            };
-        })(Service = Threeds.Service || (Threeds.Service = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 var Com;

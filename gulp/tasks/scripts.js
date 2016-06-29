@@ -76,8 +76,18 @@ gulp.task('copy', function () {
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/jwplayer/**/*"
-    ], {base: "."})
-        .pipe(gulp.dest('dist'));
+    ], {base: "./bower_components"})
+        .pipe(gulp.dest('dist/bower_components'));
+
+    gulp.src([
+        "assets/3ds-player/**/*",
+        "assets/fonts/**/*",
+        "assets/icon/**/*",
+        "assets/images/icon-arrow-circle.svg",
+        "assets/images/icon-video.svg",
+    ], {base: "./assets"})
+        .pipe(gulp.dest('dist/assets'));
+
 });
 
 
