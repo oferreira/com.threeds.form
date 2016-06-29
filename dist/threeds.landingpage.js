@@ -840,6 +840,30 @@ String.prototype.format = function () {
     }
     return formatted;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Element;
+        (function (Element) {
+            var AbstractPolymerElement = function (_super) {
+                __extends(AbstractPolymerElement, _super);
+                function AbstractPolymerElement(data) {
+                    _super.call(this);
+                }
+                return AbstractPolymerElement;
+            }(polymer.Base);
+            Element.AbstractPolymerElement = AbstractPolymerElement;
+        })(Element = Threeds.Element || (Threeds.Element = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -887,30 +911,6 @@ Object.find = function (o, s) {
     }
     return o;
 };
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Element;
-        (function (Element) {
-            var AbstractPolymerElement = function (_super) {
-                __extends(AbstractPolymerElement, _super);
-                function AbstractPolymerElement(data) {
-                    _super.call(this);
-                }
-                return AbstractPolymerElement;
-            }(polymer.Base);
-            Element.AbstractPolymerElement = AbstractPolymerElement;
-        })(Element = Threeds.Element || (Threeds.Element = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -1203,7 +1203,7 @@ var Com;
                         function Input(context, data) {
                             _super.call(this, data);
                             this.type = 'text';
-                            this.value = '2222';
+                            this.value = '';
                             this.required = false;
                             this._validators = [];
                             this._errorMessage = '';
@@ -1508,19 +1508,21 @@ var Com;
                                     selected = true;
                                 }
                             }
-                            var option = {
-                                "label": this.data.label,
-                                "value": "",
-                                "disabled": true,
-                                "selected": selected ? true : false
-                            };
-                            this.data.options.unshift(option);
                             for (var k in this.data.options) {
                                 if (this.parentFieldValue == undefined && this.parentField == undefined) {
                                     this.appendChild(Element.Option.create(this, this.data.options[k]));
                                 } else if (this.parentFieldValue == this.data.options[k].parentValue) {
                                     this.appendChild(Element.Option.create(this, this.data.options[k]));
                                 }
+                            }
+                            if (this.options.length != 0) {
+                                var option = {
+                                    "label": this.data.label,
+                                    "value": "",
+                                    "disabled": true,
+                                    "selected": selected ? true : false
+                                };
+                                this.insertBefore(Element.Option.create(this, option), this.firstChild);
                             }
                             this.fire('field-hide', this.options.length ? false : true);
                         };
@@ -2526,7 +2528,7 @@ var Com;
                                             case 'checkbox':
                                             case 'radio':
                                                 if (form.elements[i].checked) {
-                                                    dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                                    dict[form.elements[i].name] = form.elements[i].value;
                                                 }
                                                 break;
                                             case 'file':
@@ -2539,12 +2541,12 @@ var Com;
                                     case 'SELECT':
                                         switch (form.elements[i].type) {
                                             case 'select-one':
-                                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                                dict[form.elements[i].name] = form.elements[i].value;
                                                 break;
                                             case 'select-multiple':
                                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                                     if (form.elements[i].options[j].selected) {
-                                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
+                                                        dict[form.elements[i].name] = form.elements[i].options[j].value;
                                                     }
                                                 }
                                                 break;
@@ -2555,7 +2557,7 @@ var Com;
                                             case 'reset':
                                             case 'submit':
                                             case 'button':
-                                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                                dict[form.elements[i].name] = form.elements[i].value;
                                                 break;
                                         }
                                         break;
@@ -2858,7 +2860,7 @@ var Com;
                             __extends(Download, _super);
                             function Download(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                                    <p>" + data.content + "</p>\n                                    <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                        " + context.settings.action.label + "<br />\n                                        <span>" + context.settings.action.content + "</span>\n                                    </a>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                var tpl = "<div id=\"ldp\" class=\"ds-lpd-info-form ds-block-ty\">\n\n                            <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                            </div>\n\n                        </div>\n                        <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                            <p>" + data.content + "</p>\n                            <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                " + context.settings.action.label + "<br />\n                                <span>" + context.settings.action.content + "</span>\n                            </a>\n\n                        </form>\n\n\n                    <div class=\"ds-ldp-form-contact\">\n                        <p>" + context.settings.accelerate.content + "</p>\n                        <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                    </div>";
                                 this.innerHTML = tpl;
                             }
                             Download = __decorate([component('landingpage-success-download-element'), extend("div")], Download);
@@ -2903,32 +2905,61 @@ var Com;
                             __extends(Video, _super);
                             function Video(context, data) {
                                 _super.call(this, data);
-                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n\n                                    <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"myDiv\">" + context.settings.action.content + "</div>\n                                        </div>\n                                    </div>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n\n                                    <div class=\"morph-button morph-button-modal morph-button-modal-4 morph-button-fixed \">\n                                        <button type=\"button\">" + context.settings.action.label + "</button>\n                                        <div class=\"morph-content\">\n                                            <span class=\"icon icon-close\">Close the dialog</span>\n                                            <div id=\"ds-player\"></div>\n                                        </div>\n                                    </div>\n\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
                                 this.innerHTML = tpl;
-                                new UIMorphingButton(this.querySelector('.morph-button'), {
-                                    closeEl: '.icon-close',
-                                    onBeforeOpen: function () {
-                                        return false;
-                                    },
-                                    onAfterOpen: function () {
-                                        jwplayer().play();
-                                    },
-                                    onBeforeClose: function () {
-                                        return false;
-                                    },
-                                    onAfterClose: function () {
-                                        jwplayer().stop();
-                                        return false;
-                                    }
-                                });
-                                jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
-                                jwplayer(this.querySelector('#myDiv')).setup({
-                                    "file": context.settings.action.url,
-                                    "image": context.settings.action.image,
-                                    "height": 360,
-                                    "width": 640
-                                });
+                                if (!this.getYouTubeIdFromURL(context.settings.action.url)) {
+                                    new UIMorphingButton(this.querySelector('.morph-button'), {
+                                        closeEl: '.icon-close',
+                                        onBeforeOpen: function () {
+                                            return false;
+                                        },
+                                        onAfterOpen: function () {
+                                            jwplayer().play();
+                                        },
+                                        onBeforeClose: function () {
+                                            return false;
+                                        },
+                                        onAfterClose: function () {
+                                            jwplayer().stop();
+                                            return false;
+                                        }
+                                    });
+                                    jwplayer.key = "Jk0VV9U22TDjyK6vtdAq9N/pO+cp28R9qfwoMcK5hNY=";
+                                    jwplayer(this.querySelector('#ds-player')).setup({
+                                        "file": context.settings.action.url,
+                                        "image": context.settings.action.image,
+                                        "skin": '/assets/3ds-player/3dsSkin.xml',
+                                        "height": 360,
+                                        "width": 640
+                                    });
+                                } else {
+                                    var player_1 = new YT.Player('ds-player', {
+                                        height: '390',
+                                        width: '640',
+                                        videoId: this.getYouTubeIdFromURL(context.settings.action.url)
+                                    });
+                                    new UIMorphingButton(this.querySelector('.morph-button'), {
+                                        closeEl: '.icon-close',
+                                        onBeforeOpen: function () {
+                                            return false;
+                                        },
+                                        onAfterOpen: function () {
+                                            player_1.playVideo();
+                                        },
+                                        onBeforeClose: function () {
+                                            return false;
+                                        },
+                                        onAfterClose: function () {
+                                            player_1.stopVideo();
+                                            return false;
+                                        }
+                                    });
+                                }
                             }
+                            Video.prototype.getYouTubeIdFromURL = function (url) {
+                                var matches = url.match(/^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]{11,11}).*/);
+                                return matches != null && typeof matches[1] == 'string' ? matches[1] : false;
+                            };
                             Video = __decorate([component('landingpage-success-video-element'), extend("div")], Video);
                             return Video;
                         }(AbstractPolymerElement);
@@ -2978,7 +3009,6 @@ var Com;
                             if (this.context.settings.type == 'video') {
                                 this.appendChild(Video.create(this, data));
                             } else if (this.context.settings.type == 'download') {
-                                Download.create(this, data);
                                 this.appendChild(Download.create(this, data));
                             }
                         }
@@ -3111,15 +3141,34 @@ var Com;
                             if (typeof this.context.settings.hook.success == 'undefined') {
                                 this.context.settings.hook.success = function (context, data) {
                                     context.context.elem.addClass('ds-form-sucess');
-                                    context.context.elem.find('.ds-ldp-form-container').css("zIndex", -1).animate({
-                                        left: "0%"
-                                    }, 500, function () {
+                                    context.context.elem.find('.ds-form-fieldset').animate({ opacity: 0 });
+                                    context.context.elem.find('.ds-tabs').animate({
+                                        opacity: 0
+                                    }, 300, "linear", function () {
                                         self.context.elem.html('');
                                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
+                                        setTimeout(function () {
+                                            $(Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form')).css({
+                                                height: Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight
+                                            });
+                                            context.context.elem.find('.ds-form-fieldset').css({ opacity: 1 });
+                                            context.context.elem.find('.ds-title-ty').animate({
+                                                opacity: 1
+                                            }, 300, "linear", function () {
+                                                $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({ overflow: 'visible' });
+                                                context.context.elem.find('.ds-block-ty').animate({
+                                                    height: 331
+                                                }, 300);
+                                                $(Polymer.dom(context.context.root).querySelector('.ds-form-sucess')).animate({
+                                                    height: 520
+                                                }, 300, 'linear', function () {
+                                                    $(Polymer.dom(context.context.root).querySelector('.ds-ldp-form-contact')).animate({
+                                                        opacity: 1
+                                                    }, 300);
+                                                });
+                                            });
+                                        }, 1);
                                     });
-                                    setTimeout(function () {
-                                        console.log('hello');
-                                    }, 5000);
                                 };
                             }
                             if (typeof this.context.settings.hook.warning == 'undefined') {
@@ -3149,17 +3198,13 @@ var Com;
                             var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
                             $(blockRight).animate({
                                 opacity: 0
-                            }, 500, "linear", function () {
+                            }, 300, "linear", function () {
                                 context.clear();
                                 $(blockRight).animate({
                                     zIndex: 1,
                                     opacity: 1,
                                     top: 0
                                 }, 1, "linear", function () {
-                                    if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
-                                        context.settings.hook.setCurrentPosition(context, currentPosition);
-                                    }
-                                    context._currentPosition = currentPosition;
                                     var step = Step.create(context, context._steps.slice(-1)[0]);
                                     context.appendChild(step);
                                     $(blockRight).animate({ opacity: 1 }, 1);
@@ -3171,10 +3216,21 @@ var Com;
                                         if (heightBlocRightForm > heightBlocLeft) {
                                             $(BlocLeft).animate({
                                                 height: heightBlocRightForm
-                                            }, 500, "linear", function () {
+                                            }, 300, "linear", function () {
+                                                if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                                    context.settings.hook.setCurrentPosition(context, currentPosition);
+                                                }
+                                                context._currentPosition = currentPosition;
                                                 $(container).addClass('ds-anim-width-step-2');
+                                                $(container).css({
+                                                    height: heightBlocRightForm
+                                                });
                                             });
                                         } else {
+                                            if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
+                                                context.settings.hook.setCurrentPosition(context, currentPosition);
+                                            }
+                                            context._currentPosition = currentPosition;
                                             $(container).addClass('ds-anim-width-step-2');
                                         }
                                     }, 1);
@@ -3397,7 +3453,7 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "POST", dataType: "jsonp", url: context.settings.api.url, data: { op: 'GetFormJson', lpid: context.settings.id },
+                            type: "GET", dataType: "jsonp", url: context.settings.api.url, data: { op: 'GetFormJson', lpid: context.settings.id },
                             success: function (response) {
                                 context.render('form', self.data(response));
                             },
@@ -3409,29 +3465,16 @@ var Com;
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
                         data['lpid'] = context.settings.id;
-                        if (Object.keys(data).length > 4) {
-                            $.ajax({
-                                type: "GET", dataType: "json", url: 'data/landing-page/form/success.json',
-                                data: data,
-                                success: function (response) {
-                                    context.render('form', self.data(response));
-                                },
-                                error: function (resultat, statut, erreur) {
-                                    context.render('form', false);
-                                }
-                            });
-                        } else {
-                            $.ajax({
-                                type: "GET", dataType: "json", url: 'data/landing-page/form/step22.json',
-                                data: data,
-                                success: function (response) {
-                                    context.render('form', self.data(response));
-                                },
-                                error: function (resultat, statut, erreur) {
-                                    context.render('form', false);
-                                }
-                            });
-                        }
+                        $.ajax({
+                            type: "GET", dataType: "jsonp", url: context.settings.api.url,
+                            data: data,
+                            success: function (response) {
+                                context.render('form', self.data(response));
+                            },
+                            error: function (resultat, statut, erreur) {
+                                context.render('form', false);
+                            }
+                        });
                     };
                     Neolane.prototype.data = function (reponse) {
                         if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
@@ -3527,7 +3570,7 @@ var Com;
                         function Option(context, data) {
                             _super.call(this, data);
                             if (data.label != undefined) this.label = data.label;
-                            if (data.value != undefined) this.value = encodeURIComponent(data.value);
+                            if (data.value != undefined) this.value = data.value;
                             if (data.selected != undefined) this.selected = data.selected;
                             if (data.disabled != undefined) this.disabled = data.disabled;
                         }
@@ -3549,4 +3592,49 @@ var Com;
         })(Component = Threeds.Component || (Threeds.Component = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-Com.Threeds.Component.Form.Element.Option.register();});})(jQuery, Modernizr, Drupal, window);
+Com.Threeds.Component.Form.Element.Option.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var LandingPage;
+            (function (LandingPage) {
+                var Element;
+                (function (Element) {
+                    var Success;
+                    (function (Success) {
+                        var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                        var Contact = function (_super) {
+                            __extends(Contact, _super);
+                            function Contact(context, data) {
+                                _super.call(this, data);
+                                var tpl = "<div class=\"ds-ldp-global-step-2\">\n                            <div class=\"ds-ldp-global-container\">\n                                <div id=\"ldp\" class=\"ds-lpd-info-form\">\n                                    <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                        <h3 class=\"ds-title-ty\">" + data.title + "</h3>\n                                        <div class=\"ds-lpd-info-no-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                                    </div>\n                                </div>\n                                <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n                                    <p>" + data.content + "</p>\n                                </form>\n                            </div>\n\n                            <div class=\"ds-ldp-form-contact\">\n                                <p>" + context.settings.accelerate.content + "</p>\n                                <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout\">" + context.settings.accelerate.label + "</a>\n                            </div>\n                        </div>";
+                                this.innerHTML = tpl;
+                            }
+                            Contact = __decorate([component('landingpage-success-contact-element'), extend("div")], Contact);
+                            return Contact;
+                        }(AbstractPolymerElement);
+                        Success.Contact = Contact;
+                    })(Success = Element.Success || (Element.Success = {}));
+                })(Element = LandingPage.Element || (LandingPage.Element = {}));
+            })(LandingPage = Component.LandingPage || (Component.LandingPage = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Com.Threeds.Component.LandingPage.Element.Success.Contact.register();});})(jQuery, Modernizr, Drupal, window);
