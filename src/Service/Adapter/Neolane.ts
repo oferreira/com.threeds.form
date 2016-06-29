@@ -42,7 +42,7 @@ namespace Com.Threeds.Service.Adapter {
 
             data['lpid'] = context.settings.id;
 
-           /* $.ajax({
+           $.ajax({
                 type: "GET", dataType: "jsonp", url: context.settings.api.url,
                 data:data,
                 success: function (response:Object) {
@@ -51,9 +51,9 @@ namespace Com.Threeds.Service.Adapter {
                 error: function (resultat:any, statut:any, erreur:any) {
                     context.render('form', false);
                 }
-            });*/
+            });
 
-            if(Object.keys(data).length > 4){
+            /*if(Object.keys(data).length > 4){
                 $.ajax({
                     type: "GET", dataType: "json", url: '/data/landing-page/form/success.json',
                     data:data,
@@ -77,7 +77,7 @@ namespace Com.Threeds.Service.Adapter {
                         context.render('form', false);
                     }
                 });
-            }
+            }*/
 
 
         }

@@ -1193,6 +1193,184 @@ var Com;
     (function (Threeds) {
         var Component;
         (function (Component) {
+            var Tabs;
+            (function (Tabs) {
+                var Element;
+                (function (Element) {
+                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var Tab = function (_super) {
+                        __extends(Tab, _super);
+                        function Tab(context, data) {
+                            _super.call(this, data);
+                            this.classList.add('ds-tab');
+                            this.innerHTML = data.title;
+                        }
+                        Tab = __decorate([component('tab-element'), extend("div")], Tab);
+                        return Tab;
+                    }(AbstractPolymerElement);
+                    Element.Tab = Tab;
+                })(Element = Tabs.Element || (Tabs.Element = {}));
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Com.Threeds.Component.Tabs.Element.Tab.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs) {
+                var Element;
+                (function (Element) {
+                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var Header = function (_super) {
+                        __extends(Header, _super);
+                        function Header(context, options) {
+                            _super.call(this);
+                            this.settings = {};
+                            this.settings = $.extend({}, this.settings, options);
+                            var items = document.createElement('ul');
+                            items.classList.add('ds-tabs-header');
+                            var item;
+                            var link;
+                            for (var k in this.settings.data) {
+                                link = document.createElement('a');
+                                link.innerHTML = this.settings.data[k].name;
+                                link.setAttribute("data-index", k);
+                                link.href = "#step-" + k;
+                                link.onclick = function (e) {
+                                    e.preventDefault();
+                                };
+                                item = document.createElement('li');
+                                item.appendChild(link);
+                                items.appendChild(item);
+                            }
+                            this.appendChild(items);
+                        }
+                        Header = __decorate([component('tabs-header-element'), extend("div")], Header);
+                        return Header;
+                    }(AbstractPolymerElement);
+                    Element.Header = Header;
+                })(Element = Tabs.Element || (Tabs.Element = {}));
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Com.Threeds.Component.Tabs.Element.Header.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var Element;
+                (function (Element) {
+                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+                    var Header = Com.Threeds.Component.Tabs.Element.Header;
+                    var Tabs = function (_super) {
+                        __extends(Tabs, _super);
+                        function Tabs(context, options, data) {
+                            this._currentPosition = 0;
+                            this.settings = {};
+                            this.context = context;
+                            this.settings = $.extend({}, this.settings, options);
+                            this.classList.add('ds-tabs');
+                            this.appendChild(Header.create(this, this.settings));
+                            var container = document.createElement('div');
+                            container.classList.add('ds-tabs-container');
+                            for (var k in this.settings.data) {
+                                container.appendChild(Element.Tab.create(this, this.settings.data[k]));
+                            }
+                            this.appendChild(container);
+                        }
+                        Object.defineProperty(Tabs.prototype, "currentPosition", {
+                            get: function () {
+                                return this._currentPosition;
+                            },
+                            set: function (value) {
+                                this.context.context.elem.find('ul.ds-tabs-header').addClass("step-" + value + "-active");
+                                this.context.context.elem.find(".ds-tabs-header li").each(function (index) {
+                                    if (index == value) {
+                                        $(this).addClass('active');
+                                    } else {
+                                        $(this).removeClass('active');
+                                    }
+                                });
+                                this.context.context.elem.find(".ds-tabs-container .ds-tab").each(function (index) {
+                                    if (index == value) {
+                                        $(this).addClass('active');
+                                    } else {
+                                        $(this).removeClass('active');
+                                    }
+                                });
+                                this._currentPosition = value;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
+                        Tabs = __decorate([component('tabs-element'), extend("div")], Tabs);
+                        return Tabs;
+                    }(AbstractPolymerElement);
+                    Element.Tabs = Tabs;
+                })(Element = Tabs_1.Element || (Tabs_1.Element = {}));
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Com.Threeds.Component.Tabs.Element.Tabs.register();
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
             var Form;
             (function (Form) {
                 var Element;
@@ -2593,305 +2771,6 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Form;
-            (function (Form_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Form = Com.Threeds.Component.Form.Element.Form;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            id: 'LDP6312',
-                            display: {
-                                label: true,
-                                placeholder: true
-                            },
-                            styling: {
-                                label: {
-                                    suffixe: ' : ',
-                                    mandatory: ' * '
-                                }
-                            },
-                            api: {
-                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
-                            },
-                            hook: {
-                                render: undefined,
-                                success: undefined,
-                                redirect: undefined,
-                                warning: undefined,
-                                setCurrentPosition: undefined
-                            }
-                        };
-                        this.settings = $.extend({}, this.settings, options);
-                        this.service('api').form(this, {});
-                    }
-                    Plugin.prototype.clear = function () {
-                        while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
-                        this.innerHTML = '';
-                    };
-                    Plugin.prototype.render = function (type, data) {
-                        this.clear();
-                        if (typeof this.settings.hook.render == 'function') {
-                            this.settings.hook.render(this, type, data);
-                        } else {
-                            this.elem.append(Form.create(this, data));
-                        }
-                    };
-                    return Plugin;
-                }(AbstractPlugin);
-                Form_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    form: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Form = Component.Form || (Component.Form = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs) {
-                var Element;
-                (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-                    var Tab = function (_super) {
-                        __extends(Tab, _super);
-                        function Tab(context, data) {
-                            _super.call(this, data);
-                            this.classList.add('ds-tab');
-                            this.innerHTML = data.title;
-                        }
-                        Tab = __decorate([component('tab-element'), extend("div")], Tab);
-                        return Tab;
-                    }(AbstractPolymerElement);
-                    Element.Tab = Tab;
-                })(Element = Tabs.Element || (Tabs.Element = {}));
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Com.Threeds.Component.Tabs.Element.Tab.register();
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs) {
-                var Element;
-                (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-                    var Header = function (_super) {
-                        __extends(Header, _super);
-                        function Header(context, options) {
-                            _super.call(this);
-                            this.settings = {};
-                            this.settings = $.extend({}, this.settings, options);
-                            var items = document.createElement('ul');
-                            items.classList.add('ds-tabs-header');
-                            var item;
-                            var link;
-                            for (var k in this.settings.data) {
-                                link = document.createElement('a');
-                                link.innerHTML = this.settings.data[k].name;
-                                link.setAttribute("data-index", k);
-                                link.href = "#step-" + k;
-                                link.onclick = function (e) {
-                                    e.preventDefault();
-                                };
-                                item = document.createElement('li');
-                                item.appendChild(link);
-                                items.appendChild(item);
-                            }
-                            this.appendChild(items);
-                        }
-                        Header = __decorate([component('tabs-header-element'), extend("div")], Header);
-                        return Header;
-                    }(AbstractPolymerElement);
-                    Element.Header = Header;
-                })(Element = Tabs.Element || (Tabs.Element = {}));
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Com.Threeds.Component.Tabs.Element.Header.register();
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var Element;
-                (function (Element) {
-                    var AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-                    var Header = Com.Threeds.Component.Tabs.Element.Header;
-                    var Tabs = function (_super) {
-                        __extends(Tabs, _super);
-                        function Tabs(context, options, data) {
-                            this._currentPosition = 0;
-                            this.settings = {};
-                            this.context = context;
-                            this.settings = $.extend({}, this.settings, options);
-                            this.classList.add('ds-tabs');
-                            this.appendChild(Header.create(this, this.settings));
-                            var container = document.createElement('div');
-                            container.classList.add('ds-tabs-container');
-                            for (var k in this.settings.data) {
-                                container.appendChild(Element.Tab.create(this, this.settings.data[k]));
-                            }
-                            this.appendChild(container);
-                        }
-                        Object.defineProperty(Tabs.prototype, "currentPosition", {
-                            get: function () {
-                                return this._currentPosition;
-                            },
-                            set: function (value) {
-                                this.context.context.elem.find('ul.ds-tabs-header').addClass("step-" + value + "-active");
-                                this.context.context.elem.find(".ds-tabs-header li").each(function (index) {
-                                    if (index == value) {
-                                        $(this).addClass('active');
-                                    } else {
-                                        $(this).removeClass('active');
-                                    }
-                                });
-                                this.context.context.elem.find(".ds-tabs-container .ds-tab").each(function (index) {
-                                    if (index == value) {
-                                        $(this).addClass('active');
-                                    } else {
-                                        $(this).removeClass('active');
-                                    }
-                                });
-                                this._currentPosition = value;
-                            },
-                            enumerable: true,
-                            configurable: true
-                        });
-                        Tabs = __decorate([component('tabs-element'), extend("div")], Tabs);
-                        return Tabs;
-                    }(AbstractPolymerElement);
-                    Element.Tabs = Tabs;
-                })(Element = Tabs_1.Element || (Tabs_1.Element = {}));
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Com.Threeds.Component.Tabs.Element.Tabs.register();
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -3448,6 +3327,127 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Form;
+            (function (Form_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Form = Com.Threeds.Component.Form.Element.Form;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            id: 'LDP6312',
+                            display: {
+                                label: true,
+                                placeholder: true
+                            },
+                            styling: {
+                                label: {
+                                    suffixe: ' : ',
+                                    mandatory: ' * '
+                                }
+                            },
+                            api: {
+                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
+                            },
+                            hook: {
+                                render: undefined,
+                                success: undefined,
+                                redirect: undefined,
+                                warning: undefined,
+                                setCurrentPosition: undefined
+                            }
+                        };
+                        this.settings = $.extend({}, this.settings, options);
+                        this.service('api').form(this, {});
+                    }
+                    Plugin.prototype.clear = function () {
+                        while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
+                        this.innerHTML = '';
+                    };
+                    Plugin.prototype.render = function (type, data) {
+                        this.clear();
+                        if (typeof this.settings.hook.render == 'function') {
+                            this.settings.hook.render(this, type, data);
+                        } else {
+                            this.elem.append(Form.create(this, data));
+                        }
+                    };
+                    return Plugin;
+                }(AbstractPlugin);
+                Form_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    form: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Form = Component.Form || (Component.Form = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend({}, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
         var Service;
         (function (Service) {
             var Adapter;
@@ -3473,29 +3473,16 @@ var Com;
                     Neolane.prototype.post = function (context, data) {
                         var self = this;
                         data['lpid'] = context.settings.id;
-                        if (Object.keys(data).length > 4) {
-                            $.ajax({
-                                type: "GET", dataType: "json", url: '/data/landing-page/form/success.json',
-                                data: data,
-                                success: function (response) {
-                                    context.render('form', self.data(response));
-                                },
-                                error: function (resultat, statut, erreur) {
-                                    context.render('form', false);
-                                }
-                            });
-                        } else {
-                            $.ajax({
-                                type: "POST", dataType: "jsonp", url: context.settings.api.url,
-                                data: data,
-                                success: function (response) {
-                                    context.render('form', self.data(response));
-                                },
-                                error: function (resultat, statut, erreur) {
-                                    context.render('form', false);
-                                }
-                            });
-                        }
+                        $.ajax({
+                            type: "GET", dataType: "jsonp", url: context.settings.api.url,
+                            data: data,
+                            success: function (response) {
+                                context.render('form', self.data(response));
+                            },
+                            error: function (resultat, statut, erreur) {
+                                context.render('form', false);
+                            }
+                        });
                     };
                     Neolane.prototype.data = function (reponse) {
                         if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
