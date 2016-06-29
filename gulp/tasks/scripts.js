@@ -69,9 +69,15 @@ gulp.task('build-js', function () {
 
 
 gulp.task('copy', function () {
-    gulp.src(["bower_components/polymer/**/*", "bower_components/polymer-ts/**/*", "bower_components/youtube-iframe-api/**/*", "bower_components/bower_components/jwplayer/**/*"],{base:"."})
-
-        .pipe(gulp.dest('dist/bower_components'));
+    gulp.src([
+        "bower_components/webcomponentsjs/**/*",
+        "bower_components/polymer/**/*",
+        "bower_components/polymer-ts/**/*",
+        "bower_components/youtube-iframe-api/**/*",
+        "bower_components/youtube-iframe-api/**/*",
+        "bower_components/jwplayer/**/*"
+    ], {base: "."})
+        .pipe(gulp.dest('dist'));
 });
 
 
