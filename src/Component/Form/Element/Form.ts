@@ -43,7 +43,7 @@ namespace Com.Threeds.Component.Form.Element {
         public set currentPosition(value:number) {
             if (typeof this.context.settings.hook.transition == 'function') {
                 this.context.settings.hook.transition(this, value);
-                console.log(this.context    )
+                //console.log(this.context    )
                 return;
             }
 

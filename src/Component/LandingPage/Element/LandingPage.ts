@@ -19,8 +19,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
     @extend("div")
     export class LandingPage extends AbstractPolymerElement {
         context:any;
-        toto:any = "zekeazk";
-        tabs:Tabs:any;
 
         constructor(context:any, data:any) {
             super(data);
@@ -40,14 +38,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
             blur.style.backgroundImage = `url('${this.context.settings.backgroundImage}')`;
             blur.classList.add('ds-lpd-info-blur');
 
-            //console.log('this.parentNode')
-            //console.log(this.parentNode)
-            this.tabs = Tabs.create(context, {
-                data: this.context.settings.steps
-            });
-
-            //tabsContainer2.appendChild(this.tabs());
-            tabsContainer2.appendChild( this.tabs);
+            tabsContainer2.appendChild(this.tabs());
 
             //console.log( 'ldp ' + context.elem.attr('id') ,  this.context );
 
@@ -56,7 +47,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
             this.appendChild(tabsContainer);
-            this.appendChild(this.createForm(data));
+            this.appendChild(this.form(data));
         }
 
         clear():void {
@@ -65,15 +56,15 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
 
-        createTabs():Tabs{
+        tabs():Tabs{
             let options:Object = {
                 data: this.context.settings.steps
             };
 
-            return Tabs.create(this, options);
+            return Tabs.create(this.context, options);
         }
 
-        createForm(data:any):Form{
+        form(data:any):Form{
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function(context, currentPosition){
@@ -92,6 +83,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //return;
 
 
+                    console.log(context.context.elem);
                     // Reduit la largeur du form
                     context.context.elem.addClass('ds-form-sucess');
 
@@ -129,7 +121,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             }, 300, "linear", function() {
 
                                     // Supprime l overflow hidden pour pourvoir afficher le block contact
-                                    $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({overflow : 'visible'});
+                                    context.context.elem.find('.ds-ldp-global-container.ds-form-sucess').css({overflow : 'visible'});
                                     //$(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess .ds-block-video')).css({overflow : 'visible'});
 
                                     // Reduit la hauteur du block de gauche
@@ -140,14 +132,14 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                     }, 300);
 
                                     // Reduit la hauteur conteneur
-                                    $(Polymer.dom(context.context.root).querySelector('.ds-form-sucess')).animate({
+                                    context.context.elem.find('.ds-form-sucess').animate({
 
                                         height : 520
 
                                     }, 300, 'linear', function(){
 
                                         // Affiche le block contact
-                                        $(Polymer.dom(context.context.root).querySelector('.ds-ldp-form-contact')).animate({
+                                        context.context.elem.find.querySelector('.ds-ldp-form-contact').animate({
                                             opacity : 1
                                         }, 300);
 
@@ -192,14 +184,15 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                 context.clear();
                 context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
-
-                //console.log(context)
-                //console.log(context._currentPosition)
                 return;
             }
 
-            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
-            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
+
+            var blockRight = context.context.elem.find('.ds-ldp-form-container');
+            var container = context.context.elem.find('.ds-ldp-global-container');
+
+            console.log('blockRight', blockRight)
+            console.log('container', container)
 
             $(blockRight).animate({
                 opacity : 0
@@ -218,10 +211,16 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
                     setTimeout(function() {
-                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
-                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
-                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
+                        var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
+                        var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
+                        var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
+                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').height();
+
+
+                        console.log('BlocLeft', BlocLeft)
+                        console.log('heightBlocLeft', heightBlocLeft)
+                        console.log('heightBlocRight', heightBlocRight)
+                        console.log('heightBlocRightForm', heightBlocRightForm)
 
 
                         //Si la hauteur du form est superieur au block de gauche
@@ -231,25 +230,28 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
                             }, 300, "linear", function() {
+                                console.log('je suis la ...')
+
+                                context.context.elem.addClass('ds-anim-width-step-2')
+                                    .css({
+                                    height : heightBlocRightForm
+                                });
 
                                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                     context.settings.hook.setCurrentPosition(context, currentPosition);
                                 }
                                 context._currentPosition = currentPosition;
-                                $(container).addClass('ds-anim-width-step-2');
 
-                                $(container).css({
-                                    height : heightBlocRightForm
-                                });
 
                             });
 
                         }else{
+                            context.context.elem.addClass('ds-anim-width-step-2');
+
                             if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                 context.settings.hook.setCurrentPosition(context, currentPosition);
                             }
                             context._currentPosition = currentPosition;
-                            $(container).addClass('ds-anim-width-step-2');
                         }
                     }, 1);
 
@@ -259,7 +261,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         setCurrentPosition(index:number):void {
-            this.context.elem.attr('class', '');
+            //this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
             //console.log( 'currentPosition >>>> 222 HOOK.setCurrentPosition '  ,  this.context,  index, this.context.elem.find('.ds-tabs'));
