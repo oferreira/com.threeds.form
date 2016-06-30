@@ -8,6 +8,10 @@ $breakpoint:  1024px;
 
 @media screen and (max-width: $breakpoint)  {
 
+	.ds-form-ldp-neolane{
+		margin-left: -10px;
+		margin-right: -10px;
+	}
 	//Container
 	.ds-ldp-global-container{
 		width:100%;
@@ -32,7 +36,7 @@ $breakpoint:  1024px;
 
 	//STEP 1
 	.ds-ldp-global-container.ds-ldp-global-step-1 .ds-ldp-form-container{
-		padding: 26px;
+		padding: 16px 26px 0 26px;
 		position: static;
 		height: auto !important;
 	}
@@ -43,6 +47,7 @@ $breakpoint:  1024px;
 
 	.ds-ldp-global-container.ds-ldp-global-step-1 .ds-form-fieldset{
 		padding-top: 0;
+		padding-bottom: 16px;
 	}
 
 	.ds-ldp-global-step-1 .ds-tabs-container{
@@ -53,10 +58,14 @@ $breakpoint:  1024px;
 	ul.ds-tabs-header:first-child {
 		margin-top: 30px;
 	}
-
+	.full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child{
+		margin-top: 26px;
+	}
 	.ds-tabs-container .ds-tab{
 		font-size: 22px;
 	}
+
+
 	.ds-tabs-container .ds-tab.active{
 		left:0;
 	}
@@ -72,6 +81,11 @@ $breakpoint:  1024px;
 
 	.ds-title-ty{
 		font-size: 31px;
+	}
+
+	//Drupal
+	h3.ds-title-ty:first-child{
+		margin-top:30px;
 	}
 
 	.ds-title-ty::after {

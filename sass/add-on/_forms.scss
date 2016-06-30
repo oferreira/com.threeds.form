@@ -11,7 +11,7 @@
 	@include box-sizing(border-box);
 	display: inline-block;
 	font-family: $ds-light;
-	font-size: rem(17px);
+	font-size: 17px;
 	color: $black-35;
 	border: 0 none;
 }
@@ -59,7 +59,7 @@
 		display: block;
 		width: 100%;
 		font-family: $ds-light;
-		font-size: rem(17px);
+		font-size: 17px;
 		color: $black-57;
 		background-color: #ffffff;
 		border: 0 none;
@@ -297,7 +297,7 @@
 		width:100%;
 		@include box-sizing(border-box);
 		font-family: $ds-light;
-		font-size: rem(17px);
+		font-size: 17px;
 		color: $black-35;
 		border: 0 none;
 		resize: none;

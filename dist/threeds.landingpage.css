@@ -63,7 +63,7 @@
 }
 
 @font-face {
-  font-family: '3dslight';
+  font-family: "3ds-Light";
   src: url("../fonts/3ds_light-webfont/3ds_light-webfont.eot");
   src: url("../fonts/3ds_light-webfont/3ds_light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/3ds_light-webfont/3ds_light-webfont.woff2") format("woff2"), url("../fonts/3ds_light-webfont/3ds_light-webfont.woff") format("woff"), url("../fonts/3ds_light-webfont/3ds_light-webfont.ttf") format("truetype"), url("../fonts/3ds_light-webfont/3ds_light-webfont.svg#3dslight") format("svg");
   font-weight: normal;
@@ -71,7 +71,7 @@
 }
 
 @font-face {
-  font-family: '3dsregular';
+  font-family: "3ds-Regular";
   src: url("../fonts/3ds_regular-webfont/3ds_regular-webfont.eot");
   src: url("../fonts/3ds_regular-webfont/3ds_regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/3ds_regular-webfont/3ds_regular-webfont.woff2") format("woff2"), url("../fonts/3ds_regular-webfont/3ds_regular-webfont.woff") format("woff"), url("../fonts/3ds_regular-webfont/3ds_regular-webfont.ttf") format("truetype"), url("../fonts/3ds_regular-webfont/3ds_regular-webfont.svg#3dsregular") format("svg");
   font-weight: normal;
@@ -98,8 +98,8 @@
 .ds-form-group label {
   box-sizing: border-box;
   display: inline-block;
-  font-family: "3dslight";
-  font-size: 1.0625rem;
+  font-family: "3ds-Light";
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.35);
   border: 0 none;
 }
@@ -140,8 +140,8 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  font-family: "3dslight";
-  font-size: 1.0625rem;
+  font-family: "3ds-Light";
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.57);
   background-color: #ffffff;
   border: 0 none;
@@ -354,7 +354,7 @@
 
 .ds-form-select select {
   color: rgba(0, 0, 0, 0.35);
-  background: url("../../icon/icon-arrow.svg") right center no-repeat;
+  background: url("../icon/icon-arrow.svg") right center no-repeat;
   background-image: none \9;
   position: relative;
   -webkit-appearance: none;
@@ -371,8 +371,8 @@
 .ds-form-textarea textarea {
   width: 100%;
   box-sizing: border-box;
-  font-family: "3dslight";
-  font-size: 1.0625rem;
+  font-family: "3ds-Light";
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.35);
   border: 0 none;
   resize: none;
@@ -390,7 +390,7 @@
   padding-left: 51px;
   position: relative;
   color: rgba(0, 0, 0, 0.35);
-  font-family: "3dslight";
+  font-family: "3ds-Light";
   padding-right: 0;
 }
 
@@ -448,7 +448,7 @@
   color: #ffffff;
   font-size: 14px;
   line-height: 14px;
-  font-family: "3dslight";
+  font-family: "3ds-Light";
   text-align: left;
   margin: 0 0 0 -25px;
   -webkit-transition: 1s ease all;
@@ -478,7 +478,7 @@
   top: -36px;
   width: 12px;
   height: 12px;
-  background: url("../../icon/shape.svg") center center no-repeat;
+  background: url("../icon/shape.svg") center center no-repeat;
   cursor: pointer;
 }
 
@@ -493,27 +493,47 @@
   border-radius: 100px;
   font-size: 17px;
   line-height: 17px;
-  font-family: "3dsregular";
+  font-family: "3ds-Regular";
 }
 
 .ds-btn-scream {
   color: #ffffff;
   border: 2px solid #239DE8;
   background: #239DE8;
+  -webkit-transition: 0.6s ease all;
+  transition: 0.6s ease all;
+}
+
+.ds-btn-scream:hover {
+  background: #1b7ab5;
+  border: 2px solid #1b7ab5;
 }
 
 .ds-btn-shout {
   color: #239DE8;
   border: 2px solid #239DE8;
   background: #ffffff;
+  -webkit-transition: 0.6s ease all;
+  transition: 0.6s ease all;
+}
+
+.ds-btn-shout:hover {
+  color: #1b7ab5;
+  border: 2px solid #1b7ab5;
 }
 
 .ds-link {
   color: #239DE8;
   font-size: 14px;
   text-decoration: none;
-  font-family: "3dsregular";
+  font-family: "3ds-Regular";
   margin-bottom: 32px;
+  -webkit-transition: 0.6s ease all;
+  transition: 0.6s ease all;
+}
+
+.ds-link:hover {
+  color: #1b7ab5;
 }
 
 .ds-link-arrow-left {
@@ -593,6 +613,7 @@
 }
 
 .ds-ldp-global-container {
+  background: #ffffff;
   margin: auto;
   width: 476px;
   position: relative;
@@ -600,10 +621,11 @@
   border-radius: 25px;
   overflow: hidden;
   display: block;
-  z-index: 1000;
+  z-index: 100;
   box-shadow: 0 12px 57px 0 rgba(0, 0, 0, 0.22);
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
+  margin-bottom: 52px;
 }
 
 .ds-lpd-info-form,
@@ -738,20 +760,20 @@
   width: 50%;
   font-size: 14px;
   text-decoration: none;
-  font-family: "3dsregular";
+  font-family: "3ds-Regular";
   color: rgba(255, 255, 255, 0.22);
 }
 
 .ds-tabs-header li a {
   font-size: 14px;
   text-decoration: none;
-  font-family: "3dsregular";
+  font-family: "3ds-Regular";
   color: rgba(255, 255, 255, 0.22);
   display: block;
   cursor: default;
 }
 
-ul.ds-tabs-header:first-child {
+.full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child {
   margin-top: 100px;
 }
 
@@ -767,7 +789,7 @@ ul.ds-tabs-header:first-child {
   font-size: 32px;
   line-height: 30px;
   text-decoration: none;
-  font-family: "3dslight";
+  font-family: "3ds-Light";
   color: #ffffff;
   text-align: center;
   opacity: 0;
@@ -792,8 +814,8 @@ ul.ds-tabs-header:first-child {
 }
 
 .ds-btn-circle {
-  background: url("../assets/images/icon-arrow-circle.svg") center top no-repeat;
-  font-family: "3dsregular";
+  background: url("assets/images/icon-arrow-circle.svg") center top no-repeat;
+  font-family: "3ds-Regular";
   font-size: 14px;
   font-weight: normal;
   text-transform: uppercase;
@@ -804,7 +826,7 @@ ul.ds-tabs-header:first-child {
 
 .ds-email-valid {
   font-size: 17px;
-  font-family: "3dsregular";
+  font-family: "3ds-Regular";
   color: #ffffff;
   text-align: left;
   position: relative;
@@ -844,6 +866,7 @@ ul.ds-tabs-header:first-child {
 .ds-form-sucess {
   margin: auto;
   width: 476px;
+  margin-bottom: 205px;
 }
 
 .ds-block-ty {
@@ -851,8 +874,8 @@ ul.ds-tabs-header:first-child {
 }
 
 .ds-title-ty {
-  font-size: 2.5rem;
-  font-family: "3dslight";
+  font-size: 40px;
+  font-family: "3ds-Light";
   line-height: 48px;
   text-align: center;
   font-weight: normal;
@@ -885,6 +908,11 @@ ul.ds-tabs-header:first-child {
   z-index: 1000;
 }
 
+h3.ds-title-ty:first-child {
+  margin-top: 30px;
+}
+
+.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info,
 .ds-dl-info {
   background: white;
   text-align: center;
@@ -893,22 +921,26 @@ ul.ds-tabs-header:first-child {
   bottom: auto;
 }
 
+.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info p,
 .ds-dl-info p {
-  font-size: 1.0625rem;
-  font-family: "3dslight";
+  font-size: 17px;
+  font-family: "3ds-Light";
   padding: 32px 25% 21px 25%;
   text-align: center;
   color: rgba(0, 0, 0, 0.35);
   margin: 0;
+  line-height: 21px;
 }
 
+.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info a,
 .ds-dl-info a {
   display: inline;
 }
 
+.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info a span,
 .ds-dl-info a span {
   text-transform: uppercase;
-  font-family: "3dslight";
+  font-family: "3ds-Light";
   color: rgba(0, 0, 0, 0.35);
 }
 
@@ -924,8 +956,8 @@ ul.ds-tabs-header:first-child {
 }
 
 .ds-ldp-form-contact p {
-  font-size: 1.0625rem;
-  font-family: "3dslight";
+  font-size: 17px;
+  font-family: "3ds-Light";
   color: rgba(0, 0, 0, 0.35);
   margin: 43px 0 31px 0;
 }
@@ -937,7 +969,7 @@ ul.ds-tabs-header:first-child {
 }
 
 .morph-button .ds-btn-video {
-  background: url("../assets/images/iconmonstr-video.png") center -40px no-repeat;
+  background: url("assets/images/iconmonstr-video.png") center -40px no-repeat;
   background-color: none;
   background-size: 181px auto;
   font-weight: normal;
@@ -954,13 +986,19 @@ ul.ds-tabs-header:first-child {
 }
 
 .ds-ldp-form-error {
-  font-size: 2rem;
+  font-size: 32px;
   text-align: center;
   padding: 0;
   line-height: 40px;
   text-decoration: none;
-  font-family: "3dslight";
+  font-family: "3ds-Light";
   color: #ffffff;
+}
+
+.ds-form-ldp-neolane {
+  display: block;
+  margin-left: -98px;
+  margin-right: -98px;
 }
 
 .ds-anim-width-step-2 {
@@ -1038,6 +1076,11 @@ ul.ds-tabs-header:first-child {
 }
 
 @media screen and (max-width: 1024px) {
+  .ds-form-ldp-neolane {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
   .ds-ldp-global-container {
     width: 100%;
     max-width: 460px;
@@ -1058,7 +1101,7 @@ ul.ds-tabs-header:first-child {
   }
 
   .ds-ldp-global-container.ds-ldp-global-step-1 .ds-ldp-form-container {
-    padding: 26px;
+    padding: 16px 26px 0 26px;
     position: static;
     height: auto !important;
   }
@@ -1069,6 +1112,7 @@ ul.ds-tabs-header:first-child {
 
   .ds-ldp-global-container.ds-ldp-global-step-1 .ds-form-fieldset {
     padding-top: 0;
+    padding-bottom: 16px;
   }
 
   .ds-ldp-global-step-1 .ds-tabs-container {
@@ -1078,6 +1122,10 @@ ul.ds-tabs-header:first-child {
 
   ul.ds-tabs-header:first-child {
     margin-top: 30px;
+  }
+
+  .full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child {
+    margin-top: 26px;
   }
 
   .ds-tabs-container .ds-tab {
@@ -1098,6 +1146,10 @@ ul.ds-tabs-header:first-child {
 
   .ds-title-ty {
     font-size: 31px;
+  }
+
+  h3.ds-title-ty:first-child {
+    margin-top: 30px;
   }
 
   .ds-title-ty::after {
@@ -1129,8 +1181,8 @@ ul.ds-tabs-header:first-child {
 
 .ds-autocomplete.autocomplete-suggestions {
   text-align: left;
-  font-family: "3dslight";
-  font-size: 1.0625rem;
+  font-family: "3ds-Light";
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.35);
   background-color: #ffffff;
   cursor: default;
@@ -1140,7 +1192,7 @@ ul.ds-tabs-header:first-child {
   /* core styles should not be changed */
   position: absolute;
   display: none;
-  z-index: 9999;
+  z-index: 999;
   max-height: 254px;
   overflow: hidden;
   overflow-y: auto;
@@ -1153,8 +1205,8 @@ ul.ds-tabs-header:first-child {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: "3dslight";
-  font-size: 1.0625rem;
+  font-family: "3ds-Light";
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.35);
 }
 

@@ -36,8 +36,8 @@ $font-path:                 "../fonts/" !default;
 $ds-extra-light:            '3dsextralight';
 $ds-extra-light-italic:     '3dsextralight_italic';
 
-$ds-light:                  '3dslight';
-$ds-regular:                '3dsregular';
+$ds-light:                  '3ds-Light';
+$ds-regular:                '3ds-Regular';
 $ds-italic:                 '3dsitalic';
 
 $ds-semi-bold-italic:       '3dssemibold_italic';
@@ -124,6 +124,9 @@ $dark-theme-opac-primary:1;
 $dark-theme-opac-secondary:0.62;
 $dark-theme-opac-disable:0.38;
 
+//btn
+$btn-scream-hover:#1b7ab5;
+
 
 // 3. Prefixer (Global variables to enable or disable vendor prefixes)
 // ==========================================================================
@@ -172,8 +175,8 @@ $size-switch:20px;
 // 8. Icon
 // ==========================================================================
 
-$ico-error:url('../../icon/shape.svg');
-$ico-arrow-bot:url('../../icon/icon-arrow.svg');
+$ico-error:url('../icon/shape.svg');
+$ico-arrow-bot:url('../icon/icon-arrow.svg');
 
 
 

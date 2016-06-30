@@ -9,6 +9,7 @@
 
 // Global
 .ds-ldp-global-container{
+	background: $white;
 	margin: auto;
 	width: 476px;
 	position: relative;
@@ -16,9 +17,10 @@
 	border-radius:$radius-form;
 	overflow: hidden;
 	display: block;
-	z-index: 1000;
+	z-index: 100;
 	box-shadow: 0 12px 57px 0 $black-22;
 	transition-timing-function: ease-in-out;
+	margin-bottom: 52px;
 }
 
 // block left & right
@@ -173,8 +175,8 @@
 	}
 }
 
-// overide Knack css
-ul.ds-tabs-header:first-child{
+// overide Knack css // Drupal
+.full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child{
 	margin-top: 100px;
 }
 
@@ -217,7 +219,7 @@ ul.ds-tabs-header:first-child{
 
 // btn circle-
 .ds-btn-circle{
-	background: url("../assets/images/icon-arrow-circle.svg") center top no-repeat;
+	background: url("assets/images/icon-arrow-circle.svg") center top no-repeat;
 	font-family:$ds-regular;
 	font-size: 14px;
 	font-weight: normal;
@@ -271,9 +273,9 @@ ul.ds-tabs-header:first-child{
 // STEP 3 Element
 // ==========================================================================
 .ds-form-sucess{
-
 	margin: auto;
 	width: 476px;
+	margin-bottom: 205px;
 }
 
 .ds-block-ty{
@@ -282,7 +284,7 @@ ul.ds-tabs-header:first-child{
 
 //Thank you message
 .ds-title-ty{
-	font-size: rem(40px);
+	font-size: 40px;
 	font-family: $ds-light;
 	line-height: 48px;
 	text-align: center;
@@ -312,7 +314,15 @@ ul.ds-tabs-header:first-child{
 	}
 }
 
+//Drupal
+h3.ds-title-ty:first-child{
+	margin-top:30px;
+}
+
+
 // download block
+//Drupal
+.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info,
 .ds-dl-info{
 	background: white;
 	text-align: center;
@@ -320,12 +330,13 @@ ul.ds-tabs-header:first-child{
 	top: auto;
 	bottom: auto;
 	p{
-		font-size:rem(17px);
+		font-size:17px;
 		font-family: $ds-light;
 		padding: 32px 25% 21px 25%;
 		text-align: center;
 		color: $black-35;
 		margin: 0;
+		line-height: 21px;
 	}
 	a{
 		display: inline;
@@ -336,6 +347,8 @@ ul.ds-tabs-header:first-child{
 		}
 	}
 }
+
+
 
 // Form contact
 .ds-ldp-form-contact{
@@ -348,7 +361,7 @@ ul.ds-tabs-header:first-child{
 	right: 0;
 	opacity: 0;
 	p{
-		font-size: rem(17px);
+		font-size: 17px;
 		font-family: $ds-light;
 		color: $black-35;
 		margin: 43px 0 31px 0;
@@ -364,7 +377,7 @@ ul.ds-tabs-header:first-child{
 	width: auto;
 	height: auto;
 	.ds-btn-video{
-		background: url("../assets/images/iconmonstr-video.png") center -40px no-repeat;
+		background: url("assets/images/iconmonstr-video.png") center -40px no-repeat;
 		background-color: none ;
 		background-size: 181px auto;
 		font-weight: normal;
@@ -392,13 +405,23 @@ ul.ds-tabs-header:first-child{
 }
 
 .ds-ldp-form-error{
-	font-size: rem(32px);
+	font-size: 32px;
 	text-align: center;
 	padding: 0;
 	line-height: 40px;
 	text-decoration: none;
 	font-family: $ds-light;
 	color:$white;
+}
+
+
+// For drupal
+// ==========================================================================
+
+.ds-form-ldp-neolane {
+	display: block;
+	margin-left: -98px;
+	margin-right: -98px;
 }
 
 
