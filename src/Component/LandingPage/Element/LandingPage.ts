@@ -39,9 +39,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
             blur.classList.add('ds-lpd-info-blur');
 
             tabsContainer2.appendChild(this.tabs());
-
-            //console.log( 'ldp ' + context.elem.attr('id') ,  this.context );
-
             tabsContainer2.appendChild(blur);
             tabsContainer.appendChild(tabsContainer2);
 
@@ -68,8 +65,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function(context, currentPosition){
-                    //console.log( 'currentPosition >>>> <<<<<<<<<<<<<< HOOK.setCurrentPosition '  ,  context.context,  context.context.elem, currentPosition, self.context );
-
                     self.setCurrentPosition(currentPosition);
                 };
             }
@@ -82,8 +77,12 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //self.context.elem.append(Success.create(self.context, self.context.settings.success));
                     //return;
 
+                    if(context.context.status.transition){
+                        return;
+                    }
+                    context.context.status.transition = true;
 
-                    console.log(context.context.elem);
+
                     // Reduit la largeur du form
                     context.context.elem.addClass('ds-form-sucess');
 
@@ -99,7 +98,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                         // supprime et charge la page Sucess
                         self.context.elem.html('');
                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
-
+                        self.context.status.transition = false;
 
                         // Affiche le titre
                         setTimeout(function() {
@@ -122,7 +121,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                                     // Supprime l overflow hidden pour pourvoir afficher le block contact
                                     context.context.elem.find('.ds-ldp-global-container.ds-form-sucess').css({overflow : 'visible'});
-                                    //$(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess .ds-block-video')).css({overflow : 'visible'});
 
                                     // Reduit la hauteur du block de gauche
                                     context.context.elem.find('.ds-block-ty').animate({
@@ -172,8 +170,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-
-
+            if(context.context.status.transition){
+                return;
+            }
+            context.context.status.transition = true;
 
             if(currentPosition == 0 || window.innerWidth <= 1024){
                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
@@ -184,15 +184,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                 context.clear();
                 context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                context.context.status.transition = false;
                 return;
             }
 
 
             var blockRight = context.context.elem.find('.ds-ldp-form-container');
             var container = context.context.elem.find('.ds-ldp-global-container');
-
-            console.log('blockRight', blockRight)
-            console.log('container', container)
 
             $(blockRight).animate({
                 opacity : 0
@@ -209,19 +207,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                     $(blockRight).animate({opacity : 1}, 1);
 
-
                     setTimeout(function() {
                         var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
                         var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
                         var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
                         var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').height();
-
-
-                        console.log('BlocLeft', BlocLeft)
-                        console.log('heightBlocLeft', heightBlocLeft)
-                        console.log('heightBlocRight', heightBlocRight)
-                        console.log('heightBlocRightForm', heightBlocRightForm)
-
 
                         //Si la hauteur du form est superieur au block de gauche
                         if(heightBlocRightForm > heightBlocLeft){
@@ -230,8 +220,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
                             }, 300, "linear", function() {
-                                console.log('je suis la ...')
-
                                 context.context.elem.addClass('ds-anim-width-step-2')
                                     .css({
                                     height : heightBlocRightForm
@@ -241,8 +229,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                     context.settings.hook.setCurrentPosition(context, currentPosition);
                                 }
                                 context._currentPosition = currentPosition;
-
-
+                                context.context.status.transition = false;
                             });
 
                         }else{
@@ -252,6 +239,8 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                 context.settings.hook.setCurrentPosition(context, currentPosition);
                             }
                             context._currentPosition = currentPosition;
+
+                            context.context.status.transition = false;
                         }
                     }, 1);
 
@@ -264,8 +253,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
             //this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
-            //console.log( 'currentPosition >>>> 222 HOOK.setCurrentPosition '  ,  this.context,  index, this.context.elem.find('.ds-tabs'));
-            //console.log( 'currentPosition 0 '  , index,  Polymer.dom(this).querySelector('.ds-tabs').currentPosition );
             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
         }
     }
