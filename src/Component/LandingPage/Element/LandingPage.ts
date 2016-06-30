@@ -19,6 +19,8 @@ namespace Com.Threeds.Component.LandingPage.Element {
     @extend("div")
     export class LandingPage extends AbstractPolymerElement {
         context:any;
+        toto:any = "zekeazk";
+        tabs:Tabs:any;
 
         constructor(context:any, data:any) {
             super(data);
@@ -38,14 +40,23 @@ namespace Com.Threeds.Component.LandingPage.Element {
             blur.style.backgroundImage = `url('${this.context.settings.backgroundImage}')`;
             blur.classList.add('ds-lpd-info-blur');
 
-            tabsContainer2.appendChild(this.tabs());
+            //console.log('this.parentNode')
+            //console.log(this.parentNode)
+            this.tabs = Tabs.create(context, {
+                data: this.context.settings.steps
+            });
+
+            //tabsContainer2.appendChild(this.tabs());
+            tabsContainer2.appendChild( this.tabs);
+
+            //console.log( 'ldp ' + context.elem.attr('id') ,  this.context );
 
             tabsContainer2.appendChild(blur);
             tabsContainer.appendChild(tabsContainer2);
 
 
             this.appendChild(tabsContainer);
-            this.appendChild(this.form(data));
+            this.appendChild(this.createForm(data));
         }
 
         clear():void {
@@ -54,7 +65,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
 
-        tabs():Tabs{
+        createTabs():Tabs{
             let options:Object = {
                 data: this.context.settings.steps
             };
@@ -62,11 +73,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
             return Tabs.create(this, options);
         }
 
-        form(data:any):Form{
+        createForm(data:any):Form{
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
-                this.context.settings.hook.setCurrentPosition = function(context, index){
-                    self.setCurrentPosition(index);
+                this.context.settings.hook.setCurrentPosition = function(context, currentPosition){
+                    //console.log( 'currentPosition >>>> <<<<<<<<<<<<<< HOOK.setCurrentPosition '  ,  context.context,  context.context.elem, currentPosition, self.context );
+
+                    self.setCurrentPosition(currentPosition);
                 };
             }
 
@@ -168,8 +181,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
         transition(context:any,currentPosition:number):void{
 
-            console.log(window.innerWidth);
-
 
 
             if(currentPosition == 0 || window.innerWidth <= 1024){
@@ -181,6 +192,9 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                 context.clear();
                 context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+
+                //console.log(context)
+                //console.log(context._currentPosition)
                 return;
             }
 
@@ -248,7 +262,9 @@ namespace Com.Threeds.Component.LandingPage.Element {
             this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
-            document.querySelector('.ds-tabs').currentPosition = index;
+            //console.log( 'currentPosition >>>> 222 HOOK.setCurrentPosition '  ,  this.context,  index, this.context.elem.find('.ds-tabs'));
+            //console.log( 'currentPosition 0 '  , index,  Polymer.dom(this).querySelector('.ds-tabs').currentPosition );
+            Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
         }
     }
 }

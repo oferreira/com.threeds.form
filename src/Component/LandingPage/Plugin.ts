@@ -26,6 +26,7 @@ namespace Com.Threeds.Component.LandingPage {
     import LandingPage = Com.Threeds.Component.LandingPage.Element.LandingPage;
 
     export class Plugin extends AbstractPlugin {
+        public id:any;
         public elem:any;
         public settings:any = {
             id: 'LDP6312',
@@ -91,8 +92,15 @@ namespace Com.Threeds.Component.LandingPage {
         constructor(elem:any, options:any) {
             super(elem, options);
             this.elem = elem;
+            this.id = elem.attr('id');
             this.elem.addClass('ds-ldp-global-container');
             this.settings = $.extend({}, this.settings, options);
+
+
+            //console.log(">>>>>>>>>>>>>>>>>>>>>>>>")
+            //console.log(elem)
+            //console.log(options)
+            //console.log(">>>>>>>>>>>>>>>>>>>>>>>>")
 
             if (Object.isDefined(options, 'form.nextLabel')){
                 this.settings.nextLabel = options.form.nextLabel;
@@ -110,20 +118,21 @@ namespace Com.Threeds.Component.LandingPage {
                this.settings.callback = options.form.callback;
             }
 
-            this.service('api').form(this, {});
+            let self:any = this;
+            this.service('api').form(self, {});
         }
 
         render(type:string, data:any):void {
             this.elem.append(LandingPage.create(this, data));
+
+            //console.log('this.parentNode this.parentNodethis.parentNodethis.parentNodethis.parentNode')
+            //console.log(this.elem)
         }
     }
 
     $.namespace('threeds', {
         landingPage: function (options:Object) {
-            return new Plugin(this, options);
-        },
-        dynamicForm3ds: function (options:Object) {
-            return new Plugin(this, options);
+            return (new Plugin(this, options));
         }
     });
 }

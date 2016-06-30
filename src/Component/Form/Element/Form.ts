@@ -43,10 +43,13 @@ namespace Com.Threeds.Component.Form.Element {
         public set currentPosition(value:number) {
             if (typeof this.context.settings.hook.transition == 'function') {
                 this.context.settings.hook.transition(this, value);
+                console.log(this.context    )
                 return;
             }
 
             if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
+
+                //console.log( 'currentPosition >>>> HOOK.setCurrentPosition ' + this.context.elem.attr('id') ,  this.context, this.currentPosition );
                 this.settings.hook.setCurrentPosition(this, value);
             }
 
@@ -132,6 +135,7 @@ namespace Com.Threeds.Component.Form.Element {
             if (!((<any>Polymer.dom(this)).childNodes.length)) {
                 this._steps.push(data)
                 this.currentPosition = 0;
+                //console.log( 'currentPosition >>>> DDDDefine ' + this.context.elem.attr('id') ,  this.context, this.currentPosition );
                 return true;
             }
 
