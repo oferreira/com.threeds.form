@@ -14,24 +14,24 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
         constructor(context:any, data:any) {
             super(data);
 
-            let tpl = `<div class="ds-ldp-global-step-2">
-                            <div class="ds-ldp-global-container">
-                                <div id="ldp" class="ds-lpd-info-form">
-                                    <div class="ds-landingpage" is="landingpage-element">
-                                        <h3 class="ds-title-ty">${data.title}</h3>
-                                        <div class="ds-lpd-info-no-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
-                                    </div>
-                                </div>
-                                <form class="ds-form ds-ldp-form-container ds-dl-info">
-                                    <p>${data.content}</p>
-                                </form>
+            let tpl = `<div id="ldp" class="ds-lpd-info-form ds-block-ty">
+
+                            <div class="ds-landingpage" is="landingpage-element">
+                                <h3 class="ds-title-ty ds-info-ty">${data.title}</h3>
+                                <div class="ds-lpd-info-blur" style="background-image: url('${context.settings.backgroundImage}');"></div>
                             </div>
 
-                            <div class="ds-ldp-form-contact">
-                                <p>${context.settings.accelerate.content}</p>
-                                <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
-                            </div>
-                        </div>`;
+                        </div>
+                        <form class="ds-form ds-ldp-form-container ds-dl-info">
+                            <p>${data.content}</p>
+                        </form>
+
+
+                    <div class="ds-ldp-form-contact">
+                        <p>${context.settings.accelerate.content}</p>
+                        <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout ds-force-to-download">${context.settings.accelerate.label}</a>
+                    </div>`;
+
 
             this.innerHTML = tpl;
         }
