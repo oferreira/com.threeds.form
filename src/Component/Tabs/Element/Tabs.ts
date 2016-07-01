@@ -29,7 +29,6 @@ namespace Com.Threeds.Component.Tabs.Element {
 
         constructor(context:any, options:any, data:any) {
             this.context = context;
-            //console.log( 'tabs ' + context.elem.attr('id') ,  this.context );
             this.settings = $.extend({}, this.settings, options);
             this.classList.add('ds-tabs');
 
@@ -48,9 +47,6 @@ namespace Com.Threeds.Component.Tabs.Element {
         }
 
         public set currentPosition(value:number) {
-            //console.log( 'currentPosition 2 ' + this.context.elem.attr('id') ,  this.context, value );
-            //console.log( 'currentPosition 4' + this.context.elem.attr('id') ,  this.context.elem);
-
             this.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
             this.context.elem.find( ".ds-tabs-header li" ).each(function( index, element ) {
                 if(index == value){
@@ -69,8 +65,6 @@ namespace Com.Threeds.Component.Tabs.Element {
             });
 
             this._currentPosition = value;
-
-
         }
 
     }

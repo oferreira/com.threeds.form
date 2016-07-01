@@ -19,8 +19,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
     @extend("div")
     export class LandingPage extends AbstractPolymerElement {
         context:any;
-        toto:any = "zekeazk";
-        tabs:Tabs:any;
 
         constructor(context:any, data:any) {
             super(data);
@@ -40,23 +38,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
             blur.style.backgroundImage = `url('${this.context.settings.backgroundImage}')`;
             blur.classList.add('ds-lpd-info-blur');
 
-            //console.log('this.parentNode')
-            //console.log(this.parentNode)
-            this.tabs = Tabs.create(context, {
-                data: this.context.settings.steps
-            });
-
-            //tabsContainer2.appendChild(this.tabs());
-            tabsContainer2.appendChild( this.tabs);
-
-            //console.log( 'ldp ' + context.elem.attr('id') ,  this.context );
-
+            tabsContainer2.appendChild(this.tabs());
             tabsContainer2.appendChild(blur);
             tabsContainer.appendChild(tabsContainer2);
 
 
             this.appendChild(tabsContainer);
-            this.appendChild(this.createForm(data));
+            this.appendChild(this.form(data));
         }
 
         clear():void {
@@ -65,20 +53,18 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
 
-        createTabs():Tabs{
+        tabs():Tabs{
             let options:Object = {
                 data: this.context.settings.steps
             };
 
-            return Tabs.create(this, options);
+            return Tabs.create(this.context, options);
         }
 
-        createForm(data:any):Form{
+        form(data:any):Form{
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function(context, currentPosition){
-                    //console.log( 'currentPosition >>>> <<<<<<<<<<<<<< HOOK.setCurrentPosition '  ,  context.context,  context.context.elem, currentPosition, self.context );
-
                     self.setCurrentPosition(currentPosition);
                 };
             }
@@ -90,6 +76,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     //self.context.elem.addClass('ds-ldp-global-step-2');
                     //self.context.elem.append(Success.create(self.context, self.context.settings.success));
                     //return;
+
+                    if(context.context.status.transition){
+                        return;
+                    }
+                    context.context.status.transition = true;
 
 
                     // Reduit la largeur du form
@@ -107,7 +98,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                         // supprime et charge la page Sucess
                         self.context.elem.html('');
                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
-
+                        self.context.status.transition = false;
 
                         // Affiche le titre
                         setTimeout(function() {
@@ -129,8 +120,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             }, 300, "linear", function() {
 
                                     // Supprime l overflow hidden pour pourvoir afficher le block contact
-                                    $(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess')).css({overflow : 'visible'});
-                                    //$(Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container.ds-form-sucess .ds-block-video')).css({overflow : 'visible'});
+                                    context.context.elem.find('.ds-ldp-global-container.ds-form-sucess').css({overflow : 'visible'});
 
                                     // Reduit la hauteur du block de gauche
                                     context.context.elem.find('.ds-block-ty').animate({
@@ -140,14 +130,14 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                     }, 300);
 
                                     // Reduit la hauteur conteneur
-                                    $(Polymer.dom(context.context.root).querySelector('.ds-form-sucess')).animate({
+                                    context.context.elem.find('.ds-form-sucess').animate({
 
                                         height : 520
 
                                     }, 300, 'linear', function(){
 
                                         // Affiche le block contact
-                                        $(Polymer.dom(context.context.root).querySelector('.ds-ldp-form-contact')).animate({
+                                        context.context.elem.find.querySelector('.ds-ldp-form-contact').animate({
                                             opacity : 1
                                         }, 300);
 
@@ -180,8 +170,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-
-
+            if(context.context.status.transition){
+                return;
+            }
+            context.context.status.transition = true;
 
             if(currentPosition == 0 || window.innerWidth <= 1024){
                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
@@ -192,14 +184,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                 context.clear();
                 context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
-
-                //console.log(context)
-                //console.log(context._currentPosition)
+                context.context.status.transition = false;
                 return;
             }
 
-            var blockRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container');
-            var container = Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container');
+
+            var blockRight = context.context.elem.find('.ds-ldp-form-container');
+            var container = context.context.elem.find('.ds-ldp-global-container');
 
             $(blockRight).animate({
                 opacity : 0
@@ -216,13 +207,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                     $(blockRight).animate({opacity : 1}, 1);
 
-
                     setTimeout(function() {
-                        var BlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form');
-                        var heightBlocLeft = Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form').offsetHeight;
-                        var heightBlocRight = Polymer.dom(context.context.root).querySelector('.ds-ldp-form-container').offsetHeight;
-                        var heightBlocRightForm = Polymer.dom(context.context.root).querySelector('.ds-form-fieldset').offsetHeight;
-
+                        var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
+                        var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
+                        var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
+                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').height();
 
                         //Si la hauteur du form est superieur au block de gauche
                         if(heightBlocRightForm > heightBlocLeft){
@@ -231,25 +220,27 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
                             }, 300, "linear", function() {
+                                context.context.elem.addClass('ds-anim-width-step-2')
+                                    .css({
+                                    height : heightBlocRightForm
+                                });
 
                                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                     context.settings.hook.setCurrentPosition(context, currentPosition);
                                 }
                                 context._currentPosition = currentPosition;
-                                $(container).addClass('ds-anim-width-step-2');
-
-                                $(container).css({
-                                    height : heightBlocRightForm
-                                });
-
+                                context.context.status.transition = false;
                             });
 
                         }else{
+                            context.context.elem.addClass('ds-anim-width-step-2');
+
                             if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                 context.settings.hook.setCurrentPosition(context, currentPosition);
                             }
                             context._currentPosition = currentPosition;
-                            $(container).addClass('ds-anim-width-step-2');
+
+                            context.context.status.transition = false;
                         }
                     }, 1);
 
@@ -259,11 +250,9 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         setCurrentPosition(index:number):void {
-            this.context.elem.attr('class', '');
+            //this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
-            //console.log( 'currentPosition >>>> 222 HOOK.setCurrentPosition '  ,  this.context,  index, this.context.elem.find('.ds-tabs'));
-            //console.log( 'currentPosition 0 '  , index,  Polymer.dom(this).querySelector('.ds-tabs').currentPosition );
             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
         }
     }
