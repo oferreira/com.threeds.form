@@ -105,9 +105,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
                             // Fixe la hauteur du conteneur
-                            $(Polymer.dom(context.context.root).querySelector('.ds-lpd-info-form')).css({
-                                height: Polymer.dom(context.context.root).querySelector('.ds-ldp-global-container').offsetHeight
+                            context.context.elem.find('.ds-lpd-info-form').css({
+                                height: context.context.elem.height()
                             });
+
+
 
                             // Affiche le formulaire masqué avec le z index
                             context.context.elem.find('.ds-form-fieldset').css({opacity : 1});
@@ -120,7 +122,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             }, 300, "linear", function() {
 
                                     // Supprime l overflow hidden pour pourvoir afficher le block contact
-                                    context.context.elem.find('.ds-ldp-global-container.ds-form-sucess').css({overflow : 'visible'});
+                                    context.context.elem.css({overflow : 'visible'});
 
                                     // Reduit la hauteur du block de gauche
                                     context.context.elem.find('.ds-block-ty').animate({
@@ -130,14 +132,14 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                     }, 300);
 
                                     // Reduit la hauteur conteneur
-                                    context.context.elem.find('.ds-form-sucess').animate({
+                                    context.context.elem.animate({
 
                                         height : 520
 
                                     }, 300, 'linear', function(){
 
                                         // Affiche le block contact
-                                        context.context.elem.find.querySelector('.ds-ldp-form-contact').animate({
+                                        context.context.elem.find('.ds-ldp-form-contact').animate({
                                             opacity : 1
                                         }, 300);
 
