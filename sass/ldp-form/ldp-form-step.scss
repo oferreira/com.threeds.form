@@ -175,8 +175,7 @@
 	}
 }
 
-// overide Knack css // Drupal
-.full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child{
+ul.ds-tabs-header:first-child{
 	margin-top: 100px;
 }
 
@@ -314,15 +313,8 @@
 	}
 }
 
-//Drupal
-h3.ds-title-ty:first-child{
-	margin-top:30px;
-}
-
-
 // download block
-//Drupal
-.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info,
+.ds-dl-info,
 .ds-dl-info{
 	background: white;
 	text-align: center;

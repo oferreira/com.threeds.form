@@ -58,7 +58,7 @@ $breakpoint:  1024px;
 	ul.ds-tabs-header:first-child {
 		margin-top: 30px;
 	}
-	.full-chapter .inner-wrapper.content .chapter-content-container ul.ds-tabs-header:first-child{
+	.ds-form-ldp-neolane ul.ds-tabs-header:first-child{
 		margin-top: 26px;
 	}
 	.ds-tabs-container .ds-tab{
@@ -83,10 +83,7 @@ $breakpoint:  1024px;
 		font-size: 31px;
 	}
 
-	//Drupal
-	h3.ds-title-ty:first-child{
-		margin-top:30px;
-	}
+
 
 	.ds-title-ty::after {
 		width: 70px;
@@ -94,7 +91,7 @@ $breakpoint:  1024px;
 		top: 120px;
 	}
 
-	.full-chapter .inner-wrapper.content .chapter-content-container .ds-dl-info p{
+	.ds-form-ldp-neolane .ds-dl-info p{
 		padding: 26px 0px;
 	}
 
