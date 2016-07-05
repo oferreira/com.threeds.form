@@ -75,7 +75,9 @@ gulp.task('copy', function () {
         "bower_components/polymer-ts/**/*",
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/youtube-iframe-api/**/*",
-        "bower_components/jwplayer/**/*"
+        "bower_components/jwplayer/**/*",
+        "bower_components/vanilla-modal/*"
+
     ], {base: "./bower_components"})
         .pipe(gulp.dest('dist/bower_components'));
 
@@ -112,7 +114,7 @@ gulp.task('threeds-landingpage-js', function () {
             footer: '})(jQuery, Modernizr, Drupal, window);'
         }))
         .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
-        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
+        //.pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
         .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/modernizr.custom.js'))
         .pipe(addsrc.prepend('bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js'))
         .pipe($.concat('threeds.landingpage.js'))

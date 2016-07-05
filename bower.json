@@ -27,9 +27,11 @@
     "jwplayer": "~6.12.4956",
     "modernizr": "~3.3.1",
     "jquery-file-download": "~1.4.4",
-    "youtube-iframe-api": "~0.0.1"
+    "youtube-iframe-api": "~0.0.1",
+    "custombox": "https://github.com/dixso/custombox.git#^3.0.2"
   },
   "devDependencies": {
-    "mustache.js": "mustache#~2.2.1"
+    "mustache.js": "mustache#~2.2.1",
+    "custombox": "https://github.com/dixso/custombox.git#^3.0.2"
   }
 }

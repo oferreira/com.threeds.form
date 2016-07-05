@@ -19,11 +19,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                                 <div class="ds-info-ty">
 
                                      <div class="morph-button morph-button-modal morph-button-modal-4 morph-button-fixed ">
-                                        <button class="ds-btn-video" type="button">${context.settings.action.label}</button>
-                                        <div class="morph-content">
-                                            <span class="icon icon-close">Close the dialog</span>
-                                            <div id="ds-player"></div>
-                                        </div>
+                                        <a href="#modal-1" rel="modal:open" class="ds-btn-video test">${context.settings.action.label}</a>
                                     </div>
 
                                 </div>
@@ -43,25 +39,29 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                                 <p>${context.settings.accelerate.content}</p>
                                 <a href="${context.settings.accelerate.url}" target="_blank" class="ds-btn ds-btn-shout">${context.settings.accelerate.label}</a>
 
+                            </div>
+
+                            <div id="modal-1" style="display:none">
+                               <div id="ds-player"></div>
+                            </div>
+
+                            <div class="modal">
+                                <div class="modal-inner">
+                                    <a rel="modal:close">×</a>
+                                    <div class="modal-content"></div>
+                                </div>
                             </div>`;
 
             this.innerHTML = tpl;
 
             if (!this.getYouTubeIdFromURL(context.settings.action.url)) {
-                new UIMorphingButton(this.querySelector('.morph-button'), {
-                    closeEl: '.icon-close',
-                    onBeforeOpen: function () {
-                        return false;
-                    },
-                    onAfterOpen: function () {
+
+                const modal = new VanillaModal({
+                    onOpen : function () {
                         jwplayer().play();
                     },
-                    onBeforeClose: function () {
-                        return false;
-                    },
-                    onAfterClose: function () {
+                    onClose : function (){
                         jwplayer().stop();
-                        return false;
                     }
                 });
 
@@ -70,30 +70,23 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                     "file": context.settings.action.url,
                     "image": context.settings.action.image,
                     "skin": '/assets/3ds-player/3dsSkin.xml',
-                    "height": 360,
-                    "width": 640
+                    "height": ((window.innerHeight * 90) / 100) ,
+                    "width": ((window.innerWidth  * 90) / 100)
                 });
+
             } else {
                 let player:any = new YT.Player('ds-player', {
-                    height: '390',
-                    width: '640',
+                    "height": ((window.innerHeight * 90) / 100) ,
+                    "width": ((window.innerWidth  * 90) / 100),
                     videoId: this.getYouTubeIdFromURL(context.settings.action.url)
                 });
 
-                new UIMorphingButton(this.querySelector('.morph-button'), {
-                    closeEl: '.icon-close',
-                    onBeforeOpen: function () {
-                        return false;
-                    },
-                    onAfterOpen: function () {
+                const modal = new VanillaModal({
+                    onOpen : function () {
                         player.playVideo();
                     },
-                    onBeforeClose: function () {
-                        return false;
-                    },
-                    onAfterClose: function () {
+                    onClose : function (){
                         player.stopVideo();
-                        return false;
                     }
                 });
 
