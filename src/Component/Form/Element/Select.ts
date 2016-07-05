@@ -1,10 +1,12 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../Component/Form/Element/Option.ts"/>
+
 
 namespace Com.Threeds.Component.Form.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import Option = Com.Threeds.Component.Form.Element.Option;
 
     @component('select-element')
     @extend("select")
@@ -27,7 +29,7 @@ namespace Com.Threeds.Component.Form.Element {
         constructor(context:any, data:any) {
             this.data = data;
             super(data);
-            if (this.data.name != undefined) this.id = this.data.fieldName, this.name = this.data.fieldName;
+            if (this.data.fieldName != undefined) this.id = this.data.fieldName, this.name = this.data.fieldName;
             if (this.data.parentField != undefined) this.parentField = this.data.parentField;
 
             this.update();
@@ -56,9 +58,6 @@ namespace Com.Threeds.Component.Form.Element {
                     selected = true;
                 }
             }
-
-
-
 
             for (let k in this.data.options) {
                 if ( (this.parentFieldValue == undefined && this.parentField == undefined) || (this.parentFieldValue == this.data.options[k].parentValue)) {
@@ -100,11 +99,11 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
       selectOption(value:string):void {
-            this.fire('field-value-changed', this);
             for (let i = 0; i < (<any>Polymer.dom(this)).childNodes.length; i++) {
                 (<any>Polymer.dom(this)).childNodes[i].selected = ((<any>Polymer.dom(this)).childNodes[i].value === value ? true : false);
             }
-          this.fire('field-select-value', {'value': value, 'name': this.name});
+            this.fire('field-value-changed', this);
+            this.fire('field-select-value', {'value': value, 'name': this.name});
         }
 
         isValid() {
