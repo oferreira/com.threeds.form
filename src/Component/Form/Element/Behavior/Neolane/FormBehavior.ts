@@ -131,8 +131,10 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         updateAllChildrenField(elem:any, node:any) {
             for (let i = 0; i < node.childNodes.length; i++) {
                 if(typeof node.childNodes[i].update == 'function' && node.childNodes[i].parentField == elem.name && node.childNodes[i].parentField != 'undefined'){
-                    node.childNodes[i].parentFieldValue = elem.value;
-                    node.childNodes[i].update();
+                    if(typeof elem.name != 'undefined' ){
+                        node.childNodes[i].parentFieldValue = elem.value;
+                        node.childNodes[i].update();
+                    }
                 }
 
                 this.updateAllChildrenField(elem, node.childNodes[i]);
