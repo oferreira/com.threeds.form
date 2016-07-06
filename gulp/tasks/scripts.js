@@ -44,8 +44,8 @@ gulp.task('app-js', function () {
         .pipe(babel())
         .pipe($.concat('app.js'))
         .pipe(wrapper({
-            header: "(function ($, Modernizr, Drupal) {addEventListener('WebComponentsReady', function () {\n",
-            footer: '});})(jQuery, Modernizr, Drupal);'
+            header: "(function ($) {addEventListener('WebComponentsReady', function () {\n",
+            footer: '});})(jQuery);'
         }))
         .pipe(stripComments())
         //.pipe(uglify())
@@ -76,7 +76,7 @@ gulp.task('copy', function () {
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/jwplayer/**/*",
-        "bower_components/vanilla-modal/*"
+        "bower_components/vanilla-modal/**/*"
 
     ], {base: "./bower_components"})
         .pipe(gulp.dest('dist/bower_components'));
@@ -110,12 +110,10 @@ gulp.task('threeds-landingpage-js', function () {
         .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(wrapper({
-            header: "(function ($, Modernizr, Drupal, window) {\n",
-            footer: '})(jQuery, Modernizr, Drupal, window);'
+            header: "(function ($, window) {\n",
+            footer: '})(jQuery, window);'
         }))
-        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/classie.js'))
-        //.pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/uiMorphingButton_fixed.js'))
-        .pipe(addsrc.prepend('bower_components/ButtonComponentMorph/js/modernizr.custom.js'))
+        .pipe(addsrc.prepend('bower_components/vanilla-modal/dist/index.js'))
         .pipe(addsrc.prepend('bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(stripComments())
