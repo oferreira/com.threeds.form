@@ -1,10 +1,24 @@
 ---
 layout: default
+title: Documentation
+permalink: /
 ---
 
 
 <div class="home">
     <h1>Getting Started</h1>
+
+    <h2>Execute a bower install</h2>
+
+    <textarea id="bower-install" name="bower-install"></textarea>
+    <script type="text/javascript">
+        $('#bower-install').editor({
+            url: 'samples/bower-install.html'
+        });
+    </script>
+
+    <h2>Integrate the package on your web site</h2>
+
     <textarea id="cdn" name="cdn"></textarea>
     <script type="text/javascript">
         $('#cdn').editor({
@@ -35,7 +49,6 @@ layout: default
         <script type="text/javascript">
             $('#samples-option-id').editor({
                 url: 'samples/options/id.html'
-
             });
         </script>
 

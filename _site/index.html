@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#157878">
 
 
-  <title>com.threeds.landingpage</title>
+  <title>Documentation</title>
   <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 ">
 
@@ -62,8 +62,6 @@
           content: null
         }, options);
 
-        console.log(this);
-
         var editor = CodeMirror.fromTextArea(this[0], {
           mode: "text/html",
           lineNumbers: true
@@ -86,7 +84,13 @@
     <nav class="site-nav">
   
   
+  <a class="page-link" href="/drupal-8.x/">Drupal</a>
   
+  
+  
+  
+  
+  <a class="page-link" href="/">Documentation</a>
   
   
   
@@ -103,6 +107,18 @@
     <section class="main-content">
         <div class="home">
     <h1>Getting Started</h1>
+
+    <h2>Execute a bower install</h2>
+
+    <textarea id="bower-install" name="bower-install"></textarea>
+    <script type="text/javascript">
+        $('#bower-install').editor({
+            url: 'samples/bower-install.html'
+        });
+    </script>
+
+    <h2>Integrate the package on your web site</h2>
+
     <textarea id="cdn" name="cdn"></textarea>
     <script type="text/javascript">
         $('#cdn').editor({
@@ -133,7 +149,6 @@
         <script type="text/javascript">
             $('#samples-option-id').editor({
                 url: 'samples/options/id.html'
-
             });
         </script>
 
@@ -462,6 +477,89 @@
         </table>
         <hr/>
     </div>
+    <div class="option-accelerate">
+        <h3>accelerate</h3>
+
+        <p>This option is for define the data of button contact</p>
+        <img src="assets/images/option-accelerate.jpg" alt="">
+
+        <textarea id="option-accelerate" name="option-accelerate"></textarea>
+        <script type="text/javascript">
+            $('#option-accelerate').editor({
+                url: 'samples/options/accelerate.html'
+            });
+        </script>
+
+        <h4>accelerate.url</h4>
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>string</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>N/A</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>accelerate.label</h4>
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>string</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>N/A</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>accelerate.content</h4>
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>string</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>N/A</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+    </div>
     <div class="option-error">
         <h3>error</h3>
 
@@ -559,7 +657,7 @@
             </tbody>
         </table>
 
-        <h4>form.backLabel</h4>
+        <h4>form.prevLabel</h4>
         <table>
             <tbody>
             <tr>

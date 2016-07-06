@@ -1,12 +1,12 @@
-{
-  form: {
-    api: {
-      nextLabel: 'Next',
-      prevLabel: 'Back',
-      url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
-      callback: {
-          success: function(){}
-      },
+form: {
+  nextLabel: 'Next',
+  prevLabel: 'Back',
+  api: {
+    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+  },
+  callback: {
+    success: function () {
+      alert('Thanks for your download !');
     }
-  }
+  },
 }

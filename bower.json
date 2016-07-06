@@ -11,5 +11,8 @@
   "devDependencies": {
     "codemirror": "~5.14.2",
     "jquery": "~2.2.3"
+  },
+  "dependencies": {
+    "com.threeds.form": "https://github.com/oferreira/com.threeds.form.git"
   }
 }
