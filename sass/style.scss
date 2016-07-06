@@ -25,7 +25,6 @@
 // Helper
 @import 'add-on/helper';
 
-
 //   =============================================================================
 //   LDP FORM
 //   =============================================================================
@@ -33,6 +32,8 @@
 //form step
 @import "ldp-form/ldp-form";
 
+// Vanilla
+@import 'ldp-form/vanilla-modal';
 
 .hide{
   display: none;
