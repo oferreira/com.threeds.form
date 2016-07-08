@@ -1,9 +1,4 @@
-/**
- * This is just for the rest of page.
- */
-
-
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
+// Vanilla js
 
 html,
 body {
@@ -13,26 +8,6 @@ body {
 	margin: 0;
 }
 
-body {
-	white-space: nowrap;
-	text-align: center;
-	background: #efefef;
-	font-family: 'Montserrat', sans-serif;
-}
-/*
-body:before {
-	height: 100%;
-	width: 0;
-	overflow: hidden;
-	display: inline-block;
-	vertical-align: middle;
-	content: "";
-}
-
-body > * {
-	white-space: normal;
-}
-*/
 
 .modal-links {
 	display: inline-block;
