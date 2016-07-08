@@ -43,7 +43,8 @@ namespace Com.Threeds.Service.Adapter {
             data['lpid'] = context.settings.id;
 
            $.ajax({
-                type: "GET", dataType: "jsonp", url: context.settings.api.url,
+                type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
+                //type: "GET", dataType: "jsonp", url: context.settings.api.url,
                 data:data,
                 success: function (response:Object) {
                     context.render('form', self.data(response));

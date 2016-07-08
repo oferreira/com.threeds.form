@@ -44,6 +44,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             let isRounded:boolean = false;
             for (let k in data.result.config) {
+                if(data.result.config[k].fieldName == 'optin') continue;
                 if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded=true
 
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
@@ -60,6 +61,13 @@ namespace Com.Threeds.Component.Form.Element {
             }
 
             this.appendChild(container);
+
+            for (let k in data.result.config) {
+                if(data.result.config[k].fieldName == 'optin') {
+                    this.appendChild(Field.create(context, data.result.config[k]));
+                }
+            }
+            
             this.appendChild(this.submit(context));
         }
 

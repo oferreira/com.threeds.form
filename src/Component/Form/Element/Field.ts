@@ -42,7 +42,6 @@ namespace Com.Threeds.Component.Form.Element {
                 }
             }
 
-
             if (data.fieldName == 'optin') {
                 this.classList.add(`ds-form-switch`);
                 this.classList.add(`ds-no-border`);
