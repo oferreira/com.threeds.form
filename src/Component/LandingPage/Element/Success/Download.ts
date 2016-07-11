@@ -40,7 +40,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            //$.fileDownload(context.settings.action.url);
+            $.fileDownload(context.settings.action.url);
         }
 
     }

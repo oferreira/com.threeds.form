@@ -110,7 +110,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                             });
 
 
-
                             // Affiche le formulaire masqué avec le z index
                             context.context.elem.find('.ds-form-fieldset').css({opacity : 1});
 
@@ -213,7 +212,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                         var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
                         var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
                         var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
-                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').height();
+                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').outerHeight();
 
                         //Si la hauteur du form est superieur au block de gauche
                         if(heightBlocRightForm > heightBlocLeft){
