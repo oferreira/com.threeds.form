@@ -24,6 +24,12 @@ namespace Com.Threeds.Component.Form.Element {
             if (typeof data.selected != 'undefined') this.selected = data.selected;
             if (typeof data.disabled != 'undefined') this.disabled = data.disabled;
         }
+
+        @observe("label")
+        labelChanged(newValue:string, oldValue:string) {
+            console.log(`greet has changed from ${oldValue} to ${newValue}`);
+            this.innerHTML = newValue;
+        }
     }
 }
 

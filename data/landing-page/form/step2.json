@@ -41,12 +41,12 @@
         "options": [
           {
             "label": "Value 3",
-            "value": "val3",
+            "value": "val1",
             "parentValue": ""
           },
           {
             "label": "Value 3",
-            "value": "val3",
+            "value": "val2",
             "parentValue": ""
           },
           {

@@ -76,7 +76,8 @@ gulp.task('copy', function () {
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/youtube-iframe-api/**/*",
         "bower_components/jwplayer/**/*",
-        "bower_components/vanilla-modal/**/*"
+        "bower_components/vanilla-modal/**/*",
+        "bower_components/jquery/**/*",
 
     ], {base: "./bower_components"})
         .pipe(gulp.dest('dist/bower_components'));
