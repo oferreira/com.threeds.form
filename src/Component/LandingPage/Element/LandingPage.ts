@@ -5,7 +5,6 @@
 /// <reference path="../../../Component/Form/Element/Step.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Success.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Error.ts" />
-/// <reference path="../../../Http/Cookie.ts" />
 
 namespace Com.Threeds.Component.LandingPage.Element {
 
@@ -15,7 +14,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
     import Step = Com.Threeds.Component.Form.Element.Step;
     import Success = Com.Threeds.Component.LandingPage.Element.Success;
     import Error = Com.Threeds.Component.LandingPage.Element.Error;
-    import Cookie = Com.Threeds.Http.Cookie;
 
     @component('landingpage-element')
     @extend("div")
@@ -73,6 +71,8 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
+                    sessionStorage.setItem(context.context.settings.id,true);
+
                     //self.context.elem.html('');
                     //self.context.elem.attr('class', '');
                     //self.context.elem.addClass('ds-ldp-global-step-2');
@@ -173,13 +173,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-
-            console.log(Cookie.instance().get('name'));
-            context.success(context, {})
-            return;
-            console.log();
-
-
+           if(sessionStorage.getItem(context.context.settings.id)){
+                context.success(context, {})
+                return;
+            }
 
             if(context.context.status.transition){
                 return;

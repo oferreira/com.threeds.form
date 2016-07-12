@@ -24,7 +24,7 @@ namespace Com.Threeds.Http {
 
         get(name:string) {
             var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
+            var ca = window.document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
                 while (c.charAt(0) == ' ') c = c.substring(1, c.length);
@@ -34,7 +34,9 @@ namespace Com.Threeds.Http {
         }
 
         set(name:string, value:string) {
-            let date:Date = new Date();
+            name="totot";
+            name="totot";
+            let date:any = new Date();
             date.setTime(date.getTime() + (this.settings.lifetime));
             let expires:string = "; expires=" + date.toGMTString();
 
@@ -42,7 +44,7 @@ namespace Com.Threeds.Http {
             if (this.settings.domain !== undefined && this.settings.domain !== null && this.settings.domain != '') {
                 cookie += "; domain=" + this.settings.domain;
             }
-            document.cookie = cookie;
+            window.document.cookie = cookie;
         }
     }
 }
