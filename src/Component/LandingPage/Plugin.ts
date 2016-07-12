@@ -25,7 +25,6 @@ namespace Com.Threeds.Component.LandingPage {
 
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
     import LandingPage = Com.Threeds.Component.LandingPage.Element.LandingPage;
-    import Cookie = Com.Threeds.Http.Cookie;
 
     export class Plugin extends AbstractPlugin {
         public elem:any;
@@ -114,8 +113,6 @@ namespace Com.Threeds.Component.LandingPage {
             if (Object.isDefined(options, 'form.callback')){
                this.settings.callback = options.form.callback;
             }
-
-            console.log(Cookie.instance().get('name'));
 
             let self:any = this;
             this.service('api').form(self, {});

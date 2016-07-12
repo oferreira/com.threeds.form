@@ -3,10 +3,7 @@
 namespace Com.Threeds.Http {
 
     export class Cookie {
-
-
         public static _instance:Cookie;
-
         public settings:any = {
             domain:'3ds.com',
             lifetime: (60 * 60 * 24 * 1),
