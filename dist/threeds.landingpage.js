@@ -635,14 +635,6 @@ var Com;
         };
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
-String.prototype.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
@@ -667,6 +659,14 @@ var Com;
         })(Element = Threeds.Element || (Threeds.Element = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
+String.prototype.format = function () {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
 var Com;
 (function (Com) {
     var Threeds;
@@ -714,6 +714,55 @@ Object.find = function (o, s) {
     }
     return o;
 };
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Http;
+        (function (Http) {
+            var Cookie = function () {
+                function Cookie(options) {
+                    this.settings = {
+                        domain: '3ds.com',
+                        lifetime: 60 * 60 * 24 * 1,
+                        path: '/'
+                    };
+                    this.settings = $.extend({}, this.settings, options);
+                }
+                Cookie.instance = function (options) {
+                    if (Cookie._instance == undefined) {
+                        Cookie._instance = new Cookie(options);
+                    }
+                    return Cookie._instance;
+                };
+                Cookie.prototype.get = function (name) {
+                    var nameEQ = name + "=";
+                    var ca = window.document.cookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                    }
+                    return null;
+                };
+                Cookie.prototype.set = function (name, value) {
+                    name = "totot";
+                    name = "totot";
+                    var date = new Date();
+                    date.setTime(date.getTime() + this.settings.lifetime);
+                    var expires = "; expires=" + date.toGMTString();
+                    var cookie = name + "=" + value + expires + "; path=" + this.settings.path;
+                    if (this.settings.domain !== undefined && this.settings.domain !== null && this.settings.domain != '') {
+                        cookie += "; domain=" + this.settings.domain;
+                    }
+                    window.document.cookie = cookie;
+                };
+                return Cookie;
+            }();
+            Http.Cookie = Cookie;
+        })(Http = Threeds.Http || (Threeds.Http = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
@@ -1291,7 +1340,6 @@ var Com;
                             if (typeof data.disabled != 'undefined') this.disabled = data.disabled;
                         }
                         Option.prototype.labelChanged = function (newValue, oldValue) {
-                            console.log("greet has changed from " + oldValue + " to " + newValue);
                             this.innerHTML = newValue;
                         };
                         __decorate([property({ type: String, reflectToAttribute: true })], Option.prototype, "value", void 0);
@@ -1946,46 +1994,6 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Core;
-        (function (Core) {
-            var Ajax;
-            (function (Ajax) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var AutoComplete = function (_super) {
-                    __extends(AutoComplete, _super);
-                    function AutoComplete(context, elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            api: {
-                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                                serviceName: 'customerAutocomplete'
-                            },
-                            select: function (data) {}
-                        };
-                        this.context = context;
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.service('api')[this.settings.api.serviceName](this, this.settings);
-                    }
-                    AutoComplete.prototype.render = function (context, data) {};
-                    return AutoComplete;
-                }(AbstractPlugin);
-                Ajax.AutoComplete = AutoComplete;
-            })(Ajax = Core.Ajax || (Core.Ajax = {}));
-        })(Core = Threeds.Core || (Threeds.Core = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -2110,6 +2118,12 @@ var Com;
                                             if (typeof elem.name != 'undefined') {
                                                 node.childNodes[i].parentFieldValue = elem.value;
                                                 node.childNodes[i].update();
+                                                $('.ds-ldp-global-container').animate({
+                                                    height: $('.ds-form-fieldset').outerHeight()
+                                                });
+                                                $('.ds-lpd-info-form').animate({
+                                                    height: $('.ds-form-fieldset').outerHeight()
+                                                });
                                             }
                                         }
                                         this.updateAllChildrenField(elem, node.childNodes[i]);
@@ -2733,6 +2747,7 @@ var Com;
                                 _super.call(this, data);
                                 var tpl = "<div id=\"ldp\" class=\"ds-lpd-info-form ds-block-ty\">\n\n                            <div class=\"ds-landingpage\" is=\"landingpage-element\">\n                                <h3 class=\"ds-title-ty ds-info-ty\">" + data.title + "</h3>\n                                <div class=\"ds-lpd-info-blur\" style=\"background-image: url('" + context.settings.backgroundImage + "');\"></div>\n                            </div>\n\n                        </div>\n                        <form class=\"ds-form ds-ldp-form-container ds-dl-info\">\n\n                            <p>" + data.content + "</p>\n                            <a href=\"" + context.settings.action.url + "\" class=\"ds-link ds-link-arrow-left\">\n                                " + context.settings.action.label + "<br />\n                                <span>" + context.settings.action.content + "</span>\n                            </a>\n\n                        </form>\n\n\n                    <div class=\"ds-ldp-form-contact\">\n                        <p>" + context.settings.accelerate.content + "</p>\n                        <a href=\"" + context.settings.accelerate.url + "\" target=\"_blank\" class=\"ds-btn ds-btn-shout ds-force-to-download\">" + context.settings.accelerate.label + "</a>\n                    </div>";
                                 this.innerHTML = tpl;
+                                $.fileDownload(context.settings.action.url);
                             }
                             Download = __decorate([component('landingpage-success-download-element'), extend("div")], Download);
                             return Download;
@@ -2995,6 +3010,7 @@ var Com;
                             }
                             if (typeof this.context.settings.hook.success == 'undefined') {
                                 this.context.settings.hook.success = function (context, data) {
+                                    sessionStorage.setItem(context.context.settings.id, true);
                                     if (context.context.status.transition) {
                                         return;
                                     }
@@ -3045,6 +3061,10 @@ var Com;
                             return Form.create(this.context, data);
                         };
                         LandingPage.prototype.transition = function (context, currentPosition) {
+                            if (sessionStorage.getItem(context.context.settings.id)) {
+                                context.success(context, {});
+                                return;
+                            }
                             if (context.context.status.transition) {
                                 return;
                             }
@@ -3077,7 +3097,7 @@ var Com;
                                         var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
                                         var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
                                         var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
-                                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').height();
+                                        var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').outerHeight();
                                         if (heightBlocRightForm > heightBlocLeft) {
                                             $(BlocLeft).animate({
                                                 height: heightBlocRightForm

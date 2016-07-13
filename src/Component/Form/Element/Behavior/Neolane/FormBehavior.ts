@@ -1,11 +1,7 @@
 /// <reference path="../../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../../../Core/Ajax/AutoComplete.ts" />
 
 namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
-
-
-    import AutoComplete = Com.Threeds.Core.Ajax.AutoComplete;
 
     export interface FormBehavior {
         valid(): void;
