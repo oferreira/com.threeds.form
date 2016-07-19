@@ -1,9 +1,9 @@
-/// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
-/// <reference path="../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../Component/LandingPage/Element/Success/Download.ts" />
-/// <reference path="../../../Component/LandingPage/Element/Success/Video.ts" />
+/// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
+/// <reference path="../../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../../Component/LandingPage/Element/Success/Download.ts" />
+/// <reference path="../../../../Component/LandingPage/Element/Success/Video.ts" />
 
-namespace Com.Threeds.Component.LandingPage.Element {
+namespace Com.Threeds.Component.LandingPage.Element.Success {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
     import Download = Com.Threeds.Component.LandingPage.Element.Success.Download;
@@ -38,5 +38,5 @@ namespace Com.Threeds.Component.LandingPage.Element {
     }
 }
 
-Com.Threeds.Component.LandingPage.Element.Success.register();
+Com.Threeds.Component.LandingPage.Element.Success.Success.register();
 

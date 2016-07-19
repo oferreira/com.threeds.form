@@ -1,6 +1,10 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
 
+interface JQueryStatic{
+    fileDownload(url:string):void;
+}
+
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
@@ -8,7 +12,6 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
     @component('landingpage-success-download-element')
     @extend("div")
     export class Download extends AbstractPolymerElement {
-        context:any;
 
         constructor(context:any, data:any) {
             super(data);
@@ -40,7 +43,11 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-            $.fileDownload(context.settings.action.url);
+           this.download(context.settings.action.url)
+        }
+
+        download(url:string){
+            $.fileDownload(url);
         }
 
     }

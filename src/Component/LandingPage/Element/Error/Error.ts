@@ -1,7 +1,7 @@
-/// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
-/// <reference path="../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
+/// <reference path="../../../../Element/AbstractPolymerElement.ts" />
 
-namespace Com.Threeds.Component.LandingPage.Element{
+namespace Com.Threeds.Component.LandingPage.Element.Error{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
@@ -31,5 +31,5 @@ namespace Com.Threeds.Component.LandingPage.Element{
     }
 }
 
-Com.Threeds.Component.LandingPage.Element.Error.register();
+Com.Threeds.Component.LandingPage.Element.Error.Error.register();
 

@@ -6,3 +6,4 @@ String.prototype.format = function () {
     }
     return formatted;
 };
+//# sourceMappingURL=String.js.map

@@ -26,7 +26,7 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: false})
             required:boolean = false;
 
-        private _validators:string[] = [];
+        private _validators:any = [];
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
@@ -56,8 +56,8 @@ namespace Com.Threeds.Component.Form.Element {
             this.isValid();
         }
 
-        isValid() {
-            let message:boolean|string;
+        isValid():any {
+            let message:any;
             for (let i = 0; i < this._validators.length; i++) {
                 if(typeof this._validators[i] == 'string'){
                     message = eval(`${this._validators[i]}.isValid(this.value)`);

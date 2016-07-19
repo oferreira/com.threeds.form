@@ -21,6 +21,10 @@ interface JQuery {
     progress(data?:any, options?:any): JQuery;
 }
 
+interface JQueryStatic{
+    namespace(namespaceName?:any, closures?:any): JQuery;
+}
+
 namespace Com.Threeds.Component.Form {
 
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
@@ -44,6 +48,16 @@ namespace Com.Threeds.Component.Form {
                 adapter: 'Com.Threeds.Service.Adapter.Neolane',
                 url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
             },
+            success: {
+                title: 'Thanks for your download',
+                content: 'Your download should start automatically, if not use the direct link',
+
+            },
+            action: {
+                url: 'http://www.3ds.com/en/file.pdf',
+                label: 'Download',
+                content: 'PDF - 3,84Mo',
+            },
             hook: {
                 render: undefined,
                 success: undefined,
@@ -61,13 +75,15 @@ namespace Com.Threeds.Component.Form {
             this.service('api').form(this, {});
         }
 
+
         clear() {
-            while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
-            this.innerHTML = '';
+            while (this.elem.firstChild) this.elem.removeChild(this.elem.firstChild);
+            this.elem.html(null);
+            console.log('ezkkzeokr');
         }
 
         render(type:string, data:any):void {
-
+            console.log('ezkkzeok2222r');
             this.clear();
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);

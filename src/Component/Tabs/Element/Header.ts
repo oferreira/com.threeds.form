@@ -20,7 +20,7 @@ namespace Com.Threeds.Component.Tabs.Element {
         };
 
         constructor(context:any, options:any) {
-            super();
+            super(options);
             this.settings = $.extend({}, this.settings, options);
 
             let items:HTMLUListElement = document.createElement('ul');

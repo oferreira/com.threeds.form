@@ -5,7 +5,7 @@
 namespace Com.Threeds.Component.Tabs.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-    import Tabs = Com.Threeds.Component.Tabs.Element.Tab;
+    import Tab = Com.Threeds.Component.Tabs.Element.Tab;
     import Header = Com.Threeds.Component.Tabs.Element.Header;
 
     @component('tabs-element')
@@ -28,6 +28,7 @@ namespace Com.Threeds.Component.Tabs.Element {
         };
 
         constructor(context:any, options:any, data:any) {
+            super(data);
             this.context = context;
             this.settings = $.extend({}, this.settings, options);
             this.classList.add('ds-tabs');
@@ -48,7 +49,7 @@ namespace Com.Threeds.Component.Tabs.Element {
 
         public set currentPosition(value:number) {
             this.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
-            this.context.elem.find( ".ds-tabs-header li" ).each(function( index, element ) {
+            this.context.elem.find( ".ds-tabs-header li" ).each(function( index:number, element:JQuery ) {
                 if(index == value){
                     $( element ).addClass('active');
                 } else {
@@ -56,7 +57,7 @@ namespace Com.Threeds.Component.Tabs.Element {
                 }
             });
 
-            this.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index, element ) {
+            this.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index:number, element:JQuery ) {
                 if(index == value){
                     $( element ).addClass('active');
                 } else {

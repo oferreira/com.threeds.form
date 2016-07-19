@@ -45,7 +45,7 @@ namespace Com.Threeds.Component.Form.Element {
             let isRounded:boolean = false;
             for (let k in data.result.config) {
                 if(data.result.config[k].fieldName == 'optin') continue;
-                if (typeof data.result.config[i].firstElement != 'undefined' && data.result.config[i].firstElement) isRounded=true
+                if (typeof data.result.config[k].firstElement != 'undefined' && data.result.config[k].firstElement) isRounded=true
 
                 if (data.result.config[k].type.toLowerCase() == 'hidden') {
                     this.appendChild(Input.create(context, data.result.config[k]));
@@ -57,7 +57,7 @@ namespace Com.Threeds.Component.Form.Element {
                     (isRounded ? container: this).appendChild(Field.create(context, data.result.config[k]));
                 }
 
-                if (typeof data.result.config[i].lastElement != 'undefined' && data.result.config[i].lastElement) isRounded=false
+                if (typeof data.result.config[k].lastElement != 'undefined' && data.result.config[k].lastElement) isRounded=false
             }
 
             this.appendChild(container);
@@ -77,19 +77,13 @@ namespace Com.Threeds.Component.Form.Element {
             container.classList.add('ds-no-border');
             container.classList.add('ds-txt-center');
 
-            let options:Object = {value: context.settings.nextLabel, class: 'ds-btn-circle'};
+            let options:any = {value: context.settings.nextLabel, class: 'ds-btn-circle'};
             if ( (Object.keys(context._steps).length -1) >= 1 ) {
                 options.value = context.settings.action.label;
                 options.class = 'ds-btn-scream';
             }
             container.appendChild(SubmitElement.create(context, options));
             return container;
-        }
-
-
-
-        public get settings():any {
-            return this.context.settings;
         }
     }
 

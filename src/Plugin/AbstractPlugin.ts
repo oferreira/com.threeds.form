@@ -29,12 +29,18 @@ namespace Com.Threeds.Plugin {
         }
 
         service(name:string):any {
-            return eval('new ' + Object.find(this.settings,name).adapter);
+            let service = (<any>Object.find(this.settings,name)).adapter;
+            return eval('new ' + service);
         }
     }
 }
 
-Object.find = function (o:any, s:string):boolean {
+interface Object {
+    find(o:any, s:string):any;
+}
+
+
+Object.find = function (o:any, s:string):any {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
     var a = s.split('.');

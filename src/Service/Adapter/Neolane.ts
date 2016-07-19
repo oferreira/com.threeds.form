@@ -140,8 +140,11 @@ namespace Com.Threeds.Service.Adapter {
     }
 }
 
+interface Object {
+    find(o:any, s:string):Object;
+}
 
-Object.find = function (o:any, s:string):boolean {
+Object.find = function (o:any, s:string):Object {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
     var a = s.split('.');

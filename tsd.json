@@ -5,8 +5,14 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "mustache/mustache.d.ts": {
-      "commit": "e0abafb1a6ff652f7ff967120e312d5c1916eaef"
+    "youtube/youtube.d.ts": {
+      "commit": "5ccabc86eca6cfcda2b7ec83cca31dbd07c8a31b"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "5ccabc86eca6cfcda2b7ec83cca31dbd07c8a31b"
+    },
+    "jwplayer/jwplayer.d.ts": {
+      "commit": "5ccabc86eca6cfcda2b7ec83cca31dbd07c8a31b"
     }
   }
 }

@@ -3,8 +3,12 @@
 /// <reference path="../../../Component/Tabs/Element/Tabs.ts" />
 /// <reference path="../../../Component/Form/Element/Form.ts" />
 /// <reference path="../../../Component/Form/Element/Step.ts" />
-/// <reference path="../../../Component/LandingPage/Element/Success.ts" />
-/// <reference path="../../../Component/LandingPage/Element/Error.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Success/Success.ts" />
+/// <reference path="../../../Component/LandingPage/Element/Error/Error.ts" />
+
+interface Element{
+    currentPosition:number;
+}
 
 namespace Com.Threeds.Component.LandingPage.Element {
 
@@ -12,8 +16,8 @@ namespace Com.Threeds.Component.LandingPage.Element {
     import Tabs = Com.Threeds.Component.Tabs.Element.Tabs;
     import Form = Com.Threeds.Component.Form.Element.Form;
     import Step = Com.Threeds.Component.Form.Element.Step;
-    import Success = Com.Threeds.Component.LandingPage.Element.Success;
-    import Error = Com.Threeds.Component.LandingPage.Element.Error;
+    import Success = Com.Threeds.Component.LandingPage.Element.Success.Success;
+    import Error = Com.Threeds.Component.LandingPage.Element.Error.Error;
 
     @component('landingpage-element')
     @extend("div")
@@ -53,31 +57,26 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
 
-        tabs():Tabs{
+        tabs():polymer.Base{
             let options:Object = {
                 data: this.context.settings.steps
             };
 
+            console.log(this.context);
             return Tabs.create(this.context, options);
         }
 
-        form(data:any):Form{
+        form(data:any):polymer.Base{
             var self:any = this;
             if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
-                this.context.settings.hook.setCurrentPosition = function(context, currentPosition){
+                this.context.settings.hook.setCurrentPosition = function(context:any, currentPosition:number){
                     self.setCurrentPosition(currentPosition);
                 };
             }
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
-                    sessionStorage.setItem(context.context.settings.id,true);
-
-                    //self.context.elem.html('');
-                    //self.context.elem.attr('class', '');
-                    //self.context.elem.addClass('ds-ldp-global-step-2');
-                    //self.context.elem.append(Success.create(self.context, self.context.settings.success));
-                    //return;
+                    sessionStorage.setItem(context.context.settings.id, 'true');
 
                     if(context.context.status.transition){
                         return;
@@ -191,7 +190,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 context._currentPosition = currentPosition;
 
                 context.clear();
-                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                    context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
                 context.context.status.transition = false;
                 return;
             }
@@ -210,7 +209,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     top : 0
                 }, 1, "linear", function() {
 
-                    let step:Step = Step.create(context, context._steps.slice(-1)[0]);
+                    let step:polymer.Base = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
 
                     $(blockRight).animate({opacity : 1}, 1);

@@ -1,10 +1,21 @@
 /// <reference path="../../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../../../typings/jquery/jquery.d.ts" />
 
+interface autoComplete {
+    new(options: any): autoComplete;
+}
+declare var autoComplete:autoComplete;
+
+interface suggest {
+    (data: any):any;
+}
+declare var suggest:suggest;
+
 namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
     export interface FormBehavior {
         valid(): void;
+        suggest(items:Object): Object;
         errors: any;
         context: any;
         dispatch: any;
@@ -45,7 +56,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
-            let context = this;
+            let context:any = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
 
             let query:string = $('#company').val();
@@ -55,7 +66,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                 elem.autoComplete = new autoComplete({
                     selector: `#${elem.name}`,
                     minChars: 3,
-                    source: function(term, suggest){
+                    source: function(term:string, suggest:any){
                         term = term.toLowerCase();
 
                         $.ajax({
@@ -67,7 +78,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                                 iso: isoCode
                             },
                             success: function (data) {
-                                suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet:any) {
                                     return {
                                         companyName: objet.companyName,
                                         duns: objet.duns,
@@ -83,13 +94,13 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         });
 
                     },
-                    renderItem: function (item:Object, search:string){
+                    renderItem: function (item:any, search:string){
                         search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
                         var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
                         let label:string = item.companyName.replace(re, "<b>$1</b>");
                         return '<div class="autocomplete-suggestion" data-companyName="'+item.companyName+'" data-duns="'+item.duns+'" data-postalCode="'+item.postalCode+'" data-city="'+item.city+'" data-address1="'+item.address1+'" data-address2="'+item.address2+'" data-stateCode="'+item.stateCode+'" data-val="'+search+'">'+label+'</div>';
                     },
-                    onSelect: function(e, term, item){
+                    onSelect: function(e:Event, term:string, item:any){
 
                         context.append({
                             name: "duns",
@@ -158,7 +169,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         }
 
         post():void {
-            let data:string = Com.Threeds.Component.Form.Element.Form.serialize(this);
+            let data:Map<string> = Com.Threeds.Component.Form.Element.Form.serialize(this);
             this.context.service('api').post(this, data);
         }
 

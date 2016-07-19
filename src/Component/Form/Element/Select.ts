@@ -23,12 +23,13 @@ namespace Com.Threeds.Component.Form.Element {
         value:string;
 
         data:any = [];
+        options:any = [];
 
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
-            this.data = data;
             super(data);
+            this.data = data;
             if (this.data.fieldName != undefined) this.id = this.data.fieldName, this.name = this.data.fieldName;
             if (this.data.parentField != undefined) this.parentField = this.data.parentField;
 

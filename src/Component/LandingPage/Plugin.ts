@@ -18,7 +18,10 @@ interface JQuery {
     done(data?:any, options?:any): JQuery;
     fail(data?:any, options?:any): JQuery;
     progress(data?:any, options?:any): JQuery;
-    namespace(name?:any, options?:any): JQuery;
+}
+
+interface JQueryStatic{
+    namespace(namespaceName?:any, closures?:any): JQuery;
 }
 
 namespace Com.Threeds.Component.LandingPage {

@@ -1,6 +1,27 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../../../typings/jwplayer/jwplayer.d.ts" />
+/// <reference path="../../../../../typings/youtube/youtube.d.ts" />
+
+
+interface VanillaModal {
+    onOpen(): void;
+    onClose(): void;
+}
+
+interface VanillaModalStatic {
+    new(options: any): VanillaModal;
+}
+declare var VanillaModal: VanillaModalStatic;
+
+interface JWPlayerStatic {
+    key:string;
+}
+
+interface JWPlayerStatic {
+    (id?: string): JWPlayer;
+    (elem?: Element): JWPlayer;
+}
 
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 

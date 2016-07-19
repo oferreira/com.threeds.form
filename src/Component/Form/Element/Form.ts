@@ -72,7 +72,7 @@ namespace Com.Threeds.Component.Form.Element {
 
         public get errors():Object[] {
 
-            return <Array> this._errors;
+            return this._errors;
         }
 
         public set errors(value:Object[]) {
@@ -170,10 +170,6 @@ namespace Com.Threeds.Component.Form.Element {
             this.add(data);
         }
 
-        dom():any{
-            return Polymer.dom(context.context.root);
-        }
-
         transition(context:any,currentPosition:number):void{
             context.clear();
             context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
@@ -247,7 +243,7 @@ namespace Com.Threeds.Component.Form.Element {
             }
         }
 
-        static serialize(form:any):string {
+        static serialize(form:any):Map<string> {
             if (!form || form.nodeName !== "FORM") {
                 return;
             }

@@ -1,6 +1,10 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 /// <reference path="../Validator/AbstractValidator.ts" />
 
+interface JQueryStatic {
+    i18n(options?:any): Com.Threeds.I18n.Translator;
+}
+
 namespace Com.Threeds.Validator {
 
     import AbstractValidator = Com.Threeds.Validator.AbstractValidator;
@@ -19,7 +23,7 @@ namespace Com.Threeds.Validator {
             this.settings = $.extend({}, this.settings, options);
         }
 
-        public isValid(value:string):boolean|string {
+        public isValid(value:string):any {
             if(typeof this.settings.regex == 'undefined'){
                 console.log('this.settings.regex is not defined !')
                 return false;

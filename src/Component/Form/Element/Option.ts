@@ -17,6 +17,8 @@ namespace Com.Threeds.Component.Form.Element {
         @property({type: Boolean, reflectToAttribute: true})
             disabled:boolean;
 
+        label:string;
+
         constructor(context:any, data:any) {
             super(data);
             if (typeof data.label != 'undefined') this.label = data.label;

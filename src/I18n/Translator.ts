@@ -24,7 +24,7 @@ namespace Com.Threeds.I18n {
         }
 
         public t(key:string):string {
-            return Object.find(eval(this.adapter), `${this.lang}.${key}`);
+            return <string> Object.find(eval(this.adapter), `${this.lang}.${key}`);
         }
     }
 

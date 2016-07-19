@@ -1,8 +1,7 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../../../typings/jwplayer/jwplayer.d.ts" />
 
-namespace Com.Threeds.Component.LandingPage.Element.Success{
+namespace Com.Threeds.Component.LandingPage.Element.Success {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
 
