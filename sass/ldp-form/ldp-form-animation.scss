@@ -32,7 +32,7 @@ $breakpoint:  1024px;
 
 @media screen and (min-width: $breakpoint) {
 	// Sucess
-	.ds-form-sucess {
+	.ds-form-sucess-anim {
 		animation-name: globalContainerSucess;
 		animation-duration: 0.6s;
 		animation-iteration-count: 1;

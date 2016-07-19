@@ -71,7 +71,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
-                    sessionStorage.setItem(context.context.settings.id,true);
+                    localStorage.setItem(context.context.settings.id,true);
 
                     //self.context.elem.html('');
                     //self.context.elem.attr('class', '');
@@ -86,7 +86,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
                     // Reduit la largeur du form
-                    context.context.elem.addClass('ds-form-sucess');
+                    context.context.elem.addClass('ds-form-sucess-anim');
 
                     // Fade le formulaire de droite
                     context.context.elem.find('.ds-form-fieldset').animate({opacity : 0});
@@ -159,7 +159,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 this.context.settings.hook.warning = function(context:any, message:any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-form-sucess');
+                    self.context.elem.addClass('ds-form-sucess-anim');
                     self.context.elem.append(Error.create(self.context, self.context.settings.error));
 
                 };
@@ -173,8 +173,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-           if(sessionStorage.getItem(context.context.settings.id)){
+           if(localStorage.getItem(context.context.settings.id)){
                 context.success(context, {})
+               context.context.elem.removeClass('ds-form-sucess-anim');
+                context.context.elem.addClass('ds-form-sucess');
                 return;
             }
 
