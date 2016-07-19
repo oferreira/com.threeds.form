@@ -76,7 +76,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
-                    localStorage.setItem(context.context.settings.id,true);
+                    localStorage.setItem(context.context.settings.id, 'true');
 
                     if(context.context.status.transition){
                         return;
