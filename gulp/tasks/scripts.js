@@ -38,6 +38,7 @@ gulp.task('copy', function () {
         "assets/icon/**/*",
         "assets/images/icon-arrow-circle.svg",
         "assets/images/icon-video.svg",
+        "assets/images/iconmonstr-video.png",
     ], {base: "./assets"})
         .pipe(gulp.dest('dist/assets'));
 
