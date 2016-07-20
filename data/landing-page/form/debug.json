@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "nextAction": "SubmitForm",
+    "properties": {
+      "title": "",
+      "language": "en",
+      "submitLabel": "Submit"
+    },
+    "config": [
+      {
+        "fieldName": "enabledFields",
+        "type": "hidden"
+      },
+      {
+        "fieldName": "email",
+        "type": "hidden"
+      }
+    ],
+    "data": {
+      "enabledFields": "fieldEmail",
+      "email": "lroem@frlroeo.com"
+    }
+  }
+}

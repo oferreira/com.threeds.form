@@ -43,11 +43,29 @@ namespace Com.Threeds.Service.Adapter {
             data['lpid'] = context.settings.id;
 
            $.ajax({
-                //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.json',
+                //type: "GET",dataType: "json", url: 'data/landing-page/form/debug.json',
                 type: "GET", dataType: "jsonp", url: context.settings.api.url,
                 data:data,
                 success: function (response:Object) {
-                    context.render('form', self.data(response));
+                    let response:any = self.data(response);
+
+                    if(typeof response.result.config != 'undefined'){
+                        let isFinalStep:boolean = true;
+                        for (let i = 0; i < response.result.config.length; i++) {
+                            if(typeof response.result.config[i].type != 'undefined' && response.result.config[i].type != 'hidden'){
+                                isFinalStep = false;
+                                break;
+                            }
+                        }
+
+                        if(isFinalStep){
+                            data['op'] = 'SubmitForm';
+                            self.post(context, data);
+                        }
+                        return;
+                    }
+
+                    context.render('form', response);
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
                     context.render('form', false);

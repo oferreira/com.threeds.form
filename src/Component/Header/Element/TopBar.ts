@@ -1,24 +1,11 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
-/// <reference path="../../../Component/Form/Element/Step.ts" />
-/// <reference path="../../../Element/AbstractPolymerElement.ts" />
-/// <reference path="../../../Component/Form/Element/Behavior/Neolane/FormBehavior.ts" />
 
-namespace Com.Threeds.Component.Form.Element {
+namespace Com.Threeds.Component.Header.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-    import Step = Com.Threeds.Component.Form.Element.Step;
 
-    export interface Map<T> {
-        [K: string]: T;
-    }
-
-    export interface Form {
-        behaviors: any;
-    }
-
-    @component('form-element')
-    @extend("form")
-    @behavior(Com.Threeds.Component.Form.Element.Behavior.Neolane.FormBehavior)
+    @component('header-element')
+    @extend("div")
     export class Form extends AbstractPolymerElement {
         context:any;
 
@@ -165,6 +152,7 @@ namespace Com.Threeds.Component.Form.Element {
             return false;
         }
 
+
         update(data:any) {
             this.add(data);
         }
@@ -285,7 +273,7 @@ namespace Com.Threeds.Component.Form.Element {
                             case 'select-multiple':
                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                     if (form.elements[i].options[j].selected) {
-                                       dict[form.elements[i].name] = form.elements[i].options[j].value;
+                                        dict[form.elements[i].name] = form.elements[i].options[j].value;
                                     }
                                 }
                                 break;
@@ -308,5 +296,5 @@ namespace Com.Threeds.Component.Form.Element {
     }
 }
 
-Com.Threeds.Component.Form.Element.Form.register();
+Com.Threeds.Component.Header.Element.Form.register();
 
