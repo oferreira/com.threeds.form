@@ -271,7 +271,8 @@ ul.ds-tabs-header:first-child{
 
 // STEP 3 Element
 // ==========================================================================
-.ds-form-sucess{
+.ds-form-sucess,
+.ds-form-sucess-anim{
 	margin: auto;
 	width: 476px;
 	margin-bottom: 205px;
@@ -345,6 +346,7 @@ ul.ds-tabs-header:first-child{
 // Form contact
 .ds-ldp-form-contact{
 	max-width: 220px;
+	width: 220px;
 	margin: auto;
 	text-align: center;
 	position: absolute;
