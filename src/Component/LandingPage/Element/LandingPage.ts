@@ -175,7 +175,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
            if(localStorage.getItem(context.context.settings.id)){
                 context.success(context, {})
                context.context.elem.removeClass('ds-form-sucess-anim');
-                context.context.elem.addClass('ds-form-sucess');
+               context.context.elem.addClass('ds-form-sucess');
                 return;
             }
 

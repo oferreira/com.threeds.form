@@ -27,7 +27,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                         <form class="ds-form ds-ldp-form-container ds-dl-info">
 
                             <p>${data.content}</p>
-                            <a href="${context.settings.action.url}" class="ds-link ds-link-arrow-left">
+                            <a href="${context.settings.action.url}" target="_blank"  class="ds-link ds-link-arrow-left">
                                 ${context.settings.action.label}<br />
                                 <span>${context.settings.action.content}</span>
                             </a>
