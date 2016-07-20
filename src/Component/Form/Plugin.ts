@@ -79,11 +79,9 @@ namespace Com.Threeds.Component.Form {
         clear() {
             while (this.elem.firstChild) this.elem.removeChild(this.elem.firstChild);
             this.elem.html(null);
-            console.log('ezkkzeokr');
         }
 
         render(type:string, data:any):void {
-            console.log('ezkkzeok2222r');
             this.clear();
             if(typeof this.settings.hook.render == 'function'){
                 this.settings.hook.render(this, type, data);

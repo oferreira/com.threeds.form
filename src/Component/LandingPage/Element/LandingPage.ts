@@ -62,7 +62,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 data: this.context.settings.steps
             };
 
-            console.log(this.context);
             return Tabs.create(this.context, options);
         }
 
