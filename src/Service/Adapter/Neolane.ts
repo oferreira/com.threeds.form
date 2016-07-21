@@ -61,8 +61,8 @@ namespace Com.Threeds.Service.Adapter {
                         if(isFinalStep){
                             data['op'] = 'SubmitForm';
                             self.post(context, data);
+                            return;
                         }
-                        return;
                     }
 
                     context.render('form', response);

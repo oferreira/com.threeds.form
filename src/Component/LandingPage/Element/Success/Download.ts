@@ -27,7 +27,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                         <form class="ds-form ds-ldp-form-container ds-dl-info">
 
                             <p>${data.content}</p>
-                            <a href="${context.settings.action.url}" target="_blank"  class="ds-link ds-link-arrow-left">
+                            <a href="${context.settings.action.url}" target="_blank"  class="ds-link ds-link-arrow-left" onclick="return tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Download/ClickToURL', page_category: 'Landing_Page'})">
                                 ${context.settings.action.label}<br />
                                 <span>${context.settings.action.content}</span>
                             </a>

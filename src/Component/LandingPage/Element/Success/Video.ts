@@ -79,9 +79,17 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
                 const modal = new VanillaModal({
                     onOpen : function () {
+                        if(typeof window.tc_events_5 == "function"){
+                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Play', page_category: 'Landing_Page'});
+                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Play');
+                        }
                         jwplayer().play();
                     },
                     onClose : function (){
+                        if(typeof window.tc_events_5 == "function"){
+                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Stop', page_category: 'Landing_Page'});
+                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Stop');
+                        }
                         jwplayer().stop();
                     }
                 });
@@ -104,9 +112,17 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
                 const modal = new VanillaModal({
                     onOpen : function () {
+                        if(typeof window.tc_events_5 == "function"){
+                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Play', page_category: 'Landing_Page'});
+                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Play');
+                        }
                         player.playVideo();
                     },
                     onClose : function (){
+                        if(typeof window.tc_events_5 == "function"){
+                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Stop', page_category: 'Landing_Page'});
+                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Stop');
+                        }
                         player.stopVideo();
                     }
                 });

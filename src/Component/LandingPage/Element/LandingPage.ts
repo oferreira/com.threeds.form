@@ -262,6 +262,11 @@ namespace Com.Threeds.Component.LandingPage.Element {
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
+
+            if(index == 1 && typeof window.tc_events_5 == "function"){
+                window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step2/Form', page_category: 'Landing_Page'});
+                console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step2/Form');
+            }
         }
     }
 }
