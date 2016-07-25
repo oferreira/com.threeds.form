@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        var Drupal = {};
+    </script>
+
+    <link rel="import" href="./dist/bower_components/polymer/polymer.html">
+    <link rel="import" href="./dist/bower_components/polymer-ts/polymer-ts.html">
+    <script src="./dist/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <script src="./dist/bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css">
+    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+</head>
+<body>
+<div id="myheader"></div>
+<script type="text/javascript">
+    (function ($, Drupal, window) {
+        addEventListener('WebComponentsReady', function () {
+            var options = {
+                "bgcolor": "dark",
+                "secure": false,
+                "website": "c",
+                "language": "pt",
+                "hasfooter": true,
+                "hascompass": true,
+                "hasborder": false,
+                "margin": "55",
+                "width": "100%",
+                "mediaqueries": [
+                    {
+                        "min": "1100px",
+                        "max": "1299px",
+                        "width": "1000px",
+                        "margin": "55px"
+                    },
+                    {
+                        "min": "1300px",
+                        "width": "1200px"
+                    }
+                ],
+                "callback":null
+            };
+            $('body').threeds().header(options);
+        });
+    })(jQuery, Drupal, window);
+</script>
+
+</body>
+</html>
+
