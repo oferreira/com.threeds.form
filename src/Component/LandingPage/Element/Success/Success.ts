@@ -3,6 +3,11 @@
 /// <reference path="../../../../Component/LandingPage/Element/Success/Download.ts" />
 /// <reference path="../../../../Component/LandingPage/Element/Success/Video.ts" />
 
+
+interface Window{
+    tc_events_5(context:string, target:string, options:any):void;
+}
+
 namespace Com.Threeds.Component.LandingPage.Element.Success {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
