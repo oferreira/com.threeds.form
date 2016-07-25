@@ -25,6 +25,7 @@
     "jquery-file-download": "~1.4.4",
     "jwplayer": "~6.12.4956",
     "youtube-iframe-api": "~0.0.1",
-    "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master"
+    "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master",
+    "mustache.js": "mustache#~2.2.1"
   }
 }

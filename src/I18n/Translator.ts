@@ -15,7 +15,7 @@ namespace Com.Threeds.I18n {
             this.adapter = options.adapter;
         }
 
-        public static get instance():Com.Threeds.I18n.Translator {
+        public static instance():Com.Threeds.I18n.Translator {
             if (Translator._instance == undefined) {
                 Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
             }
@@ -24,12 +24,13 @@ namespace Com.Threeds.I18n {
         }
 
         public t(key:string):string {
-            return <string> Object.find(eval(this.adapter), `${this.lang}.${key}`);
+            let value:string = <string> Object.find(eval(this.adapter), `${this.lang}.${key}`);
+            return (typeof value == 'undefined' ? key:value);
         }
     }
 
     $.i18n = function () {
-        return Com.Threeds.I18n.Translator.instance;
+        return Com.Threeds.I18n.Translator.instance();
     };
 }
 

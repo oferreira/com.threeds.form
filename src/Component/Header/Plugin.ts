@@ -1,5 +1,7 @@
-/// <reference path="../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../Component/Header/Element/Header.ts" />
+/// <reference path="../../Component/Header/Element/Footer.ts" />
 
 interface JQueryStatic{
     namespace(namespaceName?:any, closures?:any): JQuery;
@@ -9,6 +11,7 @@ namespace Com.Threeds.Component.Header {
 
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
     import Header = Com.Threeds.Component.Header.Element.Header;
+    import Footer = Com.Threeds.Component.Header.Element.Footer;
 
     export class Plugin extends AbstractPlugin {
         public elem:any;
@@ -52,7 +55,73 @@ namespace Com.Threeds.Component.Header {
             super(elem, options);
             this.elem = elem;
             this.settings = $.extend({}, this.settings, options);
-            this.elem.append(new Header(this, this.settings));
+
+            this.createMediaQueries();
+            this.createFooter();
+
+
+            //this.elem.append(Header.create(this, this.settings));
+        }
+
+        url(path:string){
+            return (this.settings.secure ? 'https://':'http://') + 'www.3ds.com/' + path;
+        }
+
+        t(key:string){
+            return $.i18n().t(key);
+        }
+
+        createFooter():void {
+            if (!this.settings.hasfooter) return;
+            this.elem.append((new Footer(this, this.settings)).render())
+        }
+
+
+        createMediaQueries() {
+            if (this.settings.mediaqueries) {
+                let output:string = "";
+                let min_rule:string;
+                let max_rule:string;
+
+                for (var i = 0; i < this.settings.mediaqueries.length; i++) {
+                    let row:any = this.settings.mediaqueries[i];
+                    min_rule = "and ( min-width: %min% )";
+                    max_rule = "and ( max-width: %max% )";
+
+                    output += "@media screen %min_rule% %max_rule% { %rules% }";
+
+                    if (row.min && row.min != null && row.min != "") {
+                        min_rule = min_rule.replace('%min%', row.min);
+                        output = output.replace("%min_rule%", min_rule);
+                    } else {
+                        output = output.replace("%min_rule%", "");
+                    }
+
+                    if (row.max && row.max != null && row.max != "") {
+                        max_rule = max_rule.replace('%max%', row.max);
+                        output = output.replace("%max_rule%", max_rule);
+                    } else {
+                        output = output.replace("%max_rule%", "");
+                    }
+
+                    var rules = "";
+
+                    if (row.width && row.width != null && row.width != "") {
+                        rules += ".ds_center { width: " + row.width + " !important; }"
+                    }
+
+                    if (row.margin && row.margin != null && row.margin != "") {
+                        rules += ".ds_inner { padding: 0 " + row.margin + " !important; }"
+                    }
+
+                    output = output.replace('%rules%', rules);
+
+                }
+
+                let styleElement:HTMLStyleElement = document.createElement('style');
+                styleElement.innerHTML = output;
+                this.elem.append(styleElement);
+            }
         }
     }
 

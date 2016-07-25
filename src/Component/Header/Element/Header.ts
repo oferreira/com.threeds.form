@@ -14,6 +14,10 @@ namespace Com.Threeds.Component.Header.Element {
             this.context = context;
             this.classList.add('ds-header')
         }
+
+        public static create(context:any, data:any) {
+
+        }
     }
 
 }
