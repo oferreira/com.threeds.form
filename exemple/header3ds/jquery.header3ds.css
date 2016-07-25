@@ -1,0 +1,390 @@
+.ds {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  left: 0;
+  top: 0;
+  border-bottom: 1px solid #c2c2c2;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+.ds.ds_noborder {
+  border-bottom: 0 none transparent;
+  height: 56px;
+}
+.ds * {
+  margin: 0;
+  padding: 0;
+}
+.ds a {
+  text-decoration: none;
+}
+.ds .ds_center {
+  margin: 0 auto;
+  height: 55px;
+  max-width: 100%;
+}
+.ds .ds_inner {
+  padding: 0 15px;
+  height: 55px;
+}
+.ds .ds_hide {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.ds .ds_logo {
+  float: left;
+  padding: 6px 0;
+}
+.ds .ds_logo a {
+  margin: 0;
+  background: url("header3ds.png") 0 -88px transparent no-repeat;
+  width: 132px;
+  height: 44px;
+  float: left;
+}
+.ds .ds_compass {
+  float: right;
+  width: 42px;
+  height: 55px;
+  padding: 0;
+  margin-left: 7px;
+}
+.ds .ds_compass a {
+  margin: 0;
+  background: url("header3ds.png") -530px 0px transparent no-repeat;
+  width: 42px;
+  height: 55px;
+  display: block;
+}
+.ds .ds_id {
+  float: right;
+  width: 200px;
+  height: 55px;
+  padding: 6px 0;
+  background-color: #305164;
+}
+.ds .ds_id img {
+  vertical-align: middle;
+  width: 44px;
+  height: 44px;
+}
+.ds .ds_right,
+.ds .ds_social,
+.ds .ds_links,
+.ds .ds_links p,
+.ds .ds_links p > span {
+  float: right;
+  height: 55px;
+  line-height: 44px;
+}
+.ds .ds_right,
+.ds .ds_social {
+  float: right;
+}
+.ds .ds_links,
+.ds .ds_social {
+  display: inline-block;
+}
+.ds .ds_links {
+  float: right;
+  text-align: right;
+  padding: 6px 0;
+}
+.ds .ds_links a {
+  display: table-cell;
+  color: #ffffff;
+  font-weight: bold;
+}
+.ds .ds_links a:hover {
+  color: #42b4d5;
+}
+.ds .ds_links a span {
+  padding-right: 20px;
+  height: 44px;
+  display: table-cell;
+  vertical-align: middle;
+}
+@media (max-width: 639px) {
+  .ds .ds_links {
+    display: none;
+  }
+}
+.ds .ds_btn {
+  background: url("header3ds.png") -132px -132px transparent no-repeat;
+  width: 44px;
+  height: 44px;
+  margin: 6px 0;
+  display: block;
+  cursor: pointer;
+  float: right;
+}
+.ds .ds_btn:hover {
+  background-position: -132px -88px;
+}
+@media (max-width: 639px) {
+  .ds .ds_btn {
+    display: none;
+  }
+}
+.ds.ds_footer {
+  top: auto;
+  bottom: auto;
+  height: 60px;
+}
+.ds .ds_slider {
+  float: right;
+  display: none;
+  width: 264px;
+  height: 55px;
+  padding: 6px 0;
+  position: relative;
+  top: -6px;
+  right: 40px;
+}
+.ds .ds_slider a {
+  width: 44px;
+  height: 44px;
+  display: block;
+  float: left;
+  background: url("header3ds.png") -220px -132px transparent no-repeat;
+}
+.ds .ds_slider a:hover {
+  background-position: -220px -88px;
+}
+.ds .ds_slider .linkedin a {
+  background-position: -264px -132px;
+}
+.ds .ds_slider .linkedin a:hover {
+  background-position: -264px -88px;
+}
+.ds .ds_slider .rss a {
+  background-position: -308px -132px;
+}
+.ds .ds_slider .rss a:hover {
+  background-position: -308px -88px;
+}
+.ds .ds_slider .swym a {
+  background-position: -352px -132px;
+}
+.ds .ds_slider .swym a:hover {
+  background-position: -352px -88px;
+}
+.ds .ds_slider .twitter a {
+  background-position: -396px -132px;
+}
+.ds .ds_slider .twitter a:hover {
+  background-position: -396px -88px;
+}
+.ds .ds_slider .youtube a {
+  background-position: -440px -132px;
+}
+.ds .ds_slider .youtube a:hover {
+  background-position: -440px -88px;
+}
+.ds .ds_flinks {
+  display: table;
+  width: 100%;
+  height: 60px;
+}
+.ds .ds_flinks p {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 15px;
+}
+.ds .ds_flinks a {
+  color: #949393;
+  margin-left: 5px;
+  text-decoration: none;
+}
+.ds .ds_flinks a:hover {
+  color: white;
+}
+.ds .ds_flinks .ds_copy {
+  display: block;
+}
+.ds .ds_flinks .ds_pipe {
+  color: #949393;
+  margin-left: 3px;
+}
+.ds .ds_flinks .ds_pipe:before {
+  content: "|";
+}
+.ds .ds_flinks span {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.ds.ds_black {
+  background-color: #000000;
+  border-bottom-color: #c2c2c2;
+}
+.ds.ds_black .ds_slider {
+  background-color: #1a1a1a;
+}
+.ds.ds_grey {
+  background-color: #d1cfcf;
+  border-bottom-color: #bebebe;
+}
+.ds.ds_grey .ds_slider {
+  background-color: #d6d4d4;
+}
+.ds.ds_dark {
+  background-color: #33424b;
+  border-bottom-color: #c2c2c2;
+}
+.ds.ds_dark .ds_slider {
+  background-color: #47555d;
+}
+.ds.ds_white {
+  background-color: #ffffff;
+  border-bottom-color: #ebebeb;
+}
+.ds.ds_white .ds_slider {
+  background-color: #e6e6e6;
+}
+.ds.ds_light {
+  background-color: #e6ebee;
+  border-bottom-color: #cdcdcd;
+}
+.ds.ds_light .ds_slider {
+  background-color: #cfd3d6;
+}
+.ds.ds_blue {
+  background-color: #305164;
+  border-bottom-color: #8096a3;
+}
+.ds.ds_blue .ds_slider {
+  background-color: #456273;
+}
+.ds.ds_txtdark {
+  color: #000000;
+}
+.ds.ds_txtdark h3 a {
+  background-position: 0 0;
+}
+.ds.ds_txtdark .ds_compass a {
+  background-position: -530px -55px;
+}
+.ds.ds_txtdark .ds_flinks a {
+  color: #000000;
+}
+.ds.ds_txtdark .ds_flinks a:hover {
+  color: #42b4d5;
+}
+.ds.ds_txtdark a {
+  color: #000000;
+}
+.ds.ds_txtdark a:hover {
+  color: #42b4d5;
+}
+.ds.ds_txtdark .ds_btn {
+  background-position: -132px -44px;
+}
+.ds.ds_txtdark .ds_btn:hover {
+  background-position: -132px 0px;
+}
+.ds.ds_txtdark .ds_slider a {
+  background-position: -220px -44px;
+}
+.ds.ds_txtdark .ds_slider a:hover {
+  background-position: -220px 0px;
+}
+.ds.ds_txtdark .ds_slider .linkedin a {
+  background-position: -264px -44px;
+}
+.ds.ds_txtdark .ds_slider .linkedin a:hover {
+  background-position: -264px 0px;
+}
+.ds.ds_txtdark .ds_slider .rss a {
+  background-position: -308px -44px;
+}
+.ds.ds_txtdark .ds_slider .rss a:hover {
+  background-position: -308px 0px;
+}
+.ds.ds_txtdark .ds_slider .swym a {
+  background-position: -352px -44px;
+}
+.ds.ds_txtdark .ds_slider .swym a:hover {
+  background-position: -352px 0px;
+}
+.ds.ds_txtdark .ds_slider .twitter a {
+  background-position: -396px -44px;
+}
+.ds.ds_txtdark .ds_slider .twitter a:hover {
+  background-position: -396px 0px;
+}
+.ds.ds_txtdark .ds_slider .youtube a {
+  background-position: -440px -44px;
+}
+.ds.ds_txtdark .ds_slider .youtube a:hover {
+  background-position: -440px 0px;
+}
+.ds.ds_txtblue {
+  color: #305164;
+}
+.ds.ds_txtblue h3 a {
+  background-position: 0 -176px;
+}
+.ds.ds_txtblue .ds_compass a {
+  background-position: -530px -55px;
+}
+.ds.ds_txtblue .ds_flinks a {
+  color: #305164;
+}
+.ds.ds_txtblue .ds_flinks a:hover {
+  color: #42b4d5;
+}
+.ds.ds_txtblue a {
+  color: #305164;
+}
+.ds.ds_txtblue a:hover {
+  color: #42b4d5;
+}
+.ds.ds_txtblue .ds_btn {
+  background-position: -132px -220px;
+}
+.ds.ds_txtblue .ds_btn:hover {
+  background-position: -132px -176px;
+}
+.ds.ds_txtblue .ds_slider a {
+  background-position: -220px -220px;
+}
+.ds.ds_txtblue .ds_slider a:hover {
+  background-position: -220px -176px;
+}
+.ds.ds_txtblue .ds_slider .linkedin a {
+  background-position: -264px -220px;
+}
+.ds.ds_txtblue .ds_slider .linkedin a:hover {
+  background-position: -264px -176px;
+}
+.ds.ds_txtblue .ds_slider .rss a {
+  background-position: -308px -220px;
+}
+.ds.ds_txtblue .ds_slider .rss a:hover {
+  background-position: -308px -176px;
+}
+.ds.ds_txtblue .ds_slider .swym a {
+  background-position: -352px -220px;
+}
+.ds.ds_txtblue .ds_slider .swym a:hover {
+  background-position: -352px -176px;
+}
+.ds.ds_txtblue .ds_slider .twitter a {
+  background-position: -396px -220px;
+}
+.ds.ds_txtblue .ds_slider .twitter a:hover {
+  background-position: -396px -176px;
+}
+.ds.ds_txtblue .ds_slider .youtube a {
+  background-position: -440px -220px;
+}
+.ds.ds_txtblue .ds_slider .youtube a:hover {
+  background-position: -440px -176px;
+}
