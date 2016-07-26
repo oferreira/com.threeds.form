@@ -49,7 +49,7 @@ body {
 }
 
 .vanilla-modal .modal {
-	display: block;
+	display: none;
 	position: fixed;
 	content: "";
 	top: 0;
@@ -88,6 +88,7 @@ body {
 	z-index: 99;
 	opacity: 1;
 	transition: opacity 0.2s;
+	display: block;
 }
 
 .modal-inner {
