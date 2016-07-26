@@ -23,6 +23,11 @@ interface JWPlayerStatic {
     (elem?: Element): JWPlayer;
 }
 
+
+interface Window{
+    tc_events_5(context:string, target:string, options:any):void;
+}
+
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;

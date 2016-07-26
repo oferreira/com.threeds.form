@@ -10,6 +10,10 @@ interface Element{
     currentPosition:number;
 }
 
+interface Window{
+    tc_events_5(context:string, target:string, options:any):void;
+}
+
 namespace Com.Threeds.Component.LandingPage.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;

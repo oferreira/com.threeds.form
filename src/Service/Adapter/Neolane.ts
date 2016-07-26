@@ -46,8 +46,8 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/debug.json',
                 type: "GET", dataType: "jsonp", url: context.settings.api.url,
                 data:data,
-                success: function (response:Object) {
-                    let response:any = self.data(response);
+                success: function (response:any) {
+                    response = self.data(response);
 
                     if(typeof response.result.config != 'undefined'){
                         let isFinalStep:boolean = true;
