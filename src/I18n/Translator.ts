@@ -27,6 +27,14 @@ namespace Com.Threeds.I18n {
             let value:string = <string> Object.find(eval(this.adapter), `${this.lang}.${key}`);
             return (typeof value == 'undefined' ? key:value);
         }
+
+        public url(key:string, baseUrl?:string):string {
+            let value:string = <string> Object.find(eval(this.adapter), `${this.lang}.${key}-url`);
+            if(typeof baseUrl != "undefined"){
+                value = value.replace(/^\{\{baseurl\}\}/gi, baseUrl);
+            }
+            return (typeof value == 'undefined' ? key:value);
+        }
     }
 
     $.i18n = function () {

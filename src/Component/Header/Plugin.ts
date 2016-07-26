@@ -63,12 +63,27 @@ namespace Com.Threeds.Component.Header {
             //this.elem.append(Header.create(this, this.settings));
         }
 
-        url(path:string){
-            return (this.settings.secure ? 'https://':'http://') + 'www.3ds.com/' + path;
+        url(path:string):string{
+            return this.baseUrl() + path;
         }
 
-        t(key:string){
-            return $.i18n().t(key);
+        baseUrl():string{
+            return (this.settings.secure ? 'https://':'http://') + 'www.3ds.com/';
+        }
+
+        getClassTextColor():string {
+            if (this.settings.bgcolor == 'black')return "ds_txtlight";
+            if (this.settings.bgcolor == 'dark') return "ds_txtlight";
+            if (this.settings.bgcolor == 'grey') return "ds_txtlight";
+            if (this.settings.bgcolor == 'light')return "ds_txtdark";
+            if (this.settings.bgcolor == 'white')return "ds_txtblue";
+            if (this.settings.bgcolor == 'blue') return "ds_txtlight";
+
+            return "ds_txtblue";
+        }
+
+        getClassTheme():string {
+            return "ds_" + this.settings.bgcolor;
         }
 
         createFooter():void {
