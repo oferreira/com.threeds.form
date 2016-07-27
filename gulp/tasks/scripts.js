@@ -15,7 +15,10 @@ jshint = require("gulp-jshint"),
     extract = require("gulp-html-extract")
 uglify = require('gulp-uglify')
 stripComments = require('gulp-strip-comments')
-buildHelper = require('../helpers/build-helper');
+buildHelper = require('../helpers/build-helper')
+extend = require('gulp-extend');
+var replace = require('gulp-replace');
+var translations = require('../../languages/merge.json');
 
 
 gulp.task('copy', function () {
@@ -44,12 +47,10 @@ gulp.task('copy', function () {
 
 });
 
-
-
-
 gulp.task('threeds-landingpage-js', function () {
 
     var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
+        .pipe(replace("{'_translations_'}", JSON.stringify(translations)))
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(babel())

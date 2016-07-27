@@ -25,7 +25,11 @@ namespace Com.Threeds.I18n {
 
         public t(key:string):string {
             let value:string = <string> Object.find(eval(this.adapter), `${this.lang}.${key}`);
-            return (typeof value == 'undefined' ? key:value);
+            if(typeof value == 'undefined'){
+                console.log('Translator', `${this.lang}.${key} is not found !`);
+                return key;
+            }
+            return value;
         }
 
         public url(key:string, baseUrl?:string):string {
@@ -33,7 +37,12 @@ namespace Com.Threeds.I18n {
             if(typeof baseUrl != "undefined"){
                 value = value.replace(/^\{\{baseurl\}\}/gi, baseUrl);
             }
-            return (typeof value == 'undefined' ? key:value);
+
+            if(typeof value == 'undefined'){
+                console.log('Translator', `${this.lang}.${key}-url is not found !`);
+                return key;
+            }
+            return value;
         }
     }
 

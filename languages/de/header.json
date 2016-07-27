@@ -1,0 +1,57 @@
+{
+  "de": {
+    "header": {
+      "logo": {
+        "title": "Dassault Systèmes"
+      },
+      "nav": {
+        "links": [
+          {
+            "label": "Branchen",
+            "url": "{{baseUrl}}branchen/",
+            "tags": [
+              "b",
+              "c"
+            ]
+          },
+          {
+            "label": "Produkte und Services",
+            "url": "{{baseUrl}}produkte-und-services/",
+            "tags": [
+              "c",
+              "h"
+            ]
+          },
+          {
+            "label": "Passion For Innovation",
+            "url": "{{baseUrl}}3dexperience/",
+            "tags": [
+              "d"
+            ]
+          },
+          {
+            "label": "Partner",
+            "url": "{{baseUrl}}partner/",
+            "tags": [
+              "e"
+            ]
+          },
+          {
+            "label": "Gebrauchsgüter und Handel",
+            "url": "{{baseUrl}}branchen/gebrauchsgueter-und-handel/",
+            "tags": [
+              "f"
+            ]
+          },
+          {
+            "label": "Veranstaltungen",
+            "url": "{{baseUrl}}veranstaltungen/",
+            "tags": [
+              "g"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

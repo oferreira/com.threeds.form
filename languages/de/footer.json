@@ -1,0 +1,25 @@
+{
+  "de": {
+    "footer": {
+      "links": [
+        {
+          "label": "Rechtliche Hinweise",
+          "url": "{{baseUrl}}rechtliche-hinweise/"
+        },
+        {
+          "label": "Nutzungsbedinungen",
+          "url": "{{baseUrl}}nutzungsbedingungen/"
+        },
+        {
+          "label": "Datenschutzrichtlinie",
+          "url": "{{baseUrl}}datenschutzrichtlinie/"
+        },
+        {
+          "label": "Piraterie",
+          "url": "{{baseUrl}}piraterie/"
+        }
+      ],
+      "copyright": "© 2002-2016 Dassault Systèmes - Sämtliche Rechte vorbehalten"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "fr": {
+    "header": {
+      "nav": {
+        "links": [
+          {
+            "label": "Industries",
+            "url": "{{baseUrl}}industries/",
+            "tags": [
+              "b",
+              "c"
+            ]
+          },
+          {
+            "label": "Produits et Services",
+            "url": "{{baseUrl}}produits-et-services/",
+            "tags": [
+              "c",
+              "h"
+            ]
+          },
+          {
+            "label": "Passion For Innovation",
+            "url": "{{baseUrl}}3dexperience/",
+            "tags": [
+              "d"
+            ]
+          },
+          {
+            "label": "Partenaires",
+            "url": "{{baseUrl}}partners/",
+            "tags": [
+              "e"
+            ]
+          },
+          {
+            "label": "CGR",
+            "url": "{{baseUrl}}industries/consumer-goods-retail/",
+            "tags": [
+              "f"
+            ]
+          },
+          {
+            "label": "Evénements",
+            "url": "{{baseUrl}}evenements/",
+            "tags": [
+              "g"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
