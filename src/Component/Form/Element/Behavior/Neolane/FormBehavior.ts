@@ -141,14 +141,15 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                     if(typeof elem.name != 'undefined' ){
                         node.childNodes[i].parentFieldValue = elem.value;
                         node.childNodes[i].update();
+	                    if (window.innerWidth > 1024){
+	                        $('.ds-ldp-global-container').animate({
+	                            height : $('.ds-form-fieldset').outerHeight()
+	                        });
 
-                        $('.ds-ldp-global-container').animate({
-                            height : $('.ds-form-fieldset').outerHeight()
-                        });
-
-                        $('.ds-lpd-info-form').animate({
-                            height : $('.ds-form-fieldset').outerHeight()
-                        });
+	                        $('.ds-lpd-info-form').animate({
+	                            height : $('.ds-form-fieldset').outerHeight()
+	                        });
+	                    }
                     }
                 }
 

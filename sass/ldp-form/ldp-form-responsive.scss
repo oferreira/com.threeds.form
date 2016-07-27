@@ -9,8 +9,8 @@ $breakpoint:  1024px;
 @media screen and (max-width: $breakpoint)  {
 
 	.ds-form-ldp-neolane{
-		margin-left: -10px;
-		margin-right: -10px;
+		margin-left: 8px;
+		margin-right: 8px;
 	}
 	//Container
 	.ds-ldp-global-container{
@@ -59,7 +59,7 @@ $breakpoint:  1024px;
 		margin-top: 30px;
 	}
 	.ds-form-ldp-neolane ul.ds-tabs-header:first-child{
-		margin-top: 26px;
+		margin-top: 32px !important;
 	}
 	.ds-tabs-container .ds-tab{
 		font-size: 22px;
@@ -96,6 +96,10 @@ $breakpoint:  1024px;
 	}
 
 	.ds-form-sucess{
+		.ds-ldp-form-container{
+			height:auto;
+		}
+
 		.ds-block-ty{
 			height:240px !important;
 		}
