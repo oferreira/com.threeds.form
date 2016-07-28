@@ -7,16 +7,16 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
-            "url": "{{baseUrl}}industries/",
+            "label": "Industrias",
+            "url": "{{baseUrl}}industrias/",
             "tags": [
               "b",
               "c"
             ]
           },
           {
-            "label": "Products & Services",
-            "url": "{{baseUrl}}products-services/",
+            "label": "Produtos e Servicos",
+            "url": "{{baseUrl}}produtos-e-servicos/",
             "tags": [
               "c",
               "h"
@@ -30,8 +30,8 @@
             ]
           },
           {
-            "label": "Partners",
-            "url": "{{baseUrl}}partners/",
+            "label": "Parceiros",
+            "url": "{{baseUrl}}parceiros/",
             "tags": [
               "e"
             ]
@@ -44,8 +44,8 @@
             ]
           },
           {
-            "label": "Events",
-            "url": "{{baseUrl}}events/",
+            "label": "Eventos",
+            "url": "{{baseUrl}}eventos/",
             "tags": [
               "g"
             ]

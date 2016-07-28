@@ -7,7 +7,7 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
+            "label": "산업",
             "url": "{{baseUrl}}industries/",
             "tags": [
               "b",
@@ -15,7 +15,7 @@
             ]
           },
           {
-            "label": "Products & Services",
+            "label": "제품과 서비스",
             "url": "{{baseUrl}}products-services/",
             "tags": [
               "c",
@@ -30,21 +30,21 @@
             ]
           },
           {
-            "label": "Partners",
+            "label": "파트너",
             "url": "{{baseUrl}}partners/",
             "tags": [
               "e"
             ]
           },
           {
-            "label": "Consumer Goods & Retail",
+            "label": "소비재 산업",
             "url": "{{baseUrl}}industries/consumer-goods-retail/",
             "tags": [
               "f"
             ]
           },
           {
-            "label": "Events",
+            "label": "이벤트",
             "url": "{{baseUrl}}events/",
             "tags": [
               "g"

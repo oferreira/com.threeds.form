@@ -1,5 +1,5 @@
 {
-  "en": {
+  "ja": {
     "header": {
       "logo": {
         "title": "Dassault Systèmes"
@@ -7,7 +7,7 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
+            "label": "インダストリー",
             "url": "{{baseUrl}}industries/",
             "tags": [
               "b",
@@ -15,7 +15,7 @@
             ]
           },
           {
-            "label": "Products & Services",
+            "label": "製品 / サービス",
             "url": "{{baseUrl}}products-services/",
             "tags": [
               "c",
@@ -30,21 +30,21 @@
             ]
           },
           {
-            "label": "Partners",
+            "label": "パートナー",
             "url": "{{baseUrl}}partners/",
             "tags": [
               "e"
             ]
           },
           {
-            "label": "Consumer Goods & Retail",
+            "label": "消費財・小売業",
             "url": "{{baseUrl}}industries/consumer-goods-retail/",
             "tags": [
               "f"
             ]
           },
           {
-            "label": "Events",
+            "label": "イベント/セミナー",
             "url": "{{baseUrl}}events/",
             "tags": [
               "g"

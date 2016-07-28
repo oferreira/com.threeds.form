@@ -1,5 +1,5 @@
 {
-  "en": {
+  "es": {
     "header": {
       "logo": {
         "title": "Dassault Systèmes"
@@ -7,16 +7,16 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
-            "url": "{{baseUrl}}industries/",
+            "label": "Industrias",
+            "url": "{{baseUrl}}industrias/",
             "tags": [
               "b",
               "c"
             ]
           },
           {
-            "label": "Products & Services",
-            "url": "{{baseUrl}}products-services/",
+            "label": "Productos y Servicios",
+            "url": "{{baseUrl}}productos-y-servicios/",
             "tags": [
               "c",
               "h"
@@ -24,7 +24,7 @@
           },
           {
             "label": "Passion For Innovation",
-            "url": "{{baseUrl}}3dexperience/",
+            "url": "{{baseUrl}}passion-for-innovation/",
             "tags": [
               "d"
             ]
@@ -37,15 +37,15 @@
             ]
           },
           {
-            "label": "Consumer Goods & Retail",
-            "url": "{{baseUrl}}industries/consumer-goods-retail/",
+            "label": "Bienes de consumo y Venta al por menor",
+            "url": "{{baseUrl}}industrias/bienes-de-consumo-y-venta-al-por-menor/",
             "tags": [
               "f"
             ]
           },
           {
-            "label": "Events",
-            "url": "{{baseUrl}}events/",
+            "label": "Eventi",
+            "url": "{{baseUrl}}eventi/",
             "tags": [
               "g"
             ]

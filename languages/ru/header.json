@@ -7,16 +7,16 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
-            "url": "{{baseUrl}}industries/",
+            "label": "Отрасли",
+            "url": "{{baseUrl}}otrasli/",
             "tags": [
               "b",
               "c"
             ]
           },
           {
-            "label": "Products & Services",
-            "url": "{{baseUrl}}products-services/",
+            "label": "Продукты и услуги",
+            "url": "{{baseUrl}}produkty-i-uslugi/",
             "tags": [
               "c",
               "h"
@@ -30,22 +30,22 @@
             ]
           },
           {
-            "label": "Partners",
-            "url": "{{baseUrl}}partners/",
+            "label": "Партнеры",
+            "url": "{{baseUrl}}partnery/",
             "tags": [
               "e"
             ]
           },
           {
-            "label": "Consumer Goods & Retail",
-            "url": "{{baseUrl}}industries/consumer-goods-retail/",
+            "label": "Товары широкого потребления и розница",
+            "url": "{{baseUrl}}otrasli/tovary-shirokogo-potreblenija-i-roznica/",
             "tags": [
               "f"
             ]
           },
           {
-            "label": "Events",
-            "url": "{{baseUrl}}events/",
+            "label": "События",
+            "url": "{{baseUrl}}sobytija/",
             "tags": [
               "g"
             ]

@@ -7,16 +7,16 @@
       "nav": {
         "links": [
           {
-            "label": "Industries",
-            "url": "{{baseUrl}}industries/",
+            "label": "Branscher",
+            "url": "{{baseUrl}}branscher/",
             "tags": [
               "b",
               "c"
             ]
           },
           {
-            "label": "Products & Services",
-            "url": "{{baseUrl}}products-services/",
+            "label": "Produkter och tjänster",
+            "url": "{{baseUrl}}produkter-och-tjaenster/",
             "tags": [
               "c",
               "h"
@@ -30,15 +30,15 @@
             ]
           },
           {
-            "label": "Partners",
+            "label": "Partner",
             "url": "{{baseUrl}}partners/",
             "tags": [
               "e"
             ]
           },
           {
-            "label": "Consumer Goods & Retail",
-            "url": "{{baseUrl}}industries/consumer-goods-retail/",
+            "label": "Konsumentprodukter och detaljhandel",
+            "url": "{{baseUrl}}branscher/konsumentprodukter-och-detaljhandel/",
             "tags": [
               "f"
             ]

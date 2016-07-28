@@ -1,0 +1,25 @@
+{
+  "ja": {
+    "footer": {
+      "links": [
+        {
+          "label": "Legal Info",
+          "url": "{{baseUrl}}legal-information/"
+        },
+        {
+          "label": "Terms of use",
+          "url": "{{baseUrl}}terms-of-use/"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "{{baseUrl}}privacy-policy/"
+        },
+        {
+          "label": "Piracy",
+          "url": "{{baseUrl}}piracy/"
+        }
+      ],
+      "copyright": "© 2002-2016 Dassault Systèmes - All rights reserved"
+    }
+  }
+}
