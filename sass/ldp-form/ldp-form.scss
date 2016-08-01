@@ -56,6 +56,18 @@
 	background: #f0f0f0;
 }
 
+.ds-field-required.ds-form-text::after,
+.ds-field-required.ds-form-select::after{
+	content: '*';
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	margin: auto;
+	width: 3px;
+	height: 3px;
+	color:$black-22;
+}
+
 
 
 
