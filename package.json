@@ -48,6 +48,7 @@
     "gulp-vulcanize": "^6.1.0",
     "gulp-wrapper": "^1.0.0",
     "jshint": "^2.9.2",
+    "json2excel": "^1.1.0",
     "node-notifier": "^4.5.0",
     "plumber": "^0.4.8",
     "requirejs": "^2.1.22",

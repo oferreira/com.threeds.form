@@ -1,54 +1,42 @@
 /// <reference path="../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
+/// <reference path="../../../Component/Header/Element/Nav.ts"/>
 
 namespace Com.Threeds.Component.Header.Element {
 
+    import Nav = Com.Threeds.Component.Header.Element.Nav;
+
     export class Header {
         context:any;
-        links:any = [];
+        data:any;
 
         constructor(context:any, data:any) {
             this.context = context;
+            this.data = data;
+        }
 
-            this.links.push({
-                "label": $.i18n().t('footer.legal-information'),
-                "url": $.i18n().url('footer.legal-information', this.context.baseUrl()),
-                "pipe": true
-            });
+        compass():string {
+            return `<div class="ds_compass"><a href="${this.context.compassUrl()}"></a></div>`;
+        }
 
-            this.links.push({
-                "label": $.i18n().t('footer.terms-of-use'),
-                "url": $.i18n().url('footer.terms-of-use', this.context.baseUrl()),
-                "pipe": true
-            });
+        logo():string {
+            return `<h3 class="ds_logo"><a href="${this.context.baseUrl()}"><span class="ds_hide">${$.i18n().t('header.logo.title')}</span></a></h3>`;
+        }
 
-            this.links.push({
-                "label": $.i18n().t('footer.privacy-policy'),
-                "url": $.i18n().url('footer.privacy-policy', this.context.baseUrl()),
-                "pipe": true
-            });
-
-            this.links.push({
-                "label": $.i18n().t('footer.piracy'),
-                "url": $.i18n().url('footer.piracy', this.context.baseUrl())
-            });
+        nav():string {
+            if (!this.context.settings.hasnavigation) return;
+            return (new Nav(this.context, this.data)).render();
         }
 
         render():string {
-            let date:Date = new Date();
-            let copyright:string = $.i18n().t('footer.copyright');
-            copyright = copyright.replace(/\{\{Y\}\}/gi, date.getFullYear());
-
             return Mustache.render(`
-                <div class="ds ds_footer ${this.context.getClassTheme()} ${this.context.getClassTextColor()}">
+                <div class="ds ds_noborder ${this.context.getClassTheme()} ${this.context.getClassTextColor()}">
                     <div class="ds_center" style="width: 210%;">
-                        <div class="ds_flinks">
-                            <p>
-                                {{#links}}
-                                    <span><a href="{{url}}" title="{{label}}"><span>{{label}}</span></a></span>
-                                    {{#pipe}}<span class="ds_pipe"></span>{{/pipe}}
-                                {{/links}}
-                                <span class="ds_copy"><span>${copyright}</span></span>
-                            </p>
+                        <div class="ds_inner" style="padding: 0px 55px;">
+                            ${this.logo()}
+                            <div class="ds_right">
+                            ${this.nav()}
+                            ${this.compass()}
+                            </div>
                         </div>
                     </div>
                 </div>

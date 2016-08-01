@@ -20,6 +20,7 @@ namespace Com.Threeds.Component.Header {
             "secure": false,
             "website": "c",
             "language": "pt",
+            "hasnavigation": true,
             "hasfooter": true,
             "hascompass": true,
             "hasborder": false,
@@ -55,20 +56,65 @@ namespace Com.Threeds.Component.Header {
             super(elem, options);
             this.elem = elem;
             this.settings = $.extend({}, this.settings, options);
-
-            this.createMediaQueries();
-            this.createFooter();
-
-
-            //this.elem.append(Header.create(this, this.settings));
+            Com.Threeds._parameters.translator.lang = this.settings.language;
+            this.mediaQueries();
+            this.header();
+            //this.footer();
         }
 
         url(path:string):string{
             return this.baseUrl() + path;
         }
 
+
         baseUrl():string{
+
+            var baseurlLang = "";
+            switch(params.language){
+                case "pt":
+                    baseurlLang = "pt-br/";
+                    break;
+                case "de":
+                    baseurlLang = "de/";
+                    break;
+                default :
+                    break;
+            }
+            if(baseurlLang!= "" && params.language != "en"){
+                baseurlLang = params.language+"/";
+            }
+
+
+            var baseurl = (params.secure)?"https://www.3ds.com/"+baseurlLang:"http://www.3ds.com/"+baseurlLang;
+            var baseurl_nolang = (params.secure)?"https://www.3ds.com/":"http://www.3ds.com/";
+
             return (this.settings.secure ? 'https://':'http://') + 'www.3ds.com/';
+        }
+
+        compassUrl():string {
+            if (this.settings.language == "fr") {
+                return `${this.baseUrl()}a-propos-de-3ds/la-plate-forme-3dexperience/`;
+            } else if (this.settings.language == "de") {
+                return `${this.baseUrl()}ueber-dassault-systemes/3dexperience-plattform/`;
+            } else if (this.settings.language == "it") {
+                return `${this.baseUrl()}informazioni-su-3ds/piattaforma-3dexperience/`;
+            } else if (this.settings.language == "es") {
+                return `${this.baseUrl()}acerca-de-3ds/plataforma-3dexperience/`;
+            } else if (this.settings.language == "ja") {
+                return `${this.baseUrl()}about-3ds/3dexperience-platform/`;
+            } else if (this.settings.language == "zh") {
+                return `${this.baseUrl()}about-3ds/3dexperience-platform/`;
+            } else if (this.settings.language == "ko") {
+                return `${this.baseUrl()}about-3ds/3dexperience-platform/`;
+            } else if (this.settings.language == "ru") {
+                return `${this.baseUrl()}o-3ds/platforma-3dexperience/`;
+            } else if (this.settings.language == "sv") {
+                return `${this.baseUrl()}om-3ds/Plattformen-3DEXPERIENCE/`;
+            } else if (this.settings.language == "pt") {
+                return `${this.baseUrl()}about-3ds/3dexperience-platform/`;
+            }
+
+            return `${this.baseUrl()}about-3ds/3dexperience-platform/`;
         }
 
         getClassTextColor():string {
@@ -83,16 +129,25 @@ namespace Com.Threeds.Component.Header {
         }
 
         getClassTheme():string {
-            return "ds_" + this.settings.bgcolor;
+            return `ds_${this.settings.bgcolor}`;
         }
 
-        createFooter():void {
+        getNoBorder():string {
+            return `ds_${this.settings.bgcolor}`;
+        }
+
+
+        footer():void {
             if (!this.settings.hasfooter) return;
             this.elem.append((new Footer(this, this.settings)).render())
         }
 
+        header():void {
+            this.elem.append((new Header(this, this.settings)).render())
+        }
 
-        createMediaQueries() {
+
+        mediaQueries() {
             if (this.settings.mediaqueries) {
                 let output:string = "";
                 let min_rule:string;
@@ -133,9 +188,9 @@ namespace Com.Threeds.Component.Header {
 
                 }
 
-                let styleElement:HTMLStyleElement = document.createElement('style');
-                styleElement.innerHTML = output;
-                this.elem.append(styleElement);
+                let css:HTMLStyleElement = document.createElement('style');
+                css.innerHTML = output;
+                this.elem.append(css);
             }
         }
     }

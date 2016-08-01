@@ -254,7 +254,7 @@ Developed by: Fred - iud@3ds.com | Dassault Systèmes
 						break;
 					case "c" :
 						links.push( {"n":"インダストリー", 					"u":baseurl+"industries/" 							});
-						links.push( {"n":"製品 / サービス", 		"u":baseurl+"products-services/" 					});
+							links.push( {"n":"製品 / サービス", 		"u":baseurl+"products-services/" 					});
 						break;
 					case "d" :
 						links.push( {"n":"Passion For Innovation", 		"u":baseurl+"passion-for-innovation/" 						});
