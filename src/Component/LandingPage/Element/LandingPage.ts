@@ -79,7 +79,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if(typeof this.context.settings.hook.success == 'undefined') {
                 this.context.settings.hook.success = function(context:any, data:any) {
-                    localStorage.setItem(context.context.settings.id, 'true');
+                    try {
+                        localStorage.setItem(context.context.settings.id, 'true');
+                    }
+                    catch (error) {
+                        console.log('localStorage', error);
+                    }
+
 
                     if(context.context.status.transition){
                         return;
@@ -175,11 +181,16 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         transition(context:any,currentPosition:number):void{
-           if(localStorage.getItem(context.context.settings.id)){
-                context.success(context, {})
-               context.context.elem.removeClass('ds-form-sucess-anim');
-               context.context.elem.addClass('ds-form-sucess');
-                return;
+            try {
+                if(localStorage.getItem(context.context.settings.id)){
+                    context.success(context, {})
+                    context.context.elem.removeClass('ds-form-sucess-anim');
+                    context.context.elem.addClass('ds-form-sucess');
+                    return;
+                }
+            }
+            catch (error) {
+                console.log('localStorage', error);
             }
 
             if(context.context.status.transition){
