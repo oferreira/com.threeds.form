@@ -19,6 +19,7 @@ buildHelper = require('../helpers/build-helper')
 extend = require('gulp-extend');
 var replace = require('gulp-replace');
 var translations = require('../../languages/merge.json');
+var browserify = require('gulp-browserify');
 
 
 gulp.task('copy', function () {
@@ -26,9 +27,6 @@ gulp.task('copy', function () {
         "bower_components/webcomponentsjs/**/*",
         "bower_components/polymer/**/*",
         "bower_components/polymer-ts/**/*",
-        "bower_components/youtube-iframe-api/**/*",
-        "bower_components/youtube-iframe-api/**/*",
-        "bower_components/jwplayer/**/*",
         "bower_components/vanilla-modal/**/*",
         "bower_components/jquery/**/*",
 
@@ -38,10 +36,7 @@ gulp.task('copy', function () {
     gulp.src([
         "assets/3ds-player/**/*",
         "assets/fonts/**/*",
-        "assets/icon/**/*",
-        "assets/images/icon-arrow-circle.svg",
-        "assets/images/icon-video.svg",
-        "assets/images/iconmonstr-video.png",
+        "assets/icon/**/*"
     ], {base: "./assets"})
         .pipe(gulp.dest('dist/assets'));
 
@@ -54,20 +49,13 @@ gulp.task('threeds-landingpage-js', function () {
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(babel())
-        .pipe($.concat('threeds.landingpage.js'))
-        .pipe(wrapper({
-            header: "addEventListener('WebComponentsReady', function () {\n",
-            footer: '});'
-        }))
         .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
-        .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(wrapper({
-            header: "(function ($, window, Drupal) {\n",
-            footer: '})(jQuery, window, Drupal);'
+            header: "(function ($, window) {\n",
+            footer: '})(jQuery, window);'
         }))
         .pipe(addsrc.prepend('bower_components/vanilla-modal/dist/index.js'))
-        .pipe(addsrc.prepend('bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(stripComments())
         .pipe(sourcemaps.write('.'))
@@ -82,7 +70,5 @@ gulp.task('threeds-landingpage-js', function () {
     return $return
 });
 
-
-//gulp.task('scripts', gulpSequence('polymer-js', 'platform-js', 'app-js', 'build-js'));
 gulp.task('scripts', ['threeds-landingpage-js', 'copy']);
 gulp.task('scripts-changed', ['threeds-landingpage-js']);

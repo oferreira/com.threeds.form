@@ -18,7 +18,7 @@ namespace Com.Threeds.Component.Header.Element {
         render():string {
             let date:Date = new Date();
             let copyright:string = $.i18n().t('footer.copyright');
-            copyright = copyright.replace(/\{\{Y\}\}/gi, date.getFullYear());
+            copyright = copyright.replace(/\{\{Y\}\}/gi, <any>date.getFullYear());
 
             return Mustache.render(`
                 <div class="ds ds_footer ${this.context.getClassTheme()} ${this.context.getClassTextColor()}">

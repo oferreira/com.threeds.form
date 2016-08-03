@@ -1,8 +1,11 @@
 {
-  "en": {
+  "ru": {
     "header": {
       "logo": {
         "title": "Dassault Systèmes"
+      },
+      "connect": {
+        "label": "Connect"
       },
       "nav": {
         "links": [

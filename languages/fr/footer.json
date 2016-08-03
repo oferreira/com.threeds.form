@@ -1,54 +1,25 @@
 {
-  "fr": {
-    "header": {
-      "nav": {
-        "links": [
-          {
-            "label": "Industries",
-            "url": "{{baseUrl}}industries/",
-            "tags": [
-              "b",
-              "c"
-            ]
-          },
-          {
-            "label": "Produits et Services",
-            "url": "{{baseUrl}}produits-et-services/",
-            "tags": [
-              "c",
-              "h"
-            ]
-          },
-          {
-            "label": "Passion For Innovation",
-            "url": "{{baseUrl}}3dexperience/",
-            "tags": [
-              "d"
-            ]
-          },
-          {
-            "label": "Partenaires",
-            "url": "{{baseUrl}}partners/",
-            "tags": [
-              "e"
-            ]
-          },
-          {
-            "label": "CGR",
-            "url": "{{baseUrl}}industries/consumer-goods-retail/",
-            "tags": [
-              "f"
-            ]
-          },
-          {
-            "label": "Evénements",
-            "url": "{{baseUrl}}evenements/",
-            "tags": [
-              "g"
-            ]
-          }
-        ]
-      }
+  "en": {
+    "footer": {
+      "links": [
+        {
+          "label": "Legal Info",
+          "url": "{{baseUrl}}legal-information/"
+        },
+        {
+          "label": "Terms of use",
+          "url": "{{baseUrl}}terms-of-use/"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "{{baseUrl}}privacy-policy/"
+        },
+        {
+          "label": "Piracy",
+          "url": "{{baseUrl}}piracy/"
+        }
+      ],
+      "copyright": "© 2002-2016 Dassault Systèmes - All rights reserved"
     }
   }
 }

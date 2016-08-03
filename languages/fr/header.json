@@ -4,6 +4,9 @@
       "logo": {
         "title": "Dassault Systèmes"
       },
+      "connect": {
+        "label": "Connect"
+      },
       "nav": {
         "links": [
           {

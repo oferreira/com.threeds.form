@@ -2,6 +2,7 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../Component/Header/Element/Header.ts" />
 /// <reference path="../../Component/Header/Element/Footer.ts" />
+/// <reference path="../../Http/Request.ts" />
 
 interface JQueryStatic{
     namespace(namespaceName?:any, closures?:any): JQuery;
@@ -12,6 +13,7 @@ namespace Com.Threeds.Component.Header {
     import AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
     import Header = Com.Threeds.Component.Header.Element.Header;
     import Footer = Com.Threeds.Component.Header.Element.Footer;
+
 
     export class Plugin extends AbstractPlugin {
         public elem:any;
@@ -58,37 +60,51 @@ namespace Com.Threeds.Component.Header {
             this.settings = $.extend({}, this.settings, options);
             Com.Threeds._parameters.translator.lang = this.settings.language;
             this.mediaQueries();
-            this.header();
-            //this.footer();
+           this.header();
+            this.elem.css("padding-top","56px").css("position","inherit");
+
+
+            let ticket:string = Com.Threeds.Http.Request.getParam('ticket');
+            if (ticket != null) {
+                $.ajax({
+                    type: "GET",
+                    url: 'https://eu1-ds-iam.3dexperience.3ds.com/serviceValidate?service=' + window.location.href,
+                    success: function (data:any) {
+                        console.log(data)
+                    },
+                    error: function (resultat:any, statut:any, erreur:any) {
+
+                    }
+                });
+            }
+
+            this.footer();
+        }
+
+        userInfo():string {
+            return this.baseUrl() + path;
         }
 
         url(path:string):string{
             return this.baseUrl() + path;
         }
 
-
         baseUrl():string{
-
-            var baseurlLang = "";
-            switch(params.language){
+            let path:string = "";
+            switch (this.settings.language) {
                 case "pt":
-                    baseurlLang = "pt-br/";
+                    path = "pt-br/";
                     break;
                 case "de":
-                    baseurlLang = "de/";
+                    path = "de/";
                     break;
                 default :
                     break;
             }
-            if(baseurlLang!= "" && params.language != "en"){
-                baseurlLang = params.language+"/";
+            if (path != "" && this.settings.language != "en") {
+                path = this.settings.language + "/";
             }
-
-
-            var baseurl = (params.secure)?"https://www.3ds.com/"+baseurlLang:"http://www.3ds.com/"+baseurlLang;
-            var baseurl_nolang = (params.secure)?"https://www.3ds.com/":"http://www.3ds.com/";
-
-            return (this.settings.secure ? 'https://':'http://') + 'www.3ds.com/';
+            return (this.settings.secure ? 'https://' : 'http://') + 'www.3ds.com/' + path;
         }
 
         compassUrl():string {
@@ -145,7 +161,6 @@ namespace Com.Threeds.Component.Header {
         header():void {
             this.elem.append((new Header(this, this.settings)).render())
         }
-
 
         mediaQueries() {
             if (this.settings.mediaqueries) {

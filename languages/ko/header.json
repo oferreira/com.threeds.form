@@ -1,8 +1,11 @@
 {
-  "en": {
+  "ko": {
     "header": {
       "logo": {
         "title": "Dassault Systèmes"
+      },
+      "connect": {
+        "label": "Connect"
       },
       "nav": {
         "links": [
