@@ -16,13 +16,13 @@ gulp.task('styles', function () {
         .pipe($.sass(config.libs.sass))
         .pipe( $.importCss() )
         .pipe( $.autoprefixer(config.libs.autoPrefixer ) )
-        .pipe($.concat('threeds.landingpage.css'))
+        .pipe($.concat('threeds.header.css'))
         .pipe($.sourcemaps.write('./'))
         .pipe(gulp.dest(config.app.styles.sass.dist));
 
     if( buildHelper.isRelease() ){
         $return.pipe(minifyCSS())
-            .pipe($.concat('threeds.landingpage.min.css'))
+            .pipe($.concat('threeds.header.min.css'))
             .pipe(gulp.dest(config.app.styles.sass.dist));
     }
 

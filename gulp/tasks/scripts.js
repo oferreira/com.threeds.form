@@ -34,7 +34,6 @@ gulp.task('copy', function () {
         .pipe(gulp.dest('dist/bower_components'));
 
     gulp.src([
-        "assets/3ds-player/**/*",
         "assets/fonts/**/*",
         "assets/icon/**/*"
     ], {base: "./assets"})
@@ -42,7 +41,7 @@ gulp.task('copy', function () {
 
 });
 
-gulp.task('threeds-landingpage-js', function () {
+gulp.task('threeds-header-js', function () {
 
     var $return = gulp.src(['src/*.ts', 'src/**/*.ts'])
         .pipe(replace("{'_translations_'}", JSON.stringify(translations)))
@@ -50,25 +49,24 @@ gulp.task('threeds-landingpage-js', function () {
         .pipe(ts(tsProject))
         .pipe(babel())
         .pipe(addsrc.prepend('bower_components/jquery.namespace/jquery.namespace.js'))
-        .pipe($.concat('threeds.landingpage.js'))
+        .pipe($.concat('threeds.header.js'))
         .pipe(wrapper({
             header: "(function ($, window) {\n",
             footer: '})(jQuery, window);'
         }))
-        .pipe(addsrc.prepend('bower_components/vanilla-modal/dist/index.js'))
-        .pipe($.concat('threeds.landingpage.js'))
+        .pipe($.concat('threeds.header.js'))
         .pipe(stripComments())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 
     if (buildHelper.isRelease()) {
         $return.pipe(uglify())
-            .pipe($.concat('threeds.landingpage.min.js'))
+            .pipe($.concat('threeds.header.min.js'))
             .pipe(gulp.dest('dist'));
     }
 
     return $return
 });
 
-gulp.task('scripts', ['threeds-landingpage-js', 'copy']);
-gulp.task('scripts-changed', ['threeds-landingpage-js']);
+gulp.task('scripts', ['threeds-header-js', 'copy']);
+gulp.task('scripts-changed', ['threeds-header-js']);

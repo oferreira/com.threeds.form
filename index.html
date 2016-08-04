@@ -4,25 +4,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Landing page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript">
-        var Drupal = {};
-    </script>
+
     <script src="./bower_components/mustache.js/mustache.js"></script>
 
-    <link rel="import" href="./dist/bower_components/polymer/polymer.html">
-    <link rel="import" href="./dist/bower_components/polymer-ts/polymer-ts.html">
-    <script src="./dist/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-
     <script src="./dist/bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+    <script type="text/javascript" src="./dist/threeds.header.js"></script>
+
 
     <link rel="stylesheet" href="./exemple/header3ds/jquery.header3ds.css" />
 </head>
 <body>
 <div id="myheader"></div>
 <script type="text/javascript">
-    (function ($, Drupal, window) {
-        addEventListener('WebComponentsReady', function () {
+    (function ($, window) {
             var options = {
                 "bgcolor": "dark",
                 "secure": false,
@@ -48,8 +42,7 @@
                 "callback":null
             };
             $('body').threeds().header(options);
-        });
-    })(jQuery, Drupal, window);
+    })(jQuery, window);
 </script>
 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
