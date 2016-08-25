@@ -34,8 +34,6 @@ namespace Com.Threeds.Http {
         }
 
         set(name:string, value:string) {
-            name="totot";
-            name="totot";
             let date:any = new Date();
             date.setTime(date.getTime() + (this.settings.lifetime));
             let expires:string = "; expires=" + date.toGMTString();

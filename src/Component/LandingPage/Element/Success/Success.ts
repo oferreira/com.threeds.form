@@ -2,17 +2,15 @@
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../../Component/LandingPage/Element/Success/Download.ts" />
 /// <reference path="../../../../Component/LandingPage/Element/Success/Video.ts" />
+/// <reference path="../../../../Analytics/TagManager.ts" />
 
-
-interface Window{
-    tc_events_5(context:string, target:string, options:any):void;
-}
 
 namespace Com.Threeds.Component.LandingPage.Element.Success {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
     import Download = Com.Threeds.Component.LandingPage.Element.Success.Download;
     import Video = Com.Threeds.Component.LandingPage.Element.Success.Video;
+    import TagManager = Com.Threeds.Analytics.TagManager;
 
     @component('landingpage-success-element')
     @extend("div")
@@ -28,22 +26,22 @@ namespace Com.Threeds.Component.LandingPage.Element.Success {
             }
 
             if (this.context.settings.type == 'video') {
-                if(typeof window.tc_events_5 == "function"){
-                    window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video', page_category: 'Landing_Page'});
-                    console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video');
-                }
+                TagManager.create('this', 'page', {
+                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video',
+                    page_category: 'Landing_Page'
+                });
                 this.appendChild(Video.create(this, data));
             } else if (this.context.settings.type == 'download') {
-                if(typeof window.tc_events_5 == "function"){
-                    window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Download', page_category: 'Landing_Page'});
-                    console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Download');
-                }
+                TagManager.create('this', 'page', {
+                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download',
+                    page_category: 'Landing_Page'
+                });
                 this.appendChild(Download.create(this, data));
             } else if (this.context.settings.type == 'unlock') {
-                if(typeof window.tc_events_5 == "function"){
-                    window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Unlock', page_category: 'Landing_Page'});
-                    console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Unlock');
-                }
+                TagManager.create('this', 'page', {
+                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Unlock',
+                    page_category: 'Landing_Page'
+                });
             }
         }
 

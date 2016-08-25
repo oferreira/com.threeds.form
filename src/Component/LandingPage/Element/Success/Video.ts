@@ -2,7 +2,7 @@
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../../../typings/jwplayer/jwplayer.d.ts" />
 /// <reference path="../../../../../typings/youtube/youtube.d.ts" />
-
+/// <reference path="../../../../Analytics/TagManager.ts" />
 
 interface VanillaModal {
     onOpen(): void;
@@ -23,14 +23,10 @@ interface JWPlayerStatic {
     (elem?: Element): JWPlayer;
 }
 
-
-interface Window{
-    tc_events_5(context:string, target:string, options:any):void;
-}
-
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import TagManager = Com.Threeds.Analytics.TagManager;
 
     @component('landingpage-success-video-element')
     @extend("div")
@@ -84,17 +80,17 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
                 const modal = new VanillaModal({
                     onOpen : function () {
-                        if(typeof window.tc_events_5 == "function"){
-                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Play', page_category: 'Landing_Page'});
-                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Play');
-                        }
+                        TagManager.create('this', 'page', {
+                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                            page_category: 'Landing_Page'
+                        });
                         jwplayer().play();
                     },
                     onClose : function (){
-                        if(typeof window.tc_events_5 == "function"){
-                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Stop', page_category: 'Landing_Page'});
-                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Stop');
-                        }
+                        TagManager.create('this', 'page', {
+                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                            page_category: 'Landing_Page'
+                        });
                         jwplayer().stop();
                     }
                 });
@@ -117,17 +113,17 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
                 const modal = new VanillaModal({
                     onOpen : function () {
-                        if(typeof window.tc_events_5 == "function"){
-                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Play', page_category: 'Landing_Page'});
-                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Play');
-                        }
+                        TagManager.create('this', 'page', {
+                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                            page_category: 'Landing_Page'
+                        });
                         player.playVideo();
                     },
                     onClose : function (){
-                        if(typeof window.tc_events_5 == "function"){
-                            window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Video/Stop', page_category: 'Landing_Page'});
-                            console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step3/Video/Stop');
-                        }
+                        TagManager.create('this', 'page', {
+                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                            page_category: 'Landing_Page'
+                        });
                         player.stopVideo();
                     }
                 });

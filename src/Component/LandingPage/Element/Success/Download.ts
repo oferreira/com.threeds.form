@@ -1,5 +1,6 @@
 /// <reference path="../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../Element/AbstractPolymerElement.ts" />
+/// <reference path="../../../../Analytics/TagManager.ts" />
 
 interface JQueryStatic{
     fileDownload(url:string):void;
@@ -8,6 +9,7 @@ interface JQueryStatic{
 namespace Com.Threeds.Component.LandingPage.Element.Success{
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import TagManager = Com.Threeds.Analytics.TagManager;
 
     @component('landingpage-success-download-element')
     @extend("div")
@@ -27,7 +29,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                         <form class="ds-form ds-ldp-form-container ds-dl-info">
 
                             <p>${data.content}</p>
-                            <a href="${context.settings.action.url}" target="_blank"  class="ds-link ds-link-arrow-left" onclick="return tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step3/Download/ClickToURL', page_category: 'Landing_Page'})">
+                            <a href="${context.settings.action.url}" target="_blank" class="ds-link ds-link-download ds-link-arrow-left">
                                 ${context.settings.action.label}<br />
                                 <span>${context.settings.action.content}</span>
                             </a>
@@ -43,11 +45,18 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
 
             this.innerHTML = tpl;
 
-           this.download(context.settings.action.url)
-        }
+            this.querySelector('.ds-link-download').addEventListener('click', function (e) {
+                e.preventDefault();
 
-        download(url:string){
-            $.fileDownload(url);
+                TagManager.create('this', 'page', {
+                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download/Click',
+                    page_category: 'Landing_Page'
+                });
+
+                window.open(context.settings.action.url, '_blank');
+            });
+
+            $.fileDownload(context.settings.action.url);
         }
 
     }

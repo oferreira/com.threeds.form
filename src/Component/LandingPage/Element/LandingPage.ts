@@ -5,13 +5,10 @@
 /// <reference path="../../../Component/Form/Element/Step.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Success/Success.ts" />
 /// <reference path="../../../Component/LandingPage/Element/Error/Error.ts" />
+/// <reference path="../../../Analytics/TagManager.ts" />
 
 interface Element{
     currentPosition:number;
-}
-
-interface Window{
-    tc_events_5(context:string, target:string, options:any):void;
 }
 
 namespace Com.Threeds.Component.LandingPage.Element {
@@ -22,6 +19,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
     import Step = Com.Threeds.Component.Form.Element.Step;
     import Success = Com.Threeds.Component.LandingPage.Element.Success.Success;
     import Error = Com.Threeds.Component.LandingPage.Element.Error.Error;
+    import TagManager = Com.Threeds.Analytics.TagManager;
 
     @component('landingpage-element')
     @extend("div")
@@ -30,6 +28,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
         constructor(context:any, data:any) {
             super(data);
+
             if(typeof context =='undefined') return;
 
             this.context = context;
@@ -273,14 +272,15 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         setCurrentPosition(index:number):void {
-            //this.context.elem.attr('class', '');
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
 
-            if(index == 1 && typeof window.tc_events_5 == "function"){
-                window.tc_events_5('this', 'page', {event : 'page', page_name: 'Landing_Pages/What_To_Market/Step2/Form', page_category: 'Landing_Page'});
-                console.log('tc_events_5', 'Landing_Pages/What_To_Market/Step2/Form');
+            if (index == 1) {
+                TagManager.create('this', 'page', {
+                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step2/Form',
+                    page_category: 'Landing_Page'
+                });
             }
         }
     }
