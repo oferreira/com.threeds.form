@@ -142,7 +142,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                     // Reduit la hauteur conteneur
                                     context.context.elem.animate({
 
-                                        height : 520
+                                        height : 600
 
                                     }, 300, 'linear', function(){
 
