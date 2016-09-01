@@ -54,6 +54,16 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
         }
 
+
+        getHostName(url:string):string {
+            var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+            if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+                return match[2];
+            }
+            else {
+                return null;
+            }
+        }
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
             let context:any = this;
@@ -63,6 +73,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             let isoCode:string = $('#country').val();
 
             if(elem.name == 'company' && query != undefined && isoCode != undefined && elem.autoComplete == undefined){
+                let apiUrl:string = location.protocol + '//' + this.getHostName(this.context.settings.api.url) + '/dsx/dnbWebservice.jssp';
                 elem.autoComplete = new autoComplete({
                     selector: `#${elem.name}`,
                     minChars: 3,
@@ -70,8 +81,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         term = term.toLowerCase();
 
                         $.ajax({
-                            //url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
-                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                            url: apiUrl,
                             dataType: 'jsonp',
                             data: {
                                 query: query,
