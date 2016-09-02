@@ -39,7 +39,7 @@
 .ds-btn-shout{
 	color:$blueAction;
 	border:2px solid $blueAction;
-	background: $white;
+	background: transparent;
 	@include transition(0.6s ease all);
 	&:hover{
 		color:$btn-scream-hover;
