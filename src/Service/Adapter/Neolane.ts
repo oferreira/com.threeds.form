@@ -19,7 +19,7 @@ namespace Com.Threeds.Service.Adapter {
             $.ajax({
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/redirect.json',
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
                 //type: "GET",dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
@@ -44,7 +44,7 @@ namespace Com.Threeds.Service.Adapter {
 
            $.ajax({
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/debug.json',
-                type: "GET", dataType: "jsonp", url: context.settings.api.url,
+                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp", url: context.settings.api.url,
                 data:data,
                 success: function (response:any) {
                     response = self.data(response);
