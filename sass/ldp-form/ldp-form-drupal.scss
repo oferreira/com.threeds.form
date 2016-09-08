@@ -1,0 +1,47 @@
+// For drupal
+// ==========================================================================
+
+.ds-form-ldp-neolane {
+	display: block;
+	margin-left: -98px;
+	margin-right: -98px;
+}
+
+h3.ds-title-ty:first-child{
+	margin-top:30px;
+}
+
+.ds-form-ldp-neolane ul.ds-tabs-header:first-child{
+	margin: 100px 10px 50px 10px !important;
+	margin-bottom: 32px !important;
+	padding: 0 !important;;
+	list-style-type: none !important;
+	font-family: '3ds-Light';
+	font-size: inherit !important;
+	line-height: inherit !important;
+	color: white !important;
+}
+
+.ds-dl-info{
+	p{
+		font-size:17px !important;
+		font-family: $ds-light !important;
+		padding: 32px 25% 21px 25% !important;
+		text-align: center !important;
+		color: $black-35 !important;
+		margin: 0 !important;
+		line-height: 21px !important;
+		overflow: hidden !important;
+	}
+}
+
+.morph-button{
+	.ds-btn-video{
+		background: url("assets/images/iconmonstr-video.png") center -40px no-repeat;
+		background-size: 181px auto;
+	}
+}
+
+.ds-btn-circle{
+	background: url("assets/images/icon-arrow-circle.svg") center top no-repeat;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        var Drupal = {};
+    </script>
+
+    <link rel="import" href="./dist/bower_components/polymer/polymer.html">
+    <link rel="import" href="./dist/bower_components/polymer-ts/polymer-ts.html">
+    <script src="./dist/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script type="text/javascript" src="./dist/bower_components/jwplayer/jwplayer.js"></script>
+    <script src="./dist/bower_components/youtube-iframe-api/youtube.iframe-api.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/content.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
+    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+
+
+</head>
+<body>
+<div id="myform"></div>
+<script type="text/javascript">
+    (function ($, Drupal, window) {
+        addEventListener('WebComponentsReady', function () {
+            var options = {
+                id: 'LDP6312',
+                display: {
+                    label: true,
+                    placeholder: true,
+                },
+                styling: {
+                    label:{
+                        suffixe:' : ',
+                        mandatory:' * '
+                    }
+                },
+                api: {
+                    adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                },
+                hook: {
+                    render: undefined,
+                    success: function (context, data) {
+                        // {title: "Thank You", content: "<p>Thank you for your interest in Dassault Système…ossible.</p><p>Regards,<br/>Dassault Systèmes</p>"}
+                        console.log(data);
+                    },
+                    warning: function (context, message) {
+                        // This landing page does not exists
+                        console.log(message);
+                    },
+                    redirect: function (context, url) {
+                        // http://www.3ds.com
+                        console.log(url);
+                    },
+                    setCurrentPosition: function (context, index) {
+                        console.log('the current position is equal to ' + index)
+                    },
+                }
+            };
+
+            $("#myform").threeds().form(options);
+        });
+    })(jQuery, Drupal, window);
+</script>
+
+</body>
+</html>
+

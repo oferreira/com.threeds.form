@@ -1,0 +1,31 @@
+{
+  "name": "ButtonComponentMorph",
+  "homepage": "https://github.com/codrops/ButtonComponentMorph",
+  "authors": [
+    "Codrops <info@tympanus.net>"
+  ],
+  "description": "Morphing button",
+  "main": [
+    "js/classie.js",
+    "js/modernizr.custom.js",
+    "js/uiMorphingButton_fixed.js",
+    "css/component.css",
+    "css/content.css",
+    "css/normalize.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.html"
+  ],
+  "_release": "6d2e37e33c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6d2e37e33cdb215da676cd0f6fee9e3e42d95ef1"
+  },
+  "_source": "https://github.com/codrops/ButtonComponentMorph.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/codrops/ButtonComponentMorph.git",
+  "_direct": true
+}

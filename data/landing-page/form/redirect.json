@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": false,
+    "properties": {
+      "redirect": true,
+      "content": "http://www.3ds.com"
+    }
+  }
+}
