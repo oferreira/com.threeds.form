@@ -5,7 +5,6 @@ var sftp = require('gulp-sftp');
 var gulpSequence = require('gulp-sequence');
 var GulpSSH = require('gulp-ssh')
 var environmentHelper = require('../helpers/environment-helper');
-var gulpSSH;
 
 gulp.task('deploy', gulpSequence('deploy-upload', 'deploy-cache-rebuild'));
 

@@ -53,7 +53,7 @@ namespace Com.Threeds.Component.Form.Element {
         _onChange(e:Event):void {
             this.fire('field-value-changed', this)
             this.setAttribute('value', this.value);
-            this.isValid();
+            //this.isValid();
         }
 
         isValid():any {
