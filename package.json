@@ -58,6 +58,7 @@
     "angularfire2": "^2.0.0-beta.2",
     "firebase": "^3.2.1",
     "gulp": "^3.9.1",
-    "gulp-path": "^3.0.3"
+    "gulp-path": "^3.0.3",
+    "os": "^0.1.1"
   }
 }

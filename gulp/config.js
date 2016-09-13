@@ -1,5 +1,5 @@
-var gulpPath = require('gulp-path')
 var fs = require('fs');
+var os = require('os');
 
 module.exports = {
     project: {
@@ -50,7 +50,7 @@ module.exports = {
             host: 'heracless.fr',
             port: 22,
             username: 'root',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/root/test',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -58,7 +58,7 @@ module.exports = {
             host: 'webnode01.drupal.private.int.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -66,7 +66,7 @@ module.exports = {
             host: 'webnode01.drupal.private.qal.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -74,7 +74,7 @@ module.exports = {
             host: 'webnode01.drupal.private.ppd.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -82,7 +82,7 @@ module.exports = {
             host: 'webnode01.drupal.private.ppd.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -90,7 +90,7 @@ module.exports = {
             host: 'webnode01.drupal.private.prd.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         },
@@ -98,7 +98,7 @@ module.exports = {
             host: 'webnode01.drupal.private.prd.vpc-eu01.it3ds.net',
             port: 22,
             username: 'wwwdev',
-            privateKey: fs.readFileSync('/Users/olivier/.ssh/id_rsa'),
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/id_rsa'),
             remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
             drushPath: '/data/3ds/landingpages/current/src/'
         }

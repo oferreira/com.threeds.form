@@ -46,6 +46,13 @@ Open a terminal and execute :
 
 ----------
 
+Proxy
+-------------------
+
+    npm config set proxy http://dsone%5Cfms3:Fredus0076@10.6.69.50:8080
+    npm config set https-proxy http://dsone%5Cfms3:Fredus0076@10.6.69.50:8080
+
+----------
 
 RUN
 -------------------
