@@ -1,4 +1,7 @@
 ### Node template
+# IDE
+.idea
+
 # Logs
 logs
 *.log
