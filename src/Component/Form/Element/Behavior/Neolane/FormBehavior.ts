@@ -69,10 +69,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
             let context:any = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
 
-            let query:string = $('#company').val();
-            let isoCode:string = $('#country').val();
-
-            if(elem.name == 'company' && query != undefined && isoCode != undefined && elem.autoComplete == undefined){
+            if(elem.name == 'company' && $('#company').val() != undefined && $('#country').val() != undefined && elem.autoComplete == undefined){
                 let apiUrl:string = location.protocol + '//' + this.getHostName(this.context.settings.api.url) + '/dsx/dnbWebservice.jssp';
                 elem.autoComplete = new autoComplete({
                     selector: `#${elem.name}`,
@@ -84,8 +81,8 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                             url: apiUrl,
                             dataType: 'jsonp',
                             data: {
-                                query: query,
-                                iso: isoCode
+                                query: $('#company').val(),
+                                iso: $('#country').val()
                             },
                             success: function (data) {
                                 suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet:any) {
