@@ -67,8 +67,11 @@ gulp.task('threeds-landingpage-js', function () {
         }))
         .pipe(addsrc.prepend('bower_components/vanilla-modal/dist/index.js'))
         .pipe(addsrc.prepend('bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js'))
-        .pipe($.concat('threeds.landingpage.js'))
         .pipe(stripComments())
+        .pipe(wrapper({
+            header: "// " + (new Date()).toString() + "\n"
+        }))
+        .pipe($.concat('threeds.landingpage.js'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 

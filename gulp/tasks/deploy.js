@@ -4,34 +4,35 @@ var args = require('yargs').argv;
 var sftp = require('gulp-sftp');
 var gulpSequence = require('gulp-sequence');
 var GulpSSH = require('gulp-ssh')
-var environmentHelper = require('../helpers/environment-helper');
 
-gulp.task('deploy', gulpSequence('deploy-upload', 'deploy-cache-rebuild'));
+gulp.task('deploy', gulpSequence('deploy-upload'/*, 'deploy-cache-rebuild'*/));
 
 
 gulp.task('deploy-upload', function () {
-    if (environmentHelper.is("demo")) {
+    if (typeof args.env != "undefined" && (args.env != "int" && args.env != "qal" && args.env != "ppd" && args.env && "prod")) {
+        console.log('error : ', '--env in not defined or is invalid')
+        return false;
+    }
+
+    if (args.env == "int") {
         gulp.src(['dist/*', 'dist/**/*'])
             .pipe(sftp(config.env[args.env]));
     }
 
-    if (environmentHelper.is("int")) {
+
+    if (args.env == "qal") {
+        console.log(config.env[args.env]);
         gulp.src(['dist/*', 'dist/**/*'])
             .pipe(sftp(config.env[args.env]));
     }
 
-    if (environmentHelper.is("qal")) {
-        gulp.src(['dist/*', 'dist/**/*'])
-            .pipe(sftp(config.env[args.env]));
-    }
-
-    if (environmentHelper.is("ppd")) {
+    if (args.env == "ppd") {
         gulp.src(['dist/*', 'dist/**/*'])
             .pipe(sftp(config.env[args.env + '1']))
             .pipe(sftp(config.env[args.env + '2']));
     }
 
-    if (environmentHelper.is("prod")) {
+    if (args.env == "prod") {
         gulp.src(['dist/*', 'dist/**/*'])
             .pipe(sftp(config.env[args.env + '1']))
             .pipe(sftp(config.env[args.env + '2']));
@@ -39,7 +40,7 @@ gulp.task('deploy-upload', function () {
 });
 
 gulp.task('deploy-cache-rebuild', function () {
-    if (environmentHelper.is("demo") || environmentHelper.is("int") || environmentHelper.is("qal")) {
+    if (args.env == "int" || args.env == "qal") {
         serv1 = new GulpSSH({
             ignoreErrors: false,
             sshConfig: config.env[args.env]
@@ -49,7 +50,7 @@ gulp.task('deploy-cache-rebuild', function () {
             .pipe(gulp.dest('logs'))
     }
 
-    if (environmentHelper.is("ppd") || environmentHelper.is("prod")) {
+    if (args.env == "ppd" || args.env == "prod") {
         var serv1 = new GulpSSH({
             ignoreErrors: false,
             sshConfig: config.env[args.env + '1']
