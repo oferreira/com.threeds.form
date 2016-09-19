@@ -278,7 +278,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if (index == 1) {
                 TagManager.create('this', 'page', {
-                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step2/Form',
+                    page_name: '{page_category}/{env}/{pathname}/Step2/Form',
                     page_category: 'Landing_Page'
                 });
             }

@@ -27,19 +27,19 @@ namespace Com.Threeds.Component.LandingPage.Element.Success {
 
             if (this.context.settings.type == 'video') {
                 TagManager.create('this', 'page', {
-                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video',
+                    page_name: '{page_category}/{env}/{pathname}/Step3/Video',
                     page_category: 'Landing_Page'
                 });
                 this.appendChild(Video.create(this, data));
             } else if (this.context.settings.type == 'download') {
                 TagManager.create('this', 'page', {
-                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download',
+                    page_name: '{page_category}/{env}/{pathname}/Step3/Download',
                     page_category: 'Landing_Page'
                 });
                 this.appendChild(Download.create(this, data));
             } else if (this.context.settings.type == 'unlock') {
                 TagManager.create('this', 'page', {
-                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Unlock',
+                    page_name: '{page_category}/{env}/{pathname}/Step3/Unlock',
                     page_category: 'Landing_Page'
                 });
             }

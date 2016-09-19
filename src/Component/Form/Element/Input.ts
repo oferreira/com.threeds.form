@@ -53,7 +53,15 @@ namespace Com.Threeds.Component.Form.Element {
         _onChange(e:Event):void {
             this.fire('field-value-changed', this)
             this.setAttribute('value', this.value);
+            this.displayError('');
+            //this.classList.remove('_error');
+            //console.log('emezam');
             //this.isValid();
+        }
+
+        @listen('focus')
+        _onFocus(e:Event):void {
+            this.displayError('');
         }
 
         isValid():any {

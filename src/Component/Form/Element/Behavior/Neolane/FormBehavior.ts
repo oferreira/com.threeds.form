@@ -64,6 +64,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                 return null;
             }
         }
+
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
             let context:any = this;
@@ -104,8 +105,35 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                     renderItem: function (item:any, search:string){
                         search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
                         var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                        let label:string = item.companyName.replace(re, "<b>$1</b>");
-                        return '<div class="autocomplete-suggestion" data-companyName="'+item.companyName+'" data-duns="'+item.duns+'" data-postalCode="'+item.postalCode+'" data-city="'+item.city+'" data-address1="'+item.address1+'" data-address2="'+item.address2+'" data-stateCode="'+item.stateCode+'" data-val="'+search+'">'+label+'</div>';
+                        let address:string = '';
+
+                        if(item.city != ''){
+                            address += item.city;
+                        }
+
+                        if(item.postalCode != ''){
+                            address += (address == '' ? '':' - ') + item.postalCode;
+                        }
+
+                        if(item.address1 != ''){
+                            address += (address == '' ? '':', ') + item.address1;
+                        }
+
+                        return `<div
+                                    class="autocomplete-suggestion"
+                                    data-companyName="${item.companyName}"
+                                    data-duns="${item.duns}"
+                                    data-postalCode="${item.postalCode}"
+                                    data-city="${item.city}"
+                                    data-address1="${item.address1}"
+                                    data-address2="${item.address2}"
+                                    data-stateCode="${item.stateCode}"
+                                    data-val="${search}">
+                                        <span class="ds-suggest-name"><b>${item.companyName}</b></span>
+                                        <br />
+                                        <span class="ds-suggest-description">PARIS - 75018, 4 RUE DU CANADA</span>
+                                    </div>
+                                    `;
                     },
                     onSelect: function(e:Event, term:string, item:any){
 

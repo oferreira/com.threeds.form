@@ -49,7 +49,7 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                 e.preventDefault();
 
                 TagManager.create('this', 'page', {
-                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download/Click',
+                    page_name: '{page_category}/{env}/{pathname}/Step3/Download/Click',
                     page_category: 'Landing_Page'
                 });
 

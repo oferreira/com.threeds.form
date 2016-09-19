@@ -81,14 +81,14 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                 const modal = new VanillaModal({
                     onOpen : function () {
                         TagManager.create('this', 'page', {
-                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                            page_name: '{page_category}/{env}/{pathname}/Step3/Video/Play',
                             page_category: 'Landing_Page'
                         });
                         jwplayer().play();
                     },
                     onClose : function (){
                         TagManager.create('this', 'page', {
-                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                            page_name: '{page_category}/{env}/{pathname}/Step3/Video/Stop',
                             page_category: 'Landing_Page'
                         });
                         jwplayer().stop();
@@ -114,14 +114,14 @@ namespace Com.Threeds.Component.LandingPage.Element.Success{
                 const modal = new VanillaModal({
                     onOpen : function () {
                         TagManager.create('this', 'page', {
-                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                            page_name: '{page_category}/{env}/{pathname}/Step3/Video/Play',
                             page_category: 'Landing_Page'
                         });
                         player.playVideo();
                     },
                     onClose : function (){
                         TagManager.create('this', 'page', {
-                            page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                            page_name: '{page_category}/{env}/{pathname}/Step3/Video/Stop',
                             page_category: 'Landing_Page'
                         });
                         player.stopVideo();
