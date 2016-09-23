@@ -1,7 +1,0 @@
-{
-  action: {
-    url: 'http://www.3ds.com/en/file.pdf',
-    label: 'Download',
-    content: 'PDF - 3,84Mo',
-  }
-}
