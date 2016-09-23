@@ -58,13 +58,13 @@ namespace Com.Threeds.Component.Form.Element {
 
         public _errors:Object[] = [];
 
-        constructor(context:any, data:any) {
-            super(data);
+        constructor(context:any, options:any) {
+            super(options);
+
             this.context = context;
-            this.classList.add('ds-form')
-            this.classList.add('ds-ldp-form-container')
-            this.setAttribute('novalidate', true)
-            this.dispatch(data);
+            this.classList.add('ds-form');
+            this.setAttribute('novalidate', true);
+            this.dispatch(options);
         }
 
         public get settings():any {
@@ -128,7 +128,6 @@ namespace Com.Threeds.Component.Form.Element {
             this.innerHTML = '';
         }
 
-
         add(data:any) {
             if (!((<any>Polymer.dom(this)).childNodes.length)) {
                 this._steps.push(data)
@@ -145,7 +144,6 @@ namespace Com.Threeds.Component.Form.Element {
 
             return false;
         }
-
 
         isNewStep(context:any, node:any, data:any):boolean {
             let child:any;

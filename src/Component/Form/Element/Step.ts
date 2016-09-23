@@ -77,11 +77,20 @@ namespace Com.Threeds.Component.Form.Element {
             container.classList.add('ds-no-border');
             container.classList.add('ds-txt-center');
 
-            let options:any = {value: context.settings.nextLabel, class: 'ds-btn-circle'};
-            if ( (Object.keys(context._steps).length -1) >= 1 ) {
-                options.value = context.settings.action.label;
-                options.class = 'ds-btn-scream';
+            let options:any = {};
+
+            if(context.settings.translate.elements.submit[(Object.keys(context._steps).length -1)] != undefined){
+                options.value = context.settings.translate.elements.submit[(Object.keys(context._steps).length -1)].label;
+            } else {
+                options.value = context.settings.translate.elements.submit.label;
             }
+
+            if(context.settings.styling.button.next[(Object.keys(context._steps).length -1)] != undefined){
+                options.class = context.settings.styling.button.next[(Object.keys(context._steps).length -1)].class;
+            } else {
+                options.class = context.settings.styling.button.next.class;
+            }
+
             container.appendChild(SubmitElement.create(context, options));
             return container;
         }

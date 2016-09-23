@@ -20,7 +20,7 @@ namespace Com.Threeds.Validator {
 
         constructor(options:any) {
             super();
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
         }
 
         public isValid(value:string):any {

@@ -77,6 +77,14 @@ namespace Com.Threeds.Component.LandingPage {
                 label: {
                     suffixe: ' : ',
                     mandatory: ' * '
+                },
+                button:{
+                    next:{
+                        class:['ds-btn', 'ds-btn-scream'],
+                        0:{
+                            class:['ds-btn', 'ds-btn-circle'],
+                        },
+                    }
                 }
             },
             api: {
@@ -99,7 +107,8 @@ namespace Com.Threeds.Component.LandingPage {
             super(elem, options);
             this.elem = elem;
             this.elem.addClass('ds-ldp-global-container');
-            this.settings = $.extend({}, this.settings, options);
+
+            this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings,  this.settings,  options);
 
             if (Object.isDefined(options, 'form.nextLabel')){
                 this.settings.nextLabel = options.form.nextLabel;

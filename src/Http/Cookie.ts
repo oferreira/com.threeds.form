@@ -11,7 +11,7 @@ namespace Com.Threeds.Http {
         };
 
         constructor(options:Object) {
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
         }
 
         public static instance(options:any):Cookie {

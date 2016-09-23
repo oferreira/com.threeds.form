@@ -44,7 +44,7 @@ namespace Com.Threeds.Component.Tabs {
         constructor(elem:any, options:Object) {
             super(elem, options);
             this.elem = elem;
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
             this.render();
         }
 

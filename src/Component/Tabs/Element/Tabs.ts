@@ -30,7 +30,7 @@ namespace Com.Threeds.Component.Tabs.Element {
         constructor(context:any, options:any, data:any) {
             super(data);
             this.context = context;
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
             this.classList.add('ds-tabs');
 
             this.appendChild(Header.create(this, this.settings));

@@ -7,8 +7,8 @@
 /// <reference path="../../../Component/LandingPage/Element/Error/Error.ts" />
 /// <reference path="../../../Analytics/TagManager.ts" />
 
-interface Element{
-    currentPosition:number;
+interface Element {
+    currentPosition: number;
 }
 
 namespace Com.Threeds.Component.LandingPage.Element {
@@ -24,23 +24,23 @@ namespace Com.Threeds.Component.LandingPage.Element {
     @component('landingpage-element')
     @extend("div")
     export class LandingPage extends AbstractPolymerElement {
-        context:any;
+        context: any;
 
-        constructor(context:any, data:any) {
+        constructor(context: any, data: any) {
             super(data);
 
-            if(typeof context =='undefined') return;
+            if (typeof context == 'undefined') return;
 
             this.context = context;
 
-            let tabsContainer:HTMLDivElement = document.createElement('div');
+            let tabsContainer: HTMLDivElement = document.createElement('div');
             tabsContainer.classList.add('ds-lpd-info-form');
 
-            let tabsContainer2:HTMLDivElement = document.createElement('div');
+            let tabsContainer2: HTMLDivElement = document.createElement('div');
             tabsContainer2.classList.add('ds-landingpage');
 
 
-            let blur:HTMLDivElement = document.createElement('div');
+            let blur: HTMLDivElement = document.createElement('div');
 
             blur.style.backgroundImage = `url('${this.context.settings.backgroundImage}')`;
             blur.classList.add('ds-lpd-info-blur');
@@ -54,30 +54,32 @@ namespace Com.Threeds.Component.LandingPage.Element {
             this.appendChild(this.form(data));
         }
 
-        clear():void {
+        clear(): void {
             while (Polymer.dom(this).firstChild) Polymer.dom(this).removeChild(Polymer.dom(this).firstChild);
             this.innerHTML = '';
         }
 
 
-        tabs():polymer.Base{
-            let options:Object = {
+        tabs(): polymer.Base {
+            let options: Object = {
                 data: this.context.settings.steps
             };
 
             return Tabs.create(this.context, options);
         }
 
-        form(data:any):polymer.Base{
-            var self:any = this;
-            if(typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
-                this.context.settings.hook.setCurrentPosition = function(context:any, currentPosition:number){
+        form(data: any): polymer.Base {
+            var self: any = this;
+
+
+            if (typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
+                this.context.settings.hook.setCurrentPosition = function (context: any, currentPosition: number) {
                     self.setCurrentPosition(currentPosition);
                 };
             }
 
-            if(typeof this.context.settings.hook.success == 'undefined') {
-                this.context.settings.hook.success = function(context:any, data:any) {
+            if (typeof this.context.settings.hook.success == 'undefined') {
+                this.context.settings.hook.success = function (context: any, data: any) {
                     try {
                         localStorage.setItem(context.context.settings.id, 'true');
                     }
@@ -85,8 +87,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                         console.log('localStorage', error);
                     }
 
-
-                    if(context.context.status.transition){
+                    if (context.context.status.transition) {
                         return;
                     }
                     context.context.status.transition = true;
@@ -96,21 +97,21 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     context.context.elem.addClass('ds-form-sucess-anim');
 
                     // Fade le formulaire de droite
-                    context.context.elem.find('.ds-form-fieldset').animate({opacity : 0});
+                    context.context.elem.find('.ds-form-fieldset').animate({opacity: 0});
 
                     // Fade les tabs
                     context.context.elem.find('.ds-tabs').animate({
 
-                        opacity : 0
+                        opacity: 0
 
-                    }, 300, "linear", function() {
+                    }, 300, "linear", function () {
                         // supprime et charge la page Sucess
                         self.context.elem.html('');
                         self.context.elem.append(Success.create(self.context, self.context.settings.success));
                         self.context.status.transition = false;
 
                         // Affiche le titre
-                        setTimeout(function() {
+                        setTimeout(function () {
 
 
                             // Fixe la hauteur du conteneur
@@ -120,38 +121,38 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
 
                             // Affiche le formulaire masqué avec le z index
-                            context.context.elem.find('.ds-form-fieldset').css({opacity : 1});
+                            context.context.elem.find('.ds-form-fieldset').css({opacity: 1});
 
                             // Affiche le message thank you
                             context.context.elem.find('.ds-info-ty').animate({
 
-                                opacity : 1
+                                opacity: 1
 
-                            }, 300, "linear", function() {
+                            }, 300, "linear", function () {
 
-                                    // Supprime l overflow hidden pour pourvoir afficher le block contact
-                                    context.context.elem.css({overflow : 'visible'});
+                                // Supprime l overflow hidden pour pourvoir afficher le block contact
+                                context.context.elem.css({overflow: 'visible'});
 
-                                    // Reduit la hauteur du block de gauche
-                                    context.context.elem.find('.ds-block-ty').animate({
+                                // Reduit la hauteur du block de gauche
+                                context.context.elem.find('.ds-block-ty').animate({
 
-                                        height : 331
+                                    height: 331
 
+                                }, 300);
+
+                                // Reduit la hauteur conteneur
+                                context.context.elem.animate({
+
+                                    height: 600
+
+                                }, 300, 'linear', function () {
+
+                                    // Affiche le block contact
+                                    context.context.elem.find('.ds-ldp-form-contact').animate({
+                                        opacity: 1
                                     }, 300);
 
-                                    // Reduit la hauteur conteneur
-                                    context.context.elem.animate({
-
-                                        height : 600
-
-                                    }, 300, 'linear', function(){
-
-                                        // Affiche le block contact
-                                        context.context.elem.find('.ds-ldp-form-contact').animate({
-                                            opacity : 1
-                                        }, 300);
-
-                                    });
+                                });
 
                             });
 
@@ -162,8 +163,8 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 };
             }
 
-            if(typeof this.context.settings.hook.warning == 'undefined') {
-                this.context.settings.hook.warning = function(context:any, message:any) {
+            if (typeof this.context.settings.hook.warning == 'undefined') {
+                this.context.settings.hook.warning = function (context: any, message: any) {
                     self.context.elem.html('');
                     self.context.elem.attr('class', '');
                     self.context.elem.addClass('ds-form-sucess-anim');
@@ -172,16 +173,31 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 };
             }
 
-            if(typeof this.context.settings.hook.transition == 'undefined') {
+            if (typeof this.context.settings.hook.transition == 'undefined') {
                 this.context.settings.hook.transition = self.transition;
             }
 
-            return Form.create(this.context, data);
+            this.context.settings = $.extend(true, this.context.settings, {
+                translate: {
+                    elements: {
+                        submit: {
+                            label: this.context.settings.action.label,
+                            0: {
+                                label: this.context.settings.nextLabel
+                            }
+                        }
+                    }
+                }
+            });
+
+            let form: any = Form.create(this.context, data);
+            form.classList.add('ds-ldp-form-container');
+            return form;
         }
 
-        transition(context:any,currentPosition:number):void{
+        transition(context: any, currentPosition: number): void {
             try {
-                if(localStorage.getItem(context.context.settings.id)){
+                if (localStorage.getItem(context.context.settings.id)) {
                     context.success(context, {})
                     context.context.elem.removeClass('ds-form-sucess-anim');
                     context.context.elem.addClass('ds-form-sucess');
@@ -192,12 +208,12 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 console.log('localStorage', error);
             }
 
-            if(context.context.status.transition){
+            if (context.context.status.transition) {
                 return;
             }
             context.context.status.transition = true;
 
-            if(currentPosition == 0 || window.innerWidth <= 1024){
+            if (currentPosition == 0 || window.innerWidth <= 1024) {
                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                     context.settings.hook.setCurrentPosition(context, currentPosition);
                 }
@@ -205,7 +221,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                 context._currentPosition = currentPosition;
 
                 context.clear();
-                    context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
+                context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
                 context.context.status.transition = false;
                 return;
             }
@@ -215,37 +231,37 @@ namespace Com.Threeds.Component.LandingPage.Element {
             var container = context.context.elem.find('.ds-ldp-global-container');
 
             $(blockRight).animate({
-                opacity : 0
-            }, 300, "linear", function() {
+                opacity: 0
+            }, 300, "linear", function () {
                 context.clear();
                 $(blockRight).animate({
-                    zIndex : 1,
-                    opacity : 1,
-                    top : 0
-                }, 1, "linear", function() {
+                    zIndex: 1,
+                    opacity: 1,
+                    top: 0
+                }, 1, "linear", function () {
 
-                    let step:polymer.Base = Step.create(context, context._steps.slice(-1)[0]);
+                    let step: polymer.Base = Step.create(context, context._steps.slice(-1)[0]);
                     context.appendChild(step);
 
-                    $(blockRight).animate({opacity : 1}, 1);
+                    $(blockRight).animate({opacity: 1}, 1);
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         var BlocLeft = context.context.elem.find('.ds-lpd-info-form');
                         var heightBlocLeft = context.context.elem.find('.ds-lpd-info-form').height();
                         var heightBlocRight = context.context.elem.find('.ds-ldp-form-container').height();
                         var heightBlocRightForm = context.context.elem.find('.ds-form-fieldset').outerHeight();
 
                         //Si la hauteur du form est superieur au block de gauche
-                        if(heightBlocRightForm > heightBlocLeft){
+                        if (heightBlocRightForm > heightBlocLeft) {
 
                             // augmente la hauteur du conteneur
                             $(BlocLeft).animate({
                                 height: heightBlocRightForm
-                            }, 300, "linear", function() {
+                            }, 300, "linear", function () {
                                 context.context.elem.addClass('ds-anim-width-step-2')
                                     .css({
-                                    height : heightBlocRightForm
-                                });
+                                        height: heightBlocRightForm
+                                    });
 
                                 if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
                                     context.settings.hook.setCurrentPosition(context, currentPosition);
@@ -254,7 +270,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
                                 context.context.status.transition = false;
                             });
 
-                        }else{
+                        } else {
                             context.context.elem.addClass('ds-anim-width-step-2');
 
                             if (typeof context.context.settings.hook.setCurrentPosition == 'function') {
@@ -271,7 +287,7 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
         }
 
-        setCurrentPosition(index:number):void {
+        setCurrentPosition(index: number): void {
             this.context.elem.addClass('ds-ldp-global-container');
             this.context.elem.addClass(`ds-ldp-global-step-${index}`);
             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;

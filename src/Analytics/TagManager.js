@@ -8,7 +8,7 @@ var Com;
                 function TagManager() {
                 }
                 TagManager.create = function (context, target, options) {
-                    var options = $.extend({}, TagManager.settings, options);
+                    var options = $.extend(true, TagManager.settings, options);
                     options.event = 'page';
                     options.page_name.replace(/\{page_category\}/ig, options.page_category);
                     var pathname = window.location.pathname;

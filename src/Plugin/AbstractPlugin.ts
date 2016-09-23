@@ -21,7 +21,7 @@ namespace Com.Threeds.Plugin {
 
         constructor(elem:any, options:Object) {
             this.elem = elem;
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
         }
 
         render(type:string, data:any):void {

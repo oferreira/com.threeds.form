@@ -33,7 +33,7 @@
             var options = {
                 id: 'LDP6312',
                 display: {
-                    label: true,
+                    label: false,
                     placeholder: true,
                 },
                 styling: {
@@ -43,11 +43,9 @@
                     }
                 },
                 api: {
-                    adapter: 'Com.Threeds.Service.Adapter.Neolane',
                     url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                 },
                 hook: {
-                    render: undefined,
                     success: function (context, data) {
                         // {title: "Thank You", content: "<p>Thank you for your interest in Dassault Système…ossible.</p><p>Regards,<br/>Dassault Systèmes</p>"}
                         console.log(data);
