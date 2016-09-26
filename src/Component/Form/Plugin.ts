@@ -87,7 +87,6 @@ namespace Com.Threeds.Component.Form {
 
         constructor(elem: any, options: Object) {
             super(elem, options);
-            console.log('src/Component/Form/Plugin.ts:92', this.settings);
             this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings, options);
             this.service('api').form(this, {});
         }

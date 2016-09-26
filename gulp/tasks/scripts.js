@@ -62,7 +62,7 @@ gulp.task('threeds-landingpage-js', function () {
         .pipe(addsrc.prepend('bower_components/javascript-auto-complete/auto-complete.js'))
         .pipe($.concat('threeds.landingpage.js'))
         .pipe(wrapper({
-            header: "(function ($, window, Drupal) {\n",
+            header: "if(typeof Drupal == 'undefined'){Drupal={};}\n(function ($, window, Drupal) {\n",
             footer: '})(jQuery, window, Drupal);'
         }))
         .pipe(addsrc.prepend('bower_components/vanilla-modal/dist/index.js'))

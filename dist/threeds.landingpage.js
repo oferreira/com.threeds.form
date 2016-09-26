@@ -1,4 +1,4 @@
-// Tue Sep 13 2016 15:00:25 GMT+0200 (Paris, Madrid (heure d’été))
+// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
 
 (function($, window){
 	var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
@@ -28,6 +28,8 @@ $.extend({
             prepareCallback: function (url) { },
 
             successCallback: function (url) { },
+
+            abortCallback: function (url) { },
 
             failCallback: function (responseHtml, url, error) { },
 
@@ -113,6 +115,17 @@ $.extend({
                 settings.successCallback(url);
 
                 deferred.resolve(url);
+            },
+
+            onAbort: function (url) {
+
+                if ($preparingDialog) {
+                    $preparingDialog.dialog('close');
+                };
+
+                settings.abortCallback(url);
+
+                deferred.reject(url);
             },
 
             onFail: function (responseHtml, url, error) {
@@ -350,7 +363,8 @@ $.extend({
         var promise = deferred.promise();
         promise.abort = function() {
             cleanUp();
-            $iframe.remove();
+            $iframe.attr('src', '').html('');
+            internalCallbacks.onAbort(fileUrl);
         };
         return promise;
     }
@@ -358,7 +372,7 @@ $.extend({
 
 })(jQuery, this);
 
-// Tue Sep 13 2016 15:00:25 GMT+0200 (Paris, Madrid (heure d’été))
+// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define('VanillaModal', ['module', 'exports'], factory);
@@ -713,9 +727,9 @@ $.extend({
   module.exports = exports['default'];
 });
 
-// Tue Sep 13 2016 15:00:25 GMT+0200 (Paris, Madrid (heure d’été))
+// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
+if(typeof Drupal == 'undefined'){Drupal={};}
 (function ($, window, Drupal) {
-
 
 var autoComplete = (function(){
     function autoComplete(options){
@@ -993,6 +1007,57 @@ var Com;
         };
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Analytics;
+        (function (Analytics) {
+            var TagManager = function () {
+                function TagManager() {}
+                TagManager.create = function (context, target, options) {
+                    var options = $.extend({}, TagManager.settings, options);
+                    options.event = 'page';
+                    options.page_name.replace(/\{page_category\}/ig, options.page_category);
+                    var pathname = window.location.pathname;
+                    if (window.location.hash != '') {
+                        pathname += window.location.hash;
+                    }
+                    options.page_name = options.page_name.replace('{env}', TagManager.env());
+                    options.page_name = options.page_name.replace('{hostname}', window.location.hostname);
+                    options.page_name = options.page_name.replace('{pathname}', pathname);
+                    options.page_name = options.page_name.replace('{page_category}', options.page_category);
+                    options.page_name = options.page_name.replace('///', '/');
+                    options.page_name = options.page_name.replace('//', '/');
+                    options.page_name = options.page_name.replace('#', '/');
+                    console.log(options);
+                    if (typeof window.tc_events_5 == "function") {
+                        window.tc_events_5('this', target, options);
+                    }
+                };
+                TagManager.env = function () {
+                    var host = window.location.host;
+                    if (host.indexOf("ifwe") != -1) {
+                        return 'ifwe';
+                    } else if (host.indexOf("wtm") != -1 || host.indexOf("offer") != -1) {
+                        return 'wtm';
+                    } else if (host.indexOf("localhost") != -1) {
+                        return 'localhost';
+                    } else {
+                        return window.location.host;
+                    }
+                };
+                TagManager.settings = {
+                    event: 'page',
+                    page_name: '',
+                    page_category: ''
+                };
+                return TagManager;
+            }();
+            Analytics.TagManager = TagManager;
+        })(Analytics = Threeds.Analytics || (Threeds.Analytics = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 String.prototype.format = function () {
     var formatted = this;
     for (var i = 0; i < arguments.length; i++) {
@@ -1029,82 +1094,6 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
-        var Analytics;
-        (function (Analytics) {
-            var TagManager = function () {
-                function TagManager() {
-                    this.settings = {
-                        event: 'page',
-                        page_name: '',
-                        page_category: ''
-                    };
-                }
-                TagManager.create = function (context, target, options) {
-                    var options = $.extend({}, this.settings, options);
-                    options.page_name.replace(/\{page_category\}/ig, options.page_category);
-                    var pathname = window.location.pathname;
-                    if (window.location.hash != '') {
-                        pathname += window.location.hash;
-                    }
-                    options.page_name = options.page_name.replace('{hostname}', window.location.hostname);
-                    options.page_name = options.page_name.replace('{pathname}', pathname);
-                    options.page_name = options.page_name.replace('{page_category}', options.page_category);
-                    options.page_name = options.page_name.replace('///', '/');
-                    options.page_name = options.page_name.replace('//', '/');
-                    console.log('tc', options.page_name);
-                    if (typeof window.tc_events_5 == "function") {
-                        window.tc_events_5(context, target, options);
-                    }
-                };
-                return TagManager;
-            }();
-            Analytics.TagManager = TagManager;
-        })(Analytics = Threeds.Analytics || (Threeds.Analytics = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Plugin;
-        (function (Plugin) {
-            var AbstractPlugin = function () {
-                function AbstractPlugin(elem, options) {
-                    this.settings = {};
-                    this.elem = elem;
-                    this.settings = $.extend({}, this.settings, options);
-                }
-                AbstractPlugin.prototype.render = function (type, data) {
-                    return eval("new " + this.settings.render.adapter + "()")[type](this, data);
-                };
-                AbstractPlugin.prototype.service = function (name) {
-                    var service = Object.find(this.settings, name).adapter;
-                    return eval('new ' + service);
-                };
-                return AbstractPlugin;
-            }();
-            Plugin.AbstractPlugin = AbstractPlugin;
-        })(Plugin = Threeds.Plugin || (Threeds.Plugin = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Object.find = function (o, s) {
-    s = s.replace(/\[(\w+)\]/g, '.$1');
-    s = s.replace(/^\./, '');
-    var a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-            o = o[k];
-        } else {
-            return;
-        }
-    }
-    return o;
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
         var Http;
         (function (Http) {
             var Cookie = function () {
@@ -1114,7 +1103,7 @@ var Com;
                         lifetime: 60 * 60 * 24 * 1,
                         path: '/'
                     };
-                    this.settings = $.extend({}, this.settings, options);
+                    this.settings = $.extend(true, this.settings, options);
                 }
                 Cookie.instance = function (options) {
                     if (Cookie._instance == undefined) {
@@ -1179,6 +1168,45 @@ var Com;
                 return Com.Threeds.I18n.Translator.instance;
             };
         })(I18n = Threeds.I18n || (Threeds.I18n = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Object.find = function (o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1');
+    s = s.replace(/^\./, '');
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Plugin;
+        (function (Plugin) {
+            var AbstractPlugin = function () {
+                function AbstractPlugin(elem, options) {
+                    this.settings = {};
+                    this.elem = elem;
+                    this.settings = $.extend(true, this.settings, options);
+                }
+                AbstractPlugin.prototype.render = function (type, data) {
+                    return eval("new " + this.settings.render.adapter + "()")[type](this, data);
+                };
+                AbstractPlugin.prototype.service = function (name) {
+                    var service = Object.find(this.settings, name).adapter;
+                    return eval('new ' + service);
+                };
+                return AbstractPlugin;
+            }();
+            Plugin.AbstractPlugin = AbstractPlugin;
+        })(Plugin = Threeds.Plugin || (Threeds.Plugin = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
 Object.find = function (o, s) {
@@ -1286,7 +1314,7 @@ var Com;
                             invalid: 'error.field_invalid'
                         }
                     };
-                    this.settings = $.extend({}, this.settings, options);
+                    this.settings = $.extend(true, this.settings, options);
                 }
                 Regex.prototype.isValid = function (value) {
                     if (typeof this.settings.regex == 'undefined') {
@@ -1474,6 +1502,10 @@ var Com;
                         Input.prototype._onChange = function (e) {
                             this.fire('field-value-changed', this);
                             this.setAttribute('value', this.value);
+                            this.displayError('');
+                        };
+                        Input.prototype._onFocus = function (e) {
+                            this.displayError('');
                         };
                         Input.prototype.isValid = function () {
                             var message;
@@ -1506,6 +1538,7 @@ var Com;
                         __decorate([property({ type: String, reflectToAttribute: true })], Input.prototype, "placeholder", void 0);
                         __decorate([property({ type: Boolean, reflectToAttribute: false })], Input.prototype, "required", void 0);
                         __decorate([listen('input')], Input.prototype, "_onChange", null);
+                        __decorate([listen('focus')], Input.prototype, "_onFocus", null);
                         Input = __decorate([component('input-element'), extend("input")], Input);
                         return Input;
                     }(AbstractPolymerElement);
@@ -2262,8 +2295,18 @@ var Com;
                             this.type = 'submit';
                             this.class = 'ds-btn ';
                             if (typeof data.value != undefined) this.value = data.value;
-                            if (typeof data.class != undefined) this.class += data.class;
+                            if (typeof data.class != undefined) this._setClass(data.class);
                         }
+                        Submit.prototype._setClass = function (data) {
+                            if (typeof data == 'string') {
+                                this.class += data.class;
+                            } else if (typeof data == 'object') {
+                                this.class = '';
+                                for (var i = 0; i < data.length; i++) {
+                                    this.classList.add(data[i]);
+                                }
+                            }
+                        };
                         __decorate([property({ type: String, reflectToAttribute: true })], Submit.prototype, "type", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], Submit.prototype, "name", void 0);
                         __decorate([property({ type: String, reflectToAttribute: true })], Submit.prototype, "value", void 0);
@@ -2357,10 +2400,16 @@ var Com;
                             container.classList.add('ds-form-group');
                             container.classList.add('ds-no-border');
                             container.classList.add('ds-txt-center');
-                            var options = { value: context.settings.nextLabel, class: 'ds-btn-circle' };
-                            if (Object.keys(context._steps).length - 1 >= 1) {
-                                options.value = context.settings.action.label;
-                                options.class = 'ds-btn-scream';
+                            var options = {};
+                            if (context.settings.translate.elements.submit[Object.keys(context._steps).length - 1] != undefined) {
+                                options.value = context.settings.translate.elements.submit[Object.keys(context._steps).length - 1].label;
+                            } else {
+                                options.value = context.settings.translate.elements.submit.label;
+                            }
+                            if (context.settings.styling.button.next[Object.keys(context._steps).length - 1] != undefined) {
+                                options.class = context.settings.styling.button.next[Object.keys(context._steps).length - 1].class;
+                            } else {
+                                options.class = context.settings.styling.button.next.class;
                             }
                             container.appendChild(SubmitElement.create(context, options));
                             return container;
@@ -2473,8 +2522,17 @@ var Com;
                                             renderItem: function (item, search) {
                                                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
                                                 var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                                                var label = item.companyName.replace(re, "<b>$1</b>");
-                                                return '<div class="autocomplete-suggestion" data-companyName="' + item.companyName + '" data-duns="' + item.duns + '" data-postalCode="' + item.postalCode + '" data-city="' + item.city + '" data-address1="' + item.address1 + '" data-address2="' + item.address2 + '" data-stateCode="' + item.stateCode + '" data-val="' + search + '">' + label + '</div>';
+                                                var address = '';
+                                                if (item.city != '') {
+                                                    address += item.city;
+                                                }
+                                                if (item.postalCode != '') {
+                                                    address += (address == '' ? '' : ' - ') + item.postalCode;
+                                                }
+                                                if (item.address1 != '') {
+                                                    address += (address == '' ? '' : ', ') + item.address1;
+                                                }
+                                                return "<div\n                                    class=\"autocomplete-suggestion\"\n                                    data-companyName=\"" + item.companyName + "\"\n                                    data-duns=\"" + item.duns + "\"\n                                    data-postalCode=\"" + item.postalCode + "\"\n                                    data-city=\"" + item.city + "\"\n                                    data-address1=\"" + item.address1 + "\"\n                                    data-address2=\"" + item.address2 + "\"\n                                    data-stateCode=\"" + item.stateCode + "\"\n                                    data-val=\"" + search + "\">\n                                        <span class=\"ds-suggest-name\"><b>" + item.companyName + "</b></span>\n                                        <br />\n                                        <span class=\"ds-suggest-description\">PARIS - 75018, 4 RUE DU CANADA</span>\n                                    </div>\n                                    ";
                                             },
                                             onSelect: function (e, term, item) {
                                                 context.append({
@@ -2607,16 +2665,15 @@ var Com;
                     var Step = Com.Threeds.Component.Form.Element.Step;
                     var Form = function (_super) {
                         __extends(Form, _super);
-                        function Form(context, data) {
-                            _super.call(this, data);
+                        function Form(context, options) {
+                            _super.call(this, options);
                             this._currentPosition = 0;
                             this._steps = [];
                             this._errors = [];
                             this.context = context;
                             this.classList.add('ds-form');
-                            this.classList.add('ds-ldp-form-container');
                             this.setAttribute('novalidate', true);
-                            this.dispatch(data);
+                            this.dispatch(options);
                         }
                         Object.defineProperty(Form.prototype, "currentPosition", {
                             get: function () {
@@ -2880,40 +2937,7 @@ var Com;
                     __extends(Plugin, _super);
                     function Plugin(elem, options) {
                         _super.call(this, elem, options);
-                        this.settings = {
-                            id: 'LDP6312',
-                            display: {
-                                label: true,
-                                placeholder: true
-                            },
-                            styling: {
-                                label: {
-                                    suffixe: ' : ',
-                                    mandatory: ' * '
-                                }
-                            },
-                            api: {
-                                adapter: 'Com.Threeds.Service.Adapter.Neolane',
-                                url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
-                            },
-                            success: {
-                                title: 'Thanks for your download',
-                                content: 'Your download should start automatically, if not use the direct link'
-                            },
-                            action: {
-                                url: 'http://www.3ds.com/en/file.pdf',
-                                label: 'Download',
-                                content: 'PDF - 3,84Mo'
-                            },
-                            hook: {
-                                render: undefined,
-                                success: undefined,
-                                redirect: undefined,
-                                warning: undefined,
-                                setCurrentPosition: undefined
-                            }
-                        };
-                        this.settings = $.extend({}, this.settings, options);
+                        this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings, options);
                         this.service('api').form(this, {});
                     }
                     Plugin.prototype.clear = function () {
@@ -2926,6 +2950,51 @@ var Com;
                             this.settings.hook.render(this, type, data);
                         } else {
                             this.elem.append(Form.create(this, data));
+                        }
+                    };
+                    Plugin.settings = {
+                        id: 'LDP6312',
+                        display: {
+                            label: true,
+                            placeholder: true
+                        },
+                        styling: {
+                            label: {
+                                suffixe: ' : ',
+                                mandatory: ' * '
+                            },
+                            button: {
+                                next: {
+                                    class: ['ds-btn', 'ds-btn-scream']
+                                }
+                            }
+                        },
+                        translate: {
+                            elements: {
+                                submit: {
+                                    label: "NEXT"
+                                }
+                            }
+                        },
+                        api: {
+                            adapter: 'Com.Threeds.Service.Adapter.Neolane',
+                            url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
+                        },
+                        success: {
+                            title: 'Thanks for your download',
+                            content: 'Your download should start automatically, if not use the direct link'
+                        },
+                        action: {
+                            url: 'http://www.3ds.com/en/file.pdf',
+                            label: 'Download',
+                            content: 'PDF - 3,84Mo'
+                        },
+                        hook: {
+                            render: undefined,
+                            success: undefined,
+                            redirect: undefined,
+                            warning: undefined,
+                            setCurrentPosition: undefined
                         }
                     };
                     return Plugin;
@@ -2989,55 +3058,6 @@ var __extends = this && this.__extends || function (d, b) {
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
-        var Component;
-        (function (Component) {
-            var Tabs;
-            (function (Tabs_1) {
-                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
-                var Plugin = function (_super) {
-                    __extends(Plugin, _super);
-                    function Plugin(elem, options) {
-                        _super.call(this, elem, options);
-                        this.settings = {
-                            data: {
-                                0: {
-                                    title: 'tab 1',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                },
-                                1: {
-                                    title: 'tab 2',
-                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-                                }
-                            }
-                        };
-                        this.elem = elem;
-                        this.settings = $.extend({}, this.settings, options);
-                        this.render();
-                    }
-                    Plugin.prototype.render = function () {};
-                    return Plugin;
-                }(AbstractPlugin);
-                Tabs_1.Plugin = Plugin;
-                $.namespace('threeds', {
-                    tabs: function (options) {
-                        return new Plugin(this, options);
-                    }
-                });
-            })(Tabs = Component.Tabs || (Component.Tabs = {}));
-        })(Component = Threeds.Component || (Threeds.Component = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var __extends = this && this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
     var c = arguments.length,
         r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -3061,7 +3081,7 @@ var Com;
                         function Header(context, options) {
                             _super.call(this, options);
                             this.settings = {};
-                            this.settings = $.extend({}, this.settings, options);
+                            this.settings = $.extend(true, this.settings, options);
                             var items = document.createElement('ul');
                             items.classList.add('ds-tabs-header');
                             var item;
@@ -3124,7 +3144,7 @@ var Com;
                             this._currentPosition = 0;
                             this.settings = {};
                             this.context = context;
-                            this.settings = $.extend({}, this.settings, options);
+                            this.settings = $.extend(true, this.settings, options);
                             this.classList.add('ds-tabs');
                             this.appendChild(Header.create(this, this.settings));
                             var container = document.createElement('div');
@@ -3206,7 +3226,7 @@ var Com;
                                 this.querySelector('.ds-link-download').addEventListener('click', function (e) {
                                     e.preventDefault();
                                     TagManager.create('this', 'page', {
-                                        page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download/Click',
+                                        page_name: '{page_category}/{env}/{pathname}/Step3/Download/Click',
                                         page_category: 'Landing_Page'
                                     });
                                     window.open(context.settings.action.url, '_blank');
@@ -3262,14 +3282,14 @@ var Com;
                                     var modal = new VanillaModal({
                                         onOpen: function () {
                                             TagManager.create('this', 'page', {
-                                                page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                                                page_name: '{page_category}/{env}/{pathname}/Step3/Video/Play',
                                                 page_category: 'Landing_Page'
                                             });
                                             jwplayer().play();
                                         },
                                         onClose: function () {
                                             TagManager.create('this', 'page', {
-                                                page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                                                page_name: '{page_category}/{env}/{pathname}/Step3/Video/Stop',
                                                 page_category: 'Landing_Page'
                                             });
                                             jwplayer().stop();
@@ -3292,14 +3312,14 @@ var Com;
                                     var modal = new VanillaModal({
                                         onOpen: function () {
                                             TagManager.create('this', 'page', {
-                                                page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Play',
+                                                page_name: '{page_category}/{env}/{pathname}/Step3/Video/Play',
                                                 page_category: 'Landing_Page'
                                             });
                                             player_1.playVideo();
                                         },
                                         onClose: function () {
                                             TagManager.create('this', 'page', {
-                                                page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video/Stop',
+                                                page_name: '{page_category}/{env}/{pathname}/Step3/Video/Stop',
                                                 page_category: 'Landing_Page'
                                             });
                                             player_1.stopVideo();
@@ -3362,19 +3382,19 @@ var Com;
                                 }
                                 if (this.context.settings.type == 'video') {
                                     TagManager.create('this', 'page', {
-                                        page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Video',
+                                        page_name: '{page_category}/{env}/{pathname}/Step3/Video',
                                         page_category: 'Landing_Page'
                                     });
                                     this.appendChild(Video.create(this, data));
                                 } else if (this.context.settings.type == 'download') {
                                     TagManager.create('this', 'page', {
-                                        page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Download',
+                                        page_name: '{page_category}/{env}/{pathname}/Step3/Download',
                                         page_category: 'Landing_Page'
                                     });
                                     this.appendChild(Download.create(this, data));
                                 } else if (this.context.settings.type == 'unlock') {
                                     TagManager.create('this', 'page', {
-                                        page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step3/Unlock',
+                                        page_name: '{page_category}/{env}/{pathname}/Step3/Unlock',
                                         page_category: 'Landing_Page'
                                     });
                                 }
@@ -3564,7 +3584,21 @@ var Com;
                             if (typeof this.context.settings.hook.transition == 'undefined') {
                                 this.context.settings.hook.transition = self.transition;
                             }
-                            return Form.create(this.context, data);
+                            this.context.settings = $.extend(true, this.context.settings, {
+                                translate: {
+                                    elements: {
+                                        submit: {
+                                            label: this.context.settings.action.label,
+                                            0: {
+                                                label: this.context.settings.nextLabel
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                            var form = Form.create(this.context, data);
+                            form.classList.add('ds-ldp-form-container');
+                            return form;
                         };
                         LandingPage.prototype.transition = function (context, currentPosition) {
                             try {
@@ -3641,7 +3675,7 @@ var Com;
                             Polymer.dom(this).querySelector('.ds-tabs').currentPosition = index;
                             if (index == 1) {
                                 TagManager.create('this', 'page', {
-                                    page_name: '{page_category}/What_To_Market/{hostname}/{pathname}/Step2/Form',
+                                    page_name: '{page_category}/{env}/{pathname}/Step2/Form',
                                     page_category: 'Landing_Page'
                                 });
                             }
@@ -3722,6 +3756,14 @@ var Com;
                                 label: {
                                     suffixe: ' : ',
                                     mandatory: ' * '
+                                },
+                                button: {
+                                    next: {
+                                        class: ['ds-btn', 'ds-btn-scream'],
+                                        0: {
+                                            class: ['ds-btn', 'ds-btn-circle']
+                                        }
+                                    }
                                 }
                             },
                             api: {
@@ -3741,7 +3783,7 @@ var Com;
                         };
                         this.elem = elem;
                         this.elem.addClass('ds-ldp-global-container');
-                        this.settings = $.extend({}, this.settings, options);
+                        this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings, this.settings, options);
                         if (Object.isDefined(options, 'form.nextLabel')) {
                             this.settings.nextLabel = options.form.nextLabel;
                         }
@@ -3784,6 +3826,55 @@ Object.isDefined = function (obj, prop) {
     }
     return true;
 };
+var __extends = this && this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Component;
+        (function (Component) {
+            var Tabs;
+            (function (Tabs_1) {
+                var AbstractPlugin = Com.Threeds.Plugin.AbstractPlugin;
+                var Plugin = function (_super) {
+                    __extends(Plugin, _super);
+                    function Plugin(elem, options) {
+                        _super.call(this, elem, options);
+                        this.settings = {
+                            data: {
+                                0: {
+                                    title: 'tab 1',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                },
+                                1: {
+                                    title: 'tab 2',
+                                    content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
+                                }
+                            }
+                        };
+                        this.elem = elem;
+                        this.settings = $.extend(true, this.settings, options);
+                        this.render();
+                    }
+                    Plugin.prototype.render = function () {};
+                    return Plugin;
+                }(AbstractPlugin);
+                Tabs_1.Plugin = Plugin;
+                $.namespace('threeds', {
+                    tabs: function (options) {
+                        return new Plugin(this, options);
+                    }
+                });
+            })(Tabs = Component.Tabs || (Component.Tabs = {}));
+        })(Component = Threeds.Component || (Threeds.Component = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var __extends = this && this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() {
