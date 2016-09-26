@@ -1,0 +1,42 @@
+<div id="myform"></div>
+<script type="text/javascript">
+    (function ($, window) {
+        addEventListener('WebComponentsReady', function () {
+            var options = {
+                id: 'LDP6312',
+                display: {
+                    label: false,
+                    placeholder: true,
+                },
+                styling: {
+                    label:{
+                        suffixe:' : ',
+                        mandatory:' * '
+                    }
+                },
+                api: {
+                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                },
+                hook: {
+                    success: function (context, data) {
+                        // {title: "Thank You", content: "<p>Thank you for your interest in Dassault Système…ossible.</p><p>Regards,<br/>Dassault Systèmes</p>"}
+                        console.log(data);
+                    },
+                    warning: function (context, message) {
+                        // This landing page does not exists
+                        console.log(message);
+                    },
+                    redirect: function (context, url) {
+                        // http://www.3ds.com
+                        console.log(url);
+                    },
+                    setCurrentPosition: function (context, index) {
+                        console.log('the current position is equal to ' + index)
+                    },
+                }
+            };
+
+            $("#myform").threeds().form(options);
+        });
+    })(jQuery, window);
+</script>

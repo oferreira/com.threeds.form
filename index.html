@@ -23,7 +23,7 @@ permalink: /
     <textarea id="basic-landing-page" name="basic-landing-page"></textarea>
     <script type="text/javascript">
         $('#basic-landing-page').editor({
-            url: 'samples/basic-landing-page.html'
+            url: 'samples/basic-form.html'
         });
     </script>
 
@@ -64,24 +64,25 @@ permalink: /
         </table>
         <hr/>
     </div>
-    <div class="option-type">
-        <h3>type</h3>
+    <div class="option-display">
+        <h3>display</h3>
 
-        <p>This option is for define type of landing page example download, video, ...</p>
+        <p>This option is for define display settings example label, placeholder</p>
 
-        <textarea id="option-type" name="option-type"></textarea>
+        <textarea id="option-display" name="option-display"></textarea>
         <script type="text/javascript">
-            $('#option-type').editor({
-                url: 'samples/options/type.html'
+            $('#option-display').editor({
+                url: 'samples/options/display.html'
 
             });
         </script>
 
+        <h4>display.label</h4>
         <table>
             <tbody>
             <tr>
                 <td>Contribution</td>
-                <td>Yes</td>
+                <td>Optional</td>
             </tr>
             <tr>
                 <td>Mandatory</td>
@@ -89,36 +90,24 @@ permalink: /
             </tr>
             <tr>
                 <td>Possible values</td>
-                <td>{'download', 'video', 'unlock'}</td>
+                <td>boolean</td>
             </tr>
 
             <tr>
                 <td>Default value</td>
-                <td>N/A</td>
+                <td>false</td>
             </tr>
             </tbody>
         </table>
-        <hr/>
-    </div>
-    <div class="option-background-image">
-        <h3>background-image</h3>
 
-        <p>This option is for define background image</p>
-        <img src="assets/images/option-background-image.jpg" alt="">
+        <img src="assets/images/option-display-label.jpg" alt="">
 
-        <textarea id="option-background-image" name="option-background-image"></textarea>
-        <script type="text/javascript">
-            $('#option-background-image').editor({
-                url: 'samples/options/background-image.html'
-
-            });
-        </script>
-
+        <h4>display.placeholder</h4>
         <table>
             <tbody>
             <tr>
                 <td>Contribution</td>
-                <td>Yes</td>
+                <td>Optional</td>
             </tr>
             <tr>
                 <td>Mandatory</td>
@@ -126,33 +115,38 @@ permalink: /
             </tr>
             <tr>
                 <td>Possible values</td>
-                <td>url (absolute, with domain and protocol)</td>
+                <td>boolean</td>
             </tr>
 
             <tr>
                 <td>Default value</td>
-                <td>N/A</td>
+                <td>true</td>
             </tr>
             </tbody>
         </table>
+
+
+        <img src="assets/images/option-display-placeholder.jpg" alt="">
+
         <hr/>
     </div>
-    <div class="option-steps">
-        <h3>steps</h3>
+    <div class="option-styling">
+        <h3>styling</h3>
 
-        <p>This option is for define content of all steps example title, content</p>
+        <p>This option is for define styling options</p>
 
-        <img src="assets/images/option-steps-1.jpg" alt="">
-
-        <textarea id="option-steps" name="option-steps"></textarea>
+        <textarea id="option-styling" name="option-styling"></textarea>
         <script type="text/javascript">
-            $('#option-steps').editor({
-                url: 'samples/options/steps.html'
+            $('#option-styling').editor({
+                url: 'samples/options/styling.html'
 
             });
         </script>
 
-        <h4>steps[x].name</h4>
+        <img src="assets/images/option-styling.jpg" alt="">
+
+        <h4>styling.label.suffixe</h4>
+
         <table>
             <tbody>
             <tr>
@@ -170,17 +164,20 @@ permalink: /
 
             <tr>
                 <td>Default value</td>
-                <td>N/A</td>
+                <td>' : '</td>
             </tr>
             </tbody>
         </table>
 
-        <h4>steps[x].title</h4>
+        <img src="assets/images/option-styling.label.suffixe.jpg" alt="">
+
+        <h4>styling.label.mandatory</h4>
+
         <table>
             <tbody>
             <tr>
                 <td>Contribution</td>
-                <td>Yes</td>
+                <td>Optional</td>
             </tr>
             <tr>
                 <td>Mandatory</td>
@@ -193,383 +190,29 @@ permalink: /
 
             <tr>
                 <td>Default value</td>
-                <td>N/A</td>
+                <td>' * '</td>
             </tr>
             </tbody>
         </table>
 
-        <h4>steps[x].content</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
+        <img src="assets/images/option-styling.label.mandatory.jpg" alt="">
 
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
         <hr/>
     </div>
-    <div class="option-success">
-        <h3>success</h3>
+    <div class="option-api">
+        <h3>api</h3>
 
-        <p>This option is for define the data of page success</p>
-        <img src="assets/images/option-success.jpg" alt="">
+        <p>This option is for define settings of api</p>
 
-        <textarea id="option-success" name="option-success"></textarea>
+        <textarea id="option-api-url" name="option-api-url"></textarea>
         <script type="text/javascript">
-            $('#option-success').editor({
-                url: 'samples/options/success.html'
+            $('#option-api-url').editor({
+                url: 'samples/options/api-url.html'
 
             });
         </script>
 
-        <h4>success.title</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>success.content</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-        <hr/>
-    </div>
-    <div class="option-action">
-        <h3>action</h3>
-
-        <p>This option is for define the data of action of page success</p>
-        <img src="assets/images/option-action.jpg" alt="">
-
-        <textarea id="option-action" name="option-action"></textarea>
-        <script type="text/javascript">
-            $('#option-action').editor({
-                url: 'samples/options/action.html'
-            });
-        </script>
-
-        <h4>action.url</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>action.label</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>action.content</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-        <hr/>
-    </div>
-    <div class="option-accelerate">
-        <h3>accelerate</h3>
-
-        <p>This option is for define the data of button contact</p>
-        <img src="assets/images/option-accelerate.jpg" alt="">
-
-        <textarea id="option-accelerate" name="option-accelerate"></textarea>
-        <script type="text/javascript">
-            $('#option-accelerate').editor({
-                url: 'samples/options/accelerate.html'
-            });
-        </script>
-
-        <h4>accelerate.url</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>accelerate.label</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>accelerate.content</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-        <hr/>
-    </div>
-    <div class="option-error">
-        <h3>error</h3>
-
-        <p>This option is for define the data of page error</p>
-        <img src="assets/images/option-error.jpg" alt="">
-
-        <textarea id="option-error" name="option-error"></textarea>
-        <script type="text/javascript">
-            $('#option-error').editor({
-                url: 'samples/options/error.html'
-
-            });
-        </script>
-
-        <h4>error.title</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>error.content</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>N/A</td>
-            </tr>
-            </tbody>
-        </table>
-        <hr/>
-    </div>
-    <div class="option-form">
-        <h3>form</h3>
-
-        <p>This option is for define the config of form</p>
-
-        <textarea id="option-form" name="option-form"></textarea>
-        <script type="text/javascript">
-            $('#option-form').editor({
-                url: 'samples/options/form.html'
-
-            });
-        </script>
-
-        <h4>form.nextLabel</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>next</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>form.prevLabel</h4>
-        <table>
-            <tbody>
-            <tr>
-                <td>Contribution</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Mandatory</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>Possible values</td>
-                <td>string</td>
-            </tr>
-
-            <tr>
-                <td>Default value</td>
-                <td>back</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h4>form.api.url</h4>
+        <h4>api.url</h4>
         <table>
             <tbody>
             <tr>
@@ -606,9 +249,25 @@ permalink: /
             </tbody>
         </table>
 
-        <h4>form.callback.success</h4>
+        <hr/>
+    </div>
 
-        <p>when the customer have finish with success this trigger is called </p>
+
+    <div class="option-hook">
+        <h3>hook</h3>
+
+        <p>This option is for define the hooks</p>
+
+        <h4>hook.success</h4>
+
+        <textarea id="option-hook-success" name="option-hook-success"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-success').editor({
+                url: 'samples/options/hook-success.html'
+
+            });
+        </script>
+
         <table>
             <tbody>
             <tr>
@@ -617,22 +276,97 @@ permalink: /
             </tr>
             <tr>
                 <td>Mandatory</td>
-                <td>No</td>
+                <td>Yes</td>
             </tr>
             <tr>
                 <td>Possible values</td>
                 <td>function</td>
             </tr>
+            </tbody>
+        </table>
 
+        <h4>hook.warning</h4>
+
+        <textarea id="option-hook-warning" name="option-hook-warning"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-warning').editor({
+                url: 'samples/options/hook-warning.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
             <tr>
-                <td>Default value</td>
-                <td>N/A</td>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
             </tr>
             </tbody>
         </table>
+
+        <h4>hook.redirect</h4>
+
+        <textarea id="option-hook-redirect" name="option-hook-redirect"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-redirect').editor({
+                url: 'samples/options/hook-redirect.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>hook.setCurrentPosition</h4>
+
+        <textarea id="option-hook-set-current-position" name="option-hook-set-current-position"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-set-current-position').editor({
+                url: 'samples/options/hook-set-current-position.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
         <hr/>
     </div>
-
-
 
 </div>
