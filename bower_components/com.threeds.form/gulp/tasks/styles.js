@@ -5,6 +5,8 @@ var handleErrors = require('../utils/handle-error');
 var $ = require('gulp-load-plugins')({
     camelize: true
 });
+var cbuildHelper = require('../helpers/build-helper');
+var minifyCSS = require('gulp-minify-css');
 
 gulp.task('styles', function () {
 
@@ -14,10 +16,17 @@ gulp.task('styles', function () {
         .pipe($.sass(config.libs.sass))
         .pipe( $.importCss() )
         .pipe( $.autoprefixer(config.libs.autoPrefixer ) )
-        .pipe($.sourcemaps.write('./'));
+        .pipe($.concat('threeds.landingpage.css'))
+        .pipe($.sourcemaps.write('./'))
+        .pipe(gulp.dest(config.app.styles.sass.dist));
 
+    if( buildHelper.isRelease() ){
+        $return.pipe(minifyCSS())
+            .pipe($.concat('threeds.landingpage.min.css'))
+            .pipe(gulp.dest(config.app.styles.sass.dist));
+    }
 
-    return $return.pipe(gulp.dest(config.app.styles.sass.dist));
+    return $return;
 
 });
 

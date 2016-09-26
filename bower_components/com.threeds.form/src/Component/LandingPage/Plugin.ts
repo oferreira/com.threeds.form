@@ -4,6 +4,7 @@
 /// <reference path="../../Plugin/AbstractPlugin.ts" />
 /// <reference path="../../I18n/Translator.ts" />
 /// <reference path="../../Component/LandingPage/Element/LandingPage.ts" />
+/// <reference path="../../Http/Cookie.ts" />
 
 interface Document {
     registerElement(tagName:string, implementation:any):any;
@@ -17,7 +18,10 @@ interface JQuery {
     done(data?:any, options?:any): JQuery;
     fail(data?:any, options?:any): JQuery;
     progress(data?:any, options?:any): JQuery;
-    namespace(name?:any, options?:any): JQuery;
+}
+
+interface JQueryStatic{
+    namespace(namespaceName?:any, closures?:any): JQuery;
 }
 
 namespace Com.Threeds.Component.LandingPage {
@@ -27,6 +31,9 @@ namespace Com.Threeds.Component.LandingPage {
 
     export class Plugin extends AbstractPlugin {
         public elem:any;
+        public status:any = {
+            transition:false
+        };
         public settings:any = {
             id: 'LDP6312',
             type: 'download',
@@ -70,6 +77,14 @@ namespace Com.Threeds.Component.LandingPage {
                 label: {
                     suffixe: ' : ',
                     mandatory: ' * '
+                },
+                button:{
+                    next:{
+                        class:['ds-btn', 'ds-btn-scream'],
+                        0:{
+                            class:['ds-btn', 'ds-btn-circle'],
+                        },
+                    }
                 }
             },
             api: {
@@ -92,7 +107,8 @@ namespace Com.Threeds.Component.LandingPage {
             super(elem, options);
             this.elem = elem;
             this.elem.addClass('ds-ldp-global-container');
-            this.settings = $.extend({}, this.settings, options);
+
+            this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings,  this.settings,  options);
 
             if (Object.isDefined(options, 'form.nextLabel')){
                 this.settings.nextLabel = options.form.nextLabel;
@@ -110,7 +126,8 @@ namespace Com.Threeds.Component.LandingPage {
                this.settings.callback = options.form.callback;
             }
 
-            this.service('api').form(this, {});
+            let self:any = this;
+            this.service('api').form(self, {});
         }
 
         render(type:string, data:any):void {
@@ -120,10 +137,7 @@ namespace Com.Threeds.Component.LandingPage {
 
     $.namespace('threeds', {
         landingPage: function (options:Object) {
-            return new Plugin(this, options);
-        },
-        dynamicForm3ds: function (options:Object) {
-            return new Plugin(this, options);
+            return (new Plugin(this, options));
         }
     });
 }

@@ -5,119 +5,56 @@
 // ==========================================================================
 
 
-/*
+
 //Step 1
 
-.ds-ldp-global-step-1 {
-	animation-name: globalContainer;
-	animation-duration: 1.5s;
+.ds-anim-width-step-2 {
+	animation-name: globalContainerStep2Width;
+	animation-duration: 0.6s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
-	animation-delay: 0;
+	animation-fill-mode: forwards;
+	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+	animation-timing-function: ease-in-out;
 }
 
-
-
-@keyframes globalContainer {
+@keyframes globalContainerStep2Width {
 	0%{
-		width: 476px;
-	}
-	33%{
-		width: 476px;
-	}
-	66%{
 		width: 476px;
 	}
 	100% {
 		width: 952px;
 	}
 }
-*/
 
-/*
-.ds-ldp-global-step-1 .ds-ldp-form-container{
-	animation-name: block-right;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
 
-}
+$breakpoint:  1024px;
 
-@keyframes block-right {
-
-	0%{
-		opacity: 1;
-	}
-	100%{
-		opacity: 0;
-	}
-}
-*/
-
-//block right
-/*
-.ds-ldp-global-step-1 .ds-ldp-form-container{
-	animation-name: block-right;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-delay: 0;
-	animation-play-state: running;
-	animation-fill-mode: forwards;
-
-}
-
-@keyframes block-right {
-
-	0%{
-		opacity: 1;
+@media screen and (min-width: $breakpoint) {
+	// Sucess
+	.ds-form-sucess-anim {
+		animation-name: globalContainerSucess;
+		animation-duration: 0.6s;
+		animation-iteration-count: 1;
+		animation-direction: normal;
+		animation-fill-mode: forwards;
+		-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+		animation-timing-function: ease-in-out;
 	}
 
-	100%{
-		opacity: 0;
+	@keyframes globalContainerSucess {
+		0% {
+			width: 952px;
+		}
+		100% {
+			width: 476px;
+		}
 	}
 }
-*/
-
-/*
-//DS tab active
-.ds-ldp-global-step-1 .ds-tabs-header:before{
-	animation-name: tab-header;
-	animation-duration: 600ms;
-	animation-iteration-count: 1;
-	animation-direction: normal;
-	animation-delay: 0;
-}
-
-@keyframes globalContainer {
-	0%{
-		width: 476px;
-	}
-	50% {
-		width: 476px;
-	}
-
-	100% {
-		width: 952px;
-	}
-
-}
-
-
-@keyframes tab-header {
-
-	from {
-		left: 0px;
-	}
-
-	to {
-		left: 50%;
-	}
-
-}
 
 
 
-*/
+
+
+
+

@@ -18,13 +18,13 @@
   ],
   "dependencies": {
     "jquery": "~2.2.0",
-    "polymer-ts": "~0.1.23",
-    "polymer": "Polymer/polymer#~1.4.0",
-    "chosen": "~1.5.1",
     "jquery.namespace": "https://github.com/oferreira/jquery.namespace.git",
-    "javascript-auto-complete": "*"
-  },
-  "devDependencies": {
-    "mustache.js": "mustache#~2.2.1"
+    "polymer": "Polymer/polymer#~1.4.0",
+    "polymer-ts": "~0.1.23",
+    "javascript-auto-complete": "*",
+    "jquery-file-download": "~1.4.4",
+    "jwplayer": "~6.12.4956",
+    "youtube-iframe-api": "~0.0.1",
+    "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master"
   }
 }

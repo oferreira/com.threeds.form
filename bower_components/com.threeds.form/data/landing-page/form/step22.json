@@ -1,0 +1,303 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "nextAction": "SubmitForm",
+    "properties": {
+      "title": "",
+      "language": "en",
+      "submitLabel": "Submit"
+    },
+    "config": [
+      {
+        "fieldName": "enabledFields",
+        "type": "hidden"
+      },
+      {
+        "fieldName": "email",
+        "type": "hidden"
+      },
+      {
+        "fieldName": "levelOfInterest",
+        "type": "picklist",
+        "label": "Which of these best describes your level of interest?",
+        "required": true,
+        "options": [
+          {
+            "label": "Browsing/General Interest",
+            "value": "1",
+            "parentValue": ""
+          },
+          {
+            "label": "Beginning Investigation",
+            "value": "2",
+            "parentValue": ""
+          },
+          {
+            "label": "Evaluating Products",
+            "value": "3",
+            "parentValue": ""
+          },
+          {
+            "label": "Ready to Purchase",
+            "value": "4",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "solutionInterest",
+        "type": "picklist",
+        "label": "Domain of Interest",
+        "required": true,
+        "options": [
+          {
+            "label": "3DEXPERIENCE Platform",
+            "value": "3DEXPERIENCE Platform",
+            "parentValue": ""
+          },
+          {
+            "label": "Virtual Reality / 3D experience",
+            "value": "Virtual Reality / 3D experience",
+            "parentValue": ""
+          },
+          {
+            "label": "Technical Product Documentation",
+            "value": "Technical Product Documentation",
+            "parentValue": ""
+          },
+          {
+            "label": "Brand merchandising & retailing",
+            "value": "Brand merchandising & retailing",
+            "parentValue": ""
+          },
+          {
+            "label": "Styling",
+            "value": "Styling",
+            "parentValue": ""
+          },
+          {
+            "label": "Systems Engineering",
+            "value": "Systems Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Mechanical Engineering",
+            "value": "Mechanical Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Multi-Discipline Engineering",
+            "value": "Multi-Discipline Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Electrical & Fluids Engineering",
+            "value": "Electrical & Fluids Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Free CAD Software",
+            "value": "Free CAD Software",
+            "parentValue": ""
+          },
+          {
+            "label": "3D Design",
+            "value": "3D Design",
+            "parentValue": ""
+          },
+          {
+            "label": "Supply Chain Planning",
+            "value": "Supply Chain Planning",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Engineering",
+            "value": "Manufacturing Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Industrial Engineering",
+            "value": "Industrial Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Multiphysics Simulation",
+            "value": "Multiphysics Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Design Simulation",
+            "value": "Design Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Simulation Process Management",
+            "value": "Simulation Process Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Simulation Services",
+            "value": "Simulation Services",
+            "parentValue": ""
+          },
+          {
+            "label": "Industrial Equipment Simulation",
+            "value": "Industrial Equipment Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Configuration & Change Management",
+            "value": "Configuration & Change Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Regulatory & Environmental Compliance",
+            "value": "Regulatory & Environmental Compliance",
+            "parentValue": ""
+          },
+          {
+            "label": "Product Data Management",
+            "value": "Product Data Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Project & Program Management",
+            "value": "Project & Program Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Supply Chain Management",
+            "value": "Supply Chain Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Search-based application",
+            "value": "Search-based application",
+            "parentValue": ""
+          },
+          {
+            "label": "Resource Lifecycle Management",
+            "value": "Resource Lifecycle Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Dashboard Intelligence",
+            "value": "Dashboard Intelligence",
+            "parentValue": ""
+          },
+          {
+            "label": "Education/ Training",
+            "value": "Education/ Training",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Execution System",
+            "value": "Manufacturing Execution System",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Operations Management",
+            "value": "Manufacturing Operations Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Mining operations management",
+            "value": "Mining operations management",
+            "parentValue": ""
+          },
+          {
+            "label": "Natural resources exploration",
+            "value": "Natural resources exploration",
+            "parentValue": ""
+          },
+          {
+            "label": "Plant construction and management",
+            "value": "Plant construction and management",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "hearAboutUs",
+        "type": "picklist",
+        "label": "How did you hear about us?",
+        "required": true,
+        "options": [
+          {
+            "label": "Article",
+            "value": "Article",
+            "parentValue": ""
+          },
+          {
+            "label": "Blogs & Forums",
+            "value": "Blogs & Forums",
+            "parentValue": ""
+          },
+          {
+            "label": "Customer/Supplier Uses It",
+            "value": "Customer/Supplier Uses It",
+            "parentValue": ""
+          },
+          {
+            "label": "Friend/Colleague/Customer",
+            "value": "Friend/Colleague/Customer",
+            "parentValue": ""
+          },
+          {
+            "label": "Google",
+            "value": "Google",
+            "parentValue": ""
+          },
+          {
+            "label": "MSN",
+            "value": "MSN",
+            "parentValue": ""
+          },
+          {
+            "label": "Other",
+            "value": "Other",
+            "parentValue": ""
+          },
+          {
+            "label": "Press Release",
+            "value": "Press Release",
+            "parentValue": ""
+          },
+          {
+            "label": "Tradeshow/VAR Seminar/Event",
+            "value": "Tradeshow/VAR Seminar/Event",
+            "parentValue": ""
+          },
+          {
+            "label": "Used at a Previous Company",
+            "value": "Used at a Previous Company",
+            "parentValue": ""
+          },
+          {
+            "label": "Used in School",
+            "value": "Used in School",
+            "parentValue": ""
+          },
+          {
+            "label": "Word of Mouth",
+            "value": "Word of Mouth",
+            "parentValue": ""
+          },
+          {
+            "label": "YAHOO",
+            "value": "YAHOO",
+            "parentValue": ""
+          }
+        ]
+      }
+    ],
+    "data": {
+      "enabledFields": "fieldEmail,fieldLevelOfInterest,fieldSolutionInterest,fieldHearAboutUs",
+      "email": "olivier@live.fr",
+      "levelOfInterest": 1,
+      "solutionInterest": "3DEXPERIENCE Platform",
+      "hearAboutUs": "Article"
+    }
+  }
+}

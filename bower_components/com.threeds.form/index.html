@@ -4,22 +4,41 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Landing page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/dist/style.css" >
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/polyfills-6e87470526c496c0fc53fa87ed5a825eff61f1f3/classList.js"></script>
-    <script type="text/javascript" src="/dist/platform.js"></script>
-    <script type="text/javascript" src="/dist/app.js"></script>
+    <script type="text/javascript">
+        var Drupal = {};
+    </script>
+
+    <link rel="import" href="./dist/bower_components/polymer/polymer.html">
+    <link rel="import" href="./dist/bower_components/polymer-ts/polymer-ts.html">
+    <script src="./dist/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script type="text/javascript" src="./dist/bower_components/jwplayer/jwplayer.js"></script>
+    <script src="./dist/bower_components/youtube-iframe-api/youtube.iframe-api.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/content.css" />
+
+    <script src="./dist/bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
+    <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+
+
+
+
 </head>
 <body>
-<div id="container"></div>
+<span class="ds-form-ldp-neolane"><div id="myform"></div></span>
 <script type="text/javascript">
-    $(function () {
+    (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
                 id: 'LDP6312',
-                //id: 'LDP24104',
+//                id: 'LDP24104',
+//                id: 'LDP30043',
+                //id: 'LDP30043',
                 type: 'download',
-                backgroundImage: 'http://lorempixel.com/500/680',
+                backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
                     0: {
                         name: '1',
@@ -36,9 +55,9 @@
 
                 },
                 action: {
-                    url: 'http://www.3ds.com/fileadmin/PRODUCTS/CATIA/VIDEOS/CATIA-Film/CATIA-Film-LD.mp4',
-                    label: 'View Video',
-                    content: 'CATIA delivers the unique ability not only to model any product, but to do so in the context of its real-life behavior: design in the age of experience. Systems architects, engineers, designers and all contributors can define, imagine and shape the connected world. ',
+                    url: 'http://localhost:2000/assets/files/CATIA-SE-InstallationGuide.pdf',
+                    label: 'Download',
+                    content: 'PDF - 3,84Mo',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
@@ -63,10 +82,11 @@
                 }
             };
 
-            $('#container').threeds().landingPage(options);
+            $('#myform').threeds().landingPage(options);
         });
-    });
-
+    })(jQuery, Drupal, window);
 </script>
+
 </body>
 </html>
+

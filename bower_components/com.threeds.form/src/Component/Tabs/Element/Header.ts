@@ -20,8 +20,8 @@ namespace Com.Threeds.Component.Tabs.Element {
         };
 
         constructor(context:any, options:any) {
-            super();
-            this.settings = $.extend({}, this.settings, options);
+            super(options);
+            this.settings = $.extend(true, this.settings, options);
 
             let items:HTMLUListElement = document.createElement('ul');
             items.classList.add('ds-tabs-header');

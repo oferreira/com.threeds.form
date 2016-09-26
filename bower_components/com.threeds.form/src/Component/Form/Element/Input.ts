@@ -18,15 +18,15 @@ namespace Com.Threeds.Component.Form.Element {
             name:string;
 
         @property({type: String})
-            value:string =  "";
+            value:string = '';
 
         @property({type: String, reflectToAttribute: true})
             placeholder:string;
 
-        @property({type: Boolean, reflectToAttribute: true})
+        @property({type: Boolean, reflectToAttribute: false})
             required:boolean = false;
 
-        private _validators:string[] = [];
+        private _validators:any = [];
         private _errorMessage:string = '';
 
         constructor(context:any, data:any) {
@@ -53,15 +53,27 @@ namespace Com.Threeds.Component.Form.Element {
         _onChange(e:Event):void {
             this.fire('field-value-changed', this)
             this.setAttribute('value', this.value);
-            this.isValid();
+            this.displayError('');
+            //this.classList.remove('_error');
+            //console.log('emezam');
+            //this.isValid();
         }
 
-        isValid() {
-            let message:boolean|string;
+        @listen('focus')
+        _onFocus(e:Event):void {
+            this.displayError('');
+        }
+
+        isValid():any {
+            let message:any;
             for (let i = 0; i < this._validators.length; i++) {
-                message = eval(`${this._validators[i]}.isValid(this.value)`);
-                if (typeof message == 'string') {
-                    return this.displayError(message)
+                if(typeof this._validators[i] == 'string'){
+                    message = eval(`${this._validators[i]}.isValid(this.value)`);
+                    if (typeof message == 'string') {
+                        return this.displayError(message)
+                    }
+                } else if(typeof this._validators[i] == 'object'){
+                    message = this._validators[i].isValid(this.value);
                 }
             }
 

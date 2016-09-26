@@ -111,7 +111,7 @@
 
 // Font 3DS Light
 @font-face {
-	font-family: '3dslight';
+	font-family: $ds-light;
 	src: url('#{$font-path}3ds_light-webfont/3ds_light-webfont.eot');
 	src: url('#{$font-path}3ds_light-webfont/3ds_light-webfont.eot?#iefix') format('embedded-opentype'),
 	url('#{$font-path}3ds_light-webfont/3ds_light-webfont.woff2') format('woff2'),
@@ -124,7 +124,7 @@
 
 // Font 3DS Regular
 @font-face {
-	font-family: '3dsregular';
+	font-family: $ds-regular;
 	src: url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.eot');
 	src: url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.eot?#iefix') format('embedded-opentype'),
 	url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.woff2') format('woff2'),

@@ -17,8 +17,9 @@ namespace Com.Threeds.Service.Adapter {
 
 
             $.ajax({
+                //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/redirect.json',
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                type: "GET",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
                 //type: "GET",dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
@@ -28,7 +29,6 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
                 success: function (response:any) {
-                    console.log(self.data(response))
                     context.render('form', self.data(response));
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
@@ -42,44 +42,35 @@ namespace Com.Threeds.Service.Adapter {
 
             data['lpid'] = context.settings.id;
 
-            $.ajax({
-                type: "POST",dataType: "jsonp",url: context.settings.api.url,
+           $.ajax({
+                //type: "GET",dataType: "json", url: 'data/landing-page/form/debug.json',
+                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp", url: context.settings.api.url,
                 data:data,
-                success: function (response:Object) {
-                    context.render('form', self.data(response));
+                success: function (response:any) {
+                    response = self.data(response);
+
+                    if(typeof response.result.config != 'undefined'){
+                        let isFinalStep:boolean = true;
+                        for (let i = 0; i < response.result.config.length; i++) {
+                            if(typeof response.result.config[i].type != 'undefined' && response.result.config[i].type != 'hidden'){
+                                isFinalStep = false;
+                                break;
+                            }
+                        }
+
+                        if(isFinalStep){
+                            data['op'] = 'SubmitForm';
+                            self.post(context, data);
+                            return;
+                        }
+                    }
+
+                    context.render('form', response);
                 },
                 error: function (resultat:any, statut:any, erreur:any) {
                     context.render('form', false);
                 }
             });
-
-            /*if(Object.keys(data).length > 3){
-                $.ajax({
-                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            } else{
-                $.ajax({
-                    type: "POST",dataType: "jsonp",url: context.settings.api.url,
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/step2.test.json',
-                    //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                    data:data,
-                    success: function (response:Object) {
-                        context.render('form', self.data(response));
-                    },
-                    error: function (resultat:any, statut:any, erreur:any) {
-                        context.render('form', false);
-                    }
-                });
-            }*/
-
         }
 
         public data(reponse:any):any {
@@ -139,8 +130,11 @@ namespace Com.Threeds.Service.Adapter {
     }
 }
 
+interface Object {
+    find(o:any, s:string):Object;
+}
 
-Object.find = function (o:any, s:string):boolean {
+Object.find = function (o:any, s:string):Object {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
     var a = s.split('.');

@@ -1,14 +1,21 @@
 /// <reference path="../../../../../../bower_components/polymer-ts/polymer-ts.d.ts"/>
 /// <reference path="../../../../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../../../Core/Ajax/AutoComplete.ts" />
+
+interface autoComplete {
+    new(options: any): autoComplete;
+}
+declare var autoComplete:autoComplete;
+
+interface suggest {
+    (data: any):any;
+}
+declare var suggest:suggest;
 
 namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
-
-    import AutoComplete = Com.Threeds.Core.Ajax.AutoComplete;
-
     export interface FormBehavior {
         valid(): void;
+        suggest(items:Object): Object;
         errors: any;
         context: any;
         dispatch: any;
@@ -17,8 +24,6 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
     export class FormBehavior extends polymer.Base {
 
         public action(form:any, data:any):void {
-
-                console.log(data);
             if (Object.isDefined(data, 'result.config')) {
                 for (let i = 0; i < data.result.config.length; i++) {
                     if(typeof data.result.config[i].name != 'undefined' && data.result.config[i].name == 'email' && data.result.config[i].type == 'hidden'){
@@ -28,18 +33,13 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
                 form.update(data);
             } else if (Object.isDefined(data, 'result.thankYouPage')) {
-                if (data.result.properties.displayThankYou) {
-                    form.success(data.result.thankYouPage);
-
-                    if (data.result.properties.openUrl) {
-                        //var w = window.open(data.result.asset.url, '_blank');
-                        //w.focus();
-                    }
-                } else if (data.result.properties.openUrl) {
-                    form.redirect(data.result.asset.url);
+                form.success(data.result);
+                if (data.result.properties.openUrl) {
+                    //var w = window.open(data.result.asset.url, '_blank');
+                    //w.focus();
                 }
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && data.result.properties.redirect) {
-                form.redirect(data.result.properties.content);
+                form.success(data.result);
             } else if (Object.isDefined(data, 'result.properties.content') && Object.isDefined(data, 'result.properties.redirect') && !data.result.properties.redirect) {
                 form.warning(data.result.properties.content);
             } else if (Object.isDefined(data, 'errors.0.error.message')) {
@@ -54,30 +54,39 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
 
         }
 
+
+        getHostName(url:string):string {
+            var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+            if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+                return match[2];
+            }
+            else {
+                return null;
+            }
+        }
+
         @listen('field-value-changed')
         _onChange(e:Event, elem:any) {
-            let context = this;
+            let context:any = this;
             this.updateAllChildrenField(elem, Polymer.dom(this));
 
-            let query:string = $('#company').val();
-            let isoCode:string = $('#country').val();
-
-            if(elem.name == 'company' && query != undefined && isoCode != undefined && elem.autoComplete == undefined){
+            if(elem.name == 'company' && $('#company').val() != undefined && $('#country').val() != undefined && elem.autoComplete == undefined){
+                let apiUrl:string = location.protocol + '//' + this.getHostName(this.context.settings.api.url) + '/dsx/dnbWebservice.jssp';
                 elem.autoComplete = new autoComplete({
                     selector: `#${elem.name}`,
                     minChars: 3,
-                    source: function(term, suggest){
+                    source: function(term:string, suggest:any){
                         term = term.toLowerCase();
 
                         $.ajax({
-                            url: 'http://dassault-test.neolane.net/dsx/dnbWebservice.jssp',
+                            url: apiUrl,
                             dataType: 'jsonp',
                             data: {
-                                query: query,
-                                iso: isoCode
+                                query: $('#company').val(),
+                                iso: $('#country').val()
                             },
                             success: function (data) {
-                                suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet) {
+                                suggest($.map(data.dnbReponse.responseDetail.candidate, function (objet:any) {
                                     return {
                                         companyName: objet.companyName,
                                         duns: objet.duns,
@@ -93,13 +102,40 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
                         });
 
                     },
-                    renderItem: function (item:Object, search:string){
+                    renderItem: function (item:any, search:string){
                         search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
                         var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                        let label:string = item.companyName.replace(re, "<b>$1</b>");
-                        return '<div class="autocomplete-suggestion" data-companyName="'+item.companyName+'" data-duns="'+item.duns+'" data-postalCode="'+item.postalCode+'" data-city="'+item.city+'" data-address1="'+item.address1+'" data-address2="'+item.address2+'" data-stateCode="'+item.stateCode+'" data-val="'+search+'">'+label+'</div>';
+                        let address:string = '';
+
+                        if(item.city != ''){
+                            address += item.city;
+                        }
+
+                        if(item.postalCode != ''){
+                            address += (address == '' ? '':' - ') + item.postalCode;
+                        }
+
+                        if(item.address1 != ''){
+                            address += (address == '' ? '':', ') + item.address1;
+                        }
+
+                        return `<div
+                                    class="autocomplete-suggestion"
+                                    data-companyName="${item.companyName}"
+                                    data-duns="${item.duns}"
+                                    data-postalCode="${item.postalCode}"
+                                    data-city="${item.city}"
+                                    data-address1="${item.address1}"
+                                    data-address2="${item.address2}"
+                                    data-stateCode="${item.stateCode}"
+                                    data-val="${search}">
+                                        <span class="ds-suggest-name"><b>${item.companyName}</b></span>
+                                        <br />
+                                        <span class="ds-suggest-description">PARIS - 75018, 4 RUE DU CANADA</span>
+                                    </div>
+                                    `;
                     },
-                    onSelect: function(e, term, item){
+                    onSelect: function(e:Event, term:string, item:any){
 
                         context.append({
                             name: "duns",
@@ -137,8 +173,19 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         updateAllChildrenField(elem:any, node:any) {
             for (let i = 0; i < node.childNodes.length; i++) {
                 if(typeof node.childNodes[i].update == 'function' && node.childNodes[i].parentField == elem.name && node.childNodes[i].parentField != 'undefined'){
-                    node.childNodes[i].parentFieldValue = elem.value;
-                    node.childNodes[i].update();
+                    if(typeof elem.name != 'undefined' ){
+                        node.childNodes[i].parentFieldValue = elem.value;
+                        node.childNodes[i].update();
+	                    if (window.innerWidth > 1024){
+	                        $('.ds-ldp-global-container').animate({
+	                            height : $('.ds-form-fieldset').outerHeight()
+	                        });
+
+	                        $('.ds-lpd-info-form').animate({
+	                            height : $('.ds-form-fieldset').outerHeight()
+	                        });
+	                    }
+                    }
                 }
 
                 this.updateAllChildrenField(elem, node.childNodes[i]);
@@ -158,7 +205,7 @@ namespace Com.Threeds.Component.Form.Element.Behavior.Neolane {
         }
 
         post():void {
-            let data:string = Com.Threeds.Component.Form.Element.Form.serialize(this);
+            let data:Map<string> = Com.Threeds.Component.Form.Element.Form.serialize(this);
             this.context.service('api').post(this, data);
         }
 

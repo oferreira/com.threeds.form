@@ -10,18 +10,12 @@
     },
     "config": [
       {
-        "name": "enabledFields",
+        "fieldName": "enabledFields",
         "type": "hidden"
       },
       {
         "fieldName": "email",
         "type": "hidden"
-      },
-      {
-        "fieldName": "company",
-        "type": "text",
-        "label": "Company",
-        "required": true
       },
       {
         "fieldName": "country",
@@ -1874,70 +1868,462 @@
         ]
       },
       {
-        "fieldName": "industry",
+        "fieldName": "solutionInterest",
         "type": "picklist",
-        "label": "Industry",
+        "label": "Domain of Interest",
+        "required": false,
+        "options": [
+          {
+            "label": "3DEXPERIENCE Platform",
+            "value": "3DEXPERIENCE Platform",
+            "parentValue": ""
+          },
+          {
+            "label": "Virtual Reality / 3D experience",
+            "value": "Virtual Reality / 3D experience",
+            "parentValue": ""
+          },
+          {
+            "label": "Technical Product Documentation",
+            "value": "Technical Product Documentation",
+            "parentValue": ""
+          },
+          {
+            "label": "Brand merchandising & retailing",
+            "value": "Brand merchandising & retailing",
+            "parentValue": ""
+          },
+          {
+            "label": "Styling",
+            "value": "Styling",
+            "parentValue": ""
+          },
+          {
+            "label": "Systems Engineering",
+            "value": "Systems Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Mechanical Engineering",
+            "value": "Mechanical Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Multi-Discipline Engineering",
+            "value": "Multi-Discipline Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Electrical & Fluids Engineering",
+            "value": "Electrical & Fluids Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Free CAD Software",
+            "value": "Free CAD Software",
+            "parentValue": ""
+          },
+          {
+            "label": "3D Design",
+            "value": "3D Design",
+            "parentValue": ""
+          },
+          {
+            "label": "Supply Chain Planning",
+            "value": "Supply Chain Planning",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Engineering",
+            "value": "Manufacturing Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Industrial Engineering",
+            "value": "Industrial Engineering",
+            "parentValue": ""
+          },
+          {
+            "label": "Multiphysics Simulation",
+            "value": "Multiphysics Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Design Simulation",
+            "value": "Design Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Simulation Process Management",
+            "value": "Simulation Process Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Simulation Services",
+            "value": "Simulation Services",
+            "parentValue": ""
+          },
+          {
+            "label": "Industrial Equipment Simulation",
+            "value": "Industrial Equipment Simulation",
+            "parentValue": ""
+          },
+          {
+            "label": "Configuration & Change Management",
+            "value": "Configuration & Change Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Regulatory & Environmental Compliance",
+            "value": "Regulatory & Environmental Compliance",
+            "parentValue": ""
+          },
+          {
+            "label": "Product Data Management",
+            "value": "Product Data Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Project & Program Management",
+            "value": "Project & Program Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Supply Chain Management",
+            "value": "Supply Chain Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Search-based application",
+            "value": "Search-based application",
+            "parentValue": ""
+          },
+          {
+            "label": "Resource Lifecycle Management",
+            "value": "Resource Lifecycle Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Dashboard Intelligence",
+            "value": "Dashboard Intelligence",
+            "parentValue": ""
+          },
+          {
+            "label": "Education/ Training",
+            "value": "Education/ Training",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Execution System",
+            "value": "Manufacturing Execution System",
+            "parentValue": ""
+          },
+          {
+            "label": "Manufacturing Operations Management",
+            "value": "Manufacturing Operations Management",
+            "parentValue": ""
+          },
+          {
+            "label": "Mining operations management",
+            "value": "Mining operations management",
+            "parentValue": ""
+          },
+          {
+            "label": "Natural resources exploration",
+            "value": "Natural resources exploration",
+            "parentValue": ""
+          },
+          {
+            "label": "Plant construction and management",
+            "value": "Plant construction and management",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "department",
+        "type": "picklist",
+        "label": "Department",
         "required": true,
         "options": [
           {
-            "label": "Transportation & Mobility",
-            "value": "01",
+            "label": "Academic",
+            "value": "ACA Academic",
             "parentValue": ""
           },
           {
-            "label": "Aerospace & Defense",
-            "value": "02",
+            "label": "Administration",
+            "value": "ADM Administration",
             "parentValue": ""
           },
           {
-            "label": "Marine & Offshore",
-            "value": "03",
+            "label": "Engineering",
+            "value": "ENG Engineering",
             "parentValue": ""
           },
           {
-            "label": "Industrial Equipment",
-            "value": "04",
+            "label": "IT / System",
+            "value": "IT Information Systems",
             "parentValue": ""
           },
           {
-            "label": "High Tech",
-            "value": "05",
+            "label": "Manufacturing",
+            "value": "ENG Manufacturing",
             "parentValue": ""
           },
           {
-            "label": "Consumer Goods - Retail",
-            "value": "06",
+            "label": "Marketing / Sales",
+            "value": "MKGSAL Marketing Sales",
             "parentValue": ""
           },
           {
-            "label": "Consumer Packaged Goods - Retail",
-            "value": "07",
+            "label": "Opinion leader",
+            "value": "OL Opinion leader",
             "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "subDepartment",
+        "parentField": "department",
+        "type": "picklist",
+        "label": "Sub department",
+        "required": false,
+        "options": [
+          {
+            "label": "Advertising / Communication",
+            "value": "MKGSAL Marketing Sales - Advertising / Communication",
+            "parentValue": "MKGSAL Marketing Sales"
           },
           {
-            "label": "Life Sciences",
-            "value": "08",
-            "parentValue": ""
+            "label": "Analysis",
+            "value": "ENG Engineering - Analysis",
+            "parentValue": "ENG Engineering"
           },
           {
-            "label": "Energy, Process & Utilities",
-            "value": "09",
-            "parentValue": ""
+            "label": "Analyst",
+            "value": "OL Opinion leader - Analyst",
+            "parentValue": "OL Opinion leader"
           },
           {
-            "label": "Architecture,  Engineering & Construction",
-            "value": "10",
-            "parentValue": ""
+            "label": "Automation/Controls Engineering",
+            "value": "ENG Manufacturing - Automation/Controls Engineering",
+            "parentValue": "ENG Manufacturing"
           },
           {
-            "label": "Financial & Business Services",
-            "value": "11",
-            "parentValue": ""
+            "label": "Documentation",
+            "value": "ENG Engineering - Documentation",
+            "parentValue": "ENG Engineering"
           },
           {
-            "label": "Natural Resources",
-            "value": "12",
-            "parentValue": ""
+            "label": "Documentation/Maintenance",
+            "value": "ENG Manufacturing - Documentation/Maintenance",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Electronics",
+            "value": "ENG Engineering - Electronics",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Engineering design",
+            "value": "ENG Engineering - Engineering design",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Ergonomics",
+            "value": "ENG Manufacturing - Ergonomics",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Ergonomics",
+            "value": "ENG Engineering - Ergonomics",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Factory Management",
+            "value": "ADM Administration - Factory Management",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Finance / accounting",
+            "value": "ADM Administration - Finance / accounting",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Forming and Fabrication",
+            "value": "ENG Manufacturing - Forming and Fabrication",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Geology",
+            "value": "ENG Engineering - Geology",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Human resources",
+            "value": "ADM Administration - Human resources",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Industrial Design / Style",
+            "value": "ENG Engineering - Industrial Design / Style",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Influencer",
+            "value": "OL Opinion leader - Influencer",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Information System",
+            "value": "IT Information Systems - Information System",
+            "parentValue": "IT Information Systems"
+          },
+          {
+            "label": "Journalist",
+            "value": "OL Opinion leader - Journalist",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Logistics",
+            "value": "ADM Administration - Logistics",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Maintenance",
+            "value": "ENG Engineering - Maintenance",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Manufacturing Engineering",
+            "value": "ENG Manufacturing - Manufacturing Engineering",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Mechanical Engineering",
+            "value": "ENG Manufacturing - Mechanical Engineering",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Merchandising  / Retail",
+            "value": "MKGSAL Marketing Sales - Merchandising  / Retail",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Mining",
+            "value": "ENG Engineering - Mining",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Packaging",
+            "value": "MKGSAL Marketing Sales - Packaging",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Planning",
+            "value": "ENG Manufacturing - Planning",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Post Sales / support",
+            "value": "MKGSAL Marketing Sales - Post Sales / support",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Pre Sales",
+            "value": "MKGSAL Marketing Sales - Pre Sales",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Process",
+            "value": "ENG Engineering - Process",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Production",
+            "value": "ENG Manufacturing - Production",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Product Marketing",
+            "value": "MKGSAL Marketing Sales - Product Marketing",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Public organization",
+            "value": "OL Opinion leader - Public organization",
+            "parentValue": "OL Opinion leader"
+          },
+          {
+            "label": "Public relations",
+            "value": "MKGSAL Marketing Sales - Public relations",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Purchasing / procurement",
+            "value": "ADM Administration - Purchasing / procurement",
+            "parentValue": "ADM Administration"
+          },
+          {
+            "label": "Quality",
+            "value": "ENG Engineering - Quality",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Quality Control / Inspection",
+            "value": "ENG Manufacturing - Quality Control / Inspection",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "R&D",
+            "value": "ENG Engineering - R&D",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Research",
+            "value": "ACA Academic - Research",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "Robotics",
+            "value": "ENG Manufacturing - Robotics",
+            "parentValue": "ENG Manufacturing"
+          },
+          {
+            "label": "Sales",
+            "value": "MKGSAL Marketing Sales - Sales",
+            "parentValue": "MKGSAL Marketing Sales"
+          },
+          {
+            "label": "Strategy",
+            "value": "IT Information Systems - Strategy",
+            "parentValue": "IT Information Systems"
+          },
+          {
+            "label": "Student",
+            "value": "ACA Academic - Student",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "Survey",
+            "value": "ENG Engineering - Survey",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Systems engineering",
+            "value": "ENG Engineering - Systems engineering",
+            "parentValue": "ENG Engineering"
+          },
+          {
+            "label": "Teacher / faculty",
+            "value": "ACA Academic - Teacher / faculty",
+            "parentValue": "ACA Academic"
+          },
+          {
+            "label": "Technical",
+            "value": "IT Information Systems - Technical",
+            "parentValue": "IT Information Systems"
           }
         ]
       },
@@ -2359,30 +2745,6 @@
         ]
       },
       {
-        "fieldName": "address1",
-        "type": "text",
-        "label": "Address 1",
-        "required": false
-      },
-      {
-        "fieldName": "address2",
-        "type": "text",
-        "label": "Address 2",
-        "required": false
-      },
-      {
-        "fieldName": "zipCode",
-        "type": "text",
-        "label": "Postal Code",
-        "required": true
-      },
-      {
-        "fieldName": "city",
-        "type": "text",
-        "label": "City",
-        "required": true
-      },
-      {
         "type": "fieldGroup",
         "label": "I would like",
         "required": false,
@@ -2397,7 +2759,7 @@
             "fieldName": "demo",
             "type": "checkbox",
             "label": "A Live Demo",
-            "value": "0"
+            "value": "1"
           },
           {
             "fieldName": "quote",
@@ -2427,33 +2789,16 @@
       },
       {
         "fieldName": "custom1",
-        "type": "radio",
-        "label": "test ZH3",
+        "type": "text",
+        "label": "My Custom Field Text",
         "required": true,
-        "options": [
-          {
-            "label": "ghjkdfghjdfgh",
-            "value": "toto",
-            "parentValue": ""
-          },
-          {
-            "label": "rfzeeze",
-            "value": "tata",
-            "parentValue": ""
-          },
-          {
-            "label": "",
-            "value": "",
-            "parentValue": ""
-          }
-        ],
         "comment": "comment for this field"
       },
       {
         "fieldName": "custom2",
         "type": "radio",
         "label": "My Custom Field Radio",
-        "required": true,
+        "required": false,
         "options": [
           {
             "label": "Value 1",
@@ -2473,6 +2818,31 @@
         ]
       },
       {
+        "fieldName": "custom3",
+        "type": "picklist",
+        "label": "My Custom Field Picklist",
+        "required": false,
+        "options": [
+          {
+            "label": "Val A",
+            "value": "valA",
+            "parentValue": ""
+          },
+          {
+            "label": "Val B",
+            "value": "valB",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "custom4",
+        "type": "checkbox",
+        "label": "My Custom Field Checkbox",
+        "value": "1",
+        "required": false
+      },
+      {
         "fieldName": "comments",
         "type": "textarea",
         "label": "Comment",
@@ -2480,8 +2850,8 @@
       }
     ],
     "data": {
-      "enabledFields": "fieldEmail,fieldCompany,fieldCountry,fieldLevelOfInterest,fieldIndustry,fieldIndustry,fieldSubIndustry,fieldAddress,fieldAddress1,fieldAddressZipCode,fieldAddressCity,fieldIWouldLike,addCustomFields,custom1,custom2,fieldComment",
-      "email": "lorem@lorem.fr"
+      "enabledFields": "fieldEmail,fieldCountry,fieldLevelOfInterest,fieldSolutionInterest,fieldJobDepartment,fieldJobSubDepartment,fieldIndustry,fieldSubIndustry,fieldIWouldLike,addCustomFields,custom1,custom2,custom3,custom4,fieldComment",
+      "email": "olivier@live.fr"
     }
   }
 }

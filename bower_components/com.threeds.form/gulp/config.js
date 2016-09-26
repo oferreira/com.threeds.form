@@ -1,3 +1,6 @@
+var fs = require('fs');
+var os = require('os');
+
 module.exports = {
     project: {
         name: 'cards-3ds',
@@ -42,4 +45,54 @@ module.exports = {
             halstead: 25
         }
     },
+    env:{
+        "int":{
+            host: 'webnode01.drupal.private.int.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        },
+        "qal":{
+            host: 'webnode01.drupal.public.qal.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        },
+        "ppd1":{
+            host: 'webnode01.drupal.private.ppd.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        },
+        "ppd2":{
+            host: 'webnode01.drupal.private.ppd.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        },
+        "prod1":{
+            host: 'webnode01.drupal.private.prd.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        },
+        "prod2":{
+            host: 'webnode01.drupal.private.prd.vpc-eu01.it3ds.net',
+            port: 22,
+            username: 'wwwdev',
+            privateKey: fs.readFileSync(os.homedir() + '/.ssh/oah@3ds.com.ppk'),
+            remotePath: '/data/3ds/landingpages/current/src/montage/dist/',
+            drushPath: '/data/3ds/landingpages/current/src/'
+        }
+    }
 };

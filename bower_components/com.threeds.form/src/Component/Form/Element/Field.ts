@@ -7,11 +7,12 @@
 /// <reference path="../../../Component/Form/Element/RadioGroup.ts" />
 /// <reference path="../../../Element/AbstractPolymerElement.ts" />
 /// <reference path="../../../Validator/Email.ts" />
-/// <reference path="../../../Validator/Email.ts" />
+/// <reference path="../../../Validator/Regex.ts" />
 
 namespace Com.Threeds.Component.Form.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
+    import FieldGroup = Com.Threeds.Component.Form.Element.FieldGroup;
 
     @component('field-element')
     @extend("div")
@@ -25,8 +26,8 @@ namespace Com.Threeds.Component.Form.Element {
         public autoComplete:any;
 
         constructor(context:any, data:any) {
-            this.hydrateValidators(data);
             super(data);
+            this.hydrateValidators(data);
 
             this.data = data;
             this.classList.add('ds-form-group')
@@ -42,7 +43,6 @@ namespace Com.Threeds.Component.Form.Element {
                 }
             }
 
-
             if (data.fieldName == 'optin') {
                 this.classList.add(`ds-form-switch`);
                 this.classList.add(`ds-no-border`);
@@ -52,7 +52,7 @@ namespace Com.Threeds.Component.Form.Element {
             this.append(context, data);
         }
 
-        label(context:any, data:Object):HTMLLabelElement {
+        label(context:any, data:any):HTMLLabelElement {
             if (!context.settings.display.label && data.type.toLowerCase() != 'checkbox') return;
 
             let label:HTMLLabelElement = document.createElement('label');
@@ -78,7 +78,7 @@ namespace Com.Threeds.Component.Form.Element {
             return label;
         }
 
-        container(context:any, data:Object):HTMLDivElement {
+        container(context:any, data:any):HTMLDivElement {
             let type:string = data.type.toLowerCase();
             let container:HTMLDivElement = document.createElement('div');
             //container.classList.add(context.settings.display.label ? 'col-sm-10' : 'col-sm-12');
@@ -98,7 +98,7 @@ namespace Com.Threeds.Component.Form.Element {
 
             switch (type) {
                 case 'fieldgroup':
-                    this.appendChild(FieldGroupElement.create(context, data));
+                    this.appendChild(FieldGroup.create(context, data));
                     break;
                 case 'select':
                     container.appendChild(Select.create(context, data));
@@ -131,8 +131,7 @@ namespace Com.Threeds.Component.Form.Element {
         hydrateValidators(data:any) {
             let validators:string[] = (data.validators == undefined ? [] : data.validators);
 
-            //if(typeof data.regex != "undefined") console.log(data.regex)
-
+            if(typeof data.regex != "undefined") validators.push(<any>new Com.Threeds.Validator.Regex(data))
             if (data.fieldName == 'email' && data.type != 'hidden') validators.push('Com.Threeds.Validator.Email');
             if (data.required) validators.push('Com.Threeds.Validator.Require');
 

@@ -41,23 +41,30 @@ namespace Com.Threeds.Component.Form.Element {
         }
 
         public set currentPosition(value:number) {
+            if (typeof this.context.settings.hook.transition == 'function') {
+                this.context.settings.hook.transition(this, value);
+                return;
+            }
+
             if (typeof this.context.settings.hook.setCurrentPosition == 'function') {
                 this.settings.hook.setCurrentPosition(this, value);
             }
 
             this._currentPosition = value;
+            this.transition(this, value);
         }
 
         public _steps:Object[] = [];
 
         public _errors:Object[] = [];
 
-        constructor(context:any, data:any) {
-            super(data);
+        constructor(context:any, options:any) {
+            super(options);
+
             this.context = context;
-            this.classList.add('ds-form')
-            this.classList.add('ds-ldp-form-container')
-            this.dispatch(data);
+            this.classList.add('ds-form');
+            this.setAttribute('novalidate', true);
+            this.dispatch(options);
         }
 
         public get settings():any {
@@ -66,7 +73,7 @@ namespace Com.Threeds.Component.Form.Element {
 
         public get errors():Object[] {
 
-            return <Array> this._errors;
+            return this._errors;
         }
 
         public set errors(value:Object[]) {
@@ -121,7 +128,6 @@ namespace Com.Threeds.Component.Form.Element {
             this.innerHTML = '';
         }
 
-
         add(data:any) {
             if (!((<any>Polymer.dom(this)).childNodes.length)) {
                 this._steps.push(data)
@@ -129,9 +135,15 @@ namespace Com.Threeds.Component.Form.Element {
                 return true;
             }
 
-            return this.isNewStep(this, (<any>Polymer.dom(this)), data);
-        }
+            let isNewStep:boolean = this.isNewStep(this, (<any>Polymer.dom(this)), data);
+            if (isNewStep) {
+                this._steps.push(data)
+                this.currentPosition++;
+                return true;
+            }
 
+            return false;
+        }
 
         isNewStep(context:any, node:any, data:any):boolean {
             let child:any;
@@ -141,16 +153,12 @@ namespace Com.Threeds.Component.Form.Element {
                 if(child.name != undefined){
                     for (let k in data.result.config) {
                         if (data.result.config[k].name = child.name && data.result.config[k].type != 'hidden') {
-                            context._steps.push(data)
-                            context.currentPosition++;
                             return true;
                         }
                     }
                 }
 
                 return this.isNewStep(context, child, data);
-
-
             }
 
             return false;
@@ -158,8 +166,11 @@ namespace Com.Threeds.Component.Form.Element {
 
         update(data:any) {
             this.add(data);
-            this.clear();
-            this.appendChild(Step.create(this, data));
+        }
+
+        transition(context:any,currentPosition:number):void{
+            context.clear();
+            context.appendChild(Step.create(context, context._steps.slice(-1)[0]));
         }
 
 
@@ -230,7 +241,7 @@ namespace Com.Threeds.Component.Form.Element {
             }
         }
 
-        static serialize(form:any):string {
+        static serialize(form:any):Map<string> {
             if (!form || form.nodeName !== "FORM") {
                 return;
             }
@@ -255,7 +266,7 @@ namespace Com.Threeds.Component.Form.Element {
                             case 'checkbox':
                             case 'radio':
                                 if (form.elements[i].checked) {
-                                    dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                    dict[form.elements[i].name] = form.elements[i].value;
                                 }
                                 break;
                             case 'file':
@@ -263,17 +274,17 @@ namespace Com.Threeds.Component.Form.Element {
                         }
                         break;
                     case 'TEXTAREA':
-                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                        dict[form.elements[i].name] = form.elements[i].value;
                         break;
                     case 'SELECT':
                         switch (form.elements[i].type) {
                             case 'select-one':
-                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                dict[form.elements[i].name] = form.elements[i].value;
                                 break;
                             case 'select-multiple':
                                 for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                     if (form.elements[i].options[j].selected) {
-                                        dict[form.elements[i].name] = encodeURIComponent(form.elements[i].options[j].value);
+                                       dict[form.elements[i].name] = form.elements[i].options[j].value;
                                     }
                                 }
                                 break;
@@ -284,7 +295,7 @@ namespace Com.Threeds.Component.Form.Element {
                             case 'reset':
                             case 'submit':
                             case 'button':
-                                dict[form.elements[i].name] = encodeURIComponent(form.elements[i].value);
+                                dict[form.elements[i].name] = form.elements[i].value;
                                 break;
                         }
                         break;

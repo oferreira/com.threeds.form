@@ -5,7 +5,7 @@
 namespace Com.Threeds.Component.Tabs.Element {
 
     import AbstractPolymerElement = Com.Threeds.Element.AbstractPolymerElement;
-    import Tabs = Com.Threeds.Component.Tabs.Element.Tab;
+    import Tab = Com.Threeds.Component.Tabs.Element.Tab;
     import Header = Com.Threeds.Component.Tabs.Element.Header;
 
     @component('tabs-element')
@@ -28,8 +28,9 @@ namespace Com.Threeds.Component.Tabs.Element {
         };
 
         constructor(context:any, options:any, data:any) {
+            super(data);
             this.context = context;
-            this.settings = $.extend({}, this.settings, options);
+            this.settings = $.extend(true, this.settings, options);
             this.classList.add('ds-tabs');
 
             this.appendChild(Header.create(this, this.settings));
@@ -47,21 +48,20 @@ namespace Com.Threeds.Component.Tabs.Element {
         }
 
         public set currentPosition(value:number) {
-            $('ul.ds-tabs-header').addClass(`step-${value}-active`);
-
-            $( ".ds-tabs-header li" ).each(function( index ) {
+            this.context.elem.find('ul.ds-tabs-header').addClass(`step-${value}-active`);
+            this.context.elem.find( ".ds-tabs-header li" ).each(function( index:number, element:JQuery ) {
                 if(index == value){
-                    $( this ).addClass('active');
+                    $( element ).addClass('active');
                 } else {
-                    $( this ).removeClass('active');
+                    $( element ).removeClass('active');
                 }
             });
 
-            $( ".ds-tabs-container .ds-tab" ).each(function( index ) {
+            this.context.elem.find( ".ds-tabs-container .ds-tab" ).each(function( index:number, element:JQuery ) {
                 if(index == value){
-                    $( this ).addClass('active');
+                    $( element ).addClass('active');
                 } else {
-                    $( this ).removeClass('active');
+                    $( element ).removeClass('active');
                 }
             });
 

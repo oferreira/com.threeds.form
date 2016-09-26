@@ -4,119 +4,68 @@
 // FORM
 // ==========================================================================
 
-
 @import "ldp-form-step";
 @import "ldp-form-animation";
 
-
-// STEP 1
-// ==========================================================================
-
-.ds-ldp-global-step-0{
-	margin: auto;
-	max-width: 476px;
-
-	.ds-lpd-info-form,
-	.ds-ldp-form-container {
-		max-width: 476px;
-		height:685px;
-	}
-
-	.ds-ldp-form-container{
-		position: absolute;
-		z-index: 2;
-		left:0;
-		right:0;
-		top:480px;
-		bottom: 0;
-		padding: 0 57px;
-	}
-
-	.ds-form-fieldset{
-		background: none;
-	}
-}
-
-// STEP 2
-// ==========================================================================
-
-.ds-ldp-global-step-1{
-
-	margin: auto;
-	max-width: 952px;
-	.ds-lpd-info-form,
-	.ds-ldp-form-container {
-		width: 476px;
-		padding: 0 57px;
-		height:685px;
-	}
-}
-
-// STEP 3
-// ==========================================================================
-
-.ds-ldp-global-step-2{
-	margin: auto;
-	max-width: 476px;
-	.ds-lpd-info-form,
-	.ds-ldp-form-container {
-		width: 100%;
-		display: block;
-	}
-
-	.ds-lpd-info-form{
-		height:330px;
-	}
-
-	.ds-ldp-form-container{
-		height: 190px;
-	}
-}
+@import "ldp-form-drupal";
+@import "ldp-form-responsive";
 
 
 // Autocomplete
 // ==========================================================================
-.ds-ldp-global-container{
-	.hide {
-		display: none;
-	}
-	.autocomplete-suggestions {
-		text-align: left;
-		cursor: default;
-		border: 1px solid #ccc;
-		border-top: 0;
-		background: #fff;
-		box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
 
-		/* core styles should not be changed */
-		position: absolute;
-		display: none;
-		z-index: 9999;
-		max-height: 254px;
-		overflow: hidden;
-		overflow-y: auto;
-		box-sizing: border-box;
-	}
+.ds-ldp-global-container .hide {display: none;}
 
-	.autocomplete-suggestion {
-		position: relative;
-		padding: 0 .6em;
-		line-height: 23px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		font-size: 1.02em;
-		color: #333;
-	}
+.ds-autocomplete.autocomplete-suggestions {
+	text-align: left;
+	font-family: $ds-light;
+	font-size: 17px;
+	color: $black-35;
+	background-color: #ffffff;
+	cursor: default;
+	border: solid 1px $black-12;
+	border-top: 0;
+	background: #fff;
+	/* core styles should not be changed */
+	position: absolute;
+	display: none;
+	z-index:  999;
+	max-height: 254px;
+	overflow: hidden;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
 
-	.autocomplete-suggestion b {
-		font-weight: normal;
-		color: #1f8dd6;
-	}
+.ds-autocomplete.autocomplete-suggestion {
+	position: relative;
+	padding: 0 .6em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-family: $ds-light;
+	font-size: 17px;
+	color: $black-35;
+}
 
-	.autocomplete-suggestion.selected {
-		background: #f0f0f0;
-	}
+.ds-autocomplete.autocomplete-suggestion b {
+	font-weight: normal;
+	color: #1f8dd6;
+}
+
+.ds-autocomplete.autocomplete-suggestion.selected {
+	background: #f0f0f0;
+}
+
+.ds-field-required.ds-form-text::after,
+.ds-field-required.ds-form-select::after{
+	content: '*';
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	margin: auto;
+	width: 3px;
+	height: 3px;
+	color:$black-22;
 }
 
 

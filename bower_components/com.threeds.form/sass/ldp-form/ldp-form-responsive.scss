@@ -3,3 +3,115 @@
 // ==========================================================================
 // LDP FORM RESPONSIVE
 // ==========================================================================
+
+$breakpoint:  1024px;
+
+@media screen and (max-width: $breakpoint)  {
+
+	.ds-form-ldp-neolane{
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+	//Container
+	.ds-ldp-global-container{
+		width:100%;
+		max-width: 460px;
+	}
+
+	.ds-lpd-info-form,
+	.ds-ldp-form-container{
+		width:100% !important;
+		max-width: 460px;
+		height: 430px;
+	}
+
+
+	/* test */
+
+	.ds-ldp-global-container .ds-lpd-info-form,
+	.ds-ldp-global-container .ds-ldp-form-container{
+		padding: 0 26px;
+	}
+
+
+	//STEP 1
+	.ds-ldp-global-container.ds-ldp-global-step-1 .ds-ldp-form-container{
+		padding: 16px 26px 0 26px;
+		position: static;
+		height: auto !important;
+	}
+
+	.ds-ldp-global-container.ds-ldp-global-step-1 .ds-lpd-info-form{
+		height: 195px;
+	}
+
+	.ds-ldp-global-container.ds-ldp-global-step-1 .ds-form-fieldset{
+		padding-top: 0;
+		padding-bottom: 16px;
+	}
+
+	.ds-ldp-global-step-1 .ds-tabs-container{
+		height: auto;
+		padding: 0 26px 26px 26px;
+	}
+
+	ul.ds-tabs-header:first-child {
+		margin-top: 30px;
+	}
+	.ds-form-ldp-neolane ul.ds-tabs-header:first-child{
+		margin-top: 32px !important;
+	}
+	.ds-tabs-container .ds-tab{
+		font-size: 22px;
+	}
+
+
+	.ds-tabs-container .ds-tab.active{
+		left:0;
+	}
+
+	.ds-ldp-global-step-0 .ds-ldp-form-container{
+		top: 155px;
+	}
+
+
+	.ds-ldp-global-step-2 .ds-lpd-info-form {
+		height: 235px;
+	}
+
+	.ds-title-ty{
+		font-size: 31px;
+	}
+
+
+
+	.ds-title-ty::after {
+		width: 70px;
+		height: 30px;
+		top: 120px;
+	}
+
+	.ds-form-ldp-neolane .ds-dl-info p{
+		padding: 26px 0px;
+	}
+
+	.ds-form-sucess{
+		.ds-ldp-form-container{
+			height:auto;
+		}
+
+		.ds-block-ty{
+			height:240px !important;
+		}
+	}
+
+	.ds-ldp-global-step-1 .ds-btn-scream{
+		width: 100%;
+	}
+
+	.morph-button .ds-btn-video{
+		margin: 75px auto 0 auto;
+	}
+
+
+}

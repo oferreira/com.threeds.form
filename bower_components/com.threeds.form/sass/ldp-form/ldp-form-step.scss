@@ -9,23 +9,31 @@
 
 // Global
 .ds-ldp-global-container{
+	background: $white;
 	margin: auto;
+	width: 476px;
 	position: relative;
 	@include box-sizing(border-box);
 	border-radius:$radius-form;
 	overflow: hidden;
+	display: block;
+	z-index: 100;
 	box-shadow: 0 12px 57px 0 $black-22;
+	transition-timing-function: ease-in-out;
+	margin-bottom: 52px;
 }
 
 // block left & right
 .ds-lpd-info-form,
 .ds-ldp-form-container{
-	display: table-cell;
 	@include box-sizing(border-box);
 	position: relative;
 	margin:0;
-
+	//float:left;
+	width: 476px;
 }
+
+
 
 //Info (left)
 .ds-lpd-info-form{
@@ -34,6 +42,24 @@
 	z-index: 2;
 	overflow: hidden;
 	padding: 0 57px;
+	height:685px;
+}
+
+// Block right
+.ds-ldp-form-container{
+	position: absolute;
+	z-index: 2;
+	right:0;
+	top:375px;
+	bottom: 0;
+	opacity: 1;
+	padding: 0 57px;
+
+}
+
+.ds-form-fieldset {
+	padding-top: 95px;
+	padding-bottom: 30px;
 }
 
 // background blur
@@ -47,6 +73,7 @@
 	left:0;
 	right:0;
 	background-size: cover;
+	background-position: center center;
 	@extend .ds-overlay-57;
 	@include box-sizing(border-box);
 	z-index: -1;
@@ -103,15 +130,18 @@
 		border-radius: 25px;
 		background: $white;
 		left:0;
+		@include transition(0.6s ease-in-out all);
 	}
 
 	&.step-0-active,
 	&.step-1-active{
 		li.active{
 			color:$white;
+			@include transition(1s ease all);
 			a{
 				cursor: default;
 				color:$white;
+				@include transition(1s ease all);
 			}
 		}
 	}
@@ -122,6 +152,7 @@
 
 	//Tab active 2
 	&.step-1-active:before{left:50%;}
+
 
 	li{
 		list-style: none;
@@ -139,33 +170,55 @@
 			font-family: $ds-regular;
 			color:$white-22;
 			display: block;
+			cursor: default;
 		}
 	}
+}
+
+ul.ds-tabs-header:first-child{
+	margin-top: 100px;
 }
 
 //tab container
 .ds-tabs-container{
 	height: 260px;
 	overflow: hidden;
+	position: relative;
 	.ds-tab{
+		position: absolute;
+		top:0;
 		font-size: 32px;
 		line-height: 30px;
 		text-decoration: none;
 		font-family: $ds-light;
 		color:$white;
 		text-align: center;
-		display: none;
-		&.active{display: block;}
+		opacity: 0;
+
+		transition-property: all;
+		transition-duration: .6s;
+		transition-timing-function: ease-in;
+
+		&.active{
+			opacity: 1;
+			transition-property: all;
+			transition-duration: .6s;
+			transition-timing-function: ease-in;
+			transition-delay: 0.2s;
+
+		}
 	}
 }
+
+
 
 
 // STEP 1 Element
 // ==========================================================================
 
-// btn circle
+// btn circle-
 .ds-btn-circle{
-	background: url("../assets/images/icon-arrow-circle.svg") center top no-repeat;
+	background: url("./assets/images/icon-arrow-circle.svg") center top no-repeat;
 	font-family:$ds-regular;
 	font-size: 14px;
 	font-weight: normal;
@@ -207,19 +260,38 @@
 	}
 }
 
+.ds-ldp-global-step-1 .ds-txt-center{
+	padding: 17px 0;
+}
+
+.ds-ldp-global-step-1 .ds-btn-scream{
+	max-width: 360px;
+}
+
 
 // STEP 3 Element
 // ==========================================================================
+.ds-form-sucess,
+.ds-form-sucess-anim{
+	margin: auto;
+	width: 476px;
+	margin-bottom: 205px;
+}
+
+.ds-block-ty{
+	border-radius: 25px 25px 0px 0px;
+}
 
 //Thank you message
 .ds-title-ty{
-	font-size: rem(40px);
+	font-size: 40px;
 	font-family: $ds-light;
 	line-height: 48px;
 	text-align: center;
 	font-weight: normal;
 	color: $white;
 	position: relative;
+	opacity: 0;
 	&:after{
 		content: ' ';
 		position: absolute;
@@ -243,16 +315,21 @@
 }
 
 // download block
+.ds-dl-info,
 .ds-dl-info{
 	background: white;
 	text-align: center;
+	z-index: 1;
+	top: auto;
+	bottom: auto;
 	p{
-		font-size:rem(17px);
+		font-size:17px;
 		font-family: $ds-light;
 		padding: 32px 25% 21px 25%;
 		text-align: center;
 		color: $black-35;
 		margin: 0;
+		line-height: 21px;
 	}
 	a{
 		display: inline;
@@ -264,17 +341,53 @@
 	}
 }
 
+
+
 // Form contact
 .ds-ldp-form-contact{
-	max-width: 476px;
+	max-width: 220px;
+	width: 220px;
 	margin: auto;
 	text-align: center;
+	position: absolute;
+	bottom: -170px;
+	left: 0;
+	right: 0;
+	opacity: 0;
 	p{
-		font-size: rem(17px);
+		font-size: 17px;
 		font-family: $ds-light;
 		color: $black-35;
 		margin: 43px 0 31px 0;
 	}
+}
+
+
+// Video
+// ==========================================================================
+
+.morph-button{
+	display: block;
+	width: auto;
+	height: auto;
+	.ds-btn-video{
+		background: url("./assets/images/iconmonstr-video.png") center -40px no-repeat;
+		background-color: none ;
+		background-size: 181px auto;
+		font-weight: normal;
+		padding: 0;
+		height:82px;
+		display: block;
+		border: 0;
+		margin:120px auto 0 auto;
+		text-indent: -5000px;
+	}
+}
+
+
+
+.morph-button .ds-btn-video{
+
 }
 
 
@@ -286,7 +399,7 @@
 }
 
 .ds-ldp-form-error{
-	font-size: rem(32px);
+	font-size: 32px;
 	text-align: center;
 	padding: 0;
 	line-height: 40px;
@@ -294,3 +407,4 @@
 	font-family: $ds-light;
 	color:$white;
 }
+

@@ -18,23 +18,23 @@
   ],
   "dependencies": {
     "jquery": "~2.2.0",
-    "polymer-ts": "~0.1.23",
-    "polymer": "Polymer/polymer#~1.4.0",
-    "chosen": "~1.5.1",
     "jquery.namespace": "https://github.com/oferreira/jquery.namespace.git",
-    "javascript-auto-complete": "*"
+    "polymer": "Polymer/polymer#~1.4.0",
+    "polymer-ts": "~0.1.23",
+    "javascript-auto-complete": "*",
+    "jquery-file-download": "~1.4.4",
+    "jwplayer": "~6.12.4956",
+    "youtube-iframe-api": "~0.0.1",
+    "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master"
   },
-  "devDependencies": {
-    "mustache.js": "mustache#~2.2.1"
-  },
-  "version": "0.0.1-alpha",
-  "_release": "0.0.1-alpha",
+  "_release": "1ab7912fea",
   "_resolution": {
-    "type": "version",
-    "tag": "0.0.1-alpha",
-    "commit": "df1fce23c8ac9cee69e99a1266907dc23a8dcca8"
+    "type": "branch",
+    "branch": "master",
+    "commit": "1ab7912fea72966dd0290992ba1908045a0d1557"
   },
   "_source": "https://github.com/oferreira/com.threeds.form.git",
-  "_target": "*",
-  "_originalSource": "https://github.com/oferreira/com.threeds.form.git"
+  "_target": "master",
+  "_originalSource": "https://github.com/oferreira/com.threeds.form.git",
+  "_direct": true
 }
