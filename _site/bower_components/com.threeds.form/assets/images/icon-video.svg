@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="82px" height="82px" viewBox="0 0 82 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 3.8.1 (29687) - http://www.bohemiancoding.com/sketch -->
+    <title>D7B0B9B7-F2A7-4738-81CD-D5A4270602A2</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="12" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="28.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.116338315 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="IFWE—LandingPage—Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IFWE—LandingCampaign—Ungated-Video" transform="translate(-866.000000, -853.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Story—Chapter-3—Content" transform="translate(582.000000, 485.000000)">
+                <g id="ORDER-Copy-2" filter="url(#filter-1)" transform="translate(140.000000, 286.000000)">
+                    <g id="iconmonstr-video-15-2" transform="translate(198.000000, 124.000000)">
+                        <polygon id="Shape" points="30.6849315 54.7644962 30.6849315 27.3822481 54.7945205 41.0733721"></polygon>
+                        <ellipse id="Oval" cx="40" cy="41.6438356" rx="40" ry="41.6438356"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

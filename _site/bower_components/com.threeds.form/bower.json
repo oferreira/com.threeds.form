@@ -1,0 +1,30 @@
+{
+  "name": "com.threeds.form",
+  "authors": [
+    "Olivier Ferreira  <olivier@mediainvest.io>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "jquery.namespace": "https://github.com/oferreira/jquery.namespace.git",
+    "polymer": "Polymer/polymer#~1.4.0",
+    "polymer-ts": "~0.1.23",
+    "javascript-auto-complete": "*",
+    "jquery-file-download": "~1.4.4",
+    "jwplayer": "~6.12.4956",
+    "youtube-iframe-api": "~0.0.1",
+    "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master"
+  }
+}

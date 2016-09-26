@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "nextAction": "GetFormJson",
+    "properties": {
+      "title": "",
+      "language": "en"
+    },
+    "config": [
+      {
+        "fieldName": "enabledFields",
+        "type": "hidden"
+      },
+      {
+        "fieldName": "email",
+        "type": "text",
+        "label": "E-mail",
+        "required": true,
+        "regex": "/^[a-zA-Z0-9_\+\.-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]{2,}$/"
+      }
+    ],
+    "data": {
+      "enabledFields": "fieldEmail",
+      "email": "olivier@live.fr"
+    }
+  }
+}

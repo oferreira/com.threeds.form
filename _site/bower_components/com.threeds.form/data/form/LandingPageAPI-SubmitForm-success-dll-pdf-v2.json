@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "result": {
+    "properties": {
+      "openUrl": true,
+      "displayThankYou": true
+    },
+    "asset": {
+      "type": "WhitePaper",
+      "label": "Whitepaper Single Source for Speed",
+      "url": "http://3ds.com/files/whitepaper.pdf"
+    },
+    "thankYouPage": {
+      "title": "Thank You",
+      "content": "<p>Thank you for your interest in Dassault Systèmes product and services. Your request has been received and will be answered as soon as possible.</p><p>Regards,<br/>Dassault Systèmes</p>"
+    }
+  }
+}

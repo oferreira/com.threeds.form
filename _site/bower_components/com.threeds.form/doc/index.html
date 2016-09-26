@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+
+
+  <title>Documentation</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+  <link rel="canonical" href="http://oferreira.github.io/com.threeds.form/">
+  <link rel="alternate" type="application/rss+xml" title="com.threeds.form" href="http://oferreira.github.io/com.threeds.form/feed.xml">
+
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/cayman.css">
+
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="bower_components/codemirror/addon/hint/show-hint.css">
+  <script src="bower_components/codemirror/lib/codemirror.js"></script>
+  <script src="bower_components/codemirror/addon/hint/show-hint.js"></script>
+  <script src="bower_components/codemirror/addon/hint/xml-hint.js"></script>
+  <script src="bower_components/codemirror/addon/hint/html-hint.js"></script>
+  <script src="bower_components/codemirror/mode/xml/xml.js"></script>
+  <script src="bower_components/codemirror/mode/javascript/javascript.js"></script>
+  <script src="bower_components/codemirror/mode/vbscript/vbscript.js"></script>
+  <script src="bower_components/codemirror/mode/css/css.js"></script>
+  <script src="bower_components/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+  <style>
+    .CodeMirror {
+      font-size: 0.8rem;
+      height: auto;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .CodeMirror-scroll {
+      max-height: 400px;
+    }
+
+    .CodeMirror pre {
+      padding-left: 7px;
+      line-height: 1.2rem;
+    }
+  </style>
+
+  <script type="text/javascript">
+    (function ($) {
+      $.fn.editor = function (options) {
+        var options = $.extend({
+          url: null,
+          content: null
+        }, options);
+
+        var editor = CodeMirror.fromTextArea(this[0], {
+          mode: "text/html",
+          lineNumbers: true
+        });
+
+        if (options.url != null) {
+          $.get(options.url, function (data) {
+            editor.setValue(data);
+          });
+        }
+      };
+
+    })(jQuery);
+  </script>
+</head>
+
+
+  <body>
+
+    <section class="page-header">
+  <h1 class="project-name">com.threeds.form</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="https://github.com/oferreira/com.threeds.form" class="btn">View on GitHub</a>
+  <a href="https://github.com/oferreira/com.threeds.form/zipball/master" class="btn">Download .zip</a>
+  <a href="https://github.com/oferreira/com.threeds.form/tarball/master" class="btn">Download .tar.gz</a>
+</section>
+
+    <section class="main-content">
+        <div class="home">
+    <h1>Getting Started</h1>
+
+    <textarea id="cdn" name="cdn"></textarea>
+    <script type="text/javascript">
+        $('#cdn').editor({
+            url: 'samples/cdn.html'
+        });
+    </script>
+
+    <h2>How to use the library</h2>
+    <p>
+        It’s easy to use, just include the library and create a new instance.
+    </p>
+
+    <textarea id="basic-landing-page" name="basic-landing-page"></textarea>
+    <script type="text/javascript">
+        $('#basic-landing-page').editor({
+            url: 'samples/basic-form.html'
+        });
+    </script>
+
+
+    <h2>Options details</h2>
+
+    <div class="samples-option-id">
+        <h3>id</h3>
+        <p>This option is for defined the landing page id from Neolane</p>
+
+        <textarea id="samples-option-id" name="samples-option-id"></textarea>
+        <script type="text/javascript">
+            $('#samples-option-id').editor({
+                url: 'samples/options/id.html'
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>String</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>N/A</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+    </div>
+    <div class="option-display">
+        <h3>display</h3>
+
+        <p>This option is for define display settings example label, placeholder</p>
+
+        <textarea id="option-display" name="option-display"></textarea>
+        <script type="text/javascript">
+            $('#option-display').editor({
+                url: 'samples/options/display.html'
+
+            });
+        </script>
+
+        <h4>display.placeholder</h4>
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Optional</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>boolean</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>true</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p>
+            <img src="assets/images/option-display-placeholder.jpg" alt="">
+        </p>
+        <hr/>
+    </div>
+    <div class="option-styling">
+        <h3>styling</h3>
+
+        <p>This option is for define styling options</p>
+
+        <textarea id="option-styling-label-mandatory" name="option-styling-label-mandatory"></textarea>
+        <script type="text/javascript">
+            $('#option-styling-label-mandatory').editor({
+                url: 'samples/options/styling-label-mandatory.html'
+
+            });
+        </script>
+
+        <h4>styling.label.mandatory</h4>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>Optional</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>string</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>' * '</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p>
+            <img src="assets/images/option-styling.label.mandatory.jpg" alt="">
+        </p>
+
+        <hr/>
+    </div>
+    <div class="option-api">
+        <h3>api</h3>
+
+        <p>This option is for define settings of api</p>
+
+        <textarea id="option-api-url" name="option-api-url"></textarea>
+        <script type="text/javascript">
+            $('#option-api-url').editor({
+                url: 'samples/options/api-url.html'
+
+            });
+        </script>
+
+        <h4>api.url</h4>
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>string</td>
+            </tr>
+
+            <tr>
+                <td>Default value</td>
+                <td>N/A</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>List of environment néolane</p>
+        <table>
+            <tbody>
+            <tr>
+                <td>TEST</td>
+                <td>//dassault-test.neolane.net/dsx/lp_api.jssp</td>
+            </tr>
+            <tr>
+                <td>PROD</td>
+                <td>//emailing.3ds.com/dsx/lp_api.jssp</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr/>
+    </div>
+
+
+    <div class="option-hook">
+        <h3>hook</h3>
+
+        <p>This option is for define the hooks</p>
+
+        <h4>hook.success</h4>
+
+        <textarea id="option-hook-success" name="option-hook-success"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-success').editor({
+                url: 'samples/options/hook-success.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>hook.warning</h4>
+
+        <textarea id="option-hook-warning" name="option-hook-warning"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-warning').editor({
+                url: 'samples/options/hook-warning.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>hook.redirect</h4>
+
+        <textarea id="option-hook-redirect" name="option-hook-redirect"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-redirect').editor({
+                url: 'samples/options/hook-redirect.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4>hook.setCurrentPosition</h4>
+
+        <textarea id="option-hook-set-current-position" name="option-hook-set-current-position"></textarea>
+        <script type="text/javascript">
+            $('#option-hook-set-current-position').editor({
+                url: 'samples/options/hook-set-current-position.html'
+
+            });
+        </script>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Contribution</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Possible values</td>
+                <td>function</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr/>
+    </div>
+
+</div>
+        <footer class="site-footer">
+  
+    <span class="site-footer-credits"></span>
+  
+</footer>
+    </div>
+  </body>
+
+</html>

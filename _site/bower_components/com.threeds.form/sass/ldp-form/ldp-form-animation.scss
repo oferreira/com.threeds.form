@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+// ==========================================================================
+// LDP FORM ANIMATION
+// ==========================================================================
+
+
+
+//Step 1
+
+.ds-anim-width-step-2 {
+	animation-name: globalContainerStep2Width;
+	animation-duration: 0.6s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+	-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes globalContainerStep2Width {
+	0%{
+		width: 476px;
+	}
+	100% {
+		width: 952px;
+	}
+}
+
+
+$breakpoint:  1024px;
+
+@media screen and (min-width: $breakpoint) {
+	// Sucess
+	.ds-form-sucess-anim {
+		animation-name: globalContainerSucess;
+		animation-duration: 0.6s;
+		animation-iteration-count: 1;
+		animation-direction: normal;
+		animation-fill-mode: forwards;
+		-webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
+		animation-timing-function: ease-in-out;
+	}
+
+	@keyframes globalContainerSucess {
+		0% {
+			width: 952px;
+		}
+		100% {
+			width: 476px;
+		}
+	}
+}
+
+
+
+
+
+
+
