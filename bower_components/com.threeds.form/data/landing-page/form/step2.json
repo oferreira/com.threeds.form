@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "result": {
+    "isAvailable": true,
+    "nextAction": "SubmitForm",
+    "properties": {
+      "title": "",
+      "language": "en",
+      "submitLabel": "Submit"
+    },
+    "config": [
+      {
+        "fieldName": "domain-of-interest",
+        "type": "text",
+        "label": "Domain of interest",
+        "required": true
+      },
+      {
+        "fieldName": "level",
+        "type": "text",
+        "label": "Last Level",
+        "required": true
+      },
+      {
+        "fieldName": "job-level",
+        "type": "text",
+        "label": "Job level",
+        "required": true
+      },
+      {
+        "fieldName": "department",
+        "type": "text",
+        "label": "Department",
+        "required": true
+      },
+      {
+        "fieldName": "radio1",
+        "type": "radio",
+        "label": "My Custom Field Radio",
+        "required": false,
+        "options": [
+          {
+            "label": "Value 3",
+            "value": "val3",
+            "parentValue": ""
+          },
+          {
+            "label": "Value 3",
+            "value": "val3",
+            "parentValue": ""
+          },
+          {
+            "label": "Value 3",
+            "value": "val3",
+            "parentValue": ""
+          }
+        ]
+      },
+      {
+        "fieldName": "optin",
+        "type": "checkbox",
+        "label": "I want to receive emails from Dassault Systèmes Group (&quot;3DS&quot;) on 3DS products, services and companies.  I will have the right to access or modify my data or object to the sending of any further marketing communications  by 3DS by following the instruction",
+        "value": "1",
+        "required": false
+      }
+    ],
+    "data": {
+      "enabledFields": "fieldEmail,fieldFirstName,fieldCompany,fieldCountry,fieldLevelOfInterest,fieldWorkPhone,fieldSolutionInterest,fieldJobLevel,fieldJobDepartment,fieldJobDepartment,fieldJobSubDepartment,fieldIndustry,fieldIndustry,fieldSubIndustry,fieldAddress,fieldAddress1,fieldAddressZipCode,fieldAddressCity,fieldIWouldLike,addCustomFields,custom1,custom2,custom3,custom4,fieldComment,fieldOptin",
+      "email": "john.doe@company.com"
+    }
+  }
+}

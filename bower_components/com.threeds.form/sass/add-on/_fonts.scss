@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+//   =============================================================================
+//   Fonts
+//   =============================================================================
+
+
+// Font 3DS Bold Italic
+@font-face {
+	font-family: '3dsbold_italic';
+	src: url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.eot');
+	src: url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_bold_italic-webfont/3ds_bold_italic-webfont.svg#3dsbold_italic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Bold
+@font-face {
+	font-family: '3dsbold';
+	src: url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.eot');
+	src: url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_bold-webfont/3ds_bold-webfont.svg#3dsbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Condensed Bold
+@font-face {
+	font-family: '3dscondensed_bold';
+	src: url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.eot');
+	src: url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_condensed_bold-webfont/3ds_condensed_bold-webfont.svg#3dscondensed_bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Condensed Light
+@font-face {
+	font-family: '3dscondensed_light';
+	src: url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.eot');
+	src: url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_condensed_light-webfont/3ds_condensed_light-webfont.svg#3dscondensed_light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Condensed
+@font-face {
+	font-family: '3dscondensed';
+	src: url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.eot');
+	src: url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_condensed_regular-webfont/3ds_condensed_regular-webfont.svg#3dscondensed') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Extra Light Italic
+@font-face {
+	font-family: '3dsextralight_italic';
+	src: url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.eot');
+	src: url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_extralight_italic-webfont/3ds_extralight_italic-webfont.svg#3dsextralight_italic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Extra Light
+@font-face {
+	font-family: '3dsextralight';
+	src: url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.eot');
+	src: url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_extralight-webfont/3ds_extralight-webfont.svg#3dsextralight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Italic
+@font-face {
+	font-family: '3dsitalic';
+	src: url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.eot');
+	src: url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_italic-webfont/3ds_italic-webfont.svg#3dsitalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Light
+@font-face {
+	font-family: '3dslight';
+	src: url('#{$font-path}3ds_light-webfont/3ds_light-webfont.eot');
+	src: url('#{$font-path}3ds_light-webfont/3ds_light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_light-webfont/3ds_light-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_light-webfont/3ds_light-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_light-webfont/3ds_light-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_light-webfont/3ds_light-webfont.svg#3dslight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Regular
+@font-face {
+	font-family: '3dsregular';
+	src: url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.eot');
+	src: url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_regular-webfont/3ds_regular-webfont.svg#3dsregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font 3DS Semi Bold Italic
+@font-face {
+	font-family: '3dssemibold_italic';
+	src: url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.eot');
+	src: url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_semibold_italic-webfont/3ds_semibold_italic-webfont.svg#3dssemibold_italic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
+
+// Font 3DS Semi Bold
+@font-face {
+	font-family: '3dssemibold';
+	src: url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.eot');
+	src: url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.woff2') format('woff2'),
+	url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.woff') format('woff'),
+	url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.ttf') format('truetype'),
+	url('#{$font-path}3ds_semibold-webfont/3ds_semibold-webfont.svg#3dssemibold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
