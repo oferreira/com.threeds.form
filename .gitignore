@@ -34,7 +34,7 @@ bower_components
 
 
 # jekyll
-_site/ 
-.sass-cache/ 
+_site
+.sass-cache
 .jekyll-metadata
 
