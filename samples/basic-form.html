@@ -5,17 +5,25 @@
             var options = {
                 id: 'LDP6312',
                 display: {
-                    label: false,
-                    placeholder: true,
+                    placeholder: true
                 },
                 styling: {
-                    label:{
-                        suffixe:' : ',
-                        mandatory:' * '
+                    label: {
+                        mandatory: ' * '
+                    }
+                },
+                translate: {
+                    elements: {
+                        submit: {
+                            label: "DOWNLOAD",
+                            0: {
+                                label: "NEXT"
+                            }
+                        }
                     }
                 },
                 api: {
-                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
+                    url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp'
                 },
                 hook: {
                     success: function (context, data) {
@@ -32,7 +40,7 @@
                     },
                     setCurrentPosition: function (context, index) {
                         console.log('the current position is equal to ' + index)
-                    },
+                    }
                 }
             };
 
