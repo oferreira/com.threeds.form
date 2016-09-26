@@ -1,0 +1,52 @@
+@charset "UTF-8";
+//   =============================================================================
+//   Type
+//   =============================================================================
+
+
+// Headline-1
+.headeline-1{
+	font-size:rem(40);
+	font-family:$ds-light;
+	font-weight: normal;
+}
+
+
+// Headline 2
+.headeline-2{
+	font-size:rem(32);
+	font-family:$ds-regular;
+	font-weight: normal;
+}
+
+
+// Title
+.title{
+	font-size:rem(24);
+	font-family:$ds-light;
+	font-weight: normal;
+}
+
+
+// Sub Header
+.subHeader{
+	font-size:rem(17);
+	font-family:$ds-light;
+	font-weight: normal;
+}
+
+
+// Body 2
+.body-2{
+	font-size:rem(14);
+	font-family:$ds-regular;
+	font-weight: normal;
+}
+
+
+// Body 1
+.body-1{
+	font-size:rem(14);
+	font-family:$ds-light;
+	font-weight: normal;
+}

@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+//   ==========================================================================
+//   3DS ui kit variables
+//   ==========================================================================
+
+// Table of Contents:
+//
+//  1. Fonts
+//  2. Colors
+//  3. Prefixer
+//  4. Radius
+//  5. Button
+//  6. Link
+//  7. Forms
+//  8. Icon
+
+
+// Opacity
+// ==========================================================================
+$opacity-12 :0.12;
+$opacity-22 :0.22;
+$opacity-35 :0.35;
+$opacity-57 :0.57;
+$opacity-92 :0.92;
+
+
+// 1. Fonts
+// ==========================================================================
+
+$em-base: 16px;
+
+//Font Path
+$font-path:                 "../fonts/" !default;
+
+$ds-extra-light:            '3dsextralight';
+$ds-extra-light-italic:     '3dsextralight_italic';
+
+$ds-light:                  '3dslight';
+$ds-regular:                '3dsregular';
+$ds-italic:                 '3dsitalic';
+
+$ds-semi-bold-italic:       '3dssemibold_italic';
+$ds-semi-bold:              '3dssemibold';
+
+$ds-bold:                   '3dsbold';
+$ds-bold-italic:            '3dsbold_italic';
+
+$ds-condensed:              '3dscondensed';
+$ds-condensed-light:        '3dscondensed_light';
+$ds-condensed-bold:         '3dscondensed_bold';
+
+
+// 2. Colors
+// ==========================================================================
+
+$error:#e57373;
+
+//blue corp
+$blueCorp: #005386;
+
+//Blue action
+$blueAction:#239DE8;
+
+//Related Blue
+$BlueRel1:#04A3D0;
+$BlueRel2:#A2BBCF;
+$BlueRel3:#0C7699;
+$BlueRel4:#618FC0;
+$BlueRel5:#0C7699;
+$BlueRel6:#A2CECF;
+$BlueRel7:#86D4DE;
+
+//brands
+$threedvia: #84BD00;
+$netvibes: #84BD00;
+$exalead: #007EB9;
+$geovian: #B98928;
+$enovia: #E87722;
+$delmia: #FCD21F;
+$simulia: #00AB9F;
+$solidworks: #DA291C;
+$catia: #262E70;
+$excite: #000000;
+$biovia: #007EB9;
+
+//Black
+$black:#000000;
+$black-12:rgba(0, 0, 0, $opacity-12);
+$black-22:rgba(0, 0, 0, $opacity-22);
+$black-35:rgba(0, 0, 0, $opacity-35);
+$black-57:rgba(0, 0, 0, $opacity-57);
+$black-92:rgba(0, 0, 0, $opacity-92);
+
+//White
+$white:#ffffff;
+$white-12:rgba(255, 255, 255, $opacity-12);
+$white-22:rgba(255, 255, 255, $opacity-22);
+$white-35:rgba(255, 255, 255, $opacity-35);
+$white-57:rgba(255, 255, 255, $opacity-57);
+$white-92:rgba(255, 255, 255, $opacity-92);
+
+//blue overlay
+$overlay-blue-12:rgba(0, 82, 134, $opacity-12);
+$overlay-blue-22:rgba(0, 82, 134, $opacity-22);
+$overlay-blue-35:rgba(0, 82, 134, $opacity-35);
+$overlay-blue-57:rgba(0, 82, 134, $opacity-57);
+$overlay-blue-92:rgba(0, 82, 134, $opacity-92);
+
+
+//Light Theme
+$light-theme-back-color:#F2F3F4;
+$light-theme-txt-color:#000000;
+
+$light-theme-opac-primary:0.92;
+$light-theme-opac-secondary:0.57;
+$light-theme-opac-disable:0.35;
+
+//Dark Theme
+$dark-theme-back-color:#383838;
+$dark-theme-txt-color:#FFFFFF;
+
+$dark-theme-opac-primary:1;
+$dark-theme-opac-secondary:0.62;
+$dark-theme-opac-disable:0.38;
+
+
+// 3. Prefixer (Global variables to enable or disable vendor prefixes)
+// ==========================================================================
+
+$prefix-for-webkit:    true !default;
+$prefix-for-mozilla:   true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera:     true !default;
+$prefix-for-spec:      true !default;
+
+
+// 4. Radius
+// ==========================================================================
+
+$radius-form:25px;
+
+
+// 5. button
+// ==========================================================================
+
+$padding-btn:24px;
+$padding-btn-small:16px;
+$font-size-btn:17px;
+
+
+// 6. Link
+// ==========================================================================
+
+$font-size-link:14px;
+
+
+// 7. Forms
+// ==========================================================================
+
+$padding-input-x:24px;
+$padding-input-y:17px;
+
+$padding-field-error:16px;
+
+$size-checkbox:17px;
+
+$size-radio:16px;
+
+$size-switch:20px;
+
+// 8. Icon
+// ==========================================================================
+
+$ico-error:url('../../icon/shape.svg');
+$ico-arrow-bot:url('../../icon/icon-arrow.svg');
+
+
+
+
+
+
+
+
+

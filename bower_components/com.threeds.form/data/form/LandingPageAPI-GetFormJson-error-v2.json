@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "errors": [
+    {
+      "error": {
+        "message": "This landing page does not exist"
+      }
+    }
+  ]
+}
