@@ -1,4 +1,4 @@
-// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
+// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
 
 (function($, window){
 	var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
@@ -372,7 +372,7 @@ $.extend({
 
 })(jQuery, this);
 
-// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
+// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define('VanillaModal', ['module', 'exports'], factory);
@@ -727,7 +727,7 @@ $.extend({
   module.exports = exports['default'];
 });
 
-// Mon Sep 26 2016 17:33:40 GMT+0200 (CEST)
+// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
 if(typeof Drupal == 'undefined'){Drupal={};}
 (function ($, window, Drupal) {
 
@@ -1094,53 +1094,6 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
-        var Http;
-        (function (Http) {
-            var Cookie = function () {
-                function Cookie(options) {
-                    this.settings = {
-                        domain: '3ds.com',
-                        lifetime: 60 * 60 * 24 * 1,
-                        path: '/'
-                    };
-                    this.settings = $.extend(true, this.settings, options);
-                }
-                Cookie.instance = function (options) {
-                    if (Cookie._instance == undefined) {
-                        Cookie._instance = new Cookie(options);
-                    }
-                    return Cookie._instance;
-                };
-                Cookie.prototype.get = function (name) {
-                    var nameEQ = name + "=";
-                    var ca = window.document.cookie.split(';');
-                    for (var i = 0; i < ca.length; i++) {
-                        var c = ca[i];
-                        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                    }
-                    return null;
-                };
-                Cookie.prototype.set = function (name, value) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + this.settings.lifetime);
-                    var expires = "; expires=" + date.toGMTString();
-                    var cookie = name + "=" + value + expires + "; path=" + this.settings.path;
-                    if (this.settings.domain !== undefined && this.settings.domain !== null && this.settings.domain != '') {
-                        cookie += "; domain=" + this.settings.domain;
-                    }
-                    window.document.cookie = cookie;
-                };
-                return Cookie;
-            }();
-            Http.Cookie = Cookie;
-        })(Http = Threeds.Http || (Threeds.Http = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
         var I18n;
         (function (I18n) {
             var Translator = function () {
@@ -1184,6 +1137,53 @@ Object.find = function (o, s) {
     }
     return o;
 };
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var Http;
+        (function (Http) {
+            var Cookie = function () {
+                function Cookie(options) {
+                    this.settings = {
+                        domain: '3ds.com',
+                        lifetime: 60 * 60 * 24 * 1,
+                        path: '/'
+                    };
+                    this.settings = $.extend(true, this.settings, options);
+                }
+                Cookie.instance = function (options) {
+                    if (Cookie._instance == undefined) {
+                        Cookie._instance = new Cookie(options);
+                    }
+                    return Cookie._instance;
+                };
+                Cookie.prototype.get = function (name) {
+                    var nameEQ = name + "=";
+                    var ca = window.document.cookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                    }
+                    return null;
+                };
+                Cookie.prototype.set = function (name, value) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + this.settings.lifetime);
+                    var expires = "; expires=" + date.toGMTString();
+                    var cookie = name + "=" + value + expires + "; path=" + this.settings.path;
+                    if (this.settings.domain !== undefined && this.settings.domain !== null && this.settings.domain != '') {
+                        cookie += "; domain=" + this.settings.domain;
+                    }
+                    window.document.cookie = cookie;
+                };
+                return Cookie;
+            }();
+            Http.Cookie = Cookie;
+        })(Http = Threeds.Http || (Threeds.Http = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
 var Com;
 (function (Com) {
     var Threeds;
