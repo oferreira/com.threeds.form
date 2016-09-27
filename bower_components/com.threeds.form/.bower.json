@@ -27,14 +27,15 @@
     "youtube-iframe-api": "~0.0.1",
     "vanilla-modal": "https://github.com/thephuse/vanilla-modal.git#master"
   },
-  "_release": "1ab7912fea",
+  "version": "0.0.2-alpha",
+  "_release": "0.0.2-alpha",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "1ab7912fea72966dd0290992ba1908045a0d1557"
+    "type": "version",
+    "tag": "0.0.2-alpha",
+    "commit": "7456564a62129344092555b0cf744fe815185742"
   },
   "_source": "https://github.com/oferreira/com.threeds.form.git",
-  "_target": "master",
+  "_target": "0.0.2-alpha",
   "_originalSource": "https://github.com/oferreira/com.threeds.form.git",
   "_direct": true
 }
