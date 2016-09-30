@@ -29,6 +29,7 @@ namespace Com.Threeds.Component.Tabs.Element {
 
         constructor(context:any, options:any, data:any) {
             super(data);
+
             this.context = context;
             this.settings = $.extend(true, this.settings, options);
             this.classList.add('ds-tabs');

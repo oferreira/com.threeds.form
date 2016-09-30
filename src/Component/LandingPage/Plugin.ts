@@ -110,6 +110,8 @@ namespace Com.Threeds.Component.LandingPage {
 
             this.settings = $.extend(true, Com.Threeds.Component.Form.Plugin.settings,  this.settings,  options);
 
+
+
             if (Object.isDefined(options, 'form.nextLabel')){
                 this.settings.nextLabel = options.form.nextLabel;
             }
@@ -126,13 +128,18 @@ namespace Com.Threeds.Component.LandingPage {
                this.settings.callback = options.form.callback;
             }
 
-            let self:any = this;
-            this.service('api').form(self, {});
+            this.service('api').form(this, {});
         }
 
         render(type:string, data:any):void {
             this.elem.append(LandingPage.create(this, data));
         }
+
+        currentLandingpage():any {
+            return this.elem.find( "[is='landingpage-element']" )[0];
+        }
+
+
     }
 
     $.namespace('threeds', {

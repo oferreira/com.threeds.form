@@ -1,4 +1,4 @@
-// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
+// Fri Sep 30 2016 12:58:35 GMT+0200 (CEST)
 
 (function($, window){
 	var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
@@ -372,7 +372,7 @@ $.extend({
 
 })(jQuery, this);
 
-// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
+// Fri Sep 30 2016 12:58:35 GMT+0200 (CEST)
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define('VanillaModal', ['module', 'exports'], factory);
@@ -727,7 +727,7 @@ $.extend({
   module.exports = exports['default'];
 });
 
-// Tue Sep 27 2016 11:54:54 GMT+0200 (CEST)
+// Fri Sep 30 2016 12:58:35 GMT+0200 (CEST)
 if(typeof Drupal == 'undefined'){Drupal={};}
 (function ($, window, Drupal) {
 
@@ -1094,53 +1094,6 @@ var Com;
 (function (Com) {
     var Threeds;
     (function (Threeds) {
-        var I18n;
-        (function (I18n) {
-            var Translator = function () {
-                function Translator(options) {
-                    this.lang = options.lang;
-                    this.adapter = options.adapter;
-                }
-                Object.defineProperty(Translator, "instance", {
-                    get: function () {
-                        if (Translator._instance == undefined) {
-                            Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
-                        }
-                        return Translator._instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Translator.prototype.t = function (key) {
-                    return Object.find(eval(this.adapter), this.lang + "." + key);
-                };
-                return Translator;
-            }();
-            I18n.Translator = Translator;
-            $.i18n = function () {
-                return Com.Threeds.I18n.Translator.instance;
-            };
-        })(I18n = Threeds.I18n || (Threeds.I18n = {}));
-    })(Threeds = Com.Threeds || (Com.Threeds = {}));
-})(Com || (Com = {}));
-Object.find = function (o, s) {
-    s = s.replace(/\[(\w+)\]/g, '.$1');
-    s = s.replace(/^\./, '');
-    var a = s.split('.');
-    for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-            o = o[k];
-        } else {
-            return;
-        }
-    }
-    return o;
-};
-var Com;
-(function (Com) {
-    var Threeds;
-    (function (Threeds) {
         var Http;
         (function (Http) {
             var Cookie = function () {
@@ -1184,6 +1137,53 @@ var Com;
         })(Http = Threeds.Http || (Threeds.Http = {}));
     })(Threeds = Com.Threeds || (Com.Threeds = {}));
 })(Com || (Com = {}));
+var Com;
+(function (Com) {
+    var Threeds;
+    (function (Threeds) {
+        var I18n;
+        (function (I18n) {
+            var Translator = function () {
+                function Translator(options) {
+                    this.lang = options.lang;
+                    this.adapter = options.adapter;
+                }
+                Object.defineProperty(Translator, "instance", {
+                    get: function () {
+                        if (Translator._instance == undefined) {
+                            Translator._instance = new Com.Threeds.I18n.Translator(Object.find(Com.Threeds._parameters, 'translator'));
+                        }
+                        return Translator._instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Translator.prototype.t = function (key) {
+                    return Object.find(eval(this.adapter), this.lang + "." + key);
+                };
+                return Translator;
+            }();
+            I18n.Translator = Translator;
+            $.i18n = function () {
+                return Com.Threeds.I18n.Translator.instance;
+            };
+        })(I18n = Threeds.I18n || (Threeds.I18n = {}));
+    })(Threeds = Com.Threeds || (Com.Threeds = {}));
+})(Com || (Com = {}));
+Object.find = function (o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1');
+    s = s.replace(/^\./, '');
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+};
 var Com;
 (function (Com) {
     var Threeds;
@@ -3527,7 +3527,7 @@ var Com;
                             var self = this;
                             if (typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                                 this.context.settings.hook.setCurrentPosition = function (context, currentPosition) {
-                                    self.setCurrentPosition(currentPosition);
+                                    context.context.currentLandingpage().setCurrentPosition(currentPosition);
                                 };
                             }
                             if (typeof this.context.settings.hook.success == 'undefined') {
@@ -3546,9 +3546,9 @@ var Com;
                                     context.context.elem.find('.ds-tabs').animate({
                                         opacity: 0
                                     }, 300, "linear", function () {
-                                        self.context.elem.html('');
-                                        self.context.elem.append(Success.create(self.context, self.context.settings.success));
-                                        self.context.status.transition = false;
+                                        context.context.elem.html('');
+                                        context.context.elem.append(Success.create(context, context.settings.success));
+                                        context.context.status.transition = false;
                                         setTimeout(function () {
                                             context.context.elem.find('.ds-lpd-info-form').css({
                                                 height: context.context.elem.height()
@@ -3575,14 +3575,14 @@ var Com;
                             }
                             if (typeof this.context.settings.hook.warning == 'undefined') {
                                 this.context.settings.hook.warning = function (context, message) {
-                                    self.context.elem.html('');
-                                    self.context.elem.attr('class', '');
-                                    self.context.elem.addClass('ds-form-sucess-anim');
-                                    self.context.elem.append(Error.create(self.context, self.context.settings.error));
+                                    context.elem.html('');
+                                    context.elem.attr('class', '');
+                                    context.elem.addClass('ds-form-sucess-anim');
+                                    context.elem.append(Error.create(context, context.settings.error));
                                 };
                             }
                             if (typeof this.context.settings.hook.transition == 'undefined') {
-                                this.context.settings.hook.transition = self.transition;
+                                this.context.settings.hook.transition = this.transition;
                             }
                             this.context.settings = $.extend(true, this.context.settings, {
                                 translate: {
@@ -3796,11 +3796,13 @@ var Com;
                         if (Object.isDefined(options, 'form.callback')) {
                             this.settings.callback = options.form.callback;
                         }
-                        var self = this;
-                        this.service('api').form(self, {});
+                        this.service('api').form(this, {});
                     }
                     Plugin.prototype.render = function (type, data) {
                         this.elem.append(LandingPage.create(this, data));
+                    };
+                    Plugin.prototype.currentLandingpage = function () {
+                        return this.elem.find("[is='landingpage-element']")[0];
                     };
                     return Plugin;
                 }(AbstractPlugin);
@@ -3899,11 +3901,14 @@ var Com;
                     Neolane.prototype.form = function (context, options) {
                         var self = this;
                         $.ajax({
-                            type: "GET", jsonp: "callback", jsonpCallback: "jsonpCallback", dataType: "jsonp", url: context.settings.api.url, data: { op: 'GetFormJson', lpid: context.settings.id },
+                            contextSettings: context.settings,
+                            type: "GET", jsonp: "callback", dataType: "jsonp", url: context.settings.api.url, data: { op: 'GetFormJson', lpid: context.settings.id },
                             success: function (response) {
+                                context.settings = this.contextSettings;
                                 context.render('form', self.data(response));
                             },
                             error: function (resultat, statut, erreur) {
+                                context.settings = this.contextSettings;
                                 context.render('form', false);
                             }
                         });
@@ -3912,10 +3917,12 @@ var Com;
                         var self = this;
                         data['lpid'] = context.settings.id;
                         $.ajax({
-                            type: "GET", jsonp: "callback", jsonpCallback: "jsonpCallback", dataType: "jsonp", url: context.settings.api.url,
-                            data: data,
+                            contextSettings: context.settings,
+                            type: "GET", jsonp: "callback", dataType: "jsonp", url: context.settings.api.url, data: data,
                             success: function (response) {
+                                context.settings = this.contextSettings;
                                 response = self.data(response);
+                                console.log(response);
                                 if (typeof response.result.config != 'undefined') {
                                     var isFinalStep = true;
                                     for (var i = 0; i < response.result.config.length; i++) {
@@ -3933,6 +3940,7 @@ var Com;
                                 context.render('form', response);
                             },
                             error: function (resultat, statut, erreur) {
+                                context.settings = this.contextSettings;
                                 context.render('form', false);
                             }
                         });

@@ -15,63 +15,92 @@
     <script src="./dist/bower_components/youtube-iframe-api/youtube.iframe-api.js"></script>
 
 
-    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/component.css" />
-    <link rel="stylesheet" type="text/css" href="./bower_components/ButtonComponentMorph/css/content.css" />
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="./dist/threeds.landingpage.css" >
+    <link rel="stylesheet" href="./dist/threeds.landingpage.css">
     <script type="text/javascript" src="./dist/threeds.landingpage.js"></script>
+    <script>
+        //=============================================//
+        // SETTING UP THE FUNCTION                     //
+        //=============================================//
+        var getJSONP = (function(){
+            return {
+                send: function(src, options) {
+                    var callback_name = options.callbackName || 'foo',
+                            on_success = options.onSuccess || function(){},
+                            on_timeout = options.onTimeout || function(){},
+                            timeout = options.timeout || 10; // sec
 
+                    var timeout_trigger = window.setTimeout(function(){
+                        window[callback_name] = function(){};
+                        on_timeout();
+                    }, timeout * 1000);
+
+                    window[callback_name] = function(data){
+                        window.clearTimeout(timeout_trigger);
+                        on_success(data);
+                    }
+
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    script.src = src;
+
+                    document.getElementsByTagName('head')[0].appendChild(script);
+                }
+            };
+        })();
+    </script>
 </head>
 <body>
-<div id="myform1" class="fm"></div>
+
+
+<div id="myform1"></div>
 <script type="text/javascript">
     (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
             var options = {
-                //id: 'LDP6312',
+                id: 'LDP6312',
                 //id: 'LDP24104',
-                id: 'LDP30043',
+                //id: 'LDP30043',
                 type: 'download',
                 backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
                     0: {
-                        name: 'A1',
-                        title: 'To download the Case Study, please provide your email'
+                        name: 'setp 1 {form 1}',
+                        title: 'To download the Case Study, please provide your email {form 1}'
                     },
                     1: {
-                        name: 'A2',
-                        title: 'Please provide more informations to complete your Case Study download'
+                        name: 'step 2 {form 1}',
+                        title: 'Please provide more informations to complete your Case Study download {form 1}'
                     }
                 },
                 success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
+                    title: 'Thanks for your download {form 1}',
+                    content: 'Your download should start automatically, if not use the direct link {form 1}',
 
                 },
                 action: {
                     url: 'http://localhost:2000/assets/files/CATIA-SE-InstallationGuide.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
+                    label: 'Download {form 1}',
+                    content: 'PDF - 3,84Mo {form 1}',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
-                    label: 'contact me',
-                    content: 'You want to be contacted for a commercial purpose?',
+                    label: 'contact me  {form 1}',
+                    content: 'You want to be contacted for a commercial purpose?  {form 1}',
                 },
                 error: {
-                    title: 'Sorry !',
-                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                    title: 'Sorry !  {form 1}',
+                    content: '<p> {form 1} This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
                 },
                 form: {
-                    nextLabel: 'Next',
-                    prevLabel: 'Back',
+                    nextLabel: 'Next {form 1}',
+                    prevLabel: 'Back {form 1}',
                     api: {
                         url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
                     callback: {
-                        success: function(){
+                        success: function () {
                             //alert('success !!!!!!!!');
                         }
                     },
@@ -95,41 +124,41 @@
                 backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
                     0: {
-                        name: 'A2',
-                        title: 'To download the Case Study, please provide your email'
+                        name: 'setp 1 {form 2}',
+                        title: 'To download the Case Study, please provide your email {form 2}'
                     },
                     1: {
-                        name: 'B2',
-                        title: 'Please provide more informations to complete your Case Study download'
+                        name: 'step 2 {form 2}',
+                        title: 'Please provide more informations to complete your Case Study download {form 2}'
                     }
                 },
                 success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
+                    title: 'Thanks for your download {form 2}',
+                    content: 'Your download should start automatically, if not use the direct link {form 2}',
 
                 },
                 action: {
                     url: 'http://localhost:2000/assets/files/CATIA-SE-InstallationGuide.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
+                    label: 'Download {form 2}',
+                    content: 'PDF - 3,84Mo {form 2}',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
-                    label: 'contact me',
-                    content: 'You want to be contacted for a commercial purpose?',
+                    label: 'contact me  {form 2}',
+                    content: 'You want to be contacted for a commercial purpose?  {form 2}',
                 },
                 error: {
-                    title: 'Sorry !',
-                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                    title: 'Sorry !  {form 2}',
+                    content: '<p> {form 2} This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
                 },
                 form: {
-                    nextLabel: 'Next',
-                    prevLabel: 'Back',
+                    nextLabel: 'Next {form 2}',
+                    prevLabel: 'Back {form 2}',
                     api: {
                         url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
                     callback: {
-                        success: function(){
+                        success: function () {
                             //alert('success !!!!!!!!');
                         }
                     },
@@ -140,8 +169,6 @@
         });
     })(jQuery, Drupal, window);
 </script>
-
-
 
 
 <div id="myform3" class="fm"></div>
@@ -156,41 +183,41 @@
                 backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
                     0: {
-                        name: 'A3',
-                        title: 'To download the Case Study, please provide your email'
+                        name: 'setp 1 {form 3}',
+                        title: 'To download the Case Study, please provide your email {form 3}'
                     },
                     1: {
-                        name: 'B3',
-                        title: 'Please provide more informations to complete your Case Study download'
+                        name: 'step 2 {form 3}',
+                        title: 'Please provide more informations to complete your Case Study download {form 3}'
                     }
                 },
                 success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
+                    title: 'Thanks for your download {form 3}',
+                    content: 'Your download should start automatically, if not use the direct link {form 3}',
 
                 },
                 action: {
                     url: 'http://localhost:2000/assets/files/CATIA-SE-InstallationGuide.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
+                    label: 'Download {form 3}',
+                    content: 'PDF - 3,84Mo {form 3}',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
-                    label: 'contact me',
-                    content: 'You want to be contacted for a commercial purpose?',
+                    label: 'contact me  {form 3}',
+                    content: 'You want to be contacted for a commercial purpose?  {form 3}',
                 },
                 error: {
-                    title: 'Sorry !',
-                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                    title: 'Sorry !  {form 3}',
+                    content: '<p> {form 3} This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
                 },
                 form: {
-                    nextLabel: 'Next',
-                    prevLabel: 'Back',
+                    nextLabel: 'Next {form 3}',
+                    prevLabel: 'Back {form 3}',
                     api: {
                         url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
                     callback: {
-                        success: function(){
+                        success: function () {
                             //alert('success !!!!!!!!');
                         }
                     },
@@ -206,6 +233,7 @@
 <script type="text/javascript">
     (function ($, Drupal, window) {
         addEventListener('WebComponentsReady', function () {
+
             var options = {
                 //id: 'LDP6312',
                 //id: 'LDP24104',
@@ -214,41 +242,41 @@
                 backgroundImage: '/assets/images/500-680.jpeg',
                 steps: {
                     0: {
-                        name: 'A4',
-                        title: 'To download the Case Study, please provide your email'
+                        name: 'setp 1 {form 4}',
+                        title: 'To download the Case Study, please provide your email {form 4}'
                     },
                     1: {
-                        name: 'B4',
-                        title: 'Please provide more informations to complete your Case Study download'
+                        name: 'step 2 {form 4}',
+                        title: 'Please provide more informations to complete your Case Study download {form 4}'
                     }
                 },
                 success: {
-                    title: 'Thanks for your download',
-                    content: 'Your download should start automatically, if not use the direct link',
+                    title: 'Thanks for your download {form 4}',
+                    content: 'Your download should start automatically, if not use the direct link {form 4}',
 
                 },
                 action: {
                     url: 'http://localhost:2000/assets/files/CATIA-SE-InstallationGuide.pdf',
-                    label: 'Download',
-                    content: 'PDF - 3,84Mo',
+                    label: 'Download {form 4}',
+                    content: 'PDF - 3,84Mo {form 4}',
                 },
                 accelerate: {
                     url: 'http://www.3ds.com/en/contact-us',
-                    label: 'contact me',
-                    content: 'You want to be contacted for a commercial purpose?',
+                    label: 'contact me  {form 4}',
+                    content: 'You want to be contacted for a commercial purpose?  {form 4}',
                 },
                 error: {
-                    title: 'Sorry !',
-                    content: '<p>This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
+                    title: 'Sorry !  {form 4}',
+                    content: '<p> {form 4} This service is temporarily unavailable. please try again later or contact the <a href="#" class="btn btn-primary">support</a></p> '
                 },
                 form: {
-                    nextLabel: 'Next',
-                    prevLabel: 'Back',
+                    nextLabel: 'Next {form 4}',
+                    prevLabel: 'Back {form 4}',
                     api: {
                         url: 'http://dassault-test.neolane.net/dsx/lp_api.jssp',
                     },
                     callback: {
-                        success: function(){
+                        success: function () {
                             //alert('success !!!!!!!!');
                         }
                     },

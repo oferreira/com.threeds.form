@@ -69,12 +69,13 @@ namespace Com.Threeds.Component.LandingPage.Element {
         }
 
         form(data: any): polymer.Base {
-            var self: any = this;
+            var self:any = this;
 
+            //console.log('self', self.context);
 
             if (typeof this.context.settings.hook.setCurrentPosition == 'undefined') {
                 this.context.settings.hook.setCurrentPosition = function (context: any, currentPosition: number) {
-                    self.setCurrentPosition(currentPosition);
+                    context.context.currentLandingpage().setCurrentPosition(currentPosition);
                 };
             }
 
@@ -92,7 +93,6 @@ namespace Com.Threeds.Component.LandingPage.Element {
                     }
                     context.context.status.transition = true;
 
-
                     // Reduit la largeur du form
                     context.context.elem.addClass('ds-form-sucess-anim');
 
@@ -106,9 +106,10 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
                     }, 300, "linear", function () {
                         // supprime et charge la page Sucess
-                        self.context.elem.html('');
-                        self.context.elem.append(Success.create(self.context, self.context.settings.success));
-                        self.context.status.transition = false;
+
+                        context.context.elem.html('');
+                        context.context.elem.append(Success.create(context, context.settings.success));
+                        context.context.status.transition = false;
 
                         // Affiche le titre
                         setTimeout(function () {
@@ -165,16 +166,16 @@ namespace Com.Threeds.Component.LandingPage.Element {
 
             if (typeof this.context.settings.hook.warning == 'undefined') {
                 this.context.settings.hook.warning = function (context: any, message: any) {
-                    self.context.elem.html('');
-                    self.context.elem.attr('class', '');
-                    self.context.elem.addClass('ds-form-sucess-anim');
-                    self.context.elem.append(Error.create(self.context, self.context.settings.error));
+                    context.elem.html('');
+                    context.elem.attr('class', '');
+                    context.elem.addClass('ds-form-sucess-anim');
+                    context.elem.append(Error.create(context, context.settings.error));
 
                 };
             }
 
             if (typeof this.context.settings.hook.transition == 'undefined') {
-                this.context.settings.hook.transition = self.transition;
+                this.context.settings.hook.transition = this.transition;
             }
 
             this.context.settings = $.extend(true, this.context.settings, {

@@ -12,14 +12,14 @@ namespace Com.Threeds.Service.Adapter {
 
     export class Neolane extends AbstractAdapter {
 
-        public form(context:any, options:any):void {
-            let self:any = this;
-
+        public form(context:any, options: any): void {
+            let self: any = this;
 
             $.ajax({
+                contextSettings:context.settings,
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/redirect.json',
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
-                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp",url: context.settings.api.url, data: {op: 'GetFormJson',lpid: context.settings.id},
+                type: "GET",jsonp: "callback"/*,jsonpCallback: "jsonpCallback"*/,dataType: "jsonp",url: context.settings.api.url,data: {op: 'GetFormJson', lpid: context.settings.id},
                 //type: "GET", dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/step2.test.json',
                 //type: "GET",dataType: "json", url: 'http://localhost:2000/data/landing-page/form/success.json',
@@ -28,37 +28,41 @@ namespace Com.Threeds.Service.Adapter {
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-displaymessage.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-GetFormJson-notavailable-redirection.json',
                 //type: "GET",dataType: "json", url: 'data/form/LandingPageAPI-SubmitForm-success-v2.json',
-                success: function (response:any) {
+                success: function (response: any) {
+                    context.settings = this.contextSettings;
                     context.render('form', self.data(response));
                 },
-                error: function (resultat:any, statut:any, erreur:any) {
+                error: function (resultat: any, statut: any, erreur: any) {
+                    context.settings = this.contextSettings;
                     context.render('form', false);
                 }
             });
         }
 
-        public post(context:any, data:any):void {
-            let self:any = this;
+        public post(context: any, data: any): void {
+            let self: any = this;
 
             data['lpid'] = context.settings.id;
 
-           $.ajax({
+            $.ajax({
+                contextSettings:context.settings,
                 //type: "GET",dataType: "json", url: 'data/landing-page/form/debug.json',
-                type: "GET",jsonp: "callback",jsonpCallback: "jsonpCallback",dataType: "jsonp", url: context.settings.api.url,
-                data:data,
-                success: function (response:any) {
+                type: "GET", jsonp: "callback",/*jsonpCallback: "jsonpCallback", */dataType: "jsonp", url: context.settings.api.url, data: data,
+                success: function (response: any) {
+                    context.settings = this.contextSettings;
                     response = self.data(response);
 
-                    if(typeof response.result.config != 'undefined'){
-                        let isFinalStep:boolean = true;
+                    console.log(response)
+                    if (typeof response.result.config != 'undefined') {
+                        let isFinalStep: boolean = true;
                         for (let i = 0; i < response.result.config.length; i++) {
-                            if(typeof response.result.config[i].type != 'undefined' && response.result.config[i].type != 'hidden'){
+                            if (typeof response.result.config[i].type != 'undefined' && response.result.config[i].type != 'hidden') {
                                 isFinalStep = false;
                                 break;
                             }
                         }
 
-                        if(isFinalStep){
+                        if (isFinalStep) {
                             data['op'] = 'SubmitForm';
                             self.post(context, data);
                             return;
@@ -67,13 +71,15 @@ namespace Com.Threeds.Service.Adapter {
 
                     context.render('form', response);
                 },
-                error: function (resultat:any, statut:any, erreur:any) {
+                error: function (resultat: any, statut: any, erreur: any) {
+
+                    context.settings = this.contextSettings;
                     context.render('form', false);
                 }
             });
         }
 
-        public data(reponse:any):any {
+        public data(reponse: any): any {
             if (typeof reponse.result != 'undefined' && typeof reponse.result.config != 'undefined') {
                 this.clean(reponse.result.config);
             }
@@ -83,7 +89,7 @@ namespace Com.Threeds.Service.Adapter {
 
                 for (let i = 0; i < reponse.result.config.length; i++) {
                     if (typeof reponse.result.config[i].parentField != 'undefined') {
-                        reponse.result.config[i].parentFieldData = this.findParentData(reponse.result.config[i].parentField , reponse.result.config);
+                        reponse.result.config[i].parentFieldData = this.findParentData(reponse.result.config[i].parentField, reponse.result.config);
                     }
                 }
             }
@@ -91,7 +97,7 @@ namespace Com.Threeds.Service.Adapter {
             return reponse;
         }
 
-        public clean(data:any):any {
+        public clean(data: any): any {
             for (let i = 0; i < data.length; i++) {
                 data[i].fieldclass = [];
 
@@ -106,7 +112,7 @@ namespace Com.Threeds.Service.Adapter {
         }
 
 
-        public findParentData(parentField:any, data:any):any {
+        public findParentData(parentField: any, data: any): any {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].fieldName == parentField) {
                     return data[i];
@@ -116,7 +122,7 @@ namespace Com.Threeds.Service.Adapter {
         }
 
 
-        public hydrate(data:any, values:any):any {
+        public hydrate(data: any, values: any): any {
             for (let i = 0; i < data.length; i++) {
                 if (typeof data[i].fieldName != 'undefined' && values[data[i].fieldName] != 'undefined') {
                     data[i].value = values[data[i].fieldName];
@@ -131,10 +137,10 @@ namespace Com.Threeds.Service.Adapter {
 }
 
 interface Object {
-    find(o:any, s:string):Object;
+    find(o: any, s: string): Object;
 }
 
-Object.find = function (o:any, s:string):Object {
+Object.find = function (o: any, s: string): Object {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
     var a = s.split('.');
